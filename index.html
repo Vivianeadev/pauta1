@@ -162,16 +162,16 @@
         <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
       <div class="menu-dropdown" id="menuDropdown">
-        <button class="dropdown-item active" data-tab="home"> Home</button>
-        <button class="dropdown-item" data-tab="tecnologia"> Tecnologia</button>
-        <button class="dropdown-item" data-tab="economia"> Economia & Trabalho</button>
-        <button class="dropdown-item" data-tab="sociedade"> Sociedade & Comportamento</button>
-        <button class="dropdown-item" data-tab="futurismo"> Futurismo</button>
-        <button class="dropdown-item" data-tab="sistemas"> Sistemas prisionais</button>
-        <button class="dropdown-item" data-tab="entrevistas"> Entrevistas</button>
-        <button class="dropdown-item" data-tab="oportunidades"> Oportunidades</button>
-        <button class="dropdown-item" data-tab="filantropia"> Filantropia</button>
-        <button class="dropdown-item" data-tab="fundadora"> Fundadora</button>
+        <button class="dropdown-item active" data-tab="home">🏠 Home</button>
+        <button class="dropdown-item" data-tab="tecnologia">⚙️ Tecnologia</button>
+        <button class="dropdown-item" data-tab="economia">📊 Economia & Trabalho</button>
+        <button class="dropdown-item" data-tab="sociedade">🌱 Sociedade & Comportamento</button>
+        <button class="dropdown-item" data-tab="futurismo">🔮 Futurismo</button>
+        <button class="dropdown-item" data-tab="sistemas">🏛️ Sistemas prisionais</button>
+        <button class="dropdown-item" data-tab="entrevistas">🎙️ Entrevistas</button>
+        <button class="dropdown-item" data-tab="oportunidades">💼 Oportunidades</button>
+        <button class="dropdown-item" data-tab="filantropia">❤️ Filantropia</button>
+        <button class="dropdown-item" data-tab="fundadora">📖 Fundadora</button>
       </div>
     </div>
   </header>
@@ -220,9 +220,35 @@
 
   <script>
     (function() {
-      // ======================= BASE DE ARTIGOS ORGANIZADA POR ABAS (TEMAS CORRETOS) =======================
+      // ============================================================
+      // REGRA AUTOMÁTICA PARA NOMES DE IMAGEM
+      // PADRÃO: data (DD.MM.YYYY) + "." + tituloFormatado + ".jpg"
+      // Exemplo: 08.04.2026.Direitos.jpg
+      // ============================================================
+      function generateImageNameFromArticle(article) {
+        // Pega a data no formato DD.MM.YYYY
+        const datePart = article.date; // ex: "08.04.2026"
+        
+        // Pega o título e formata: remove acentos, espaços vira vazio, mantém apenas letras e números
+        let titlePart = article.title;
+        
+        // Remove acentos (normalização)
+        titlePart = titlePart.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        
+        // Remove caracteres especiais, mantém apenas letras, números e espaços
+        titlePart = titlePart.replace(/[^a-zA-Z0-9\s]/g, '');
+        
+        // Remove espaços
+        titlePart = titlePart.replace(/\s+/g, '');
+        
+        // Retorna o nome completo do arquivo
+        return `${datePart}.${titlePart}.jpg`;
+      }
+
+      // ======================= BASE DE ARTIGOS =======================
+      // CADA ARTIGO PRECISA APENAS: id, title, category, tabTheme, date, readTime, fullText
+      // A IMAGEM SERÁ GERADA AUTOMATICAMENTE SEGUINDO A REGRA: data + tituloFormatado + .jpg
       const articlesDB = {
-        // Home (Destaques)
         "telefone-cordinha": {
           id: "telefone-cordinha",
           title: "O telefone de cordinha",
@@ -234,7 +260,7 @@
         },
         "saude-mental-expansao": {
           id: "saude-mental-expansao",
-          title: "Saúde mental: a expansão que exige critério",
+          title: "Saúde mental a expansão que exige critério",
           category: "Saúde & Sociedade",
           tabTheme: "sociedade",
           date: "10.04.2026",
@@ -243,7 +269,7 @@
         },
         "desemprego-analise-2026": {
           id: "desemprego-analise-2026",
-          title: "O desemprego caiu — mas o problema mudou de lugar",
+          title: "O desemprego caiu mas o problema mudou de lugar",
           category: "Economia & Trabalho",
           tabTheme: "economia",
           date: "08.04.2026",
@@ -261,7 +287,7 @@
         },
         "ia-algoritmos-governanca": {
           id: "ia-algoritmos-governanca",
-          title: "IA e governança: entre a previsão e o controle",
+          title: "IA e governança entre a previsão e o controle",
           category: "Tecnologia & Ética",
           tabTheme: "tecnologia",
           date: "12.04.2026",
@@ -287,6 +313,12 @@
           fullText: `<p>Existe uma leitura muito difundida, quase automática, de que os grandes patrimônios já estão formados, de que os nomes relevantes da economia global já foram definidos e de que o espaço para crescimento real está cada vez mais restrito. Essa percepção parece lógica à primeira vista, principalmente quando se observa a concentração de capital em grandes grupos e a consolidação de empresas que dominam setores inteiros. No entanto, essa leitura ignora um movimento silencioso que está acontecendo em paralelo, fora do campo mais visível do mercado tradicional.</p><p>Hoje, existe uma camada inteira de indivíduos com potencial real de se tornarem multimilionários operando fora desse radar. Não se trata de uma hipótese otimista, mas de uma consequência direta da forma como a tecnologia evoluiu nos últimos anos. Diferente de ciclos anteriores, onde a construção de patrimônio exigia infraestrutura pesada, capital inicial elevado e dependência de estruturas físicas, o cenário atual permite que valor seja criado, estruturado e escalado com muito menos fricção. Isso não significa facilidade, mas significa acessibilidade técnica para quem entende o funcionamento dos sistemas.</p><p>Foi exatamente essa mudança que começou a chamar atenção de forma mais clara a partir de 2019, quando iniciei a estruturação dos meus próprios projetos tecnológicos. Naquele momento, a percepção ainda não era amplamente discutida, mas já existiam sinais consistentes de que o avanço tecnológico não estava apenas ampliando oportunidades, mas também redesenhando o próprio conceito de trabalho. A evolução de inteligência artificial, automação, sistemas descentralizados e infraestruturas digitais não representava apenas inovação incremental, mas sim uma alteração estrutural na forma como valor seria produzido e distribuído.</p><p>Existe um erro recorrente quando se analisa tecnologia sob uma ótica superficial: considerar apenas o que ela cria e não o que ela substitui. Cada avanço tecnológico relevante carrega, simultaneamente, um efeito de expansão e um efeito de compressão. Enquanto novas possibilidades surgem, antigas estruturas deixam de ser necessárias. Esse processo não ocorre de forma abrupta, mas em camadas progressivas. Primeiro são substituídas tarefas repetitivas, depois funções inteiras passam a ser automatizadas, e em seguida setores completos começam a operar com menos pessoas e maior eficiência.</p><p>O impacto real disso não está apenas na redução de empregos específicos, mas na alteração do caminho tradicional de construção de riqueza. Durante muito tempo, a participação no sistema produtivo — trabalhar, evoluir, acumular e investir — foi o principal vetor de crescimento financeiro para a maioria das pessoas. Esse modelo não desapareceu, mas deixou de ser dominante. No cenário atual, o valor tende a se concentrar em quem constrói sistemas, plataformas e estruturas escaláveis, enquanto uma parcela crescente da população permanece operando dentro desses sistemas com menor previsibilidade e menor capacidade de expansão patrimonial.</p><p>É nesse ponto que surge o conceito dos “multimilionários invisíveis”. Eles não são invisíveis por estarem ocultos, mas porque ainda não foram identificados como parte desse novo ciclo de construção de riqueza. São profissionais que atuam diretamente na criação de estruturas digitais, no desenvolvimento de tecnologias escaláveis, na organização de sistemas que não dependem de presença física e que conseguem operar com alto nível de eficiência. Essas pessoas não necessariamente possuem visibilidade pública ou reconhecimento imediato, mas estão posicionadas em pontos estratégicos dentro de um sistema que valoriza cada vez mais a arquitetura sobre a execução.</p><p>No entanto, existe um fator crítico que precisa ser considerado com precisão técnica: o tempo disponível para que esse movimento se consolide. Diferente de ciclos econômicos anteriores, onde oportunidades permaneciam abertas por longos períodos, o cenário atual é marcado por uma janela de transição relativamente curta. As mesmas tecnologias que hoje permitem a construção acelerada de valor são responsáveis, simultaneamente, por reduzir a necessidade de participação humana em diversas atividades.</p><p>Isso significa que estamos diante de um intervalo específico, onde as ferramentas ainda estão acessíveis e o sistema ainda não atingiu um nível total de automação. Essa combinação cria um ambiente onde ainda é possível entrar, estruturar e escalar. No entanto, à medida que os sistemas evoluem, a tendência natural é que a barreira de entrada aumente, não necessariamente por dificuldade técnica, mas por consolidação estrutural. Uma vez que determinados modelos estejam estabelecidos e operando de forma autônoma, o espaço para novos participantes tende a diminuir de forma significativa.</p><p>A automação avançada já não atua apenas como suporte operacional; ela começa a assumir decisões. Sistemas automatizados deixam de ser ferramentas auxiliares e passam a substituir processos inteiros. Plataformas descentralizadas eliminam intermediários que antes eram indispensáveis. Cada uma dessas mudanças reduz a necessidade de intervenção humana direta e, consequentemente, altera a distribuição de oportunidades dentro do sistema econômico.</p><p>O efeito acumulado desse processo é uma tendência de concentração de valor. À medida que menos pessoas são necessárias para operar estruturas mais eficientes, a geração de riqueza não diminui, mas se redistribui de forma mais concentrada. Isso explica por que é possível observar, simultaneamente, o surgimento de novas oportunidades altamente lucrativas em determinados nichos e o aumento de instabilidade em setores tradicionais.</p><p>Essa dinâmica não é contraditória; ela é característica de sistemas em transição. O problema é que essa transição raramente é percebida de forma clara pela maioria das pessoas, justamente porque ela não ocorre como uma ruptura visível. Ela se manifesta de forma gradual, através de ajustes que, isoladamente, parecem pequenos, mas que, somados, alteram completamente o funcionamento do mercado.</p><p>Nesse contexto, a ideia de potencial precisa ser tratada com objetividade. Existe, de fato, uma geração com acesso a ferramentas que permitem a construção de patrimônio em escala acelerada. No entanto, esse potencial não é ilimitado no tempo. Ele está condicionado a uma janela que tende a se reduzir à medida que a tecnologia avança e que os sistemas se tornam mais autônomos.</p><p>Isso não implica um cenário negativo, mas exige uma leitura precisa. O diferencial não está apenas no acesso à tecnologia, mas na capacidade de utilizá-la de forma estratégica antes que o próprio sistema altere as regras de participação. Uma vez que determinados processos estejam totalmente consolidados, a criação de novas estruturas passa a exigir não apenas conhecimento técnico, mas acesso a ambientes já estabelecidos, o que naturalmente restringe a entrada.</p><p>A riqueza, nesse cenário, não desaparece. Ela continua sendo gerada, mas passa a ser acessada de forma diferente. O futuro não elimina a possibilidade de crescimento financeiro, mas redefine quem consegue participar desse crescimento e em quais condições isso acontece. Essa redefinição não ocorre por decisão centralizada, mas como resultado direto da evolução tecnológica e da reorganização dos sistemas produtivos.</p><p>A questão central, portanto, não é se novos multimilionários surgirão. Eles já estão surgindo. A questão relevante é quantos ainda terão tempo de se posicionar dentro dessa janela antes que ela se reduza de forma significativa. Porque, uma vez consolidada a próxima fase desse sistema, o acesso deixa de ser uma questão de capacidade individual e passa a ser uma questão de estrutura disponível.</p><p>Essa mudança já começou. E, como acontece em transições dessa natureza, ela não será anunciada de forma explícita. Ela será percebida apenas quando os efeitos já estiverem consolidados.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
         }
       };
+
+      // FUNÇÃO QUE GERA O CAMINHO DA IMAGEM SEGUINDO A REGRA
+      function getImagePath(article) {
+        const imageName = generateImageNameFromArticle(article);
+        return `assets/images/${imageName}`;
+      }
 
       function getAllArticlesForArchive() {
         return Object.values(articlesDB).filter(a => a.date !== "Em breve").sort((a,b) => {
@@ -330,8 +362,6 @@
         });
       }
 
-      function getImagePath(articleId) { return `assets/images/${articleId}.jpg`; }
-
       function openModalByArticleId(articleId) {
         const article = articlesDB[articleId];
         if (!article) return;
@@ -341,8 +371,10 @@
         const modalFullContent = document.getElementById('modalFullContent');
         modalTitle.innerText = article.title;
         modalMeta.innerHTML = `<span><i class="fas fa-folder-open"></i> ${article.category}</span><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="far fa-clock"></i> ${article.readTime}</span>`;
-        const imagePath = getImagePath(article.id);
-        const imageHtml = `<div class="article-image"><img src="${imagePath}" alt="${article.title}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada';"></div>`;
+        
+        // Gera o caminho da imagem automaticamente pela REGRA
+        const imagePath = getImagePath(article);
+        const imageHtml = `<div class="article-image"><img src="${imagePath}" alt="${article.title}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada\n\nRegra: data+titulo.jpg';"></div>`;
         const textHtml = `<div class="article-text">${article.fullText}</div>`;
         modalFullContent.innerHTML = `<div class="article-with-image">${imageHtml}${textHtml}</div>`;
         modal.classList.add('active');
@@ -362,7 +394,7 @@
       document.getElementById('articleModal').addEventListener('click', (e) => { if (e.target === document.getElementById('articleModal')) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeArchive(); } });
 
-      // Mapa de conteúdos por aba com artigos ESPECÍFICOS e CORRETAMENTE VINCULADOS
+      // Mapa de conteúdos por aba
       const contentMap = {
         home: `
           <div style="margin-bottom: 2rem;"><h2 style="border-bottom: none;">Edição atual</h2><p style="color: var(--gold-dark);">Curadoria analítica independente</p></div>
