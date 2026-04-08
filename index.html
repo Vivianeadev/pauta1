@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* ESTILOS COMPLETOS (MANTIDOS IGUAIS - SEM ARREDONDAMENTOS, CORES ORIGINAIS) */
     * {
       margin: 0;
       padding: 0;
@@ -20,7 +21,7 @@
       --color-primary-light: #1a4b6d;
       --gold-primary: #D4AF37;
       --gold-secondary: #F4E4B8;
-      --gold-dark: #B8860B;   /* dourado original (não o marrom escuro) */
+      --gold-dark: #B8860B;
       --color-dark: #1A1A1A;
       --color-text: #1e2a3a;
       --color-text-light: #2c3e4e;
@@ -45,290 +46,49 @@
       font-size: 0.95rem;
     }
 
-    body.modal-open, body.archive-open {
-      overflow: hidden;
-    }
+    body.modal-open, body.archive-open { overflow: hidden; }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 36px;
-    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
+    h1, h2, h3, h4, .logo, .section-title { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
+    h2 { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 500; color: var(--color-primary); border-bottom: 2px solid rgba(212, 175, 55, 0.35); display: inline-block; padding-bottom: 8px; }
 
-    h1, h2, h3, h4, .logo, .section-title {
-      font-family: var(--font-serif);
-      font-weight: 500;
-      letter-spacing: -0.01em;
-    }
+    .site-header { position: sticky; top: 0; background: rgba(255, 253, 250, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); z-index: 100; padding: 1rem 0; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 0 36px; gap: 1rem; }
+    .logo-area { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .logo { font-size: 2rem; font-weight: 700; color: var(--color-primary); text-decoration: none; letter-spacing: 1px; }
+    .logo span { color: var(--gold-dark); font-weight: 500; }
+    .slogan { font-size: 0.7rem; font-family: var(--font-body); color: var(--gold-dark); text-transform: uppercase; letter-spacing: 2.5px; border-left: 1px solid rgba(212, 175, 55, 0.5); padding-left: 14px; }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-      color: var(--color-primary);
-      border-bottom: 2px solid rgba(212, 175, 55, 0.35);
-      display: inline-block;
-      padding-bottom: 8px;
-    }
+    .nav-hamburger { display: flex; align-items: center; gap: 1rem; }
+    .archive-btn, .menu-icon-btn { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-primary); cursor: pointer; transition: 0.2s; }
+    .archive-btn:hover, .menu-icon-btn:hover { background: rgba(212, 175, 55, 0.25); border-color: var(--gold-primary); }
+    .menu-icon-btn { font-size: 1.4rem; }
+    .current-tab-name { font-family: var(--font-serif); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-dark); background: rgba(212, 175, 55, 0.08); padding: 0.4rem 1rem; border: 1px solid rgba(212, 175, 55, 0.3); white-space: nowrap; }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      background: rgba(255, 253, 250, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-      z-index: 100;
-      padding: 1rem 0;
-    }
+    .menu-dropdown { position: absolute; top: 80px; right: 36px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(16px); box-shadow: 0 20px 40px -12px rgba(10, 49, 71, 0.25); border: 1px solid rgba(212, 175, 55, 0.3); padding: 0.8rem 0; min-width: 260px; z-index: 200; display: none; flex-direction: column; }
+    .menu-dropdown.active { display: flex; animation: fadeSlideIn 0.2s ease; }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown-item { background: none; border: none; text-align: left; padding: 0.9rem 1.8rem; font-family: var(--font-serif); font-size: 0.85rem; font-weight: 500; color: var(--color-text); letter-spacing: 1px; cursor: pointer; width: 100%; }
+    .dropdown-item:hover { background: var(--gradient-gold-subtle); color: var(--gold-dark); }
+    .dropdown-item.active { background: rgba(212, 175, 55, 0.1); color: var(--gold-dark); border-left: 3px solid var(--gold-primary); }
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 36px;
-      gap: 1rem;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--color-primary);
-      text-decoration: none;
-      letter-spacing: 1px;
-    }
-    .logo span {
-      color: var(--gold-dark);
-      font-weight: 500;
-    }
-
-    .slogan {
-      font-size: 0.7rem;
-      font-family: var(--font-body);
-      color: var(--gold-dark);
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      border-left: 1px solid rgba(212, 175, 55, 0.5);
-      padding-left: 14px;
-    }
-
-    /* Navegação sem arredondamentos */
-    .nav-hamburger {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .archive-btn {
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      color: var(--color-primary);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .archive-btn:hover {
-      background: rgba(212, 175, 55, 0.25);
-      border-color: var(--gold-primary);
-    }
-    .current-tab-name {
-      font-family: var(--font-serif);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--gold-dark);
-      background: rgba(212, 175, 55, 0.08);
-      padding: 0.4rem 1rem;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      white-space: nowrap;
-    }
-    .menu-icon-btn {
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      color: var(--color-primary);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .menu-icon-btn:hover {
-      background: rgba(212, 175, 55, 0.25);
-      border-color: var(--gold-primary);
-    }
-    .menu-dropdown {
-      position: absolute;
-      top: 80px;
-      right: 36px;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 20px 40px -12px rgba(10, 49, 71, 0.25);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      padding: 0.8rem 0;
-      min-width: 260px;
-      z-index: 200;
-      display: none;
-      flex-direction: column;
-    }
-    .menu-dropdown.active {
-      display: flex;
-      animation: fadeSlideIn 0.2s ease;
-    }
-    @keyframes fadeSlideIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .dropdown-item {
-      background: none;
-      border: none;
-      text-align: left;
-      padding: 0.9rem 1.8rem;
-      font-family: var(--font-serif);
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--color-text);
-      letter-spacing: 1px;
-      cursor: pointer;
-      width: 100%;
-    }
-    .dropdown-item:hover {
-      background: var(--gradient-gold-subtle);
-      color: var(--gold-dark);
-    }
-    .dropdown-item.active {
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--gold-dark);
-      border-left: 3px solid var(--gold-primary);
-    }
-
-    /* Painel de arquivo/busca - sem arredondamentos */
-    .archive-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 49, 71, 0.8);
-      backdrop-filter: blur(6px);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    .archive-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .archive-panel {
-      background: var(--color-bg-card);
-      width: 100%;
-      max-width: 500px;
-      height: 100%;
-      right: 0;
-      position: absolute;
-      box-shadow: -5px 0 30px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      border-left: 1px solid var(--gold-primary);
-    }
-    .archive-overlay.active .archive-panel {
-      transform: translateX(0);
-    }
-    .archive-header {
-      padding: 1.5rem;
-      border-bottom: 1px solid rgba(212,175,55,0.2);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-    }
-    .archive-header h3 {
-      font-family: var(--font-serif);
-      font-size: 1.3rem;
-      color: var(--color-primary);
-    }
-    .archive-close {
-      background: none;
-      border: none;
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: var(--gold-dark);
-    }
-    .archive-search {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid rgba(212,175,55,0.1);
-    }
-    .archive-search input {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1px solid rgba(212,175,55,0.3);
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      background: white;
-      outline: none;
-      transition: 0.2s;
-    }
-    .archive-search input:focus {
-      border-color: var(--gold-primary);
-    }
-    .archive-list {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem 1.5rem;
-    }
-    .archive-item {
-      background: var(--color-bg-card);
-      border: 1px solid rgba(212,175,55,0.15);
-      padding: 1rem;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      transition: 0.1s;
-    }
-    .archive-item:hover {
-      border-color: var(--gold-primary);
-      background: rgba(212,175,55,0.02);
-    }
-    .archive-item-title {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-primary);
-      margin-bottom: 0.25rem;
-    }
-    .archive-item-meta {
-      font-size: 0.7rem;
-      color: var(--gold-dark);
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.3rem;
-    }
-    .no-results {
-      text-align: center;
-      padding: 2rem;
-      color: var(--color-text-light);
-      font-style: italic;
-    }
+    .archive-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 49, 71, 0.8); backdrop-filter: blur(6px); z-index: 1000; display: flex; align-items: center; justify-content: flex-end; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+    .archive-overlay.active { opacity: 1; visibility: visible; }
+    .archive-panel { background: var(--color-bg-card); width: 100%; max-width: 500px; height: 100%; right: 0; position: absolute; box-shadow: -5px 0 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.3s ease; border-left: 1px solid var(--gold-primary); }
+    .archive-overlay.active .archive-panel { transform: translateX(0); }
+    .archive-header { padding: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.2); display: flex; justify-content: space-between; align-items: center; background: white; }
+    .archive-header h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-primary); }
+    .archive-close { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--gold-dark); }
+    .archive-search { padding: 1rem 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.1); }
+    .archive-search input { width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(212,175,55,0.3); font-family: var(--font-sans); font-size: 0.9rem; background: white; outline: none; }
+    .archive-search input:focus { border-color: var(--gold-primary); }
+    .archive-list { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+    /* Tamanhos menores na listagem da lupa */
+    .archive-item { background: var(--color-bg-card); border: 1px solid rgba(212,175,55,0.15); padding: 0.8rem 1rem; margin-bottom: 0.8rem; cursor: pointer; }
+    .archive-item:hover { border-color: var(--gold-primary); background: rgba(212,175,55,0.02); }
+    .archive-item-title { font-family: var(--font-serif); font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.2rem; }
+    .archive-item-meta { font-size: 0.65rem; color: var(--gold-dark); display: flex; gap: 1rem; margin-top: 0.2rem; }
+    .no-results { text-align: center; padding: 2rem; color: var(--color-text-light); font-style: italic; }
 
     @media (max-width: 700px) {
       .slogan { display: none; }
@@ -338,295 +98,53 @@
       .archive-panel { max-width: 100%; }
     }
 
-    main {
-      padding: 3rem 0 5rem;
-    }
+    main { padding: 3rem 0 5rem; }
+    .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2.5rem 0; }
+    .article-card { background: var(--color-bg-card); padding: 1.5rem; border: var(--border-light); transition: 0.2s; cursor: pointer; }
+    .article-card:hover { transform: translateY(-4px); border-color: var(--gold-primary); box-shadow: var(--shadow-luxury); }
+    .article-cat { color: var(--gold-dark); text-transform: uppercase; font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem; }
+    .article-card h3 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; margin-bottom: 0.8rem; color: var(--color-primary); }
+    .article-card p { font-size: 0.85rem; line-height: 1.45; color: var(--color-text-light); }
+    .article-meta { font-size: 0.65rem; color: #7e6b4a; border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 1rem; margin-top: 1rem; display: flex; justify-content: space-between; }
 
-    /* Cards sem arredondamentos */
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin: 2.5rem 0;
-    }
-    .article-card {
-      background: var(--color-bg-card);
-      padding: 1.5rem;
-      border: var(--border-light);
-      transition: 0.2s;
-      cursor: pointer;
-    }
-    .article-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--gold-primary);
-      box-shadow: var(--shadow-luxury);
-    }
-    .article-cat {
-      color: var(--gold-dark);
-      text-transform: uppercase;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      margin-bottom: 1rem;
-    }
-    .article-card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      font-weight: 500;
-      margin-bottom: 0.8rem;
-      color: var(--color-primary);
-    }
-    .article-card p {
-      font-size: 0.85rem;
-      line-height: 1.45;
-      color: var(--color-text-light);
-    }
-    .article-meta {
-      font-size: 0.65rem;
-      color: #7e6b4a;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      padding-top: 1rem;
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
-    }
+    .carousel-section { margin: 1.5rem 0 3rem; }
+    .carousel-title { font-family: var(--font-serif); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-dark); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 12px; }
+    .carousel-container { overflow-x: auto; scrollbar-width: thin; padding-bottom: 12px; }
+    .carousel-track { display: flex; gap: 28px; min-width: max-content; }
+    .carousel-card { flex: 0 0 280px; background: var(--color-bg-card); border: var(--border-light); padding: 1.5rem; transition: all 0.2s; cursor: pointer; }
+    .carousel-card:hover { border-color: var(--gold-primary); box-shadow: var(--shadow-luxury); transform: translateY(-3px); }
+    .carousel-cat { font-size: 0.65rem; text-transform: uppercase; color: var(--gold-dark); font-weight: 600; letter-spacing: 1px; margin-bottom: 0.8rem; }
 
-    /* Carrossel sem arredondamentos */
-    .carousel-section {
-      margin: 1.5rem 0 3rem;
-    }
-    .carousel-title {
-      font-family: var(--font-serif);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--gold-dark);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .carousel-container {
-      overflow-x: auto;
-      scrollbar-width: thin;
-      padding-bottom: 12px;
-    }
-    .carousel-track {
-      display: flex;
-      gap: 28px;
-      min-width: max-content;
-    }
-    .carousel-card {
-      flex: 0 0 280px;
-      background: var(--color-bg-card);
-      border: var(--border-light);
-      padding: 1.5rem;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-    .carousel-card:hover {
-      border-color: var(--gold-primary);
-      box-shadow: var(--shadow-luxury);
-      transform: translateY(-3px);
-    }
-    .carousel-cat {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      color: var(--gold-dark);
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 0.8rem;
-    }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 49, 71, 0.85); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal-container { background: var(--color-bg-card); max-width: 900px; width: 90%; max-height: 85vh; border: 1px solid var(--gold-primary); box-shadow: 0 30px 50px rgba(0,0,0,0.3); overflow-y: auto; transform: scale(0.95); transition: transform 0.3s ease; }
+    .modal-overlay.active .modal-container { transform: scale(1); }
+    .modal-header { position: sticky; top: 0; background: white; padding: 1.2rem 2rem 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.2); display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+    .modal-header h3 { font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-primary); }
+    .modal-close { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--gold-dark); }
+    .modal-body { padding: 2rem; }
+    .modal-meta { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; font-size: 0.75rem; color: var(--gold-dark); text-transform: uppercase; }
+    .article-with-image { overflow: auto; }
+    .article-image { float: left; width: 280px; margin: 0 1.8rem 1rem 0; border: 1px solid rgba(212,175,55,0.3); overflow: hidden; background: #f3efe8; }
+    .article-image img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .article-text p { margin-bottom: 1.2rem; line-height: 1.65; color: var(--color-text-light); }
+    @media (max-width: 700px) { .article-image { float: none; width: 100%; margin: 0 0 1.2rem 0; } .modal-header h3 { font-size: 1.3rem; } }
 
-    /* Modal sem arredondamentos */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 49, 71, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .modal-container {
-      background: var(--color-bg-card);
-      max-width: 900px;
-      width: 90%;
-      max-height: 85vh;
-      border: 1px solid var(--gold-primary);
-      box-shadow: 0 30px 50px rgba(0,0,0,0.3);
-      overflow-y: auto;
-      transform: scale(0.95);
-      transition: transform 0.3s ease;
-    }
-    .modal-overlay.active .modal-container {
-      transform: scale(1);
-    }
-    .modal-header {
-      position: sticky;
-      top: 0;
-      background: white;
-      padding: 1.2rem 2rem 0.8rem;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-    }
-    .modal-header h3 {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      color: var(--color-primary);
-    }
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--gold-dark);
-    }
-    .modal-body {
-      padding: 2rem;
-    }
-    .modal-meta {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.75rem;
-      color: var(--gold-dark);
-      text-transform: uppercase;
-    }
-    .article-with-image {
-      overflow: auto;
-    }
-    .article-image {
-      float: left;
-      width: 280px;
-      margin: 0 1.8rem 1rem 0;
-      border: 1px solid rgba(212,175,55,0.3);
-      overflow: hidden;
-      background: #f3efe8;
-    }
-    .article-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-    .article-text p {
-      margin-bottom: 1.2rem;
-      line-height: 1.65;
-      color: var(--color-text-light);
-    }
-    @media (max-width: 700px) {
-      .article-image {
-        float: none;
-        width: 100%;
-        margin: 0 0 1.2rem 0;
-      }
-      .modal-header h3 { font-size: 1.3rem; }
-    }
+    .section-light { background: var(--gradient-gold-subtle); padding: 2rem; margin: 3rem 0; border: var(--border-light); }
+    .phil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem; }
+    .consent-badge { color: var(--gold-dark); font-size: 0.65rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .site-footer { border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem 0; color: var(--color-text-light); background: var(--color-bg); font-size: 0.75rem; }
 
-    /* Seção estudos de caso - sem arredondamentos */
-    .section-light {
-      background: var(--gradient-gold-subtle);
-      padding: 2rem;
-      margin: 3rem 0;
-      border: var(--border-light);
-    }
-    .phil-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-    .consent-badge {
-      color: var(--gold-dark);
-      font-size: 0.65rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-    .site-footer {
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      padding: 2rem 0;
-      color: var(--color-text-light);
-      background: var(--color-bg);
-      font-size: 0.75rem;
-    }
-
-    /* Fundadora - sem arredondamentos */
-    .founder-section {
-      margin-top: 1rem;
-    }
-    .founder-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      background: var(--color-bg-card);
-      border: var(--border-light);
-      padding: 2rem;
-    }
-    .founder-photo-col {
-      flex: 0 0 260px;
-    }
-    .founder-photo-col img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border: 2px solid var(--gold-primary);
-    }
-    .founder-info-col {
-      flex: 1;
-    }
-    .founder-info-col h3 {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      color: var(--color-primary);
-      margin-bottom: 0.25rem;
-    }
-    .founder-title {
-      color: var(--gold-dark);
-      font-weight: 500;
-      letter-spacing: 1px;
-      margin-bottom: 1.2rem;
-      border-left: 3px solid var(--gold-primary);
-      padding-left: 1rem;
-      font-size: 0.85rem;
-    }
-    .founder-info-col p {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      color: var(--color-text-light);
-    }
-    .editorial-signature {
-      margin-top: 1.5rem;
-      border-top: 1px solid rgba(212,175,55,0.2);
-      padding-top: 1rem;
-      font-size: 0.85rem;
-    }
-    @media (max-width: 800px) {
-      .founder-container {
-        flex-direction: column;
-      }
-      .founder-photo-col {
-        flex: auto;
-        max-width: 320px;
-        margin: 0 auto;
-      }
-    }
+    .founder-section { margin-top: 1rem; }
+    .founder-container { display: flex; flex-wrap: wrap; gap: 2.5rem; background: var(--color-bg-card); border: var(--border-light); padding: 2rem; }
+    .founder-photo-col { flex: 0 0 260px; }
+    .founder-photo-col img { width: 100%; height: auto; display: block; border: 2px solid var(--gold-primary); }
+    .founder-info-col { flex: 1; }
+    .founder-info-col h3 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--color-primary); margin-bottom: 0.25rem; }
+    .founder-title { color: var(--gold-dark); font-weight: 500; letter-spacing: 1px; margin-bottom: 1.2rem; border-left: 3px solid var(--gold-primary); padding-left: 1rem; font-size: 0.85rem; }
+    .founder-info-col p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; color: var(--color-text-light); }
+    .editorial-signature { margin-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.2); padding-top: 1rem; font-size: 0.85rem; }
+    @media (max-width: 800px) { .founder-container { flex-direction: column; } .founder-photo-col { flex: auto; max-width: 320px; margin: 0 auto; } }
   </style>
 </head>
 <body>
@@ -642,20 +160,20 @@
         <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
       <div class="menu-dropdown" id="menuDropdown">
-        <button class="dropdown-item active" data-tab="home"> Home</button>
-        <button class="dropdown-item" data-tab="tecnologia"> Tecnologia</button>
-        <button class="dropdown-item" data-tab="futurismo"> Futurismo</button>
-        <button class="dropdown-item" data-tab="sistemas"> Sistemas prisionais</button>
-        <button class="dropdown-item" data-tab="entrevistas"> Entrevistas</button>
-        <button class="dropdown-item" data-tab="oportunidades"> Oportunidades</button>
-        <button class="dropdown-item" data-tab="fundadora"> Fundadora</button>
+        <button class="dropdown-item active" data-tab="home">🏠 Home</button>
+        <button class="dropdown-item" data-tab="tecnologia">⚙️ Tecnologia</button>
+        <button class="dropdown-item" data-tab="futurismo">🔮 Futurismo</button>
+        <button class="dropdown-item" data-tab="sistemas">🏛️ Sistemas prisionais</button>
+        <button class="dropdown-item" data-tab="entrevistas">🎙️ Entrevistas</button>
+        <button class="dropdown-item" data-tab="oportunidades">💼 Oportunidades</button>
+        <button class="dropdown-item" data-tab="filantropia">❤️ Filantropia</button>
+        <button class="dropdown-item" data-tab="fundadora">📖 Fundadora</button>
       </div>
     </div>
   </header>
 
   <main class="container">
     <div id="tabContent"></div>
-
     <section class="section-light">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;">
         <i class="fas fa-chart-line" style="color: var(--gold-primary); font-size: 1.4rem;"></i>
@@ -663,16 +181,8 @@
       </div>
       <p style="margin-bottom: 2rem; font-size: 0.85rem;">Projetos em fase de análise — conteúdo em breve.</p>
       <div class="phil-grid">
-        <div class="phil-card">
-          <div class="consent-badge"><i class="fas fa-check-circle"></i> consentimento ativo</div>
-          <h3 style="font-family: var(--font-serif); font-size:1.2rem;">Em breve</h3>
-          <p>Análise em fase de estruturação.</p>
-        </div>
-        <div class="phil-card">
-          <div class="consent-badge"><i class="fas fa-check-circle"></i> consentimento ativo</div>
-          <h3 style="font-family: var(--font-serif); font-size:1.2rem;">Em breve</h3>
-          <p>Análise em fase de estruturação.</p>
-        </div>
+        <div class="phil-card"><div class="consent-badge"><i class="fas fa-check-circle"></i> consentimento ativo</div><h3 style="font-family: var(--font-serif); font-size:1.2rem;">Em breve</h3><p>Análise em fase de estruturação.</p></div>
+        <div class="phil-card"><div class="consent-badge"><i class="fas fa-check-circle"></i> consentimento ativo</div><h3 style="font-family: var(--font-serif); font-size:1.2rem;">Em breve</h3><p>Análise em fase de estruturação.</p></div>
       </div>
     </section>
   </main>
@@ -684,30 +194,17 @@
     </div>
   </footer>
 
-  <!-- Modal de leitura -->
   <div class="modal-overlay" id="articleModal">
     <div class="modal-container">
-      <div class="modal-header">
-        <h3 id="modalTitle">Título</h3>
-        <button class="modal-close" id="modalCloseBtn"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-meta" id="modalMeta"></div>
-        <div id="modalFullContent"></div>
-      </div>
+      <div class="modal-header"><h3 id="modalTitle">Título</h3><button class="modal-close" id="modalCloseBtn"><i class="fas fa-times"></i></button></div>
+      <div class="modal-body"><div class="modal-meta" id="modalMeta"></div><div id="modalFullContent"></div></div>
     </div>
   </div>
 
-  <!-- Painel de arquivo/busca -->
   <div class="archive-overlay" id="archiveOverlay">
     <div class="archive-panel">
-      <div class="archive-header">
-        <h3><i class="fas fa-archive"></i> Arquivo de artigos</h3>
-        <button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="archive-search">
-        <input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)">
-      </div>
+      <div class="archive-header"><h3><i class="fas fa-archive"></i> Arquivo de artigos</h3><button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button></div>
+      <div class="archive-search"><input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)"></div>
       <div class="archive-list" id="archiveList"></div>
     </div>
   </div>
@@ -721,7 +218,7 @@
           category: "Editorial",
           date: "08.04.2026",
           readTime: "4 min",
-          fullText: `<p>Tem uma brincadeira antiga que quase todo mundo já fez: dois copos, um barbante esticado e alguém tentando passar uma mensagem de um lado para o outro.</p><p>A graça nunca foi acertar. A graça era ver onde aquilo ia parar.</p><p>A frase começava simples e, no meio do caminho, já tinha mudado. No final, virava outra coisa. E todo mundo ria, porque fazia parte da brincadeira.</p><p>Só que hoje isso não tem mais graça. Se essa mesma cena acontecesse agora, alguém no meio do caminho simplesmente pararia tudo, pegaria o celular e olharia a informação direto na fonte. A mensagem não dependeria mais de quem passou — dependeria de onde ela veio.</p><p>E é exatamente aqui que está o problema. A gente deixou de brincar de telefone sem fio, mas continua vivendo dentro dele.</p><p>A informação circula rápido, é recortada, interpretada, ajustada, e quando chega em quem está lendo, muitas vezes já não é mais a mesma. E pior: nem sempre dá para perceber onde ela começou a mudar.</p><p>Foi olhando para isso que a PautaZero nasceu. Não como mais um lugar para falar, mas como um lugar para organizar. Para entender antes de opinar. Para olhar com mais calma para o que está sendo dito — e como está sendo dito.</p><p>Não existe pretensão aqui de "corrigir o mundo" ou de assumir uma posição absoluta sobre tudo. Mas existe, sim, um compromisso muito claro: tratar a informação com responsabilidade.</p><p>Isso envolve respeitar leis, contexto, fonte e, principalmente, quem está lendo. Porque hoje o problema não é falta de informação. É excesso sem estrutura.</p><p>Como editora-chefe, o que eu sustento aqui não é neutralidade vazia. É critério. É separar o que é dado do que é interpretação. É não misturar análise com ruído. É não acelerar aquilo que precisa ser entendido com cuidado.</p><p>A PautaZero não nasce para disputar atenção. Nasce para merecer atenção. E isso, na prática, significa publicar menos do que poderia — mas com mais consistência do que normalmente se vê.</p><p>No fim, a ideia é simples. Se alguém parar no meio do caminho e quiser conferir direto na origem, que encontre aqui algo inteiro. Sem distorção. Sem exagero. Sem atalhos. Só informação bem tratada.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Fundadora e Editora-Chefe · PautaZero</div>`
+          fullText: `<p>Tem uma brincadeira antiga que quase todo mundo já fez: dois copos, um barbante esticado e alguém tentando passar uma mensagem de um lado para o outro.</p><p>A graça nunca foi acertar. A graça era ver onde aquilo ia parar.</p><p>A frase começava simples e, no meio do caminho, já tinha mudado. No final, virava outra coisa. E todo mundo ria, porque fazia parte da brincadeira.</p><p>Só que hoje isso não tem mais graça. Se essa mesma cena acontecesse agora, alguém no meio do caminho simplesmente pararia tudo, pegaria o celular e olharia a informação direto na fonte. A mensagem não dependeria mais de quem passou — dependeria de onde ela veio.</p><p>E é exatamente aqui que está o problema. A gente deixou de brincar de telefone sem fio, mas continua vivendo dentro dele.</p><p>A informação circula rápido, é recortada, interpretada, ajustada, e quando chega em quem está lendo, muitas vezes já não é mais a mesma. E pior: nem sempre dá para perceber onde ela começou a mudar.</p><p>Foi olhando para isso que a PautaZero nasceu. Não como mais um lugar para falar, mas como um lugar para organizar. Para entender antes de opinar. Para olhar com mais calma para o que está sendo dito — e como está sendo dito.</p><p>Não existe pretensão aqui de "corrigir o mundo" ou de assumir uma posição absoluta sobre tudo. Mas existe, sim, um compromisso muito claro: tratar a informação com responsabilidade.</p><p>Isso envolve respeitar leis, contexto, fonte e, principalmente, quem está lendo. Porque hoje o problema não é falta de informação. É excesso sem estrutura.</p><p>Como editora-chefe, o que eu sustento aqui não é neutralidade vazia. É critério. É separar o que é dado do que é interpretação. É não misturar análise com ruído. É não acelerar aquilo que precisa ser entendido com cuidado.</p><p>A PautaZero não nasce para disputar atenção. Nasce para merecer atenção. E isso, na prática, significa publicar menos do que poderia — mas com mais consistência do que normalmente se vê.</p><p>No fim, a ideia é simples. Se alguém parar no meio do caminho e quiser conferir direto na origem, que encontre aqui algo inteiro. Sem distorção. Sem exagero. Sem atalhos. Só informação bem tratada.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
         },
         "saude-mental-expansao": {
           id: "saude-mental-expansao",
@@ -730,6 +227,52 @@
           date: "10.04.2026",
           readTime: "4 min",
           fullText: `<p>Nos últimos anos, a saúde mental ganhou um espaço que por muito tempo lhe foi negado. Tornou-se pauta cotidiana, presença constante nas empresas, nas redes sociais e nas conversas mais íntimas. Esse avanço é, sem dúvida, necessário e representa um passo importante para uma sociedade mais consciente.</p><p>No entanto, junto com essa expansão, surgiu um fenômeno que merece atenção cuidadosa: a ampliação do número de pessoas atuando no campo do cuidado emocional sem a mesma profundidade de formação exigida das profissões tradicionalmente consolidadas na área da saúde.</p><p>É importante deixar claro — este não é um questionamento sobre o acesso. Ampliar o cuidado é essencial. O ponto crítico está na ausência de critérios mínimos uniformes para uma atuação que lida diretamente com a complexidade da mente humana.</p><p>Profissionais da psicologia e da psiquiatria percorrem trajetórias longas, técnicas e rigorosas. São anos de formação acadêmica, supervisão, prática clínica, estudo contínuo e compromisso ético. Não se trata apenas de adquirir conhecimento, mas de desenvolver responsabilidade sobre o impacto que cada intervenção pode causar na vida de outra pessoa.</p><p>Em paralelo, observa-se o crescimento de abordagens que, embora bem-intencionadas em muitos casos, nem sempre se sustentam em bases científicas sólidas. Esse cenário cria uma zona de difícil distinção para a sociedade, onde diferentes níveis de preparo acabam sendo percebidos de forma equivalente.</p><p>O resultado não é necessariamente imediato ou visível, o que torna a situação ainda mais delicada. O cuidado emocional exige mais do que escuta — exige método, preparo técnico e, sobretudo, consciência dos próprios limites enquanto profissional.</p><p>Outro ponto que merece reflexão é a forma como a autoridade tem sido construída nesse novo contexto. Em muitos casos, a validação pública tem se deslocado da formação para a exposição, da técnica para a narrativa, da consistência para a presença. Isso não invalida novas formas de comunicação, mas exige cautela quando se trata de saúde.</p><p>Esta não é uma crítica à inovação, nem ao surgimento de novas práticas. É um convite à responsabilidade coletiva. A saúde mental não pode ser tratada como um campo sem critérios claros, justamente porque seus efeitos não são imediatos, mas profundamente duradouros.</p><p>Valorizar os profissionais que se dedicam a formações exaustivas, baseadas em ciência, não é elitizar o cuidado — é proteger sua qualidade. É reconhecer que, em áreas sensíveis, a boa intenção não substitui a qualificação.</p><p>O avanço da saúde mental como pauta social é um ganho. Garantir que esse avanço venha acompanhado de rigor técnico é o próximo passo necessário.</p><p>Porque cuidar da mente exige mais do que disponibilidade: exige preparo.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
+        },
+        "desemprego-analise-2026": {
+          id: "desemprego-analise-2026",
+          title: "O desemprego caiu — mas o problema mudou de lugar",
+          category: "Economia & Trabalho",
+          date: "08.04.2026",
+          readTime: "5 min",
+          fullText: `<p>Os números mostram uma melhora. Mas entender o que eles realmente significam exige mais do que uma leitura superficial.</p><p>Em 2022, o Brasil ainda carregava os efeitos diretos de uma das maiores rupturas globais recentes: a pandemia. Um período que não foi apenas sanitário, mas econômico, social e estrutural.</p><p>Naquele momento, o país enfrentou um cenário de pressão extrema sobre empregos, empresas e renda. Ainda assim, a economia iniciou um processo de reação antes mesmo da estabilização global completa.</p><p>De lá para cá, os indicadores de desemprego seguiram uma trajetória de queda consistente. O Brasil saiu de níveis próximos a 9% em 2022 para patamares abaixo de 7% em 2026. Esse movimento não pode ser tratado como acaso. Ele faz parte de um ciclo que começou em um ambiente adverso e avançou ao longo dos anos seguintes.</p><p>Mas existe um erro comum na leitura desse cenário: assumir que menos desemprego significa, automaticamente, um mercado saudável.</p><p>Não significa.</p><p>O que estamos vendo não é apenas uma queda no desemprego. É uma transformação no tipo de trabalho que está sendo absorvido pela economia.</p><p>Mais pessoas estão trabalhando — sim. Mas uma parcela crescente está fora da estrutura tradicional: sem estabilidade, sem previsibilidade e, muitas vezes, sem proteção.</p><p>O problema deixou de ser apenas “ter ou não ter emprego”. O problema passou a ser “em que condições esse trabalho existe”.</p><p>Esse deslocamento é silencioso. Ele não aparece de forma evidente nas manchetes. Mas ele muda completamente a leitura do país.</p><p>Porque um mercado que cresce baseado em fragilidade não resolve o problema — ele apenas redistribui o risco.</p><p>E é exatamente nesse ponto que surgem as oportunidades reais.</p><p>Nós, da PautaZero, não olhamos para esses dados apenas como diagnóstico. Olhamos como ponto de partida.</p><p>Se o modelo tradicional já não absorve tudo, então novos modelos precisam surgir.</p><p>Empresas, profissionais, desenvolvedores, operadores de mercado — todos estão diante do mesmo cenário: um sistema em transição.</p><p>E sistemas em transição abrem espaço para construção.</p><p>Nos próximos ciclos, a PautaZero se compromete a destacar oportunidades concretas dentro dessa mudança. Projetos, estruturas e iniciativas que permitam não apenas acompanhar o mercado, mas participar ativamente da sua evolução.</p><p>Grandes, médias e pequenas empresas. Profissionais independentes. Pessoas em recomeço.</p><p>O ponto em comum não será o tamanho — será a capacidade de adaptação.</p><p>O desemprego caiu.</p><p>Mas o verdadeiro movimento não está na queda.</p><p>Está na mudança do jogo.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
+        },
+        "jornada-trabalho-analise": {
+          id: "jornada-trabalho-analise",
+          title: "Direitos não existem fora da realidade econômica que os sustenta",
+          category: "Economia & Trabalho",
+          date: "08.04.2026",
+          readTime: "8 min",
+          fullText: `<p>Dados não são opinião, mas a forma como eles são utilizados quase sempre carrega interpretação — e é exatamente nesse ponto que a análise começa a se perder quando se observa o Brasil de 2026 apenas pela superfície dos números.</p>
+
+<p>O desemprego caiu, isso é um fato objetivo, mensurado por indicadores oficiais e verificável por qualquer leitura técnica séria. No entanto, tratar essa queda como sinônimo de estabilidade econômica é um erro, porque o país ainda opera sob pressão fiscal relevante, com déficit presente e crescimento que não acompanha, na mesma proporção, a necessidade estrutural de expansão. Não se trata de um cenário de colapso, mas também está longe de ser um ambiente confortável para decisões que ampliem custo sistêmico.</p>
+
+<p>É nesse contexto que o debate sobre o fim da escala 6 por 1 ganha espaço, muitas vezes apresentado de forma simplificada, quase como uma correção natural de uma estrutura considerada ultrapassada. O ponto que costuma ser ignorado é que a jornada de trabalho atual não foi definida de forma arbitrária; ela resulta de um equilíbrio construído ao longo do tempo entre capacidade produtiva, organização empresarial e limites legais estabelecidos dentro do próprio sistema econômico.</p>
+
+<p>Alterar essa lógica não é apenas uma escolha trabalhista — é uma decisão com impacto direto na dinâmica econômica, e economia não responde a intenção, responde a consequência. Reduzir carga horária sem um aumento proporcional de produtividade não elimina custo, apenas redistribui esse custo dentro do sistema, e essa redistribuição raramente ocorre de forma equilibrada.</p>
+
+<p>Na prática, o impacto tende a recair sobre estruturas mais sensíveis: empresas com menor margem, setores que operam com alta intensidade de mão de obra e cadeias produtivas que já funcionam próximas do limite. Em muitos casos, o efeito não aparece de forma imediata, mas se manifesta ao longo do tempo na redução de contratações, no aumento da informalidade ou na retração silenciosa de operações que deixam de ser viáveis.</p>
+
+<p>Existe um ponto central que precisa ser tratado com clareza: direitos não se sustentam de forma isolada. Eles dependem de uma base econômica capaz de suportá-los ao longo do tempo, e essa base, no caso brasileiro, ainda está em processo de consolidação. Expandir obrigações sem o fortalecimento dessa estrutura pode produzir o efeito inverso ao pretendido.</p>
+
+<p>Esse debate, inclusive, não deveria se limitar apenas à discussão sobre descanso ou redução de jornada. Existe uma dimensão mais ampla que tende a ser deixada de lado: o custo estrutural que recai sobre o próprio trabalhador ao longo do tempo. Não se trata apenas de trabalhar menos, mas de entender quanto se paga para sustentar o sistema em que se trabalha.</p>
+
+<p>Nesse ponto, a observação das propostas de candidatos a cargos eletivos nas próximas eleições se torna relevante sob uma ótica técnica. Mais do que discursos sobre redução de carga de trabalho, ganha importância analisar quais políticas estão voltadas à redução de pressão tributária, ao aumento de eficiência econômica e à criação de um ambiente onde produzir, contratar e crescer se torne mais viável no longo prazo.</p>
+
+<p>Porque, no fim, a sustentabilidade do trabalho não está apenas no tempo dedicado a ele, mas no quanto esse trabalho consegue gerar de retorno real para quem o executa.</p>
+
+<p>É nesse aspecto que a lógica de mercado mostra sua relevância estrutural. Sistemas baseados em produção, troca e geração de valor — como o modelo capitalista — são, na prática, os mecanismos que viabilizam emprego, renda e expansão econômica. Quando bem estruturados, são esses sistemas que permitem, inclusive, a existência e manutenção dos próprios direitos ao longo do tempo.</p>
+
+<p>O Brasil saiu recentemente de um dos períodos mais críticos da economia global, marcado por uma pandemia que afetou simultaneamente produção, consumo e emprego. Ainda assim, houve reação econômica antes mesmo da completa normalização internacional, o que demonstra capacidade de recuperação — mas recuperação não é sinônimo de estabilidade consolidada.</p>
+
+<p>E esse detalhe importa, porque políticas públicas não começam do zero. Elas carregam continuidade, histórico e consequência. Reduzir jornada de trabalho pode ser um caminho viável em um cenário de crescimento consistente, aumento real de produtividade e equilíbrio fiscal. Fora disso, deixa de ser uma política estruturada e passa a ser uma aposta.</p>
+
+<p>E apostas econômicas não ficam no campo teórico. Elas aparecem na prática, muitas vezes de forma silenciosa, no emprego que deixa de ser criado, na empresa que reduz operação ou no custo que não estava explícito no discurso inicial.</p>
+
+<p>O problema do Brasil hoje não é apenas a carga de trabalho. É a limitação estrutural de um sistema que ainda não atingiu o nível de solidez necessário para sustentar uma redução sem efeitos colaterais relevantes.</p>
+
+<p>Trabalhar menos é uma meta legítima. Sustentar isso, no entanto, exige uma base econômica que ainda está em construção.</p>
+
+<div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
         },
         "artigo-exemplo": {
           id: "artigo-exemplo",
@@ -787,9 +330,7 @@
         });
       }
 
-      function getImagePath(articleId) {
-        return `assets/images/${articleId}.jpg`;
-      }
+      function getImagePath(articleId) { return `assets/images/${articleId}.jpg`; }
 
       function openModalByArticleId(articleId) {
         const article = articlesDB[articleId];
@@ -808,40 +349,17 @@
         document.body.classList.add('modal-open');
       }
 
-      function closeModal() {
-        const modal = document.getElementById('articleModal');
-        modal.classList.remove('active');
-        document.body.classList.remove('modal-open');
-      }
-
-      function openArchive() {
-        document.getElementById('archiveOverlay').classList.add('active');
-        document.body.classList.add('archive-open');
-        renderArchiveList('');
-      }
-
-      function closeArchive() {
-        document.getElementById('archiveOverlay').classList.remove('active');
-        document.body.classList.remove('archive-open');
-        document.getElementById('archiveSearchInput').value = '';
-      }
+      function closeModal() { const modal = document.getElementById('articleModal'); modal.classList.remove('active'); document.body.classList.remove('modal-open'); }
+      function openArchive() { document.getElementById('archiveOverlay').classList.add('active'); document.body.classList.add('archive-open'); renderArchiveList(''); }
+      function closeArchive() { document.getElementById('archiveOverlay').classList.remove('active'); document.body.classList.remove('archive-open'); document.getElementById('archiveSearchInput').value = ''; }
 
       const searchInput = document.getElementById('archiveSearchInput');
-      if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-          renderArchiveList(e.target.value);
-        });
-      }
-
+      if (searchInput) searchInput.addEventListener('input', (e) => renderArchiveList(e.target.value));
       document.getElementById('archiveBtn').addEventListener('click', openArchive);
       document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
-      document.getElementById('archiveOverlay').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('archiveOverlay')) closeArchive();
-      });
+      document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-      document.getElementById('articleModal').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('articleModal')) closeModal();
-      });
+      document.getElementById('articleModal').addEventListener('click', (e) => { if (e.target === document.getElementById('articleModal')) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeArchive(); } });
 
       const contentMap = {
@@ -852,13 +370,16 @@
             <div class="carousel-container"><div class="carousel-track">
               <div class="carousel-card" data-article-id="telefone-cordinha"><div class="carousel-cat">Editorial</div><h4>O telefone de cordinha</h4><p>A informação como brincadeira antiga.</p></div>
               <div class="carousel-card" data-article-id="saude-mental-expansao"><div class="carousel-cat">Saúde & Sociedade</div><h4>Saúde mental: a expansão que exige critério</h4><p>O preço da ampliação sem rigor técnico.</p></div>
+              <div class="carousel-card" data-article-id="desemprego-analise-2026"><div class="carousel-cat">Economia & Trabalho</div><h4>O desemprego caiu — mas o problema mudou de lugar</h4><p>O verdadeiro movimento está na mudança do jogo.</p></div>
+              <div class="carousel-card" data-article-id="jornada-trabalho-analise"><div class="carousel-cat">Economia & Trabalho</div><h4>Direitos não existem fora da realidade econômica</h4><p>O debate sobre o fim da escala 6x1 e seus custos reais.</p></div>
               <div class="carousel-card" data-article-id="artigo-exemplo"><div class="carousel-cat">Em breve</div><h4>Próximo artigo</h4><p>Conteúdo em preparação.</p></div>
             </div></div>
           </div>
           <div class="articles-grid">
             <div class="article-card" data-article-id="telefone-cordinha"><div class="article-cat">Editorial</div><h3>O telefone de cordinha</h3><p>Uma reflexão sobre informação, ruído e a razão de ser da PautaZero.</p><div class="article-meta"><span>08.04.2026</span><span>4 min</span></div></div>
             <div class="article-card" data-article-id="saude-mental-expansao"><div class="article-cat">Saúde & Sociedade</div><h3>Saúde mental: a expansão que exige critério</h3><p>O cuidado emocional não pode ser tratado como um campo sem critérios claros.</p><div class="article-meta"><span>10.04.2026</span><span>4 min</span></div></div>
-            <div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Tecnologia</div><h3>Placeholder</h3><p>Espaço reservado para futuras matérias.</p><div class="article-meta"><span>—</span><span>—</span></div></div>
+            <div class="article-card" data-article-id="desemprego-analise-2026"><div class="article-cat">Economia & Trabalho</div><h3>O desemprego caiu — mas o problema mudou de lugar</h3><p>Menos desemprego não significa, automaticamente, um mercado saudável.</p><div class="article-meta"><span>08.04.2026</span><span>5 min</span></div></div>
+            <div class="article-card" data-article-id="jornada-trabalho-analise"><div class="article-cat">Economia & Trabalho</div><h3>Direitos não existem fora da realidade econômica</h3><p>O debate sobre o fim da escala 6x1 e os limites do sistema atual.</p><div class="article-meta"><span>08.04.2026</span><span>8 min</span></div></div>
           </div>
         `,
         tecnologia: `<h2>Tecnologia e governança</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">IA ética</div><h3>Algoritmos preditivos</h3><p>Conteúdo em breve.</p><div class="article-meta"><span>—</span><span>—</span></div></div><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Blockchain</div><h3>Registros imutáveis</h3><p>Em produção.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
@@ -866,6 +387,7 @@
         futurismo: `<h2>Futurismo</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Projeções</div><h3>Justiça restaurativa</h3><p>Conteúdo em preparação.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
         entrevistas: `<h2>Entrevistas</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Mídia</div><h3>Conversas com especialistas</h3><p>Em breve.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
         oportunidades: `<h2>Oportunidades institucionais</h2><p style="margin-bottom:2rem;">Espaço reservado para parcerias e editais.</p><div class="opportunity-card" style="background:white; border:var(--border-light); padding:1.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;"><div><span class="opp-tag" style="background:var(--gradient-gold); padding:5px 14px;">Em breve</span></div><div><strong>Programa de conteúdos</strong><br>Informações futuras</div><div><a href="#" class="opp-link" style="color:var(--gold-dark); border:1px solid rgba(212,175,55,0.4); padding:8px 22px;">saiba mais</a></div></div>`,
+        filantropia: `<h2>Filantropia consentida</h2><div style="margin-top: 2rem; text-align: center; padding: 3rem; background: var(--gradient-gold-subtle); border: var(--border-light);"><p style="color: var(--color-text-light); font-size: 1rem;">Conteúdo em fase de estruturação.<br>Em breve, análises e projetos com consentimento ativo serão publicados aqui.</p></div>`,
         fundadora: `<h2>Diretoria Editorial</h2>
           <div class="founder-section">
             <div class="founder-container">
@@ -912,7 +434,7 @@
         currentTab = tabId;
         tabContentDiv.innerHTML = contentMap[tabId] || contentMap.home;
         attachArticleClickEvents();
-        const tabNames = { home:'Home', tecnologia:'Tecnologia', futurismo:'Futurismo', sistemas:'Sistemas prisionais', entrevistas:'Entrevistas', oportunidades:'Oportunidades', fundadora:'Fundadora' };
+        const tabNames = { home:'Home', tecnologia:'Tecnologia', futurismo:'Futurismo', sistemas:'Sistemas prisionais', entrevistas:'Entrevistas', oportunidades:'Oportunidades', filantropia:'Filantropia', fundadora:'Fundadora' };
         currentTabLabel.innerText = tabNames[tabId] || 'Home';
         dropdownItems.forEach(item => item.classList.toggle('active', item.dataset.tab === tabId));
         menuDropdown.classList.remove('active');
