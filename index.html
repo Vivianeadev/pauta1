@@ -143,7 +143,11 @@
     .founder-title { color: var(--gold-dark); font-weight: 500; letter-spacing: 1px; margin-bottom: 1.2rem; border-left: 3px solid var(--gold-primary); padding-left: 1rem; font-size: 0.85rem; }
     .founder-info-col p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; color: var(--color-text-light); }
     .editorial-signature { margin-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.2); padding-top: 1rem; font-size: 0.85rem; }
-    @media (max-width: 800px) { .founder-container { flex-direction: column; } .founder-photo-col { flex: auto; max-width: 320px; margin: 0 auto; } }
+    /* Responsivo: em telas menores que 800px, a foto fica acima do texto; em desktop são duas colunas lado a lado */
+    @media (max-width: 800px) { 
+      .founder-container { flex-direction: column; } 
+      .founder-photo-col { flex: auto; max-width: 320px; margin: 0 auto; } 
+    }
   </style>
 </head>
 <body>
@@ -161,6 +165,8 @@
       <div class="menu-dropdown" id="menuDropdown">
         <button class="dropdown-item active" data-tab="home"> Home</button>
         <button class="dropdown-item" data-tab="tecnologia"> Tecnologia</button>
+        <button class="dropdown-item" data-tab="economia"> Economia & Trabalho</button>
+        <button class="dropdown-item" data-tab="sociedade"> Sociedade & Comportamento</button>
         <button class="dropdown-item" data-tab="futurismo"> Futurismo</button>
         <button class="dropdown-item" data-tab="sistemas"> Sistemas prisionais</button>
         <button class="dropdown-item" data-tab="entrevistas"> Entrevistas</button>
@@ -189,7 +195,12 @@
   <footer class="site-footer">
     <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
       <div>© 2026 PautaZero · Revista de análise de sistemas, comportamento e políticas estratégicas.</div>
-      <div style="display: flex; gap: 18px; color: var(--gold-dark);"><i class="fab fa-linkedin"></i> <i class="fab fa-x-twitter"></i> <i class="fas fa-envelope"></i> editorial.pautazero@outlook.com</div>
+      <div style="display: flex; gap: 18px; color: var(--gold-dark); align-items: center;">
+        <i class="fab fa-linkedin"></i> 
+        <i class="fab fa-x-twitter"></i> 
+        <i class="fas fa-envelope"></i> 
+        <span style="font-family: monospace;">editorial.pautazero@outlook.com</span>
+      </div>
     </div>
   </footer>
 
@@ -210,12 +221,13 @@
 
   <script>
     (function() {
-      // ======================= BASE DE ARTIGOS COMPLETA E ORGANIZADA POR TEMA =======================
+      // ======================= BASE DE ARTIGOS ORGANIZADA POR ABAS (TEMAS CORRETOS) =======================
       const articlesDB = {
+        // Home (Destaques)
         "telefone-cordinha": {
           id: "telefone-cordinha",
           title: "O telefone de cordinha",
-          category: "Editorial",
+          category: "Comunicação & Sociedade",
           tabTheme: "home",
           date: "08.04.2026",
           readTime: "4 min",
@@ -225,7 +237,7 @@
           id: "saude-mental-expansao",
           title: "Saúde mental: a expansão que exige critério",
           category: "Saúde & Sociedade",
-          tabTheme: "home",
+          tabTheme: "sociedade",
           date: "10.04.2026",
           readTime: "4 min",
           fullText: `<p>Nos últimos anos, a saúde mental ganhou um espaço que por muito tempo lhe foi negado. Tornou-se pauta cotidiana, presença constante nas empresas, nas redes sociais e nas conversas mais íntimas. Esse avanço é, sem dúvida, necessário e representa um passo importante para uma sociedade mais consciente.</p><p>No entanto, junto com essa expansão, surgiu um fenômeno que merece atenção cuidadosa: a ampliação do número de pessoas atuando no campo do cuidado emocional sem a mesma profundidade de formação exigida das profissões tradicionalmente consolidadas na área da saúde.</p><p>É importante deixar claro — este não é um questionamento sobre o acesso. Ampliar o cuidado é essencial. O ponto crítico está na ausência de critérios mínimos uniformes para uma atuação que lida diretamente com a complexidade da mente humana.</p><p>Profissionais da psicologia e da psiquiatria percorrem trajetórias longas, técnicas e rigorosas. São anos de formação acadêmica, supervisão, prática clínica, estudo contínuo e compromisso ético. Não se trata apenas de adquirir conhecimento, mas de desenvolver responsabilidade sobre o impacto que cada intervenção pode causar na vida de outra pessoa.</p><p>Em paralelo, observa-se o crescimento de abordagens que, embora bem-intencionadas em muitos casos, nem sempre se sustentam em bases científicas sólidas. Esse cenário cria uma zona de difícil distinção para a sociedade, onde diferentes níveis de preparo acabam sendo percebidos de forma equivalente.</p><p>O resultado não é necessariamente imediato ou visível, o que torna a situação ainda mais delicada. O cuidado emocional exige mais do que escuta — exige método, preparo técnico e, sobretudo, consciência dos próprios limites enquanto profissional.</p><p>Outro ponto que merece reflexão é a forma como a autoridade tem sido construída nesse novo contexto. Em muitos casos, a validação pública tem se deslocado da formação para a exposição, da técnica para a narrativa, da consistência para a presença. Isso não invalida novas formas de comunicação, mas exige cautela quando se trata de saúde.</p><p>Esta não é uma crítica à inovação, nem ao surgimento de novas práticas. É um convite à responsabilidade coletiva. A saúde mental não pode ser tratada como um campo sem critérios claros, justamente porque seus efeitos não são imediatos, mas profundamente duradouros.</p><p>Valorizar os profissionais que se dedicam a formações exaustivas, baseadas em ciência, não é elitizar o cuidado — é proteger sua qualidade. É reconhecer que, em áreas sensíveis, a boa intenção não substitui a qualificação.</p><p>O avanço da saúde mental como pauta social é um ganho. Garantir que esse avanço venha acompanhado de rigor técnico é o próximo passo necessário.</p><p>Porque cuidar da mente exige mais do que disponibilidade: exige preparo.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
@@ -234,7 +246,7 @@
           id: "desemprego-analise-2026",
           title: "O desemprego caiu — mas o problema mudou de lugar",
           category: "Economia & Trabalho",
-          tabTheme: "home",
+          tabTheme: "economia",
           date: "08.04.2026",
           readTime: "5 min",
           fullText: `<p>Os números mostram uma melhora. Mas entender o que eles realmente significam exige mais do que uma leitura superficial.</p><p>Em 2022, o Brasil ainda carregava os efeitos diretos de uma das maiores rupturas globais recentes: a pandemia. Um período que não foi apenas sanitário, mas econômico, social e estrutural.</p><p>Naquele momento, o país enfrentou um cenário de pressão extrema sobre empregos, empresas e renda. Ainda assim, a economia iniciou um processo de reação antes mesmo da estabilização global completa.</p><p>De lá para cá, os indicadores de desemprego seguiram uma trajetória de queda consistente. O Brasil saiu de níveis próximos a 9% em 2022 para patamares abaixo de 7% em 2026. Esse movimento não pode ser tratado como acaso. Ele faz parte de um ciclo que começou em um ambiente adverso e avançou ao longo dos anos seguintes.</p><p>Mas existe um erro comum na leitura desse cenário: assumir que menos desemprego significa, automaticamente, um mercado saudável.</p><p>Não significa.</p><p>O que estamos vendo não é apenas uma queda no desemprego. É uma transformação no tipo de trabalho que está sendo absorvido pela economia.</p><p>Mais pessoas estão trabalhando — sim. Mas uma parcela crescente está fora da estrutura tradicional: sem estabilidade, sem previsibilidade e, muitas vezes, sem proteção.</p><p>O problema deixou de ser apenas “ter ou não ter emprego”. O problema passou a ser “em que condições esse trabalho existe”.</p><p>Esse deslocamento é silencioso. Ele não aparece de forma evidente nas manchetes. Mas ele muda completamente a leitura do país.</p><p>Porque um mercado que cresce baseado em fragilidade não resolve o problema — ele apenas redistribui o risco.</p><p>E é exatamente nesse ponto que surgem as oportunidades reais.</p><p>Nós, da PautaZero, não olhamos para esses dados apenas como diagnóstico. Olhamos como ponto de partida.</p><p>Se o modelo tradicional já não absorve tudo, então novos modelos precisam surgir.</p><p>Empresas, profissionais, desenvolvedores, operadores de mercado — todos estão diante do mesmo cenário: um sistema em transição.</p><p>E sistemas em transição abrem espaço para construção.</p><p>Nos próximos ciclos, a PautaZero se compromete a destacar oportunidades concretas dentro dessa mudança. Projetos, estruturas e iniciativas que permitam não apenas acompanhar o mercado, mas participar ativamente da sua evolução.</p><p>Grandes, médias e pequenas empresas. Profissionais independentes. Pessoas em recomeço.</p><p>O ponto em comum não será o tamanho — será a capacidade de adaptação.</p><p>O desemprego caiu.</p><p>Mas o verdadeiro movimento não está na queda.</p><p>Está na mudança do jogo.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
@@ -243,7 +255,7 @@
           id: "jornada-trabalho-analise",
           title: "Direitos não existem fora da realidade econômica que os sustenta",
           category: "Economia & Trabalho",
-          tabTheme: "home",
+          tabTheme: "economia",
           date: "08.04.2026",
           readTime: "8 min",
           fullText: `<p>Dados não são opinião, mas a forma como eles são utilizados quase sempre carrega interpretação — e é exatamente nesse ponto que a análise começa a se perder quando se observa o Brasil de 2026 apenas pela superfície dos números.</p><p>O desemprego caiu, isso é um fato objetivo, mensurado por indicadores oficiais e verificável por qualquer leitura técnica séria. No entanto, tratar essa queda como sinônimo de estabilidade econômica é um erro, porque o país ainda opera sob pressão fiscal relevante, com déficit presente e crescimento que não acompanha, na mesma proporção, a necessidade estrutural de expansão. Não se trata de um cenário de colapso, mas também está longe de ser um ambiente confortável para decisões que ampliem custo sistêmico.</p><p>É nesse contexto que o debate sobre o fim da escala 6 por 1 ganha espaço, muitas vezes apresentado de forma simplificada, quase como uma correção natural de uma estrutura considerada ultrapassada. O ponto que costuma ser ignorado é que a jornada de trabalho atual não foi definida de forma arbitrária; ela resulta de um equilíbrio construído ao longo do tempo entre capacidade produtiva, organização empresarial e limites legais estabelecidos dentro do próprio sistema econômico.</p><p>Alterar essa lógica não é apenas uma escolha trabalhista — é uma decisão com impacto direto na dinâmica econômica, e economia não responde a intenção, responde a consequência. Reduzir carga horária sem um aumento proporcional de produtividade não elimina custo, apenas redistribui esse custo dentro do sistema, e essa redistribuição raramente ocorre de forma equilibrada.</p><p>Na prática, o impacto tende a recair sobre estruturas mais sensíveis: empresas com menor margem, setores que operam com alta intensidade de mão de obra e cadeias produtivas que já funcionam próximas do limite. Em muitos casos, o efeito não aparece de forma imediata, mas se manifesta ao longo do tempo na redução de contratações, no aumento da informalidade ou na retração silenciosa de operações que deixam de ser viáveis.</p><p>Existe um ponto central que precisa ser tratado com clareza: direitos não se sustentam de forma isolada. Eles dependem de uma base econômica capaz de suportá-los ao longo do tempo, e essa base, no caso brasileiro, ainda está em processo de consolidação. Expandir obrigações sem o fortalecimento dessa estrutura pode produzir o efeito inverso ao pretendido.</p><p>Esse debate, inclusive, não deveria se limitar apenas à discussão sobre descanso ou redução de jornada. Existe uma dimensão mais ampla que tende a ser deixada de lado: o custo estrutural que recai sobre o próprio trabalhador ao longo do tempo. Não se trata apenas de trabalhar menos, mas de entender quanto se paga para sustentar o sistema em que se trabalha.</p><p>Nesse ponto, a observação das propostas de candidatos a cargos eletivos nas próximas eleições se torna relevante sob uma ótica técnica. Mais do que discursos sobre redução de carga de trabalho, ganha importância analisar quais políticas estão voltadas à redução de pressão tributária, ao aumento de eficiência econômica e à criação de um ambiente onde produzir, contratar e crescer se torne mais viável no longo prazo.</p><p>Porque, no fim, a sustentabilidade do trabalho não está apenas no tempo dedicado a ele, mas no quanto esse trabalho consegue gerar de retorno real para quem o executa.</p><p>É nesse aspecto que a lógica de mercado mostra sua relevância estrutural. Sistemas baseados em produção, troca e geração de valor — como o modelo capitalista — são, na prática, os mecanismos que viabilizam emprego, renda e expansão econômica. Quando bem estruturados, são esses sistemas que permitem, inclusive, a existência e manutenção dos próprios direitos ao longo do tempo.</p><p>O Brasil saiu recentemente de um dos períodos mais críticos da economia global, marcado por uma pandemia que afetou simultaneamente produção, consumo e emprego. Ainda assim, houve reação econômica antes mesmo da completa normalização internacional, o que demonstra capacidade de recuperação — mas recuperação não é sinônimo de estabilidade consolidada.</p><p>E esse detalhe importa, porque políticas públicas não começam do zero. Elas carregam continuidade, histórico e consequência. Reduzir jornada de trabalho pode ser um caminho viável em um cenário de crescimento consistente, aumento real de produtividade e equilíbrio fiscal. Fora disso, deixa de ser uma política estruturada e passa a ser uma aposta.</p><p>E apostas econômicas não ficam no campo teórico. Elas aparecem na prática, muitas vezes de forma silenciosa, no emprego que deixa de ser criado, na empresa que reduz operação ou no custo que não estava explícito no discurso inicial.</p><p>O problema do Brasil hoje não é apenas a carga de trabalho. É a limitação estrutural de um sistema que ainda não atingiu o nível de solidez necessário para sustentar uma redução sem efeitos colaterais relevantes.</p><p>Trabalhar menos é uma meta legítima. Sustentar isso, no entanto, exige uma base econômica que ainda está em construção.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
@@ -251,7 +263,7 @@
         "ia-algoritmos-governanca": {
           id: "ia-algoritmos-governanca",
           title: "IA e governança: entre a previsão e o controle",
-          category: "IA ética",
+          category: "Tecnologia & Ética",
           tabTheme: "tecnologia",
           date: "12.04.2026",
           readTime: "6 min",
@@ -260,7 +272,7 @@
         "blockchain-transparencia": {
           id: "blockchain-transparencia",
           title: "Blockchain e registros imutáveis",
-          category: "Blockchain",
+          category: "Inovação & Confiança",
           tabTheme: "tecnologia",
           date: "14.04.2026",
           readTime: "5 min",
@@ -268,25 +280,14 @@
         }
       };
 
-      function getArticlesListByTheme(theme = null) {
-        let articles = Object.values(articlesDB).filter(a => a.date !== "Em breve");
-        if (theme && theme !== 'home') {
-          articles = articles.filter(a => a.tabTheme === theme);
-        } else if (theme === 'home') {
-          articles = articles.filter(a => a.tabTheme === 'home');
-        }
-        articles.sort((a,b) => {
+      function getAllArticlesForArchive() {
+        return Object.values(articlesDB).filter(a => a.date !== "Em breve").sort((a,b) => {
           const [da, ma, aa] = a.date.split('.');
           const [db, mb, ab] = b.date.split('.');
           const dateA = new Date(`${aa}-${ma}-${da}`);
           const dateB = new Date(`${ab}-${mb}-${db}`);
           return dateB - dateA;
         });
-        return articles;
-      }
-
-      function getAllArticlesForArchive() {
-        return getArticlesListByTheme(null);
       }
 
       function renderArchiveList(searchTerm = '') {
@@ -353,31 +354,39 @@
       document.getElementById('articleModal').addEventListener('click', (e) => { if (e.target === document.getElementById('articleModal')) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeArchive(); } });
 
-      // Mapa de conteúdos por aba com artigos específicos de cada tema
+      // Mapa de conteúdos por aba com artigos ESPECÍFICOS e CORRETAMENTE VINCULADOS
       const contentMap = {
         home: `
           <div style="margin-bottom: 2rem;"><h2 style="border-bottom: none;">Edição atual</h2><p style="color: var(--gold-dark);">Curadoria analítica independente</p></div>
           <div class="carousel-section">
             <div class="carousel-title"><i class="fas fa-gem"></i> Destaques</div>
             <div class="carousel-container"><div class="carousel-track">
-              <div class="carousel-card" data-article-id="telefone-cordinha"><div class="carousel-cat">Editorial</div><h4>O telefone de cordinha</h4><p>A informação como brincadeira antiga.</p></div>
+              <div class="carousel-card" data-article-id="telefone-cordinha"><div class="carousel-cat">Comunicação</div><h4>O telefone de cordinha</h4><p>A informação como brincadeira antiga.</p></div>
               <div class="carousel-card" data-article-id="saude-mental-expansao"><div class="carousel-cat">Saúde & Sociedade</div><h4>Saúde mental: a expansão que exige critério</h4><p>O preço da ampliação sem rigor técnico.</p></div>
-              <div class="carousel-card" data-article-id="desemprego-analise-2026"><div class="carousel-cat">Economia & Trabalho</div><h4>O desemprego caiu — mas o problema mudou de lugar</h4><p>O verdadeiro movimento está na mudança do jogo.</p></div>
-              <div class="carousel-card" data-article-id="jornada-trabalho-analise"><div class="carousel-cat">Economia & Trabalho</div><h4>Direitos não existem fora da realidade econômica</h4><p>O debate sobre o fim da escala 6x1 e seus custos reais.</p></div>
+              <div class="carousel-card" data-article-id="desemprego-analise-2026"><div class="carousel-cat">Economia</div><h4>O desemprego caiu — mas o problema mudou de lugar</h4><p>O verdadeiro movimento está na mudança do jogo.</p></div>
+              <div class="carousel-card" data-article-id="jornada-trabalho-analise"><div class="carousel-cat">Direito Trabalhista</div><h4>Direitos não existem fora da realidade econômica</h4><p>O debate sobre o fim da escala 6x1 e seus custos reais.</p></div>
             </div></div>
           </div>
           <div class="articles-grid">
-            <div class="article-card" data-article-id="telefone-cordinha"><div class="article-cat">Editorial</div><h3>O telefone de cordinha</h3><p>Uma reflexão sobre informação, ruído e a razão de ser da PautaZero.</p><div class="article-meta"><span>08.04.2026</span><span>4 min</span></div></div>
-            <div class="article-card" data-article-id="saude-mental-expansao"><div class="article-cat">Saúde & Sociedade</div><h3>Saúde mental: a expansão que exige critério</h3><p>O cuidado emocional não pode ser tratado como um campo sem critérios claros.</p><div class="article-meta"><span>10.04.2026</span><span>4 min</span></div></div>
-            <div class="article-card" data-article-id="desemprego-analise-2026"><div class="article-cat">Economia & Trabalho</div><h3>O desemprego caiu — mas o problema mudou de lugar</h3><p>Menos desemprego não significa, automaticamente, um mercado saudável.</p><div class="article-meta"><span>08.04.2026</span><span>5 min</span></div></div>
-            <div class="article-card" data-article-id="jornada-trabalho-analise"><div class="article-cat">Economia & Trabalho</div><h3>Direitos não existem fora da realidade econômica</h3><p>O debate sobre o fim da escala 6x1 e os limites do sistema atual.</p><div class="article-meta"><span>08.04.2026</span><span>8 min</span></div></div>
+            <div class="article-card" data-article-id="telefone-cordinha"><div class="article-cat">Comunicação</div><h3>O telefone de cordinha</h3><p>Uma reflexão sobre informação, ruído e a razão de ser da PautaZero.</p><div class="article-meta"><span>08.04.2026</span><span>4 min</span></div></div>
+            <div class="article-card" data-article-id="saude-mental-expansao"><div class="article-cat">Saúde</div><h3>Saúde mental: a expansão que exige critério</h3><p>O cuidado emocional não pode ser tratado como um campo sem critérios claros.</p><div class="article-meta"><span>10.04.2026</span><span>4 min</span></div></div>
+            <div class="article-card" data-article-id="desemprego-analise-2026"><div class="article-cat">Economia</div><h3>O desemprego caiu — mas o problema mudou de lugar</h3><p>Menos desemprego não significa, automaticamente, um mercado saudável.</p><div class="article-meta"><span>08.04.2026</span><span>5 min</span></div></div>
+            <div class="article-card" data-article-id="jornada-trabalho-analise"><div class="article-cat">Legislação</div><h3>Direitos não existem fora da realidade econômica</h3><p>O debate sobre o fim da escala 6x1 e os limites do sistema atual.</p><div class="article-meta"><span>08.04.2026</span><span>8 min</span></div></div>
           </div>
         `,
         tecnologia: `<h2>Tecnologia e governança</h2><div class="articles-grid">
           <div class="article-card" data-article-id="ia-algoritmos-governanca"><div class="article-cat">IA ética</div><h3>IA e governança: entre a previsão e o controle</h3><p>Algoritmos preditivos e a necessidade de regulação transparente.</p><div class="article-meta"><span>12.04.2026</span><span>6 min</span></div></div>
           <div class="article-card" data-article-id="blockchain-transparencia"><div class="article-cat">Blockchain</div><h3>Blockchain e registros imutáveis</h3><p>Rastreabilidade e limites da tecnologia para instituições.</p><div class="article-meta"><span>14.04.2026</span><span>5 min</span></div></div>
         </div>`,
-        sistemas: `<h2>Sistemas prisionais mundiais</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Comparativo</div><h3>Brasil x Noruega: modelos em análise</h3><p>Conteúdo em breve — pesquisa institucional em andamento.</p><div class="article-meta"><span>Em breve</span><span>—</span></div></div></div>`,
+        economia: `<h2>Economia & Trabalho</h2><div class="articles-grid">
+          <div class="article-card" data-article-id="desemprego-analise-2026"><div class="article-cat">Mercado de Trabalho</div><h3>O desemprego caiu — mas o problema mudou de lugar</h3><p>Análise aprofundada da transformação silenciosa do emprego.</p><div class="article-meta"><span>08.04.2026</span><span>5 min</span></div></div>
+          <div class="article-card" data-article-id="jornada-trabalho-analise"><div class="article-cat">Legislação Trabalhista</div><h3>Direitos não existem fora da realidade econômica</h3><p>Os custos estruturais do fim da escala 6x1.</p><div class="article-meta"><span>08.04.2026</span><span>8 min</span></div></div>
+        </div>`,
+        sociedade: `<h2>Sociedade & Comportamento</h2><div class="articles-grid">
+          <div class="article-card" data-article-id="saude-mental-expansao"><div class="article-cat">Saúde Coletiva</div><h3>Saúde mental: a expansão que exige critério</h3><p>O dilema entre ampliar o cuidado e manter o rigor técnico.</p><div class="article-meta"><span>10.04.2026</span><span>4 min</span></div></div>
+          <div class="article-card" data-article-id="telefone-cordinha"><div class="article-cat">Comunicação</div><h3>O telefone de cordinha</h3><p>Informação, ruído e a curadoria como necessidade social.</p><div class="article-meta"><span>08.04.2026</span><span>4 min</span></div></div>
+        </div>`,
+        sistemas: `<h2>Sistemas prisionais mundiais</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Direito Comparado</div><h3>Ressocialização: Brasil vs. Alemanha</h3><p>Estudo em fase de conclusão — breve análise técnica.</p><div class="article-meta"><span>Em breve</span><span>—</span></div></div></div>`,
         futurismo: `<h2>Futurismo e justiça restaurativa</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Projeções</div><h3>Tendências para a próxima década</h3><p>Análise em preparação para o segundo semestre.</p><div class="article-meta"><span>Em breve</span><span>—</span></div></div></div>`,
         entrevistas: `<h2>Entrevistas</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Mídia</div><h3>Conversas com especialistas</h3><p>Em breve: série de entrevistas com lideranças institucionais.</p><div class="article-meta"><span>Em breve</span><span>—</span></div></div></div>`,
         oportunidades: `<h2>Oportunidades institucionais</h2><p style="margin-bottom:2rem;">Espaço reservado para parcerias e editais.</p><div class="opportunity-card" style="background:white; border:var(--border-light); padding:1.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;"><div><span class="opp-tag" style="background:var(--gradient-gold); padding:5px 14px;">Em breve</span></div><div><strong>Programa de conteúdos</strong><br>Informações futuras</div><div><a href="#" class="opp-link" style="color:var(--gold-dark); border:1px solid rgba(212,175,55,0.4); padding:8px 22px;">saiba mais</a></div></div>`,
@@ -416,10 +425,6 @@
             const handler = () => openModalByArticleId(articleId);
             card.addEventListener('click', handler);
             card._listener = handler;
-          } else {
-            const handler = () => openModalByArticleId('artigo-exemplo');
-            card.addEventListener('click', handler);
-            card._listener = handler;
           }
         });
       }
@@ -428,7 +433,7 @@
         currentTab = tabId;
         tabContentDiv.innerHTML = contentMap[tabId] || contentMap.home;
         attachArticleClickEvents();
-        const tabNames = { home:'Home', tecnologia:'Tecnologia', futurismo:'Futurismo', sistemas:'Sistemas prisionais', entrevistas:'Entrevistas', oportunidades:'Oportunidades', filantropia:'Filantropia', fundadora:'Fundadora' };
+        const tabNames = { home:'Home', tecnologia:'Tecnologia', economia:'Economia & Trabalho', sociedade:'Sociedade & Comportamento', futurismo:'Futurismo', sistemas:'Sistemas prisionais', entrevistas:'Entrevistas', oportunidades:'Oportunidades', filantropia:'Filantropia', fundadora:'Fundadora' };
         currentTabLabel.innerText = tabNames[tabId] || 'Home';
         dropdownItems.forEach(item => item.classList.toggle('active', item.dataset.tab === tabId));
         menuDropdown.classList.remove('active');
