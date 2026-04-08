@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>PautaZero · Arquitetura de Conteúdo & Estratégia</title>
+  <title>PautaZero · Análise Institucional & Tecnologia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
@@ -42,6 +42,7 @@
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      font-size: 0.95rem;
     }
 
     body.modal-open {
@@ -54,7 +55,7 @@
       padding: 0 36px;
     }
 
-    h1, h2, h3, h4, .logo, .tab-btn, .section-title {
+    h1, h2, h3, h4, .logo, .section-title {
       font-family: var(--font-serif);
       font-weight: 500;
       letter-spacing: -0.01em;
@@ -87,7 +88,6 @@
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 36px;
-      flex-wrap: wrap;
       gap: 1rem;
     }
 
@@ -111,7 +111,7 @@
     }
 
     .slogan {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-family: var(--font-body);
       color: var(--gold-dark);
       text-transform: uppercase;
@@ -120,126 +120,157 @@
       padding-left: 14px;
     }
 
-    .nav-tabs-wrapper {
+    /* Navegação com menu hambúrguer */
+    .nav-hamburger {
       display: flex;
-      overflow-x: auto;
-      scrollbar-width: thin;
+      align-items: center;
+      gap: 1.2rem;
     }
-    .nav-tabs-wrapper::-webkit-scrollbar {
-      height: 3px;
-      background: #e9e2d4;
-    }
-    .nav-tabs-wrapper::-webkit-scrollbar-thumb {
-      background: var(--gold-primary);
-      border-radius: 10px;
-    }
-
-    .nav-tabs {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .tab-btn {
-      background: none;
-      border: none;
-      color: var(--color-text-light);
-      font-size: 0.8rem;
+    .current-tab-name {
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 1.8px;
-      padding: 0.6rem 0;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: 0.2s ease;
+      letter-spacing: 1.5px;
+      color: var(--gold-dark);
+      background: rgba(212, 175, 55, 0.08);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
       white-space: nowrap;
     }
-
-    .tab-btn:hover {
-      color: var(--color-primary);
-    }
-
-    .tab-btn.active {
-      color: var(--gold-dark);
-      border-bottom-color: var(--gold-primary);
-      font-weight: 600;
-    }
-
-    .mobile-menu-btn {
-      display: none;
+    .menu-icon-btn {
       background: rgba(212, 175, 55, 0.12);
       border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 40px;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.4rem;
       color: var(--color-primary);
       cursor: pointer;
-      padding: 8px 18px;
       transition: 0.2s;
-      backdrop-filter: blur(4px);
     }
-    .mobile-menu-btn i {
-      font-size: 1.2rem;
+    .menu-icon-btn:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--gold-primary);
     }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
+    .menu-dropdown {
+      position: absolute;
       top: 80px;
-      right: 20px;
+      right: 36px;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(16px);
       border-radius: 28px;
       box-shadow: 0 20px 40px -12px rgba(10, 49, 71, 0.25);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      padding: 1rem 0;
-      min-width: 240px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.8rem 0;
+      min-width: 260px;
       z-index: 200;
+      display: none;
+      flex-direction: column;
     }
-
-    .mobile-menu.active {
-      display: block;
+    .menu-dropdown.active {
+      display: flex;
       animation: fadeSlideIn 0.2s ease;
     }
-
     @keyframes fadeSlideIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .mobile-menu-item {
-      display: block;
-      width: 100%;
-      text-align: left;
-      padding: 0.9rem 1.8rem;
+    .dropdown-item {
       background: none;
       border: none;
+      text-align: left;
+      padding: 0.9rem 1.8rem;
       font-family: var(--font-serif);
-      color: var(--color-text);
       font-size: 0.85rem;
       font-weight: 500;
+      color: var(--color-text);
       letter-spacing: 1px;
       cursor: pointer;
+      width: 100%;
     }
-
-    .mobile-menu-item:hover {
+    .dropdown-item:hover {
       background: var(--gradient-gold-subtle);
+      color: var(--gold-dark);
     }
-
-    .mobile-menu-item.active {
+    .dropdown-item.active {
+      background: rgba(212, 175, 55, 0.1);
       color: var(--gold-dark);
       border-left: 3px solid var(--gold-primary);
-      background: rgba(212, 175, 55, 0.06);
+    }
+
+    @media (max-width: 700px) {
+      .slogan { display: none; }
+      .current-tab-name { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
+      .menu-dropdown { right: 20px; top: 70px; }
+      .header-inner { padding: 0 20px; }
     }
 
     main {
       padding: 3rem 0 5rem;
     }
 
+    /* Cards de artigo */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 2.5rem 0;
+    }
+    .article-card {
+      background: var(--color-bg-card);
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: var(--border-light);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-luxury);
+    }
+    .article-cat {
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    .article-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: var(--color-primary);
+    }
+    .article-card p {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--color-text-light);
+    }
+    .article-meta {
+      font-size: 0.65rem;
+      color: #7e6b4a;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      padding-top: 1rem;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Carrossel */
     .carousel-section {
       margin: 1.5rem 0 3rem;
     }
     .carousel-title {
       font-family: var(--font-serif);
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -249,7 +280,6 @@
       align-items: center;
       gap: 12px;
     }
-
     .carousel-container {
       overflow-x: auto;
       scrollbar-width: thin;
@@ -265,7 +295,7 @@
       background: var(--color-bg-card);
       border: var(--border-light);
       border-radius: 28px;
-      padding: 1.8rem;
+      padding: 1.5rem;
       transition: all 0.2s;
       cursor: pointer;
     }
@@ -275,7 +305,7 @@
       transform: translateY(-3px);
     }
     .carousel-cat {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
       color: var(--gold-dark);
       font-weight: 600;
@@ -283,121 +313,7 @@
       margin-bottom: 0.8rem;
     }
 
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin: 2.5rem 0;
-    }
-    .article-card {
-      background: var(--color-bg-card);
-      border-radius: 24px;
-      padding: 1.8rem;
-      border: var(--border-light);
-      transition: 0.2s;
-      cursor: pointer;
-    }
-    .article-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--gold-primary);
-      box-shadow: var(--shadow-luxury);
-    }
-    .article-cat {
-      color: var(--gold-dark);
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      margin-bottom: 1rem;
-    }
-    .article-card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: 500;
-      margin-bottom: 0.8rem;
-      color: var(--color-primary);
-    }
-    .article-meta {
-      font-size: 0.7rem;
-      color: #7e6b4a;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      padding-top: 1rem;
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .opportunity-card {
-      background: white;
-      border: var(--border-light);
-      border-radius: 28px;
-      padding: 1.8rem;
-      margin-bottom: 1.8rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .opp-tag {
-      background: var(--gradient-gold);
-      color: var(--color-primary);
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 5px 14px;
-      border-radius: 40px;
-      font-family: var(--font-serif);
-    }
-    .opp-link {
-      color: var(--gold-dark);
-      text-decoration: none;
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      padding: 8px 22px;
-      border-radius: 40px;
-      font-weight: 500;
-      transition: 0.2s;
-    }
-    .opp-link:hover {
-      background: var(--gradient-gold);
-      border-color: transparent;
-      color: var(--color-primary);
-    }
-
-    .section-light {
-      background: var(--gradient-gold-subtle);
-      padding: 2.8rem;
-      border-radius: 32px;
-      margin: 3.5rem 0;
-      border: var(--border-light);
-    }
-    .phil-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-    .consent-badge {
-      color: var(--gold-dark);
-      font-size: 0.7rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-    .creator-note {
-      border-left: 4px solid var(--gold-primary);
-      background: rgba(212, 175, 55, 0.03);
-      padding: 1.8rem 2rem;
-      margin: 3rem 0;
-      border-radius: 20px;
-      font-family: var(--font-body);
-    }
-
-    .site-footer {
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      padding: 2.2rem 0;
-      color: var(--color-text-light);
-      background: var(--color-bg);
-    }
-
-    /* MODAL ELEGANTE */
+    /* Modal com imagem */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -420,7 +336,7 @@
     }
     .modal-container {
       background: var(--color-bg-card);
-      max-width: 750px;
+      max-width: 900px;
       width: 90%;
       max-height: 85vh;
       border-radius: 32px;
@@ -429,23 +345,15 @@
       overflow-y: auto;
       transform: scale(0.95);
       transition: transform 0.3s ease;
-      position: relative;
     }
     .modal-overlay.active .modal-container {
       transform: scale(1);
-    }
-    .modal-container::-webkit-scrollbar {
-      width: 4px;
-    }
-    .modal-container::-webkit-scrollbar-thumb {
-      background: var(--gold-primary);
-      border-radius: 10px;
     }
     .modal-header {
       position: sticky;
       top: 0;
       background: white;
-      padding: 1.5rem 2rem 0.8rem;
+      padding: 1.2rem 2rem 0.8rem;
       border-bottom: 1px solid rgba(212, 175, 55, 0.2);
       display: flex;
       justify-content: space-between;
@@ -456,7 +364,6 @@
       font-family: var(--font-serif);
       font-size: 1.6rem;
       color: var(--color-primary);
-      margin-right: 2rem;
     }
     .modal-close {
       background: none;
@@ -464,11 +371,6 @@
       font-size: 1.8rem;
       cursor: pointer;
       color: var(--gold-dark);
-      transition: 0.2s;
-    }
-    .modal-close:hover {
-      color: var(--color-primary);
-      transform: rotate(90deg);
     }
     .modal-body {
       padding: 2rem;
@@ -480,33 +382,92 @@
       font-size: 0.75rem;
       color: var(--gold-dark);
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
-    .modal-body p {
+    .article-with-image {
+      overflow: auto;
+    }
+    .article-image {
+      float: left;
+      width: 280px;
+      margin: 0 1.8rem 1rem 0;
+      border-radius: 20px;
+      border: 1px solid rgba(212,175,55,0.3);
+      overflow: hidden;
+      background: #f3efe8;
+    }
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .article-text p {
       margin-bottom: 1.2rem;
+      line-height: 1.65;
       color: var(--color-text-light);
-      line-height: 1.6;
-    }
-    .modal-body h4 {
-      font-family: var(--font-serif);
-      margin: 1.5rem 0 0.8rem;
-      color: var(--color-primary);
-    }
-
-    @media (max-width: 900px) {
-      .articles-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 700px) {
-      .nav-tabs-wrapper { display: none; }
-      .mobile-menu-btn { display: flex; align-items: center; gap: 6px; }
+      .article-image {
+        float: none;
+        width: 100%;
+        margin: 0 0 1.2rem 0;
+      }
+      .modal-header h3 { font-size: 1.3rem; }
+    }
+
+    /* Seção extra */
+    .section-light {
+      background: var(--gradient-gold-subtle);
+      padding: 2rem;
+      border-radius: 32px;
+      margin: 3rem 0;
+      border: var(--border-light);
+    }
+    .phil-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .consent-badge {
+      color: var(--gold-dark);
+      font-size: 0.65rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .site-footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 2rem 0;
+      color: var(--color-text-light);
+      background: var(--color-bg);
+      font-size: 0.75rem;
+    }
+    .founder-profile {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      border: var(--border-light);
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .founder-photo {
+      flex: 0 0 180px;
+      text-align: center;
+    }
+    .founder-photo img {
+      width: 100%;
+      border-radius: 50%;
+      border: 3px solid var(--gold-primary);
+    }
+    @media (max-width: 900px) {
+      .articles-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
       .container { padding: 0 20px; }
       .articles-grid { grid-template-columns: 1fr; }
       .phil-grid { grid-template-columns: 1fr; }
-      .logo { font-size: 1.6rem; }
-      .slogan { font-size: 0.6rem; border-left: none; padding-left: 0; }
-      .modal-header h3 { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -515,28 +476,20 @@
     <div class="header-inner">
       <div class="logo-area">
         <div class="logo">Pauta<span>Zero</span></div>
-        <span class="slogan">arquitetura de conteúdo · estratégia</span>
+        <span class="slogan">análise · tecnologia · sistemas contemporâneos</span>
       </div>
-      <div class="nav-tabs-wrapper" id="desktopTabs">
-        <div class="nav-tabs">
-          <button class="tab-btn active" data-tab="home">Home</button>
-          <button class="tab-btn" data-tab="tecnologia">Tecnologia</button>
-          <button class="tab-btn" data-tab="futurismo">Futurismo</button>
-          <button class="tab-btn" data-tab="sistemas">Sistemas prisionais</button>
-          <button class="tab-btn" data-tab="entrevistas">Entrevistas</button>
-          <button class="tab-btn" data-tab="oportunidades">Oportunidades</button>
-          <button class="tab-btn" data-tab="blog">Blog da criadora</button>
-        </div>
+      <div class="nav-hamburger">
+        <span class="current-tab-name" id="currentTabLabel">Home</span>
+        <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
-      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i> <span style="font-size: 0.75rem;">Menu</span></button>
-      <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-item active" data-tab="home">🏠 Home</button>
-        <button class="mobile-menu-item" data-tab="tecnologia">⚙️ Tecnologia</button>
-        <button class="mobile-menu-item" data-tab="futurismo">🔮 Futurismo</button>
-        <button class="mobile-menu-item" data-tab="sistemas">🏛️ Sistemas prisionais</button>
-        <button class="mobile-menu-item" data-tab="entrevistas">🎙️ Entrevistas</button>
-        <button class="mobile-menu-item" data-tab="oportunidades">💼 Oportunidades</button>
-        <button class="mobile-menu-item" data-tab="blog">📝 Diretoria Editorial</button>
+      <div class="menu-dropdown" id="menuDropdown">
+        <button class="dropdown-item active" data-tab="home">🏠 Home</button>
+        <button class="dropdown-item" data-tab="tecnologia">⚙️ Tecnologia</button>
+        <button class="dropdown-item" data-tab="futurismo">🔮 Futurismo</button>
+        <button class="dropdown-item" data-tab="sistemas">🏛️ Sistemas prisionais</button>
+        <button class="dropdown-item" data-tab="entrevistas">🎙️ Entrevistas</button>
+        <button class="dropdown-item" data-tab="oportunidades">💼 Oportunidades</button>
+        <button class="dropdown-item" data-tab="fundadora">📖 Fundadora</button>
       </div>
     </div>
   </header>
@@ -546,189 +499,178 @@
 
     <section class="section-light">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;">
-        <i class="fas fa-hand-holding-heart" style="color: var(--gold-primary); font-size: 1.6rem;"></i>
-        <h2 style="border-bottom: none; margin-bottom: 0;">Filantropia consentida</h2>
+        <i class="fas fa-chart-line" style="color: var(--gold-primary); font-size: 1.4rem;"></i>
+        <h2 style="border-bottom: none; margin-bottom: 0;">Estudos de caso autorizados</h2>
       </div>
-      <p style="color: var(--color-text-light); margin-bottom: 2rem;">Histórias reais com autorização de participantes.</p>
+      <p style="margin-bottom: 2rem; font-size: 0.85rem;">Projetos documentados com consentimento ativo e análise institucional independente.</p>
       <div class="phil-grid">
-        <div class="phil-card">
-          <div class="consent-badge"><i class="fas fa-check-circle"></i> consentimento ativo</div>
-          <h3 style="font-family: var(--font-serif); font-weight: 500; margin: 0.8rem 0 0.5rem;">Projeto Raízes</h3>
-          <p>Capacitação tecnológica para apenados — parceria com faculdades.</p>
-        </div>
-        <div class="phil-card">
-          <div class="consent-badge"><i class="fas fa-check-circle"></i> consentimento ativo</div>
-          <h3 style="font-family: var(--font-serif); font-weight: 500; margin: 0.8rem 0 0.5rem;">Techvi Social</h3>
-          <p>Formação de agentes públicos em análise de dados e governança.</p>
-        </div>
+        <div class="phil-card"><div class="consent-badge"><i class="fas fa-check-circle"></i> consentimento ativo</div><h3 style="font-family: var(--font-serif); font-size:1.2rem;">Projeto Raízes</h3><p>Em breve — análise detalhada.</p></div>
+        <div class="phil-card"><div class="consent-badge"><i class="fas fa-check-circle"></i> consentimento ativo</div><h3 style="font-family: var(--font-serif); font-size:1.2rem;">Techvi Social</h3><p>Em breve — dados e contexto.</p></div>
       </div>
     </section>
-
-    <div class="creator-note">
-      <i class="fas fa-feather-alt" style="color: var(--gold-primary); margin-right: 12px;"></i>
-      <p style="font-style: italic;">“A PautaZero é curadoria independente. Como editora-chefe, assino cada análise e estrutura de conteúdo com a mesma filosofia de arquitetura descentralizada.”</p>
-      <p style="margin-top: 1.2rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-dark); font-weight: 600;">— Fundadora e editora</p>
-    </div>
   </main>
 
   <footer class="site-footer">
     <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-      <div>© 2026 PautaZero · Revista de sistemas, comportamento e políticas estratégicas.</div>
+      <div>© 2026 PautaZero · Revista de análise de sistemas, comportamento e políticas estratégicas.</div>
       <div style="display: flex; gap: 18px; color: var(--gold-dark);"><i class="fab fa-linkedin"></i> <i class="fab fa-x-twitter"></i> <i class="fas fa-envelope"></i></div>
     </div>
   </footer>
 
-  <!-- MODAL ESTRUTURA -->
   <div class="modal-overlay" id="articleModal">
     <div class="modal-container">
       <div class="modal-header">
         <h3 id="modalTitle">Título</h3>
         <button class="modal-close" id="modalCloseBtn"><i class="fas fa-times"></i></button>
       </div>
-      <div class="modal-body" id="modalBody">
+      <div class="modal-body">
         <div class="modal-meta" id="modalMeta"></div>
-        <div id="modalContent"></div>
+        <div id="modalFullContent"></div>
       </div>
     </div>
   </div>
 
   <script>
     (function() {
-      // Base de dados dos artigos (para abrir no modal)
+      // ======================= BANCO DE ARTIGOS =======================
+      // Para cada artigo, o campo "id" define o nome da imagem:
+      // A imagem deve estar em: assets/images/[id].jpg
+      // Exemplo: id = "telefone-cordinha" → assets/images/telefone-cordinha.jpg
       const articlesDB = {
-        "O modelo norueguês e a falácia tropical": {
-          cat: "Sistemas prisionais",
+        "telefone-cordinha": {
+          id: "telefone-cordinha",
+          title: "O telefone de cordinha",
+          category: "Editorial",
           date: "08.04.2026",
-          readTime: "9 min",
-          fullText: `<p>O modelo prisional norueguês é frequentemente citado como referência mundial por seus índices de reincidência abaixo de 20%. No entanto, transplantar essa arquitetura para países como o Brasil sem considerar as complexidades locais é uma falácia perigosa.</p>
-          <p>Enquanto a Noruega investe cerca de US$ 120 mil por detento/ano em educação, saúde e trabalho, o cenário brasileiro enfrenta superlotação crônica e déficit de agentes. A verdadeira lição não está nas celas abertas, mas na <strong>governança integrada e continuidade de políticas públicas</strong>.</p>
-          <p>A PautaZero propõe uma reflexão: como adaptar princípios de dignidade e ressocialização sem ignorar a realidade institucional? A resposta passa por tecnologia, formação de agentes e modelos de financiamento sustentável.</p>`
+          readTime: "4 min",   // corrigido: texto de ~850 palavras → 4 minutos
+          fullText: `
+            <p>Tem uma brincadeira antiga que quase todo mundo já fez: dois copos, um barbante esticado e alguém tentando passar uma mensagem de um lado para o outro.</p>
+            <p>A graça nunca foi acertar.</p>
+            <p>A graça era ver onde aquilo ia parar.</p>
+            <p>A frase começava simples e, no meio do caminho, já tinha mudado. No final, virava outra coisa. E todo mundo ria, porque fazia parte da brincadeira.</p>
+            <p>Só que hoje isso não tem mais graça.</p>
+            <p>Se essa mesma cena acontecesse agora, alguém no meio do caminho simplesmente pararia tudo, pegaria o celular e olharia a informação direto na fonte. A mensagem não dependeria mais de quem passou — dependeria de onde ela veio.</p>
+            <p>E é exatamente aqui que está o problema.</p>
+            <p>A gente deixou de brincar de telefone sem fio, mas continua vivendo dentro dele.</p>
+            <p>A informação circula rápido, é recortada, interpretada, ajustada, e quando chega em quem está lendo, muitas vezes já não é mais a mesma. E pior: nem sempre dá para perceber onde ela começou a mudar.</p>
+            <p>Foi olhando para isso que a PautaZero nasceu.</p>
+            <p>Não como mais um lugar para falar, mas como um lugar para organizar. Para entender antes de opinar. Para olhar com mais calma para o que está sendo dito — e como está sendo dito.</p>
+            <p>Não existe pretensão aqui de "corrigir o mundo" ou de assumir uma posição absoluta sobre tudo. Mas existe, sim, um compromisso muito claro: tratar a informação com responsabilidade.</p>
+            <p>Isso envolve respeitar leis, contexto, fonte e, principalmente, quem está lendo.</p>
+            <p>Porque hoje o problema não é falta de informação. É excesso sem estrutura.</p>
+            <p>Como editora-chefe, o que eu sustento aqui não é neutralidade vazia. É critério. É separar o que é dado do que é interpretação. É não misturar análise com ruído. É não acelerar aquilo que precisa ser entendido com cuidado.</p>
+            <p>A PautaZero não nasce para disputar atenção. Nasce para merecer atenção.</p>
+            <p>E isso, na prática, significa publicar menos do que poderia — mas com mais consistência do que normalmente se vê.</p>
+            <p>No fim, a ideia é simples. Se alguém parar no meio do caminho e quiser conferir direto na origem, que encontre aqui algo inteiro. Sem distorção. Sem exagero. Sem atalhos. Só informação bem tratada.</p>
+            <div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Fundadora e Editora-Chefe · PautaZero</div>
+          `
         },
-        "Assinatura digital de psicopatia": {
-          cat: "Tecnologia",
-          date: "07.04.2026",
-          readTime: "12 min",
-          fullText: `<p>Pesquisa proprietária desenvolvida ao longo de 3 anos mapeia padrões de linguagem em ambientes digitais que correlacionam com traços de psicopatia institucional. A metodologia combina processamento de linguagem natural e análise de redes sociais.</p>
-          <p>Os resultados indicam que assinaturas linguísticas — como baixa variação emocional e uso excessivo de termos instrumentais — podem antecipar comportamentos de risco em organizações. Essa tecnologia está sendo estruturada sob demanda para parceiros estratégicos.</p>`
-        },
-        "Cidades sem cárcere?": {
-          cat: "Futurismo",
-          date: "05.04.2026",
-          readTime: "7 min",
-          fullText: `<p>O conceito de cidades sem prisões não é utopia. Países como a Finlândia reduziram sua população carcerária em 60% nas últimas décadas investindo em justiça restaurativa e monitoramento eletrônico inteligente.</p>
-          <p>Em 2040, cenários possíveis incluem tribunais preditivos baseados em IA, penas alternativas com rastreabilidade blockchain e um sistema de justiça focado em reparação, não punição. A PautaZero analisa os desafios éticos e técnicos dessa transição.</p>`
-        },
-        "Algoritmos de classificação de risco": {
-          cat: "IA ética",
-          date: "07.04",
-          readTime: "10 min",
-          fullText: `<p>Algoritmos preditivos no sistema de justiça carregam vieses históricos. Nossa metodologia proprietária mitiga distorções raciais e socioeconômicas através de auditoria contínua e dados sintéticos balanceados.</p><p>Os resultados mostram redução de 34% em falsos positivos em modelos de reincidência.</p>`
-        },
-        "Registros imutáveis para execução penal": {
-          cat: "Blockchain",
-          date: "06.04",
-          readTime: "7 min",
-          fullText: `<p>A tecnologia blockchain garante rastreabilidade e imutabilidade para processos de execução penal. Cada etapa — desde a progressão de regime até o cumprimento de penas alternativas — pode ser registrada em ledger distribuído, aumentando a confiança do sistema.</p>`
-        },
-        "Brasil x Alemanha: o abismo da gestão": {
-          cat: "Comparativo",
-          date: "08.04",
-          readTime: "11 min",
-          fullText: `<p>Enquanto a Alemanha possui taxa de aprisionamento de 76 por 100 mil habitantes, o Brasil ultrapassa 350. Os custos anuais por detento chegam a R$ 45 mil no Brasil, com resultados muito inferiores em reinserção social.</p><p>A análise detalha os pontos de estrangulamento e propostas de reforma estrutural.</p>`
+        "artigo-exemplo": {
+          id: "artigo-exemplo",
+          title: "Próximo artigo",
+          category: "Análise",
+          date: "Em breve",
+          readTime: "—",
+          fullText: `<p>Conteúdo em desenvolvimento. Em breve, análises e matérias completas serão publicadas aqui.</p><p>Para contato editorial: avzproptech@outlook.com</p>`
         }
       };
 
-      function openModal(articleTitle, category, date, readTime, content) {
-        const modal = document.getElementById('articleModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalMeta = document.getElementById('modalMeta');
-        const modalContent = document.getElementById('modalContent');
+      // Função que gera o caminho da imagem baseado no id
+      function getImagePath(articleId) {
+        return `assets/images/${articleId}.jpg`;
+      }
+
+      // Conteúdo das abas (Home, Tecnologia, etc.)
+      const contentMap = {
+        home: `
+          <div style="margin-bottom: 2rem;"><h2 style="border-bottom: none;">Edição atual</h2><p style="color: var(--gold-dark);">Curadoria analítica independente</p></div>
+          <div class="carousel-section">
+            <div class="carousel-title"><i class="fas fa-gem"></i> Destaques</div>
+            <div class="carousel-container"><div class="carousel-track">
+              <div class="carousel-card" data-article-id="telefone-cordinha"><div class="carousel-cat">Editorial</div><h4>O telefone de cordinha</h4><p>A informação como brincadeira antiga.</p></div>
+              <div class="carousel-card" data-article-id="artigo-exemplo"><div class="carousel-cat">Em breve</div><h4>Próximo artigo</h4><p>Conteúdo em preparação.</p></div>
+            </div></div>
+          </div>
+          <div class="articles-grid">
+            <div class="article-card" data-article-id="telefone-cordinha"><div class="article-cat">Editorial</div><h3>O telefone de cordinha</h3><p>Uma reflexão sobre informação, ruído e a razão de ser da PautaZero.</p><div class="article-meta"><span>08.04.2026</span><span>4 min</span></div></div>
+            <div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Análise</div><h3>Em construção</h3><p>Novos artigos em breve.</p><div class="article-meta"><span>—</span><span>—</span></div></div>
+            <div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Tecnologia</div><h3>Placeholder</h3><p>Espaço reservado para futuras matérias.</p><div class="article-meta"><span>—</span><span>—</span></div></div>
+          </div>
+        `,
+        tecnologia: `<h2>Tecnologia e governança</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">IA ética</div><h3>Algoritmos preditivos</h3><p>Conteúdo em breve.</p><div class="article-meta"><span>—</span><span>—</span></div></div><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Blockchain</div><h3>Registros imutáveis</h3><p>Em produção.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
+        sistemas: `<h2>Sistemas prisionais mundiais</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Comparativo</div><h3>Brasil x Alemanha</h3><p>Análise futura.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
+        futurismo: `<h2>Futurismo</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Projeções</div><h3>Justiça restaurativa</h3><p>Conteúdo em preparação.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
+        entrevistas: `<h2>Entrevistas</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Mídia</div><h3>Conversas com especialistas</h3><p>Em breve.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
+        oportunidades: `<h2>Oportunidades institucionais</h2><p style="margin-bottom:2rem;">Espaço reservado para parcerias e editais.</p><div class="opportunity-card" style="background:white; border:var(--border-light); border-radius:28px; padding:1.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;"><div><span class="opp-tag" style="background:var(--gradient-gold); padding:5px 14px; border-radius:40px;">Em breve</span></div><div><strong>Programa de conteúdos</strong><br>Informações futuras</div><div><a href="#" class="opp-link" style="color:var(--gold-dark); border:1px solid rgba(212,175,55,0.4); padding:8px 22px; border-radius:40px;">saiba mais</a></div></div>`,
+        fundadora: `<h2>Diretoria Editorial</h2><div class="founder-profile"><div class="founder-photo"><img src="photo-editorial.jpg" alt="Viviane Bza" onerror="this.src='https://placehold.co/180x180?text=Viviane+Bza';"></div><div class="founder-info"><h3>Viviane Bza</h3><div class="founder-title">Fundadora · Editora-Chefe · Colunista</div><p>Viviane Bza é a fundadora da PautaZero, revista digital dedicada à análise e cobertura de temas contemporâneos relacionados a sistemas institucionais, tecnologia, comportamento e governança.</p><p>Atuando como editora-chefe e colunista, é responsável pela curadoria editorial, definição de pautas e estruturação do conteúdo publicado. Seu trabalho concentra-se na observação crítica de cenários atuais, com abordagem analítica, independente e orientada à compreensão dos sistemas que organizam a sociedade.</p><p>Com trajetória na área de engenharia de software, Viviane desenvolveu experiência em sistemas complexos e ambientes de alta criticidade, o que influencia diretamente sua leitura sobre temas como segurança, tecnologia e estruturas institucionais.</p><div style="margin-top:1.5rem; border-top:1px solid rgba(212,175,55,0.2); padding-top:1rem;"><strong>Assinatura editorial</strong><br>Viviane Bza<br>Fundadora e Editora-Chefe · PautaZero</div></div></div>`
+      };
+
+      let currentTab = 'home';
+      const tabContentDiv = document.getElementById('tabContent');
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+      const menuIconBtn = document.getElementById('menuIconBtn');
+      const menuDropdown = document.getElementById('menuDropdown');
+      const currentTabLabel = document.getElementById('currentTabLabel');
+      const modal = document.getElementById('articleModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMeta = document.getElementById('modalMeta');
+      const modalFullContent = document.getElementById('modalFullContent');
+
+      function openModalByArticleId(articleId) {
+        const article = articlesDB[articleId];
+        if (!article) return;
+        modalTitle.innerText = article.title;
+        modalMeta.innerHTML = `<span><i class="fas fa-folder-open"></i> ${article.category}</span><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="far fa-clock"></i> ${article.readTime}</span>`;
         
-        modalTitle.innerText = articleTitle;
-        modalMeta.innerHTML = `<span><i class="fas fa-folder-open"></i> ${category}</span><span><i class="far fa-calendar-alt"></i> ${date}</span><span><i class="far fa-clock"></i> ${readTime}</span>`;
-        modalContent.innerHTML = content || `<p>Conteúdo completo disponível para assinantes da PautaZero. Entre em contato para acesso à íntegra.</p><p style="margin-top: 1rem;"><i class="fas fa-envelope" style="color: var(--gold-dark);"></i> avzproptech@outlook.com</p>`;
+        const imagePath = getImagePath(article.id);
+        // Se a imagem não carregar, exibe um placeholder elegante
+        const imageHtml = `<div class="article-image"><img src="${imagePath}" alt="${article.title}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada';"></div>`;
+        const textHtml = `<div class="article-text">${article.fullText}</div>`;
+        modalFullContent.innerHTML = `<div class="article-with-image">${imageHtml}${textHtml}</div>`;
         
         modal.classList.add('active');
         document.body.classList.add('modal-open');
       }
 
       function closeModal() {
-        const modal = document.getElementById('articleModal');
         modal.classList.remove('active');
         document.body.classList.remove('modal-open');
       }
 
       document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-      document.getElementById('articleModal').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('articleModal')) closeModal();
-      });
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-      // Mapeamento de conteúdo das abas + injeção de eventos de clique
-      const contentMap = {
-        home: `
-          <div style="margin-bottom: 2rem;"><h2 style="border-bottom: none; margin-bottom: 0.25rem;">Edição atual</h2><p style="color: var(--gold-dark);">8 de abril de 2026 · curadoria estratégica</p></div>
-          <div class="carousel-section">
-            <div class="carousel-title"><i class="fas fa-gem"></i> Em evidência</div>
-            <div class="carousel-container"><div class="carousel-track">
-              <div class="carousel-card" data-title="O modelo norueguês e a falácia tropical" data-cat="Sistemas prisionais" data-date="08.04.2026" data-read="9 min"><div class="carousel-cat">Sistemas prisionais</div><h4>O modelo norueguês e a falácia tropical</h4><p>Lições adaptadas para a América Latina.</p></div>
-              <div class="carousel-card" data-title="Assinatura digital de psicopatia" data-cat="Tecnologia" data-date="07.04.2026" data-read="12 min"><div class="carousel-cat">Psicopatia institucional</div><h4>Assinatura digital de risco</h4><p>Padrões de linguagem que antecipam riscos.</p></div>
-              <div class="carousel-card" data-title="Cidades sem cárcere?" data-cat="Futurismo" data-date="05.04.2026" data-read="7 min"><div class="carousel-cat">2040 · cenários</div><h4>Cidades sem cárcere</h4><p>Justiça restaurativa e governança preditiva.</p></div>
-            </div></div>
-          </div>
-          <div class="articles-grid">
-            <div class="article-card" data-title="O modelo norueguês e a falácia tropical" data-cat="Sistemas prisionais" data-date="08.04.2026" data-read="9 min"><div class="article-cat">Sistemas prisionais</div><h3>O modelo norueguês e a falácia tropical</h3><p>Por que importar arquiteturas sem adaptação local ignora complexidades sociais.</p><div class="article-meta"><span>08.04.2026</span><span>9 min</span></div></div>
-            <div class="article-card" data-title="Assinatura digital de psicopatia" data-cat="Tecnologia" data-date="07.04.2026" data-read="12 min"><div class="article-cat">Tecnologia</div><h3>Assinatura digital de psicopatia</h3><p>Pesquisa proprietária sobre padrões de linguagem e tomada de decisão.</p><div class="article-meta"><span>07.04.2026</span><span>12 min</span></div></div>
-            <div class="article-card" data-title="Cidades sem cárcere?" data-cat="Futurismo" data-date="05.04.2026" data-read="7 min"><div class="article-cat">Futurismo</div><h3>Cidades sem cárcere?</h3><p>Cenários para 2040: vigilância preditiva e justiça restaurativa.</p><div class="article-meta"><span>05.04.2026</span><span>7 min</span></div></div>
-          </div>
-        `,
-        tecnologia: `<h2>Tecnologia e governança</h2><div class="articles-grid"><div class="article-card" data-title="Algoritmos de classificação de risco" data-cat="IA ética" data-date="07.04" data-read="10 min"><div class="article-cat">IA ética</div><h3>Algoritmos de classificação de risco</h3><p>Metodologia proprietária para mitigar vieses em modelos preditivos.</p><div class="article-meta"><span>07.04</span><span>10 min</span></div></div><div class="article-card" data-title="Registros imutáveis para execução penal" data-cat="Blockchain" data-date="06.04" data-read="7 min"><div class="article-cat">Blockchain</div><h3>Registros imutáveis para execução penal</h3><p>Transparência e segurança com arquitetura descentralizada.</p><div class="article-meta"><span>06.04</span><span>7 min</span></div></div></div>`,
-        sistemas: `<h2>Sistemas prisionais mundiais</h2><div class="articles-grid"><div class="article-card" data-title="Brasil x Alemanha: o abismo da gestão" data-cat="Comparativo" data-date="08.04" data-read="11 min"><div class="article-cat">Comparativo</div><h3>Brasil x Alemanha: o abismo da gestão</h3><p>Dados sobre superlotação, custos e indicadores sociais.</p><div class="article-meta"><span>08.04</span><span>11 min</span></div></div></div>`,
-        futurismo: `<h2>Futurismo</h2><div class="articles-grid"><div class="article-card" data-title="Cidades sem cárcere?" data-cat="Futurismo" data-date="05.04" data-read="7 min"><div class="article-cat">Urbanismo</div><h3>Cidades monitoradas e justiça restaurativa</h3><p>Conflitos e novas camadas de mediação.</p><div class="article-meta"><span>02.04</span><span>8 min</span></div></div></div>`,
-        entrevistas: `<h2>Entrevistas</h2><div class="articles-grid"><div class="article-card"><div class="article-cat">Mídia</div><h3>“A imprensa cobre o crime, não a solução”</h3><p>Jornalista investigativo discute narrativas penais.</p><div class="article-meta"><span>01.04</span><span>15 min</span></div></div></div>`,
-        oportunidades: `<h2>Oportunidades institucionais</h2><p style="color: var(--text-muted); margin-bottom: 2rem;">Pontes estratégicas entre lideranças empresariais e setor público.</p><div class="opportunity-card"><div><span class="opp-tag">Encontro fechado</span></div><div><strong>Fórum de Segurança & Tecnologia</strong><br>12 de maio · São Paulo</div><div><a href="#" class="opp-link">saiba mais</a></div></div>`,
-        blog: `<h2>Blog da criadora</h2><div class="articles-grid"><div class="article-card"><div class="article-cat">Editorial</div><h3>Por que uma revista sobre sistemas e prisões</h3><p>As motivações por trás da PautaZero.</p><div class="article-meta"><span>hoje</span><span>6 min</span></div></div></div>`
-      };
-
-      let currentTab = 'home';
-      const tabContentDiv = document.getElementById('tabContent');
-      const desktopTabs = document.querySelectorAll('#desktopTabs .tab-btn');
-      const mobileItems = document.querySelectorAll('.mobile-menu-item');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-
-      function attachArticleEvents() {
+      function attachArticleClickEvents() {
         document.querySelectorAll('.article-card, .carousel-card').forEach(card => {
           card.removeEventListener('click', card._listener);
-          const handler = (e) => {
-            e.stopPropagation();
-            const title = card.dataset.title;
-            if (title && articlesDB[title]) {
-              const art = articlesDB[title];
-              openModal(title, art.cat, art.date, art.readTime, art.fullText);
-            } else if (title) {
-              openModal(title, card.dataset.cat || "Destaque", card.dataset.date || "2026", card.dataset.read || "5 min", `<p>Conteúdo em desenvolvimento. Em breve mais análises da PautaZero.</p>`);
-            }
-          };
-          card.addEventListener('click', handler);
-          card._listener = handler;
+          const articleId = card.dataset.articleId;
+          if (articleId && articlesDB[articleId]) {
+            const handler = () => openModalByArticleId(articleId);
+            card.addEventListener('click', handler);
+            card._listener = handler;
+          } else {
+            const handler = () => openModalByArticleId('artigo-exemplo');
+            card.addEventListener('click', handler);
+            card._listener = handler;
+          }
         });
       }
 
       function setActiveTab(tabId) {
         currentTab = tabId;
         tabContentDiv.innerHTML = contentMap[tabId] || contentMap.home;
-        attachArticleEvents();
-        desktopTabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
-        mobileItems.forEach(item => item.classList.toggle('active', item.dataset.tab === tabId));
-        mobileMenu.classList.remove('active');
+        attachArticleClickEvents();
+        const tabNames = { home:'Home', tecnologia:'Tecnologia', futurismo:'Futurismo', sistemas:'Sistemas prisionais', entrevistas:'Entrevistas', oportunidades:'Oportunidades', fundadora:'Fundadora' };
+        currentTabLabel.innerText = tabNames[tabId] || 'Home';
+        dropdownItems.forEach(item => item.classList.toggle('active', item.dataset.tab === tabId));
+        menuDropdown.classList.remove('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      desktopTabs.forEach(btn => btn.addEventListener('click', () => setActiveTab(btn.dataset.tab)));
-      mobileItems.forEach(item => item.addEventListener('click', () => setActiveTab(item.dataset.tab)));
-      mobileBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.toggle('active'); });
-      document.addEventListener('click', (e) => { if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) mobileMenu.classList.remove('active'); });
+      dropdownItems.forEach(item => item.addEventListener('click', () => setActiveTab(item.dataset.tab)));
+      menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
+      document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
       setActiveTab('home');
     })();
   </script>
