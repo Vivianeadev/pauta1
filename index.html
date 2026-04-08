@@ -20,13 +20,13 @@
       --color-primary-light: #1a4b6d;
       --gold-primary: #D4AF37;
       --gold-secondary: #F4E4B8;
-      --gold-dark: #B8860B;
+      --gold-dark: #B8860B;   /* dourado original (não o marrom escuro) */
       --color-dark: #1A1A1A;
       --color-text: #1e2a3a;
       --color-text-light: #2c3e4e;
       --color-bg: #fefaf5;
       --color-bg-card: #ffffff;
-      --border-light: 1px solid rgba(212, 175, 55, 0.2);
+      --border-light: 1px solid rgba(212, 175, 55, 0.25);
       --shadow-luxury: 0 20px 35px -12px rgba(10, 49, 71, 0.12);
       --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
       --gradient-gold-subtle: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(244, 228, 184, 0.05) 100%);
@@ -120,7 +120,7 @@
       padding-left: 14px;
     }
 
-    /* Navegação com menu hambúrguer + ícone de arquivo */
+    /* Navegação sem arredondamentos */
     .nav-hamburger {
       display: flex;
       align-items: center;
@@ -129,7 +129,6 @@
     .archive-btn {
       background: rgba(212, 175, 55, 0.12);
       border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 50%;
       width: 44px;
       height: 44px;
       display: flex;
@@ -153,14 +152,12 @@
       color: var(--gold-dark);
       background: rgba(212, 175, 55, 0.08);
       padding: 0.4rem 1rem;
-      border-radius: 40px;
       border: 1px solid rgba(212, 175, 55, 0.3);
       white-space: nowrap;
     }
     .menu-icon-btn {
       background: rgba(212, 175, 55, 0.12);
       border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 50%;
       width: 44px;
       height: 44px;
       display: flex;
@@ -181,7 +178,6 @@
       right: 36px;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(16px);
-      border-radius: 28px;
       box-shadow: 0 20px 40px -12px rgba(10, 49, 71, 0.25);
       border: 1px solid rgba(212, 175, 55, 0.3);
       padding: 0.8rem 0;
@@ -221,7 +217,7 @@
       border-left: 3px solid var(--gold-primary);
     }
 
-    /* Painel lateral de arquivo/busca (off-canvas) */
+    /* Painel de arquivo/busca - sem arredondamentos */
     .archive-overlay {
       position: fixed;
       top: 0;
@@ -287,7 +283,6 @@
       width: 100%;
       padding: 0.8rem 1rem;
       border: 1px solid rgba(212,175,55,0.3);
-      border-radius: 40px;
       font-family: var(--font-sans);
       font-size: 0.9rem;
       background: white;
@@ -305,7 +300,6 @@
     .archive-item {
       background: var(--color-bg-card);
       border: 1px solid rgba(212,175,55,0.15);
-      border-radius: 20px;
       padding: 1rem;
       margin-bottom: 1rem;
       cursor: pointer;
@@ -348,7 +342,7 @@
       padding: 3rem 0 5rem;
     }
 
-    /* Cards de artigo */
+    /* Cards sem arredondamentos */
     .articles-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -357,7 +351,6 @@
     }
     .article-card {
       background: var(--color-bg-card);
-      border-radius: 24px;
       padding: 1.5rem;
       border: var(--border-light);
       transition: 0.2s;
@@ -398,7 +391,7 @@
       justify-content: space-between;
     }
 
-    /* Carrossel */
+    /* Carrossel sem arredondamentos */
     .carousel-section {
       margin: 1.5rem 0 3rem;
     }
@@ -428,7 +421,6 @@
       flex: 0 0 280px;
       background: var(--color-bg-card);
       border: var(--border-light);
-      border-radius: 28px;
       padding: 1.5rem;
       transition: all 0.2s;
       cursor: pointer;
@@ -447,7 +439,7 @@
       margin-bottom: 0.8rem;
     }
 
-    /* Modal de leitura (existente) */
+    /* Modal sem arredondamentos */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -473,7 +465,6 @@
       max-width: 900px;
       width: 90%;
       max-height: 85vh;
-      border-radius: 32px;
       border: 1px solid var(--gold-primary);
       box-shadow: 0 30px 50px rgba(0,0,0,0.3);
       overflow-y: auto;
@@ -548,11 +539,10 @@
       .modal-header h3 { font-size: 1.3rem; }
     }
 
-    /* Seção extra (estudos de caso) */
+    /* Seção estudos de caso - sem arredondamentos */
     .section-light {
       background: var(--gradient-gold-subtle);
       padding: 2rem;
-      border-radius: 32px;
       margin: 3rem 0;
       border: var(--border-light);
     }
@@ -576,7 +566,7 @@
       font-size: 0.75rem;
     }
 
-    /* Fundadora */
+    /* Fundadora - sem arredondamentos */
     .founder-section {
       margin-top: 1rem;
     }
@@ -596,7 +586,6 @@
       height: auto;
       display: block;
       border: 2px solid var(--gold-primary);
-      border-radius: 0;
     }
     .founder-info-col {
       flex: 1;
@@ -695,7 +684,7 @@
     </div>
   </footer>
 
-  <!-- Modal de leitura (existente) -->
+  <!-- Modal de leitura -->
   <div class="modal-overlay" id="articleModal">
     <div class="modal-container">
       <div class="modal-header">
@@ -719,15 +708,12 @@
       <div class="archive-search">
         <input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)">
       </div>
-      <div class="archive-list" id="archiveList">
-        <!-- preenchido via JS -->
-      </div>
+      <div class="archive-list" id="archiveList"></div>
     </div>
   </div>
 
   <script>
     (function() {
-      // ======================= BANCO DE ARTIGOS =======================
       const articlesDB = {
         "telefone-cordinha": {
           id: "telefone-cordinha",
@@ -755,7 +741,6 @@
         }
       };
 
-      // Função auxiliar para ordenar artigos por data (mais recente primeiro)
       function getArticlesList() {
         const articles = Object.values(articlesDB).filter(a => a.date !== "Em breve");
         articles.sort((a,b) => {
@@ -791,7 +776,6 @@
             <div class="archive-item-meta"><span>${art.category}</span><span>${art.date}</span><span>${art.readTime}</span></div>
           </div>
         `).join('');
-        // Adicionar eventos de clique nos itens do arquivo
         document.querySelectorAll('.archive-item').forEach(el => {
           el.addEventListener('click', (e) => {
             const id = el.dataset.articleId;
@@ -842,7 +826,6 @@
         document.getElementById('archiveSearchInput').value = '';
       }
 
-      // Eventos de busca
       const searchInput = document.getElementById('archiveSearchInput');
       if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -861,7 +844,6 @@
       });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeArchive(); } });
 
-      // Conteúdo das abas (Home com dois artigos)
       const contentMap = {
         home: `
           <div style="margin-bottom: 2rem;"><h2 style="border-bottom: none;">Edição atual</h2><p style="color: var(--gold-dark);">Curadoria analítica independente</p></div>
@@ -883,7 +865,7 @@
         sistemas: `<h2>Sistemas prisionais mundiais</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Comparativo</div><h3>Brasil x Alemanha</h3><p>Análise futura.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
         futurismo: `<h2>Futurismo</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Projeções</div><h3>Justiça restaurativa</h3><p>Conteúdo em preparação.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
         entrevistas: `<h2>Entrevistas</h2><div class="articles-grid"><div class="article-card" data-article-id="artigo-exemplo"><div class="article-cat">Mídia</div><h3>Conversas com especialistas</h3><p>Em breve.</p><div class="article-meta"><span>—</span><span>—</span></div></div></div>`,
-        oportunidades: `<h2>Oportunidades institucionais</h2><p style="margin-bottom:2rem;">Espaço reservado para parcerias e editais.</p><div class="opportunity-card" style="background:white; border:var(--border-light); border-radius:28px; padding:1.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;"><div><span class="opp-tag" style="background:var(--gradient-gold); padding:5px 14px; border-radius:40px;">Em breve</span></div><div><strong>Programa de conteúdos</strong><br>Informações futuras</div><div><a href="#" class="opp-link" style="color:var(--gold-dark); border:1px solid rgba(212,175,55,0.4); padding:8px 22px; border-radius:40px;">saiba mais</a></div></div>`,
+        oportunidades: `<h2>Oportunidades institucionais</h2><p style="margin-bottom:2rem;">Espaço reservado para parcerias e editais.</p><div class="opportunity-card" style="background:white; border:var(--border-light); padding:1.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;"><div><span class="opp-tag" style="background:var(--gradient-gold); padding:5px 14px;">Em breve</span></div><div><strong>Programa de conteúdos</strong><br>Informações futuras</div><div><a href="#" class="opp-link" style="color:var(--gold-dark); border:1px solid rgba(212,175,55,0.4); padding:8px 22px;">saiba mais</a></div></div>`,
         fundadora: `<h2>Diretoria Editorial</h2>
           <div class="founder-section">
             <div class="founder-container">
