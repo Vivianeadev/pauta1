@@ -50,6 +50,8 @@
       font-size: 0.95rem;
     }
 
+    body.archive-open { overflow: hidden; }
+
     .container { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
     h1, h2, h3, h4, .logo, .section-title { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
     h2 { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 500; color: var(--color-primary); border-bottom: 2px solid rgba(212, 175, 55, 0.35); display: inline-block; padding-bottom: 8px; }
@@ -135,7 +137,6 @@
       .founder-photo-col { flex: auto; max-width: 320px; margin: 0 auto; } 
     }
 
-    /* HERO PRINCIPAL - novo elemento sem alterar estilos existentes */
     .hero-featured {
       background: var(--gradient-gold-subtle);
       border: var(--border-light);
@@ -173,8 +174,6 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold-primary), var(--gold-secondary), var(--gold-primary), transparent);
     }
-
-    /* AVISO LEGAL DISCRETO NO RODAPÉ */
     .footer-legal {
       max-width: 1280px;
       margin: 1rem auto 0;
@@ -198,7 +197,7 @@
   <header class="site-header">
     <div class="header-inner">
       <div class="logo-area">
-        <a href="/" class="logo" style="text-decoration: none;">Pauta<span>Zero</span></a>
+        <a href="/" class="logo">Pauta<span>Zero</span></a>
         <span class="slogan">análise · tecnologia · sistemas contemporâneos</span>
       </div>
       <div class="nav-hamburger">
@@ -207,7 +206,7 @@
         <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
       <div class="menu-dropdown" id="menuDropdown">
-        <button class="dropdown-item active" data-tab="home">🏠 Home</button>
+        <button class="dropdown-item" data-tab="home">🏠 Home</button>
         <button class="dropdown-item" data-tab="tecnologia">⚙️ Tecnologia</button>
         <button class="dropdown-item" data-tab="economia">📊 Economia & Trabalho</button>
         <button class="dropdown-item" data-tab="sociedade">🌱 Sociedade & Comportamento</button>
@@ -261,63 +260,56 @@
 
   <script>
     (function() {
-      // Mapeamento de slugs para navegação
+      // Mapeamento de slugs para navegação dos artigos
       const articleSlugs = {
         "telefone-cordinha": {
           slug: "o-telefone-de-cordinha",
           title: "O telefone de cordinha",
           category: "Comunicação & Sociedade",
           date: "08.04.2026",
-          readTime: "4 min",
-          excerpt: "Uma reflexão sobre informação, ruído e a razão de ser da PautaZero."
+          readTime: "4 min"
         },
         "saude-mental-expansao": {
           slug: "saude-mental-a-expansao-que-exige-criterio",
           title: "Saúde mental: a expansão que exige critério",
           category: "Saúde & Sociedade",
           date: "10.04.2026",
-          readTime: "4 min",
-          excerpt: "O cuidado emocional não pode ser tratado como um campo sem critérios claros."
+          readTime: "4 min"
         },
         "desemprego-analise-2026": {
           slug: "o-desemprego-caiu-mas-o-problema-mudou-de-lugar",
           title: "O desemprego caiu — mas o problema mudou de lugar",
           category: "Economia & Trabalho",
           date: "08.04.2026",
-          readTime: "5 min",
-          excerpt: "Menos desemprego não significa, automaticamente, um mercado saudável."
+          readTime: "5 min"
         },
         "jornada-trabalho-analise": {
           slug: "direitos-nao-existem-fora-da-realidade-economica",
           title: "Direitos não existem fora da realidade econômica que os sustenta",
           category: "Economia & Trabalho",
           date: "08.04.2026",
-          readTime: "8 min",
-          excerpt: "O debate sobre o fim da escala 6x1 e os limites do sistema atual."
+          readTime: "8 min"
         },
         "ia-algoritmos-governanca": {
           slug: "ia-e-governanca-entre-a-previsao-e-o-controle",
           title: "IA e governança: entre a previsão e o controle",
           category: "Tecnologia & Ética",
           date: "12.04.2026",
-          readTime: "6 min",
-          excerpt: "Algoritmos preditivos e a necessidade de regulação transparente."
+          readTime: "6 min"
         },
         "blockchain-transparencia": {
           slug: "blockchain-e-registros-imutaveis",
           title: "Blockchain e registros imutáveis",
           category: "Inovação & Confiança",
           date: "14.04.2026",
-          readTime: "5 min",
-          excerpt: "Rastreabilidade e limites da tecnologia para instituições."
+          readTime: "5 min"
         },
         "multimilionarios-invisiveis": {
           slug: "os-multimilionarios-invisiveis",
           title: "Os multimilionários invisíveis de uma janela que está se fechando",
           category: "Futurismo & Economia",
           date: "15.04.2026",
-          readTime: "12 min",
-          excerpt: "Oportunidades silenciosas e a reconfiguração da riqueza global."
+          readTime: "12 min"
         }
       };
 
@@ -328,14 +320,15 @@
         }
       }
 
+      // Lista completa de artigos para o arquivo (busca)
       const articlesList = [
-        { id: "telefone-cordinha", title: "O telefone de cordinha", category: "Comunicação & Sociedade", date: "08.04.2026", readTime: "4 min", excerpt: "Uma reflexão sobre informação, ruído e a razão de ser da PautaZero.", tabTheme: "home" },
-        { id: "saude-mental-expansao", title: "Saúde mental: a expansão que exige critério", category: "Saúde & Sociedade", date: "10.04.2026", readTime: "4 min", excerpt: "O cuidado emocional não pode ser tratado como um campo sem critérios claros.", tabTheme: "home" },
-        { id: "desemprego-analise-2026", title: "O desemprego caiu — mas o problema mudou de lugar", category: "Economia & Trabalho", date: "08.04.2026", readTime: "5 min", excerpt: "Menos desemprego não significa, automaticamente, um mercado saudável.", tabTheme: "home" },
-        { id: "jornada-trabalho-analise", title: "Direitos não existem fora da realidade econômica", category: "Economia & Trabalho", date: "08.04.2026", readTime: "8 min", excerpt: "O debate sobre o fim da escala 6x1 e os limites do sistema atual.", tabTheme: "home" },
-        { id: "ia-algoritmos-governanca", title: "IA e governança: entre a previsão e o controle", category: "Tecnologia & Ética", date: "12.04.2026", readTime: "6 min", excerpt: "Algoritmos preditivos e a necessidade de regulação transparente.", tabTheme: "tecnologia" },
-        { id: "blockchain-transparencia", title: "Blockchain e registros imutáveis", category: "Inovação & Confiança", date: "14.04.2026", readTime: "5 min", excerpt: "Rastreabilidade e limites da tecnologia para instituições.", tabTheme: "tecnologia" },
-        { id: "multimilionarios-invisiveis", title: "Os multimilionários invisíveis", category: "Futurismo & Economia", date: "15.04.2026", readTime: "12 min", excerpt: "Oportunidades silenciosas e a reconfiguração da riqueza global.", tabTheme: "futurismo" }
+        { id: "telefone-cordinha", title: "O telefone de cordinha", category: "Comunicação & Sociedade", date: "08.04.2026", readTime: "4 min", slug: "o-telefone-de-cordinha" },
+        { id: "saude-mental-expansao", title: "Saúde mental: a expansão que exige critério", category: "Saúde & Sociedade", date: "10.04.2026", readTime: "4 min", slug: "saude-mental-a-expansao-que-exige-criterio" },
+        { id: "desemprego-analise-2026", title: "O desemprego caiu — mas o problema mudou de lugar", category: "Economia & Trabalho", date: "08.04.2026", readTime: "5 min", slug: "o-desemprego-caiu-mas-o-problema-mudou-de-lugar" },
+        { id: "jornada-trabalho-analise", title: "Direitos não existem fora da realidade econômica que os sustenta", category: "Economia & Trabalho", date: "08.04.2026", readTime: "8 min", slug: "direitos-nao-existem-fora-da-realidade-economica" },
+        { id: "ia-algoritmos-governanca", title: "IA e governança: entre a previsão e o controle", category: "Tecnologia & Ética", date: "12.04.2026", readTime: "6 min", slug: "ia-e-governanca-entre-a-previsao-e-o-controle" },
+        { id: "blockchain-transparencia", title: "Blockchain e registros imutáveis", category: "Inovação & Confiança", date: "14.04.2026", readTime: "5 min", slug: "blockchain-e-registros-imutaveis" },
+        { id: "multimilionarios-invisiveis", title: "Os multimilionários invisíveis", category: "Futurismo & Economia", date: "15.04.2026", readTime: "12 min", slug: "os-multimilionarios-invisiveis" }
       ];
 
       function getAllArticlesForArchive() {
@@ -372,7 +365,10 @@
         document.querySelectorAll('.archive-item').forEach(el => {
           el.addEventListener('click', (e) => {
             const id = el.dataset.articleId;
-            if (id) navigateToArticle(id);
+            if (id) {
+              closeArchive();
+              navigateToArticle(id);
+            }
           });
         });
       }
@@ -387,6 +383,7 @@
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
 
+      // CONTEÚDO DAS ABAS
       const contentMap = {
         home: `
           <div style="margin-bottom: 2rem;"><h2 style="border-bottom: none;">Edição atual</h2><p style="color: var(--gold-dark);">Análise estrutural · Sem ruído</p></div>
@@ -457,6 +454,7 @@
       const menuIconBtn = document.getElementById('menuIconBtn');
       const menuDropdown = document.getElementById('menuDropdown');
       const currentTabLabel = document.getElementById('currentTabLabel');
+      const tabNames = { home:'Home', tecnologia:'Tecnologia', economia:'Economia & Trabalho', sociedade:'Sociedade & Comportamento', futurismo:'Futurismo', sistemas:'Sistemas prisionais', entrevistas:'Entrevistas', oportunidades:'Oportunidades', filantropia:'Filantropia', fundadora:'Fundadora' };
 
       function attachCardEvents() {
         document.querySelectorAll('.article-card, .carousel-card, .hero-featured').forEach(card => {
@@ -471,21 +469,59 @@
         });
       }
 
-      function setActiveTab(tabId) {
+      function setActiveTab(tabId, updateUrl = true) {
         currentTab = tabId;
         tabContentDiv.innerHTML = contentMap[tabId] || contentMap.home;
         attachCardEvents();
-        const tabNames = { home:'Home', tecnologia:'Tecnologia', economia:'Economia & Trabalho', sociedade:'Sociedade & Comportamento', futurismo:'Futurismo', sistemas:'Sistemas prisionais', entrevistas:'Entrevistas', oportunidades:'Oportunidades', filantropia:'Filantropia', fundadora:'Fundadora' };
         currentTabLabel.innerText = tabNames[tabId] || 'Home';
-        dropdownItems.forEach(item => item.classList.toggle('active', item.dataset.tab === tabId));
+        dropdownItems.forEach(item => {
+          if (item.dataset.tab === tabId) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
         menuDropdown.classList.remove('active');
+        
+        if (updateUrl) {
+          if (tabId === 'home') {
+            window.location.hash = '';
+          } else {
+            window.location.hash = tabId;
+          }
+        }
+        
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      dropdownItems.forEach(item => item.addEventListener('click', () => setActiveTab(item.dataset.tab)));
+      // Verificar hash na URL ao carregar a página
+      function checkHashAndLoadTab() {
+        const hash = window.location.hash.substring(1);
+        const validTabs = ['home', 'tecnologia', 'economia', 'sociedade', 'futurismo', 'sistemas', 'entrevistas', 'oportunidades', 'filantropia', 'fundadora'];
+        if (hash && validTabs.includes(hash)) {
+          setActiveTab(hash, false);
+        } else {
+          setActiveTab('home', false);
+        }
+      }
+
+      // Eventos de clique nas abas
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const tabId = item.dataset.tab;
+          setActiveTab(tabId, true);
+        });
+      });
+
+      // Menu dropdown
       menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
       document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
-      setActiveTab('home');
+      
+      // Inicializar com base no hash
+      checkHashAndLoadTab();
+      
+      // Escutar mudanças no hash (navegação pelo histórico)
+      window.addEventListener('hashchange', checkHashAndLoadTab);
     })();
   </script>
 </body>
