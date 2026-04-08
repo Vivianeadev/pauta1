@@ -45,7 +45,7 @@
       font-size: 0.95rem;
     }
 
-    body.modal-open {
+    body.modal-open, body.archive-open {
       overflow: hidden;
     }
 
@@ -120,11 +120,29 @@
       padding-left: 14px;
     }
 
-    /* Navegação com menu hambúrguer */
+    /* Navegação com menu hambúrguer + ícone de arquivo */
     .nav-hamburger {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
+      gap: 1rem;
+    }
+    .archive-btn {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .archive-btn:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--gold-primary);
     }
     .current-tab-name {
       font-family: var(--font-serif);
@@ -203,11 +221,127 @@
       border-left: 3px solid var(--gold-primary);
     }
 
+    /* Painel lateral de arquivo/busca (off-canvas) */
+    .archive-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 49, 71, 0.8);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .archive-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .archive-panel {
+      background: var(--color-bg-card);
+      width: 100%;
+      max-width: 500px;
+      height: 100%;
+      right: 0;
+      position: absolute;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      border-left: 1px solid var(--gold-primary);
+    }
+    .archive-overlay.active .archive-panel {
+      transform: translateX(0);
+    }
+    .archive-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(212,175,55,0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+    }
+    .archive-header h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--color-primary);
+    }
+    .archive-close {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--gold-dark);
+    }
+    .archive-search {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+    }
+    .archive-search input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 40px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      background: white;
+      outline: none;
+      transition: 0.2s;
+    }
+    .archive-search input:focus {
+      border-color: var(--gold-primary);
+    }
+    .archive-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.5rem;
+    }
+    .archive-item {
+      background: var(--color-bg-card);
+      border: 1px solid rgba(212,175,55,0.15);
+      border-radius: 20px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+    .archive-item:hover {
+      border-color: var(--gold-primary);
+      background: rgba(212,175,55,0.02);
+    }
+    .archive-item-title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.25rem;
+    }
+    .archive-item-meta {
+      font-size: 0.7rem;
+      color: var(--gold-dark);
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.3rem;
+    }
+    .no-results {
+      text-align: center;
+      padding: 2rem;
+      color: var(--color-text-light);
+      font-style: italic;
+    }
+
     @media (max-width: 700px) {
       .slogan { display: none; }
       .current-tab-name { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
       .menu-dropdown { right: 20px; top: 70px; }
       .header-inner { padding: 0 20px; }
+      .archive-panel { max-width: 100%; }
     }
 
     main {
@@ -313,7 +447,7 @@
       margin-bottom: 0.8rem;
     }
 
-    /* Modal com imagem do artigo */
+    /* Modal de leitura (existente) */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -414,7 +548,7 @@
       .modal-header h3 { font-size: 1.3rem; }
     }
 
-    /* Seção extra (estudos de caso) - sem nomes específicos */
+    /* Seção extra (estudos de caso) */
     .section-light {
       background: var(--gradient-gold-subtle);
       padding: 2rem;
@@ -442,7 +576,7 @@
       font-size: 0.75rem;
     }
 
-    /* Fundadora: duas colunas, foto retangular, sem arredondamento */
+    /* Fundadora */
     .founder-section {
       margin-top: 1rem;
     }
@@ -514,6 +648,7 @@
         <span class="slogan">análise · tecnologia · sistemas contemporâneos</span>
       </div>
       <div class="nav-hamburger">
+        <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
         <span class="current-tab-name" id="currentTabLabel">Home</span>
         <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
@@ -532,7 +667,6 @@
   <main class="container">
     <div id="tabContent"></div>
 
-    <!-- Seção de estudos de caso (sem nomes específicos) -->
     <section class="section-light">
       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;">
         <i class="fas fa-chart-line" style="color: var(--gold-primary); font-size: 1.4rem;"></i>
@@ -561,6 +695,7 @@
     </div>
   </footer>
 
+  <!-- Modal de leitura (existente) -->
   <div class="modal-overlay" id="articleModal">
     <div class="modal-container">
       <div class="modal-header">
@@ -574,10 +709,25 @@
     </div>
   </div>
 
+  <!-- Painel de arquivo/busca -->
+  <div class="archive-overlay" id="archiveOverlay">
+    <div class="archive-panel">
+      <div class="archive-header">
+        <h3><i class="fas fa-archive"></i> Arquivo de artigos</h3>
+        <button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="archive-search">
+        <input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)">
+      </div>
+      <div class="archive-list" id="archiveList">
+        <!-- preenchido via JS -->
+      </div>
+    </div>
+  </div>
+
   <script>
     (function() {
       // ======================= BANCO DE ARTIGOS =======================
-      // Imagem: assets/images/[id].jpg
       const articlesDB = {
         "telefone-cordinha": {
           id: "telefone-cordinha",
@@ -585,21 +735,7 @@
           category: "Editorial",
           date: "08.04.2026",
           readTime: "4 min",
-          fullText: `
-            <p>Tem uma brincadeira antiga que quase todo mundo já fez: dois copos, um barbante esticado e alguém tentando passar uma mensagem de um lado para o outro.</p>
-            <p>A graça nunca foi acertar. A graça era ver onde aquilo ia parar.</p>
-            <p>A frase começava simples e, no meio do caminho, já tinha mudado. No final, virava outra coisa. E todo mundo ria, porque fazia parte da brincadeira.</p>
-            <p>Só que hoje isso não tem mais graça. Se essa mesma cena acontecesse agora, alguém no meio do caminho simplesmente pararia tudo, pegaria o celular e olharia a informação direto na fonte. A mensagem não dependeria mais de quem passou — dependeria de onde ela veio.</p>
-            <p>E é exatamente aqui que está o problema. A gente deixou de brincar de telefone sem fio, mas continua vivendo dentro dele.</p>
-            <p>A informação circula rápido, é recortada, interpretada, ajustada, e quando chega em quem está lendo, muitas vezes já não é mais a mesma. E pior: nem sempre dá para perceber onde ela começou a mudar.</p>
-            <p>Foi olhando para isso que a PautaZero nasceu. Não como mais um lugar para falar, mas como um lugar para organizar. Para entender antes de opinar. Para olhar com mais calma para o que está sendo dito — e como está sendo dito.</p>
-            <p>Não existe pretensão aqui de "corrigir o mundo" ou de assumir uma posição absoluta sobre tudo. Mas existe, sim, um compromisso muito claro: tratar a informação com responsabilidade.</p>
-            <p>Isso envolve respeitar leis, contexto, fonte e, principalmente, quem está lendo. Porque hoje o problema não é falta de informação. É excesso sem estrutura.</p>
-            <p>Como editora-chefe, o que eu sustento aqui não é neutralidade vazia. É critério. É separar o que é dado do que é interpretação. É não misturar análise com ruído. É não acelerar aquilo que precisa ser entendido com cuidado.</p>
-            <p>A PautaZero não nasce para disputar atenção. Nasce para merecer atenção. E isso, na prática, significa publicar menos do que poderia — mas com mais consistência do que normalmente se vê.</p>
-            <p>No fim, a ideia é simples. Se alguém parar no meio do caminho e quiser conferir direto na origem, que encontre aqui algo inteiro. Sem distorção. Sem exagero. Sem atalhos. Só informação bem tratada.</p>
-            <div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Fundadora e Editora-Chefe · PautaZero</div>
-          `
+          fullText: `<p>Tem uma brincadeira antiga que quase todo mundo já fez: dois copos, um barbante esticado e alguém tentando passar uma mensagem de um lado para o outro.</p><p>A graça nunca foi acertar. A graça era ver onde aquilo ia parar.</p><p>A frase começava simples e, no meio do caminho, já tinha mudado. No final, virava outra coisa. E todo mundo ria, porque fazia parte da brincadeira.</p><p>Só que hoje isso não tem mais graça. Se essa mesma cena acontecesse agora, alguém no meio do caminho simplesmente pararia tudo, pegaria o celular e olharia a informação direto na fonte. A mensagem não dependeria mais de quem passou — dependeria de onde ela veio.</p><p>E é exatamente aqui que está o problema. A gente deixou de brincar de telefone sem fio, mas continua vivendo dentro dele.</p><p>A informação circula rápido, é recortada, interpretada, ajustada, e quando chega em quem está lendo, muitas vezes já não é mais a mesma. E pior: nem sempre dá para perceber onde ela começou a mudar.</p><p>Foi olhando para isso que a PautaZero nasceu. Não como mais um lugar para falar, mas como um lugar para organizar. Para entender antes de opinar. Para olhar com mais calma para o que está sendo dito — e como está sendo dito.</p><p>Não existe pretensão aqui de "corrigir o mundo" ou de assumir uma posição absoluta sobre tudo. Mas existe, sim, um compromisso muito claro: tratar a informação com responsabilidade.</p><p>Isso envolve respeitar leis, contexto, fonte e, principalmente, quem está lendo. Porque hoje o problema não é falta de informação. É excesso sem estrutura.</p><p>Como editora-chefe, o que eu sustento aqui não é neutralidade vazia. É critério. É separar o que é dado do que é interpretação. É não misturar análise com ruído. É não acelerar aquilo que precisa ser entendido com cuidado.</p><p>A PautaZero não nasce para disputar atenção. Nasce para merecer atenção. E isso, na prática, significa publicar menos do que poderia — mas com mais consistência do que normalmente se vê.</p><p>No fim, a ideia é simples. Se alguém parar no meio do caminho e quiser conferir direto na origem, que encontre aqui algo inteiro. Sem distorção. Sem exagero. Sem atalhos. Só informação bem tratada.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Fundadora e Editora-Chefe · PautaZero</div>`
         },
         "saude-mental-expansao": {
           id: "saude-mental-expansao",
@@ -607,20 +743,7 @@
           category: "Saúde & Sociedade",
           date: "10.04.2026",
           readTime: "4 min",
-          fullText: `
-            <p>Nos últimos anos, a saúde mental ganhou um espaço que por muito tempo lhe foi negado. Tornou-se pauta cotidiana, presença constante nas empresas, nas redes sociais e nas conversas mais íntimas. Esse avanço é, sem dúvida, necessário e representa um passo importante para uma sociedade mais consciente.</p>
-            <p>No entanto, junto com essa expansão, surgiu um fenômeno que merece atenção cuidadosa: a ampliação do número de pessoas atuando no campo do cuidado emocional sem a mesma profundidade de formação exigida das profissões tradicionalmente consolidadas na área da saúde.</p>
-            <p>É importante deixar claro — este não é um questionamento sobre o acesso. Ampliar o cuidado é essencial. O ponto crítico está na ausência de critérios mínimos uniformes para uma atuação que lida diretamente com a complexidade da mente humana.</p>
-            <p>Profissionais da psicologia e da psiquiatria percorrem trajetórias longas, técnicas e rigorosas. São anos de formação acadêmica, supervisão, prática clínica, estudo contínuo e compromisso ético. Não se trata apenas de adquirir conhecimento, mas de desenvolver responsabilidade sobre o impacto que cada intervenção pode causar na vida de outra pessoa.</p>
-            <p>Em paralelo, observa-se o crescimento de abordagens que, embora bem-intencionadas em muitos casos, nem sempre se sustentam em bases científicas sólidas. Esse cenário cria uma zona de difícil distinção para a sociedade, onde diferentes níveis de preparo acabam sendo percebidos de forma equivalente.</p>
-            <p>O resultado não é necessariamente imediato ou visível, o que torna a situação ainda mais delicada. O cuidado emocional exige mais do que escuta — exige método, preparo técnico e, sobretudo, consciência dos próprios limites enquanto profissional.</p>
-            <p>Outro ponto que merece reflexão é a forma como a autoridade tem sido construída nesse novo contexto. Em muitos casos, a validação pública tem se deslocado da formação para a exposição, da técnica para a narrativa, da consistência para a presença. Isso não invalida novas formas de comunicação, mas exige cautela quando se trata de saúde.</p>
-            <p>Esta não é uma crítica à inovação, nem ao surgimento de novas práticas. É um convite à responsabilidade coletiva. A saúde mental não pode ser tratada como um campo sem critérios claros, justamente porque seus efeitos não são imediatos, mas profundamente duradouros.</p>
-            <p>Valorizar os profissionais que se dedicam a formações exaustivas, baseadas em ciência, não é elitizar o cuidado — é proteger sua qualidade. É reconhecer que, em áreas sensíveis, a boa intenção não substitui a qualificação.</p>
-            <p>O avanço da saúde mental como pauta social é um ganho. Garantir que esse avanço venha acompanhado de rigor técnico é o próximo passo necessário.</p>
-            <p>Porque cuidar da mente exige mais do que disponibilidade: exige preparo.</p>
-            <div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>
-          `
+          fullText: `<p>Nos últimos anos, a saúde mental ganhou um espaço que por muito tempo lhe foi negado. Tornou-se pauta cotidiana, presença constante nas empresas, nas redes sociais e nas conversas mais íntimas. Esse avanço é, sem dúvida, necessário e representa um passo importante para uma sociedade mais consciente.</p><p>No entanto, junto com essa expansão, surgiu um fenômeno que merece atenção cuidadosa: a ampliação do número de pessoas atuando no campo do cuidado emocional sem a mesma profundidade de formação exigida das profissões tradicionalmente consolidadas na área da saúde.</p><p>É importante deixar claro — este não é um questionamento sobre o acesso. Ampliar o cuidado é essencial. O ponto crítico está na ausência de critérios mínimos uniformes para uma atuação que lida diretamente com a complexidade da mente humana.</p><p>Profissionais da psicologia e da psiquiatria percorrem trajetórias longas, técnicas e rigorosas. São anos de formação acadêmica, supervisão, prática clínica, estudo contínuo e compromisso ético. Não se trata apenas de adquirir conhecimento, mas de desenvolver responsabilidade sobre o impacto que cada intervenção pode causar na vida de outra pessoa.</p><p>Em paralelo, observa-se o crescimento de abordagens que, embora bem-intencionadas em muitos casos, nem sempre se sustentam em bases científicas sólidas. Esse cenário cria uma zona de difícil distinção para a sociedade, onde diferentes níveis de preparo acabam sendo percebidos de forma equivalente.</p><p>O resultado não é necessariamente imediato ou visível, o que torna a situação ainda mais delicada. O cuidado emocional exige mais do que escuta — exige método, preparo técnico e, sobretudo, consciência dos próprios limites enquanto profissional.</p><p>Outro ponto que merece reflexão é a forma como a autoridade tem sido construída nesse novo contexto. Em muitos casos, a validação pública tem se deslocado da formação para a exposição, da técnica para a narrativa, da consistência para a presença. Isso não invalida novas formas de comunicação, mas exige cautela quando se trata de saúde.</p><p>Esta não é uma crítica à inovação, nem ao surgimento de novas práticas. É um convite à responsabilidade coletiva. A saúde mental não pode ser tratada como um campo sem critérios claros, justamente porque seus efeitos não são imediatos, mas profundamente duradouros.</p><p>Valorizar os profissionais que se dedicam a formações exaustivas, baseadas em ciência, não é elitizar o cuidado — é proteger sua qualidade. É reconhecer que, em áreas sensíveis, a boa intenção não substitui a qualificação.</p><p>O avanço da saúde mental como pauta social é um ganho. Garantir que esse avanço venha acompanhado de rigor técnico é o próximo passo necessário.</p><p>Porque cuidar da mente exige mais do que disponibilidade: exige preparo.</p><div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>`
         },
         "artigo-exemplo": {
           id: "artigo-exemplo",
@@ -632,9 +755,111 @@
         }
       };
 
+      // Função auxiliar para ordenar artigos por data (mais recente primeiro)
+      function getArticlesList() {
+        const articles = Object.values(articlesDB).filter(a => a.date !== "Em breve");
+        articles.sort((a,b) => {
+          if (a.date === "Em breve") return 1;
+          if (b.date === "Em breve") return -1;
+          const [da, ma, aa] = a.date.split('.');
+          const [db, mb, ab] = b.date.split('.');
+          const dateA = new Date(`${aa}-${ma}-${da}`);
+          const dateB = new Date(`${ab}-${mb}-${db}`);
+          return dateB - dateA;
+        });
+        return articles;
+      }
+
+      function renderArchiveList(searchTerm = '') {
+        const archiveListDiv = document.getElementById('archiveList');
+        let articles = getArticlesList();
+        if (searchTerm.trim() !== '') {
+          const term = searchTerm.toLowerCase();
+          articles = articles.filter(art => 
+            art.title.toLowerCase().includes(term) ||
+            art.category.toLowerCase().includes(term) ||
+            art.date.toLowerCase().includes(term)
+          );
+        }
+        if (articles.length === 0) {
+          archiveListDiv.innerHTML = '<div class="no-results">Nenhum artigo encontrado.</div>';
+          return;
+        }
+        archiveListDiv.innerHTML = articles.map(art => `
+          <div class="archive-item" data-article-id="${art.id}">
+            <div class="archive-item-title">${art.title}</div>
+            <div class="archive-item-meta"><span>${art.category}</span><span>${art.date}</span><span>${art.readTime}</span></div>
+          </div>
+        `).join('');
+        // Adicionar eventos de clique nos itens do arquivo
+        document.querySelectorAll('.archive-item').forEach(el => {
+          el.addEventListener('click', (e) => {
+            const id = el.dataset.articleId;
+            if (id && articlesDB[id]) {
+              closeArchive();
+              openModalByArticleId(id);
+            }
+          });
+        });
+      }
+
       function getImagePath(articleId) {
         return `assets/images/${articleId}.jpg`;
       }
+
+      function openModalByArticleId(articleId) {
+        const article = articlesDB[articleId];
+        if (!article) return;
+        const modal = document.getElementById('articleModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMeta = document.getElementById('modalMeta');
+        const modalFullContent = document.getElementById('modalFullContent');
+        modalTitle.innerText = article.title;
+        modalMeta.innerHTML = `<span><i class="fas fa-folder-open"></i> ${article.category}</span><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="far fa-clock"></i> ${article.readTime}</span>`;
+        const imagePath = getImagePath(article.id);
+        const imageHtml = `<div class="article-image"><img src="${imagePath}" alt="${article.title}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada';"></div>`;
+        const textHtml = `<div class="article-text">${article.fullText}</div>`;
+        modalFullContent.innerHTML = `<div class="article-with-image">${imageHtml}${textHtml}</div>`;
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+      }
+
+      function closeModal() {
+        const modal = document.getElementById('articleModal');
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+      }
+
+      function openArchive() {
+        document.getElementById('archiveOverlay').classList.add('active');
+        document.body.classList.add('archive-open');
+        renderArchiveList('');
+      }
+
+      function closeArchive() {
+        document.getElementById('archiveOverlay').classList.remove('active');
+        document.body.classList.remove('archive-open');
+        document.getElementById('archiveSearchInput').value = '';
+      }
+
+      // Eventos de busca
+      const searchInput = document.getElementById('archiveSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          renderArchiveList(e.target.value);
+        });
+      }
+
+      document.getElementById('archiveBtn').addEventListener('click', openArchive);
+      document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
+      document.getElementById('archiveOverlay').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('archiveOverlay')) closeArchive();
+      });
+      document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+      document.getElementById('articleModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('articleModal')) closeModal();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeArchive(); } });
 
       // Conteúdo das abas (Home com dois artigos)
       const contentMap = {
@@ -684,32 +909,6 @@
       const menuIconBtn = document.getElementById('menuIconBtn');
       const menuDropdown = document.getElementById('menuDropdown');
       const currentTabLabel = document.getElementById('currentTabLabel');
-      const modal = document.getElementById('articleModal');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalMeta = document.getElementById('modalMeta');
-      const modalFullContent = document.getElementById('modalFullContent');
-
-      function openModalByArticleId(articleId) {
-        const article = articlesDB[articleId];
-        if (!article) return;
-        modalTitle.innerText = article.title;
-        modalMeta.innerHTML = `<span><i class="fas fa-folder-open"></i> ${article.category}</span><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="far fa-clock"></i> ${article.readTime}</span>`;
-        const imagePath = getImagePath(article.id);
-        const imageHtml = `<div class="article-image"><img src="${imagePath}" alt="${article.title}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada';"></div>`;
-        const textHtml = `<div class="article-text">${article.fullText}</div>`;
-        modalFullContent.innerHTML = `<div class="article-with-image">${imageHtml}${textHtml}</div>`;
-        modal.classList.add('active');
-        document.body.classList.add('modal-open');
-      }
-
-      function closeModal() {
-        modal.classList.remove('active');
-        document.body.classList.remove('modal-open');
-      }
-
-      document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
       function attachArticleClickEvents() {
         document.querySelectorAll('.article-card, .carousel-card').forEach(card => {
