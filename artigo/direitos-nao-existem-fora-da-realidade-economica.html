@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Direitos não existem fora da realidade econômica · PautaZero</title>
+  <meta name="description" content="Análise sobre o debate do fim da escala 6x1 e os limites estruturais do sistema econômico brasileiro.">
+  <meta property="og:title" content="Direitos não existem fora da realidade econômica · PautaZero">
+  <meta property="og:description" content="Análise sobre o debate do fim da escala 6x1 e os limites estruturais do sistema econômico brasileiro.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ========== MESMOS ESTILOS DO TEMPLATE ANTERIOR ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --color-primary: #0a3147; --color-primary-light: #1a4b6d; --gold-primary: #D4AF37;
+      --gold-secondary: #F4E4B8; --gold-dark: #B8860B; --color-dark: #1A1A1A;
+      --color-text: #1e2a3a; --color-text-light: #2c3e4e; --color-bg: #fefaf5;
+      --color-bg-card: #ffffff; --border-light: 1px solid rgba(212, 175, 55, 0.25);
+      --shadow-luxury: 0 20px 35px -12px rgba(10, 49, 71, 0.12);
+      --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+      --gradient-gold-subtle: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(244, 228, 184, 0.05) 100%);
+      --font-serif: 'Cinzel', serif; --font-sans: 'Inter', sans-serif; --font-body: 'Marcellus', serif;
+    }
+    body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 0.95rem; }
+    body.archive-open { overflow: hidden; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
+    h1, h2, h3, h4, .logo, .section-title { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
+    .site-header { position: sticky; top: 0; background: rgba(255, 253, 250, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); z-index: 100; padding: 1rem 0; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 0 36px; gap: 1rem; }
+    .logo-area { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .logo { font-size: 2rem; font-weight: 700; color: var(--color-primary); text-decoration: none; letter-spacing: 1px; }
+    .logo span { color: var(--gold-dark); font-weight: 500; }
+    .slogan { font-size: 0.7rem; font-family: var(--font-body); color: var(--gold-dark); text-transform: uppercase; letter-spacing: 2.5px; border-left: 1px solid rgba(212, 175, 55, 0.5); padding-left: 14px; }
+    .nav-hamburger { display: flex; align-items: center; gap: 1rem; }
+    .archive-btn, .menu-icon-btn { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-primary); cursor: pointer; transition: 0.2s; }
+    .archive-btn:hover, .menu-icon-btn:hover { background: rgba(212, 175, 55, 0.25); border-color: var(--gold-primary); }
+    .menu-icon-btn { font-size: 1.4rem; }
+    .current-tab-name { font-family: var(--font-serif); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-dark); background: rgba(212, 175, 55, 0.08); padding: 0.4rem 1rem; border: 1px solid rgba(212, 175, 55, 0.3); white-space: nowrap; }
+    .menu-dropdown { position: absolute; top: 80px; right: 36px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(16px); box-shadow: 0 20px 40px -12px rgba(10, 49, 71, 0.25); border: 1px solid rgba(212, 175, 55, 0.3); padding: 0.8rem 0; min-width: 260px; z-index: 200; display: none; flex-direction: column; }
+    .menu-dropdown.active { display: flex; animation: fadeSlideIn 0.2s ease; }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown-item { background: none; border: none; text-align: left; padding: 0.9rem 1.8rem; font-family: var(--font-serif); font-size: 0.85rem; font-weight: 500; color: var(--color-text); letter-spacing: 1px; cursor: pointer; width: 100%; }
+    .dropdown-item:hover { background: var(--gradient-gold-subtle); color: var(--gold-dark); }
+    .dropdown-item.active { background: rgba(212, 175, 55, 0.1); color: var(--gold-dark); border-left: 3px solid var(--gold-primary); }
+    .archive-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 49, 71, 0.8); backdrop-filter: blur(6px); z-index: 1000; display: flex; align-items: center; justify-content: flex-end; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+    .archive-overlay.active { opacity: 1; visibility: visible; }
+    .archive-panel { background: var(--color-bg-card); width: 100%; max-width: 500px; height: 100%; right: 0; position: absolute; box-shadow: -5px 0 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.3s ease; border-left: 1px solid var(--gold-primary); }
+    .archive-overlay.active .archive-panel { transform: translateX(0); }
+    .archive-header { padding: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.2); display: flex; justify-content: space-between; align-items: center; background: white; }
+    .archive-header h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-primary); }
+    .archive-close { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--gold-dark); }
+    .archive-search { padding: 1rem 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.1); }
+    .archive-search input { width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(212,175,55,0.3); font-family: var(--font-sans); font-size: 0.9rem; background: white; outline: none; }
+    .archive-search input:focus { border-color: var(--gold-primary); }
+    .archive-list { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+    .archive-item { background: var(--color-bg-card); border: 1px solid rgba(212,175,55,0.15); padding: 0.8rem 1rem; margin-bottom: 0.8rem; cursor: pointer; }
+    .archive-item:hover { border-color: var(--gold-primary); background: rgba(212,175,55,0.02); }
+    .archive-item-title { font-family: var(--font-serif); font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.2rem; }
+    .archive-item-meta { font-size: 0.65rem; color: var(--gold-dark); display: flex; gap: 1rem; margin-top: 0.2rem; }
+    .no-results { text-align: center; padding: 2rem; color: var(--color-text-light); font-style: italic; }
+    @media (max-width: 700px) {
+      .slogan { display: none; }
+      .current-tab-name { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
+      .menu-dropdown { right: 20px; top: 70px; }
+      .header-inner { padding: 0 20px; }
+      .archive-panel { max-width: 100%; }
+    }
+    .site-footer { border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem 0; color: var(--color-text-light); background: var(--color-bg); font-size: 0.75rem; }
+    .footer-legal { max-width: 1280px; margin: 1rem auto 0; padding: 1rem 36px 0; border-top: 1px solid rgba(212, 175, 55, 0.15); font-size: 0.65rem; line-height: 1.4; color: rgba(44, 62, 78, 0.6); text-align: center; letter-spacing: 0.3px; }
+    @media (max-width: 700px) { .footer-legal { padding: 0.8rem 20px 0; font-size: 0.6rem; } }
+    .article-page { max-width: 1000px; margin: 2rem auto 3rem; background: var(--color-bg-card); border: var(--border-light); padding: 2rem; }
+    .article-page .article-header { border-bottom: 2px solid rgba(212, 175, 55, 0.35); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+    .article-page .article-header h1 { font-family: var(--font-serif); font-size: 2.2rem; color: var(--color-primary); margin-bottom: 0.75rem; }
+    .article-page .article-meta { display: flex; gap: 1.5rem; font-size: 0.75rem; color: var(--gold-dark); text-transform: uppercase; margin-bottom: 1rem; }
+    .article-with-image { overflow: auto; }
+    .article-image { float: left; width: 280px; margin: 0 1.8rem 1rem 0; border: 1px solid rgba(212,175,55,0.3); overflow: hidden; background: #f3efe8; }
+    .article-image img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .article-text p { margin-bottom: 1.2rem; line-height: 1.65; color: var(--color-text-light); }
+    @media (max-width: 700px) { .article-image { float: none; width: 100%; margin: 0 0 1.2rem 0; } .article-page .article-header h1 { font-size: 1.6rem; } .article-page { padding: 1.5rem; margin: 1rem auto 2rem; } }
+    .email-capture { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+    .email-capture p { font-size: 0.8rem; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; }
+    .email-capture form { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .email-capture input { flex: 1; padding: 0.7rem 1rem; border: 1px solid rgba(212, 175, 55, 0.3); font-family: var(--font-sans); font-size: 0.85rem; background: white; outline: none; }
+    .email-capture input:focus { border-color: var(--gold-primary); }
+    .email-capture button { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); padding: 0.7rem 1.2rem; font-family: var(--font-serif); font-size: 0.75rem; font-weight: 500; color: var(--color-primary); cursor: pointer; transition: 0.2s; }
+    .email-capture button:hover { background: rgba(212, 175, 55, 0.25); border-color: var(--gold-primary); }
+    .back-link { display: inline-block; margin-bottom: 1.5rem; color: var(--gold-dark); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .back-link:hover { color: var(--gold-primary); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-area"><a href="/" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
+      <div class="nav-hamburger">
+        <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
+        <span class="current-tab-name" id="currentTabLabel">Artigo</span>
+        <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
+      </div>
+      <div class="menu-dropdown" id="menuDropdown">
+        <button class="dropdown-item" data-tab="home">🏠 Home</button>
+        <button class="dropdown-item" data-tab="tecnologia">⚙️ Tecnologia</button>
+        <button class="dropdown-item" data-tab="economia">📊 Economia & Trabalho</button>
+        <button class="dropdown-item" data-tab="sociedade">🌱 Sociedade & Comportamento</button>
+        <button class="dropdown-item" data-tab="futurismo">🔮 Futurismo</button>
+        <button class="dropdown-item" data-tab="sistemas">🏛️ Sistemas prisionais</button>
+        <button class="dropdown-item" data-tab="entrevistas">🎙️ Entrevistas</button>
+        <button class="dropdown-item" data-tab="oportunidades">💼 Oportunidades</button>
+        <button class="dropdown-item" data-tab="filantropia">❤️ Filantropia</button>
+        <button class="dropdown-item" data-tab="fundadora">📖 Fundadora</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+      <article class="article-page">
+        <div class="article-header">
+          <div class="article-meta">
+            <span><i class="fas fa-folder-open"></i> Economia & Trabalho</span>
+            <span><i class="far fa-calendar-alt"></i> 08.04.2026</span>
+            <span><i class="far fa-clock"></i> 8 min</span>
+          </div>
+          <h1>Direitos não existem fora da <span style="color: var(--gold-dark);">realidade econômica</span> que os sustenta</h1>
+        </div>
+        <div class="article-with-image">
+          <div class="article-image"><img src="/assets/images/08.04.2026.Direitos.jpg" alt="Direitos e realidade econômica" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada';"></div>
+          <div class="article-text">
+            <p>Dados não são opinião, mas a forma como eles são utilizados quase sempre carrega interpretação — e é exatamente nesse ponto que a análise começa a se perder quando se observa o Brasil de 2026 apenas pela superfície dos números.</p>
+            <p>O desemprego caiu, isso é um fato objetivo, mensurado por indicadores oficiais e verificável por qualquer leitura técnica séria. No entanto, tratar essa queda como sinônimo de estabilidade econômica é um erro, porque o país ainda opera sob pressão fiscal relevante, com déficit presente e crescimento que não acompanha, na mesma proporção, a necessidade estrutural de expansão. Não se trata de um cenário de colapso, mas também está longe de ser um ambiente confortável para decisões que ampliem custo sistêmico.</p>
+            <p>É nesse contexto que o debate sobre o fim da escala 6 por 1 ganha espaço, muitas vezes apresentado de forma simplificada, quase como uma correção natural de uma estrutura considerada ultrapassada. O ponto que costuma ser ignorado é que a jornada de trabalho atual não foi definida de forma arbitrária; ela resulta de um equilíbrio construído ao longo do tempo entre capacidade produtiva, organização empresarial e limites legais estabelecidos dentro do próprio sistema econômico.</p>
+            <p>Alterar essa lógica não é apenas uma escolha trabalhista — é uma decisão com impacto direto na dinâmica econômica, e economia não responde a intenção, responde a consequência. Reduzir carga horária sem um aumento proporcional de produtividade não elimina custo, apenas redistribui esse custo dentro do sistema, e essa redistribuição raramente ocorre de forma equilibrada.</p>
+            <p>Na prática, o impacto tende a recair sobre estruturas mais sensíveis: empresas com menor margem, setores que operam com alta intensidade de mão de obra e cadeias produtivas que já funcionam próximas do limite. Em muitos casos, o efeito não aparece de forma imediata, mas se manifesta ao longo do tempo na redução de contratações, no aumento da informalidade ou na retração silenciosa de operações que deixam de ser viáveis.</p>
+            <p>Existe um ponto central que precisa ser tratado com clareza: direitos não se sustentam de forma isolada. Eles dependem de uma base econômica capaz de suportá-los ao longo do tempo, e essa base, no caso brasileiro, ainda está em processo de consolidação. Expandir obrigações sem o fortalecimento dessa estrutura pode produzir o efeito inverso ao pretendido.</p>
+            <p>Esse debate, inclusive, não deveria se limitar apenas à discussão sobre descanso ou redução de jornada. Existe uma dimensão mais ampla que tende a ser deixada de lado: o custo estrutural que recai sobre o próprio trabalhador ao longo do tempo. Não se trata apenas de trabalhar menos, mas de entender quanto se paga para sustentar o sistema em que se trabalha.</p>
+            <p>Nesse ponto, a observação das propostas de candidatos a cargos eletivos nas próximas eleições se torna relevante sob uma ótica técnica. Mais do que discursos sobre redução de carga de trabalho, ganha importância analisar quais políticas estão voltadas à redução de pressão tributária, ao aumento de eficiência econômica e à criação de um ambiente onde produzir, contratar e crescer se torne mais viável no longo prazo.</p>
+            <p>Porque, no fim, a sustentabilidade do trabalho não está apenas no tempo dedicado a ele, mas no quanto esse trabalho consegue gerar de retorno real para quem o executa.</p>
+            <p>É nesse aspecto que a lógica de mercado mostra sua relevância estrutural. Sistemas baseados em produção, troca e geração de valor — como o modelo capitalista — são, na prática, os mecanismos que viabilizam emprego, renda e expansão econômica. Quando bem estruturados, são esses sistemas que permitem, inclusive, a existência e manutenção dos próprios direitos ao longo do tempo.</p>
+            <p>O Brasil saiu recentemente de um dos períodos mais críticos da economia global, marcado por uma pandemia que afetou simultaneamente produção, consumo e emprego. Ainda assim, houve reação econômica antes mesmo da completa normalização internacional, o que demonstra capacidade de recuperação — mas recuperação não é sinônimo de estabilidade consolidada.</p>
+            <p>E esse detalhe importa, porque políticas públicas não começam do zero. Elas carregam continuidade, histórico e consequência. Reduzir jornada de trabalho pode ser um caminho viável em um cenário de crescimento consistente, aumento real de produtividade e equilíbrio fiscal. Fora disso, deixa de ser uma política estruturada e passa a ser uma aposta.</p>
+            <p>E apostas econômicas não ficam no campo teórico. Elas aparecem na prática, muitas vezes de forma silenciosa, no emprego que deixa de ser criado, na empresa que reduz operação ou no custo que não estava explícito no discurso inicial.</p>
+            <p>O problema do Brasil hoje não é apenas a carga de trabalho. É a limitação estrutural de um sistema que ainda não atingiu o nível de solidez necessário para sustentar uma redução sem efeitos colaterais relevantes.</p>
+            <p>Trabalhar menos é uma meta legítima. Sustentar isso, no entanto, exige uma base econômica que ainda está em construção.</p>
+            <div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);"><strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero</div>
+          </div>
+        </div>
+        <div class="email-capture"><p><i class="fas fa-envelope"></i> Receba análises futuras</p>
+          <form id="newsletterForm" action="#" method="post"><input type="email" name="email" placeholder="seu@email.com" required><button type="submit">Inscrever-se</button></form>
+        </div>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div>© 2026 PautaZero · Revista de análise de sistemas, comportamento e políticas estratégicas.</div>
+      <div style="display: flex; gap: 18px; color: var(--gold-dark); align-items: center;"><i class="fab fa-linkedin"></i> <i class="fab fa-x-twitter"></i> <i class="fas fa-envelope"></i> <span style="font-family: monospace;">editorial.pautazero@outlook.com</span></div>
+    </div>
+    <div class="footer-legal">Conteúdo editorial independente. As análises apresentadas refletem observações estruturais e não constituem aconselhamento jurídico, financeiro ou clínico. A PautaZero atua com base em critérios de responsabilidade informacional, respeitando contextos legais e institucionais aplicáveis.</div>
+  </footer>
+  <div class="archive-overlay" id="archiveOverlay">
+    <div class="archive-panel"><div class="archive-header"><h3><i class="fas fa-archive"></i> Arquivo de artigos</h3><button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button></div><div class="archive-search"><input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)"></div><div class="archive-list" id="archiveList"></div></div>
+  </div>
+  <script>
+    (function() {
+      const articlesList = [
+        { id: "telefone-cordinha", title: "O telefone de cordinha", category: "Comunicação & Sociedade", date: "08.04.2026", readTime: "4 min", slug: "o-telefone-de-cordinha" },
+        { id: "saude-mental-expansao", title: "Saúde mental: a expansão que exige critério", category: "Saúde & Sociedade", date: "10.04.2026", readTime: "4 min", slug: "saude-mental-a-expansao-que-exige-criterio" },
+        { id: "desemprego-analise-2026", title: "O desemprego caiu — mas o problema mudou de lugar", category: "Economia & Trabalho", date: "08.04.2026", readTime: "5 min", slug: "o-desemprego-caiu-mas-o-problema-mudou-de-lugar" },
+        { id: "jornada-trabalho-analise", title: "Direitos não existem fora da realidade econômica que os sustenta", category: "Economia & Trabalho", date: "08.04.2026", readTime: "8 min", slug: "direitos-nao-existem-fora-da-realidade-economica" },
+        { id: "ia-algoritmos-governanca", title: "IA e governança: entre a previsão e o controle", category: "Tecnologia & Ética", date: "12.04.2026", readTime: "6 min", slug: "ia-e-governanca-entre-a-previsao-e-o-controle" },
+        { id: "blockchain-transparencia", title: "Blockchain e registros imutáveis", category: "Inovação & Confiança", date: "14.04.2026", readTime: "5 min", slug: "blockchain-e-registros-imutaveis" },
+        { id: "multimilionarios-invisiveis", title: "Os multimilionários invisíveis de uma janela que está se fechando", category: "Futurismo & Economia", date: "15.04.2026", readTime: "12 min", slug: "os-multimilionarios-invisiveis" }
+      ];
+      function navigateToArticle(slug) { if (slug) window.location.href = `/artigo/${slug}.html`; }
+      function getAllArticlesForArchive() { return [...articlesList].sort((a,b) => { const [da,ma,aa]=a.date.split('.'); const [db,mb,ab]=b.date.split('.'); return new Date(`${ab}-${mb}-${db}`) - new Date(`${aa}-${ma}-${da}`); }); }
+      function renderArchiveList(searchTerm = '') {
+        const archiveListDiv = document.getElementById('archiveList');
+        let articles = getAllArticlesForArchive();
+        if (searchTerm.trim() !== '') { const term = searchTerm.toLowerCase(); articles = articles.filter(art => art.title.toLowerCase().includes(term) || art.category.toLowerCase().includes(term) || art.date.toLowerCase().includes(term)); }
+        if (articles.length === 0) { archiveListDiv.innerHTML = '<div class="no-results">Nenhum artigo encontrado.</div>'; return; }
+        archiveListDiv.innerHTML = articles.map(art => `<div class="archive-item" data-article-slug="${art.slug}"><div class="archive-item-title">${art.title}</div><div class="archive-item-meta"><span>${art.category}</span><span>${art.date}</span><span>${art.readTime}</span></div></div>`).join('');
+        document.querySelectorAll('.archive-item').forEach(el => { el.addEventListener('click', (e) => { const slug = el.dataset.articleSlug; if (slug) { closeArchive(); navigateToArticle(slug); } }); });
+      }
+      function openArchive() { document.getElementById('archiveOverlay').classList.add('active'); document.body.classList.add('archive-open'); renderArchiveList(''); }
+      function closeArchive() { document.getElementById('archiveOverlay').classList.remove('active'); document.body.classList.remove('archive-open'); document.getElementById('archiveSearchInput').value = ''; }
+      document.getElementById('archiveSearchInput').addEventListener('input', (e) => renderArchiveList(e.target.value));
+      document.getElementById('archiveBtn').addEventListener('click', openArchive);
+      document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
+      document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
+      const menuIconBtn = document.getElementById('menuIconBtn'), menuDropdown = document.getElementById('menuDropdown');
+      menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
+      document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
+      document.querySelectorAll('.dropdown-item').forEach(item => { item.addEventListener('click', () => { window.location.href = '/'; }); });
+      document.getElementById('newsletterForm')?.addEventListener('submit', function(e) { e.preventDefault(); alert(`Obrigado! Em breve você receberá atualizações em ${this.querySelector('input').value}`); this.reset(); });
+    })();
+  </script>
+</body>
+</html>
