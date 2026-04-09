@@ -234,10 +234,10 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <div class="logo-area"><a href="/" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
+      <div class="logo-area"><a href="index.html" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
       <div class="nav-hamburger">
         <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
-        <span class="current-tab-name" id="currentTabLabel">Artigo</span>
+        <span class="current-tab-name" id="currentTabLabel">Justiça & Direito</span>
         <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
       <div class="menu-dropdown" id="menuDropdown">
@@ -256,7 +256,7 @@
 
   <main>
     <div class="container">
-      <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+      <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
       <article class="article-page">
         <div class="article-header">
           <div class="article-meta">
@@ -379,7 +379,7 @@
           }
         }
         
-        // Monta nome do arquivo seguindo o padrão: "dia-mês-primeiroNome.jpg" ou "09.04-alienacao.jpg"
+        // Monta nome do arquivo seguindo o padrão: "dia-mês-primeiroNome.jpg" ou "09.04-viviane.jpg"
         let finalFilename = '';
         if (dayMonth) {
           finalFilename = `${dayMonth}-${firstName}.jpg`;
@@ -393,7 +393,7 @@
         // Define o src da imagem com fallback nativo
         imgElement.src = imageSrc;
         imgElement.alt = `Imagem ilustrativa: alienação parental - ${finalFilename}`;
-        // Se falhar, o onerror já existente ativa o placeholder, mas incluímos log amigável
+        // Se falhar, o onerror já existente aciona o placeholder, mas incluímos log amigável
         imgElement.onerror = function() {
           if (!this.hasAttribute('data-fallback-triggered')) {
             this.setAttribute('data-fallback-triggered', 'true');
@@ -465,7 +465,7 @@
         negocios: 'negocios.html',
         global: 'global.html',
         filantropia: 'filantropia.html',
-        home: '/'
+        home: 'index.html'
       };
       dropdownItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -497,7 +497,7 @@
   <!-- 
     SISTEMA DE IMAGEM COM NUMERAÇÃO:
     Padrão implementado: "DIA.MÊS-PRIMEIRONOME.jpg"
-    Exemplo concreto deste artigo: "09.04-alienacao.jpg" (data 09.04 + primeiro nome "Viviane").
+    Exemplo concreto deste artigo: "09.04-viviane.jpg" (data 09.04 + primeiro nome "Viviane").
     Basta colocar o arquivo correspondente em /assets/images/09.04-viviane.jpg
     Para milhares de artigos, cada página automaticamente extrai sua data e primeiro nome do editor.
     Caso queira sobrescrita manual, ajuste os dados no HTML (data no .article-meta e nome no strong da assinatura).
