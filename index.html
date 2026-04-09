@@ -374,8 +374,6 @@
   <script>
     (function() {
       // ========== DADOS DOS SUBTEMAS POR CATEGORIA ==========
-      // Cada entrada contém uma lista de objetos: { name, slug }
-      // O slug será usado para montar o link: artigo/[slug].html
       const subtopicsByTopic = {
         justica: [
           { name: "Alienação Parental e seus impactos", slug: "alienacao-parental" },
@@ -498,6 +496,21 @@
         psicologia: "Psicologia & Comportamento"
       };
 
+      // ========== Mapeamento de pastas estruturais para cada eixo (caminho hierárquico) ==========
+      // Ajuste estratégico: cada categoria possui seu diretório dentro de /artigo/
+      // Exemplo: justica → /artigo/justica-e-direito/   conforme solicitação.
+      const topicFolderMap = {
+        justica: "justica-e-direito",       // gera artigo/justica-e-direito/alienacao-parental.html
+        politica: "politica",
+        "saude-mental": "saude-mental",
+        tecnologia: "tecnologia",
+        seguranca: "seguranca",
+        negocios: "negocios",
+        global: "global",
+        filantropia: "filantropia",
+        psicologia: "psicologia"
+      };
+
       const modal = document.getElementById('topicModal');
       const modalTitle = document.getElementById('modalTitle');
       const modalTopicsList = document.getElementById('modalTopicsList');
@@ -508,12 +521,17 @@
         const subtopics = subtopicsByTopic[topicKey] || [];
         modalTitle.innerText = title;
         
+        // Obtém a pasta correspondente; fallback seguro para o próprio topicKey
+        const folder = topicFolderMap[topicKey] || topicKey;
+        
         if (subtopics.length === 0) {
           modalTopicsList.innerHTML = '<p style="color: var(--color-text-light);">Subtemas em breve.</p>';
         } else {
-          const itemsHtml = subtopics.map(sub => `
-            <li><a href="/artigo/${sub.slug}.html" target="_self">${sub.name}</a></li>
-          `).join('');
+          const itemsHtml = subtopics.map(sub => {
+            // Construção do link hierárquico: /artigo/{folder}/{slug}.html
+            const articleUrl = `/artigo/${folder}/${sub.slug}.html`;
+            return `<li><a href="${articleUrl}" target="_self">${sub.name}</a></li>`;
+          }).join('');
           modalTopicsList.innerHTML = `<ul class="topics-list">${itemsHtml}</ul>`;
         }
         
@@ -529,7 +547,6 @@
       // Adiciona evento de clique em todos os cards
       document.querySelectorAll('.theme-card').forEach(card => {
         card.addEventListener('click', (e) => {
-          // Evita conflito se o card tiver link interno (não tem)
           const topic = card.getAttribute('data-topic');
           if (topic) openModal(topic);
         });
