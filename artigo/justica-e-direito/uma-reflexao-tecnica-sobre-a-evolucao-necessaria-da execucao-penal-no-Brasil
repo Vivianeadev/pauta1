@@ -127,50 +127,6 @@
       .article-page .article-header h1 { font-size: 1.6rem; }
       .article-page { padding: 1.5rem; margin: 1rem auto 2rem; }
     }
-    .email-capture {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-    }
-    .email-capture p {
-      font-size: 0.8rem;
-      color: var(--gold-dark);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 0.75rem;
-    }
-    .email-capture form {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .email-capture input {
-      flex: 1;
-      padding: 0.7rem 1rem;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      font-family: var(--font-sans);
-      font-size: 0.85rem;
-      background: white;
-      outline: none;
-    }
-    .email-capture input:focus {
-      border-color: var(--gold-primary);
-    }
-    .email-capture button {
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      padding: 0.7rem 1.2rem;
-      font-family: var(--font-serif);
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--color-primary);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .email-capture button:hover {
-      background: rgba(212, 175, 55, 0.25);
-      border-color: var(--gold-primary);
-    }
     .back-link {
       display: inline-block;
       margin-bottom: 1.5rem;
@@ -316,13 +272,7 @@
             </div>
           </div>
         </div>
-        <div class="email-capture">
-          <p><i class="fas fa-envelope"></i> Receba análises futuras</p>
-          <form id="newsletterForm" action="#" method="post">
-            <input type="email" name="email" placeholder="seu@email.com" required>
-            <button type="submit">Inscrever-se</button>
-          </form>
-        </div>
+        <!-- SEÇÃO DE NEWSLETTER REMOVIDA CONFORME SOLICITADO -->
       </article>
     </div>
   </main>
@@ -478,14 +428,6 @@
             menuDropdown.classList.remove('active');
           }
         });
-      });
-
-      // Newsletter
-      document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.querySelector('input').value;
-        alert(`Obrigado pelo interesse! Em breve você receberá análises futuras em ${email}`);
-        this.reset();
       });
       
       setupDynamicImage();
