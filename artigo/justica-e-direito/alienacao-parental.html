@@ -183,6 +183,52 @@
     .back-link:hover {
       color: var(--gold-primary);
     }
+    
+    /* ========== NOVOS ESTILOS (APENAS PARA COMPARTILHAMENTO MINIATURA) ========== */
+    .share-mini-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0.75rem 0 0.25rem 0;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(212,175,55,0.15);
+      padding-top: 0.75rem;
+    }
+    .share-mini-label {
+      font-size: 0.6rem;
+      font-family: var(--font-serif);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-right: 4px;
+    }
+    .share-mini-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(212,175,55,0.08);
+      border-radius: 30px;
+      width: 28px;
+      height: 28px;
+      font-size: 0.75rem;
+      color: var(--color-primary);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: 1px solid rgba(212,175,55,0.2);
+    }
+    .share-mini-link i {
+      font-size: 0.75rem;
+    }
+    .share-mini-link:hover {
+      background: var(--gradient-gold-subtle);
+      border-color: var(--gold-primary);
+      color: var(--gold-dark);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 700px) {
+      .share-mini-link { width: 26px; height: 26px; font-size: 0.7rem; }
+      .share-mini-bar { gap: 6px; }
+    }
   </style>
 </head>
 <body>
@@ -218,11 +264,21 @@
             <span><i class="far fa-calendar-alt"></i> 09.04.2026</span>
             <span><i class="far fa-clock"></i> 9 min</span>
           </div>
+          <!-- MINI SHARE BUTTONS (TAMANHO MINÚSCULO) -->
+          <div class="share-mini-bar" id="shareMiniBar">
+            <span class="share-mini-label"><i class="fas fa-share-alt"></i> compartilhe</span>
+            <a href="#" class="share-mini-link" id="shareFacebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="share-mini-link" id="shareX" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="share-mini-link" id="shareLinkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="share-mini-link" id="shareWhatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="share-mini-link" id="shareTelegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" class="share-mini-link" id="shareInstagram" aria-label="Instagram (copiar link)"><i class="fab fa-instagram"></i></a>
+          </div>
           <h1>Alienação Parental: entre a <span style="color: var(--gold-dark);">proteção</span> e a falsa acusação</h1>
         </div>
         <div class="article-with-image">
           <div class="article-image">
-            <img src="/assets/images/alienacao-parental.jpg" alt="Alienação parental" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada';">
+            <img id="dynamicArticleImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='200' viewBox='0 0 280 200'%3E%3Crect width='280' height='200' fill='%23fefaf5'/%3E%3Ctext x='20' y='110' font-family='monospace' font-size='12' fill='%23B8860B'%3Ecarregando imagem...%3C/text%3E%3C/svg%3E" alt="Alienação parental - imagem ilustrativa" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada';">
           </div>
           <div class="article-text">
             <p>A Lei 12.318/2010, conhecida como Lei da Alienação Parental, foi um marco na tentativa de coibir práticas que afastam crianças e adolescentes de um dos genitores por meio de campanhas difamatórias, desqualificação ou obstrução de convivência. No entanto, mais de uma década depois, a aplicação da lei revela uma face pouco discutida: o uso estratégico do dispositivo jurídico como instrumento de silenciamento, especialmente contra mulheres que denunciam violência doméstica ou abuso.</p>
@@ -251,7 +307,7 @@
 
             <p>Como editora-chefe da PautaZero, entendo que o papel da análise institucional é justamente este: iluminar os pontos cegos do sistema, sem extremismos, e propor que as soluções sejam construídas sobre dados, empatia e respeito aos direitos fundamentais de todos os envolvidos – especialmente das crianças, cujo bem-estar deve ser sempre a estrela-guia do direito de família.</p>
 
-            <div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);">
+            <div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);" id="editorSignature">
               <strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero
             </div>
           </div>
@@ -288,7 +344,97 @@
 
   <script>
     (function() {
-      // Funções para o arquivo (lupa) - apenas para manter funcionalidade, sem artigos adicionais
+      // ========== 1. SISTEMA DINÂMICO DE IMAGEM (NUMERAÇÃO: DIA + PRIMEIRO NOME .jpg) ==========
+      function setupDynamicImage() {
+        const imgElement = document.getElementById('dynamicArticleImage');
+        if (!imgElement) return;
+        
+        // Extrair data do artigo (formato "09.04.2026" -> dia/mês "09.04")
+        const metaSpans = document.querySelectorAll('.article-meta span');
+        let dateStr = '';
+        for (let span of metaSpans) {
+          if (span.innerText.includes('.') && span.innerText.match(/\d{2}\.\d{2}\.\d{4}/)) {
+            dateStr = span.innerText.trim();
+            break;
+          }
+        }
+        let dayMonth = '';
+        if (dateStr) {
+          const parts = dateStr.split('.');
+          if (parts.length >= 2) dayMonth = `${parts[0]}.${parts[1]}`; // "09.04"
+        }
+        
+        // Extrair primeiro nome do editor (dentro de #editorSignature strong)
+        let firstName = 'viviane';
+        const editorStrong = document.querySelector('#editorSignature strong');
+        if (editorStrong && editorStrong.innerText.trim()) {
+          const fullName = editorStrong.innerText.trim();
+          firstName = fullName.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/gi, '');
+        } else {
+          // fallback alternativo: procura qualquer strong com nome de editor
+          const fallbackStrong = document.querySelector('.article-text div strong');
+          if (fallbackStrong) {
+            const fallbackName = fallbackStrong.innerText.trim();
+            firstName = fallbackName.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/gi, '');
+          }
+        }
+        
+        // Monta nome do arquivo seguindo o padrão: "dia-mês-primeiroNome.jpg" ou "09.04-viviane.jpg"
+        let finalFilename = '';
+        if (dayMonth) {
+          finalFilename = `${dayMonth}-${firstName}.jpg`;
+        } else {
+          finalFilename = `default-${firstName}.jpg`;
+        }
+        
+        const imageBasePath = '/assets/images/';
+        const imageSrc = imageBasePath + finalFilename;
+        
+        // Define o src da imagem com fallback nativo
+        imgElement.src = imageSrc;
+        imgElement.alt = `Imagem ilustrativa: alienação parental - ${finalFilename}`;
+        // Se falhar, o onerror já existente ativa o placeholder, mas incluímos log amigável
+        imgElement.onerror = function() {
+          if (!this.hasAttribute('data-fallback-triggered')) {
+            this.setAttribute('data-fallback-triggered', 'true');
+            this.src = 'https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada+('+finalFilename+')';
+          }
+        };
+      }
+      
+      // ========== 2. SHARE BUTTONS (TAMANHO MINÚSCULO, REDES BRASIL) ==========
+      function setupShareButtons() {
+        const currentUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+        
+        const shareFacebook = document.getElementById('shareFacebook');
+        const shareX = document.getElementById('shareX');
+        const shareLinkedin = document.getElementById('shareLinkedin');
+        const shareWhatsapp = document.getElementById('shareWhatsapp');
+        const shareTelegram = document.getElementById('shareTelegram');
+        const shareInstagram = document.getElementById('shareInstagram');
+        
+        if (shareFacebook) shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+        if (shareX) shareX.href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${currentUrl}`;
+        if (shareLinkedin) shareLinkedin.href = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${pageTitle}`;
+        if (shareWhatsapp) shareWhatsapp.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${currentUrl}`;
+        if (shareTelegram) shareTelegram.href = `https://t.me/share/url?url=${currentUrl}&text=${pageTitle}`;
+        
+        // Instagram: não tem share direto via URL, então copiamos link para área de transferência
+        if (shareInstagram) {
+          shareInstagram.addEventListener('click', (e) => {
+            e.preventDefault();
+            const linkToCopy = window.location.href;
+            navigator.clipboard.writeText(linkToCopy).then(() => {
+              alert('🔗 Link do artigo copiado! Agora você pode colar no Instagram, Stories ou Direct.');
+            }).catch(() => {
+              alert('Copie o link manualmente: ' + linkToCopy);
+            });
+          });
+        }
+      }
+      
+      // ========== 3. FUNÇÕES DE ARQUIVO (ORIGINAIS, APENAS MOCK) ==========
       function openArchive() { document.getElementById('archiveOverlay').classList.add('active'); document.body.classList.add('archive-open'); renderEmptyArchive(); }
       function closeArchive() { document.getElementById('archiveOverlay').classList.remove('active'); document.body.classList.remove('archive-open'); document.getElementById('archiveSearchInput').value = ''; }
       function renderEmptyArchive() {
@@ -302,12 +448,11 @@
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
 
-      // Menu dropdown (redirecionamento para páginas futuras)
+      // Menu dropdown
       const menuIconBtn = document.getElementById('menuIconBtn');
       const menuDropdown = document.getElementById('menuDropdown');
       const dropdownItems = document.querySelectorAll('.dropdown-item');
       const currentTabLabel = document.getElementById('currentTabLabel');
-
       menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
       document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
       
@@ -322,14 +467,12 @@
         filantropia: 'filantropia.html',
         home: '/'
       };
-      
       dropdownItems.forEach(item => {
         item.addEventListener('click', () => {
           const tab = item.dataset.tab;
           const target = pageMap[tab];
-          if (target) {
-            window.location.href = target;
-          } else {
+          if (target) { window.location.href = target; } 
+          else {
             currentTabLabel.innerText = item.innerText.trim();
             dropdownItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
@@ -345,7 +488,19 @@
         alert(`Obrigado pelo interesse! Em breve você receberá análises futuras em ${email}`);
         this.reset();
       });
+      
+      // Executa setup da imagem dinâmica e dos botões de compartilhamento
+      setupDynamicImage();
+      setupShareButtons();
     })();
   </script>
+  <!-- 
+    SISTEMA DE IMAGEM COM NUMERAÇÃO:
+    Padrão implementado: "DIA.MÊS-PRIMEIRONOME.jpg"
+    Exemplo concreto deste artigo: "09.04-viviane.jpg" (data 09.04 + primeiro nome "Viviane").
+    Basta colocar o arquivo correspondente em /assets/images/09.04-viviane.jpg
+    Para milhares de artigos, cada página automaticamente extrai sua data e primeiro nome do editor.
+    Caso queira sobrescrita manual, ajuste os dados no HTML (data no .article-meta e nome no strong da assinatura).
+  -->
 </body>
 </html>
