@@ -376,7 +376,7 @@
       // ========== DADOS DOS SUBTEMAS POR CATEGORIA ==========
       const subtopicsByTopic = {
         justica: [
-          { name: "Alienação Parental e seus impactos", slug: "alienacao-parental" },
+          { name: "Alienação Parental e seus impactos", slug: "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao" },
           { name: "Direito de família e saúde mental", slug: "direito-familia-saude-mental" },
           { name: "Sistema prisional e direitos humanos", slug: "sistema-prisional-direitos-humanos" },
           { name: "Justiça e tecnologia", slug: "justica-tecnologia" },
@@ -496,11 +496,9 @@
         psicologia: "Psicologia & Comportamento"
       };
 
-      // ========== Mapeamento de pastas estruturais para cada eixo (caminho hierárquico) ==========
-      // Ajuste estratégico: cada categoria possui seu diretório dentro de /artigo/
-      // Exemplo: justica → /artigo/justica-e-direito/   conforme solicitação.
+      // Mapeamento de pastas estruturais para cada eixo (caminho hierárquico)
       const topicFolderMap = {
-        justica: "justica-e-direito",       // gera artigo/justica-e-direito/alienacao-parental.html
+        justica: "justica-e-direito",
         politica: "politica",
         "saude-mental": "saude-mental",
         tecnologia: "tecnologia",
@@ -521,14 +519,12 @@
         const subtopics = subtopicsByTopic[topicKey] || [];
         modalTitle.innerText = title;
         
-        // Obtém a pasta correspondente; fallback seguro para o próprio topicKey
         const folder = topicFolderMap[topicKey] || topicKey;
         
         if (subtopics.length === 0) {
           modalTopicsList.innerHTML = '<p style="color: var(--color-text-light);">Subtemas em breve.</p>';
         } else {
           const itemsHtml = subtopics.map(sub => {
-            // Construção do link hierárquico: /artigo/{folder}/{slug}.html
             const articleUrl = `/artigo/${folder}/${sub.slug}.html`;
             return `<li><a href="${articleUrl}" target="_self">${sub.name}</a></li>`;
           }).join('');
@@ -544,7 +540,6 @@
         document.body.classList.remove('modal-open');
       }
 
-      // Adiciona evento de clique em todos os cards
       document.querySelectorAll('.theme-card').forEach(card => {
         card.addEventListener('click', (e) => {
           const topic = card.getAttribute('data-topic');
@@ -574,7 +569,7 @@
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
 
-      // ========== MENU DROPDOWN (REDIRECIONAMENTO SIMPLES) ==========
+      // ========== MENU DROPDOWN ==========
       const menuIconBtn = document.getElementById('menuIconBtn');
       const menuDropdown = document.getElementById('menuDropdown');
       const dropdownItems = document.querySelectorAll('.dropdown-item');
