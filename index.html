@@ -259,6 +259,8 @@
         <button class="dropdown-item" data-tab="global">✈️ Viagens & Visão Global</button>
         <button class="dropdown-item" data-tab="filantropia">🌱 Filantropia & Impacto</button>
         <button class="dropdown-item" data-tab="psicologia">🧠 Psicologia & Comportamento</button>
+        <button class="dropdown-item" data-tab="saude-medicina">🏥 Saúde & Medicina</button>
+        <button class="dropdown-item" data-tab="policia">👮 Polícia & Investigação</button>
       </div>
     </div>
   </header>
@@ -333,6 +335,20 @@
         <p>Narcisismo, psicopatia funcional, manipulação, inteligência emocional e psicologia do poder.</p>
         <div class="theme-badge">clique para explorar →</div>
       </div>
+      <!-- SAÚDE & MEDICINA -->
+      <div class="theme-card" data-topic="saude-medicina">
+        <div class="theme-icon"><i class="fas fa-notes-medical"></i></div>
+        <h3>Saúde & Medicina</h3>
+        <p>Políticas de saúde pública, sistemas hospitalares, telemedicina, epidemias e inovações em diagnóstico.</p>
+        <div class="theme-badge">clique para explorar →</div>
+      </div>
+      <!-- POLÍCIA & INVESTIGAÇÃO (NOVO) -->
+      <div class="theme-card" data-topic="policia">
+        <div class="theme-icon"><i class="fas fa-shield-virus"></i></div>
+        <h3>Polícia & Investigação</h3>
+        <p>Inteligência policial, investigação criminal, perícia, forças de segurança e modelos de atuação.</p>
+        <div class="theme-badge">clique para explorar →</div>
+      </div>
     </div>
 
     <div style="margin: 2rem 0 0; text-align: center; font-size: 0.7rem; color: var(--gold-dark); letter-spacing: 1px;">
@@ -374,7 +390,7 @@
 
   <script>
     (function() {
-      // ========== DADOS DOS SUBTEMAS POR CATEGORIA ==========
+      // ========== DADOS DOS SUBTEMAS POR CATEGORIA (INCLUINDO POLÍCIA) ==========
       const subtopicsByTopic = {
         justica: [
           { name: "Alienação Parental e seus impactos", slug: "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao" },
@@ -481,6 +497,31 @@
           { name: "Perfil psicológico de lideranças públicas", slug: "perfil-psicologico-liderancas" },
           { name: "Gaslighting e relações modernas", slug: "gaslighting-relacoes" },
           { name: "Psicologia da decisão", slug: "psicologia-decisao" }
+        ],
+        "saude-medicina": [
+          { name: "Políticas públicas de saúde no Brasil", slug: "politicas-publicas-saude-brasil" },
+          { name: "Comparação internacional de sistemas de saúde", slug: "comparacao-sistemas-saude-internacional" },
+          { name: "Telemedicina e regulação", slug: "telemedicina-regulacao" },
+          { name: "Gestão hospitalar e eficiência", slug: "gestao-hospitalar-eficiencia" },
+          { name: "Epidemias e gestão de crises sanitárias", slug: "epidemias-gestao-crises-sanitarias" },
+          { name: "Inovações em diagnóstico (IA, imagem)", slug: "inovacoes-diagnostico-ia" },
+          { name: "Medicina preventiva e rastreamento populacional", slug: "medicina-preventiva-rastreamento" },
+          { name: "Saúde digital e prontuário eletrônico", slug: "saude-digital-prontuario-eletronico" },
+          { name: "Acesso a medicamentos e judicialização da saúde", slug: "acesso-medicamentos-judicializacao" },
+          { name: "Saúde da mulher e políticas públicas", slug: "saude-mulher-politicas-publicas" }
+        ],
+        // NOVO TÓPICO: POLÍCIA & INVESTIGAÇÃO
+        policia: [
+          { name: "Inteligência policial estratégica", slug: "inteligencia-policial-estrategica" },
+          { name: "Investigação criminal e tecnologia", slug: "investigacao-criminal-tecnologia" },
+          { name: "Polícia científica e perícia", slug: "policia-cientifica-pericia" },
+          { name: "Gestão de crises e forças táticas", slug: "gestao-crises-forcas-taticas" },
+          { name: "Corpo de Bombeiros e defesa civil", slug: "bombeiros-defesa-civil" },
+          { name: "Modelos internacionais de polícia", slug: "modelos-internacionais-policia" },
+          { name: "Polícia comunitária e confiança pública", slug: "policia-comunitaria-confianca" },
+          { name: "Uso de IA e videomonitoramento", slug: "ia-videomonitoramento-policial" },
+          { name: "Controle externo e ouvidoria", slug: "controle-externo-ouvidoria" },
+          { name: "Carreira policial e saúde mental", slug: "carreira-policial-saude-mental" }
         ]
       };
 
@@ -493,7 +534,9 @@
         negocios: "Negócios & Estratégia",
         global: "Viagens & Visão Global",
         filantropia: "Filantropia & Impacto Social",
-        psicologia: "Psicologia & Comportamento"
+        psicologia: "Psicologia & Comportamento",
+        "saude-medicina": "Saúde & Medicina",
+        policia: "Polícia & Investigação"
       };
 
       const topicFolderMap = {
@@ -505,26 +548,25 @@
         negocios: "negocios",
         global: "global",
         filantropia: "filantropia",
-        psicologia: "psicologia"
+        psicologia: "psicologia",
+        "saude-medicina": "saude-medicina",
+        policia: "policia"
       };
 
       // ========== CONSTRÓI O ARQUIVO COMPLETO A PARTIR DE TODOS OS SUBTEMAS ==========
       function buildFullArchiveList() {
         const archiveItems = [];
         
-        // Mapeamento de slugs já publicados com suas respectivas datas (para evitar duplicação e manter datas reais)
+        // Artigos já publicados (existentes)
         const publishedArticlesMap = new Map();
-        // Artigos já existentes (publicados)
         const existingPublished = [
           { title: "Alienação Parental e seus impactos", date: "08.04.2026", link: "/artigo/justica-e-direito/alienacao-parental-entre-a-protecao-e-a-falsa-acusacao.html", category: "Justiça & Direito", slugMatch: "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao" },
           { title: "Direito de família e saúde mental", date: "10.04.2026", link: "/artigo/justica-e-direito/direito-de-familia-e-saude-mental.html", category: "Justiça & Direito", slugMatch: "direito-de-familia-e-saude-mental" }
         ];
-        
         for (const pub of existingPublished) {
           publishedArticlesMap.set(pub.slugMatch, { date: pub.date, link: pub.link });
         }
         
-        // Itera sobre todos os tópicos e subtópicos
         for (const [topicKey, subtopics] of Object.entries(subtopicsByTopic)) {
           const categoryName = topicTitles[topicKey] || topicKey;
           const folder = topicFolderMap[topicKey] || topicKey;
@@ -533,51 +575,34 @@
             let targetUrl = '';
             let itemDate = 'Em breve';
             
-            // Determina a URL seguindo a mesma regra do modal
             if (topicKey === 'justica') {
               if (idx < 3) {
-                // primeiros três: link real
                 targetUrl = `/artigo/${folder}/${sub.slug}.html`;
-                // Verifica se é um dos já publicados para manter a data real
                 if (publishedArticlesMap.has(sub.slug)) {
                   itemDate = publishedArticlesMap.get(sub.slug).date;
-                } else {
-                  itemDate = 'Em breve';
                 }
               } else {
-                // demais: construcao.html
                 targetUrl = 'construcao.html';
-                itemDate = 'Em breve';
               }
             } else {
-              // outros temas: link padrão (mesmo que o arquivo ainda não exista)
               targetUrl = `/artigo/${folder}/${sub.slug}.html`;
-              itemDate = 'Em breve';
             }
             
-            // Evita duplicar caso já exista no map (embora os slugs sejam únicos)
-            const existingIndex = archiveItems.findIndex(item => item.title === sub.name && item.category === categoryName);
-            if (existingIndex === -1) {
-              archiveItems.push({
-                title: sub.name,
-                date: itemDate,
-                link: targetUrl,
-                category: categoryName
-              });
-            }
+            archiveItems.push({
+              title: sub.name,
+              date: itemDate,
+              link: targetUrl,
+              category: categoryName
+            });
           });
         }
         
-        // Ordena por data (os com data real primeiro, depois "Em breve" por ordem alfabética)
         archiveItems.sort((a, b) => {
           if (a.date === 'Em breve' && b.date !== 'Em breve') return 1;
           if (a.date !== 'Em breve' && b.date === 'Em breve') return -1;
-          if (a.date !== 'Em breve' && b.date !== 'Em breve') {
-            return b.date.localeCompare(a.date); // mais recente primeiro
-          }
+          if (a.date !== 'Em breve' && b.date !== 'Em breve') return b.date.localeCompare(a.date);
           return a.title.localeCompare(b.title);
         });
-        
         return archiveItems;
       }
       
@@ -626,7 +651,7 @@
         });
       }
 
-      // ========== MODAL (mesma lógica, preservada) ==========
+      // ========== MODAL (mesma lógica, com suporte ao novo tópico) ==========
       const modal = document.getElementById('topicModal');
       const modalTitle = document.getElementById('modalTitle');
       const modalTopicsList = document.getElementById('modalTopicsList');
@@ -711,7 +736,9 @@
         negocios: 'negocios.html',
         global: 'global.html',
         filantropia: 'filantropia.html',
-        psicologia: 'psicologia.html'
+        psicologia: 'psicologia.html',
+        'saude-medicina': 'saude-medicina.html',
+        policia: 'policia.html'
       };
       
       dropdownItems.forEach(item => {
