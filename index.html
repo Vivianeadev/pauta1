@@ -37,16 +37,23 @@
     .logo span { color: var(--gold-dark); font-weight: 500; }
     .slogan { font-size: 0.7rem; font-family: var(--font-body); color: var(--gold-dark); text-transform: uppercase; letter-spacing: 2.5px; border-left: 1px solid rgba(212, 175, 55, 0.5); padding-left: 14px; }
     .nav-hamburger { display: flex; align-items: center; gap: 1rem; }
-    .archive-btn, .menu-icon-btn { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-primary); cursor: pointer; transition: 0.2s; }
-    .archive-btn:hover, .menu-icon-btn:hover { background: rgba(212, 175, 55, 0.25); border-color: var(--gold-primary); }
-    .menu-icon-btn { font-size: 1.4rem; }
-    .current-tab-name { font-family: var(--font-serif); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-dark); background: rgba(212, 175, 55, 0.08); padding: 0.4rem 1rem; border: 1px solid rgba(212, 175, 55, 0.3); white-space: nowrap; }
-    .menu-dropdown { position: absolute; top: 80px; right: 36px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(16px); box-shadow: 0 20px 40px -12px rgba(10, 49, 71, 0.25); border: 1px solid rgba(212, 175, 55, 0.3); padding: 0.8rem 0; min-width: 280px; z-index: 200; display: none; flex-direction: column; }
-    .menu-dropdown.active { display: flex; animation: fadeSlideIn 0.2s ease; }
-    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-    .dropdown-item { background: none; border: none; text-align: left; padding: 0.9rem 1.8rem; font-family: var(--font-serif); font-size: 0.85rem; font-weight: 500; color: var(--color-text); letter-spacing: 1px; cursor: pointer; width: 100%; }
-    .dropdown-item:hover { background: var(--gradient-gold-subtle); color: var(--gold-dark); }
-    .dropdown-item.active { background: rgba(212, 175, 55, 0.1); color: var(--gold-dark); border-left: 3px solid var(--gold-primary); }
+    .archive-btn {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .archive-btn:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--gold-primary);
+    }
     .archive-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 49, 71, 0.8); backdrop-filter: blur(6px); z-index: 1000; display: flex; align-items: center; justify-content: flex-end; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
     .archive-overlay.active { opacity: 1; visibility: visible; }
     .archive-panel { background: var(--color-bg-card); width: 100%; max-width: 500px; height: 100%; right: 0; position: absolute; box-shadow: -5px 0 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.3s ease; border-left: 1px solid var(--gold-primary); }
@@ -65,8 +72,6 @@
     .no-results { text-align: center; padding: 2rem; color: var(--color-text-light); font-style: italic; }
     @media (max-width: 700px) {
       .slogan { display: none; }
-      .current-tab-name { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
-      .menu-dropdown { right: 20px; top: 70px; }
       .header-inner { padding: 0 20px; }
       .archive-panel { max-width: 100%; }
     }
@@ -245,22 +250,6 @@
       <div class="logo-area"><a href="/" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
       <div class="nav-hamburger">
         <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
-        <span class="current-tab-name" id="currentTabLabel">Home</span>
-        <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
-      </div>
-      <div class="menu-dropdown" id="menuDropdown">
-        <button class="dropdown-item active" data-tab="home">🏠 Home</button>
-        <button class="dropdown-item" data-tab="justica">⚖️ Justiça & Direito</button>
-        <button class="dropdown-item" data-tab="politica">🌍 Política & Geopolítica</button>
-        <button class="dropdown-item" data-tab="saude-mental">🧠 Saúde Mental & Psiquiatria</button>
-        <button class="dropdown-item" data-tab="tecnologia">💻 Tecnologia & Inovação</button>
-        <button class="dropdown-item" data-tab="seguranca">🚔 Segurança & Prisional</button>
-        <button class="dropdown-item" data-tab="negocios">💼 Negócios & Estratégia</button>
-        <button class="dropdown-item" data-tab="global">✈️ Viagens & Visão Global</button>
-        <button class="dropdown-item" data-tab="filantropia">🌱 Filantropia & Impacto</button>
-        <button class="dropdown-item" data-tab="psicologia">🧠 Psicologia & Comportamento</button>
-        <button class="dropdown-item" data-tab="saude-medicina">🏥 Saúde & Medicina</button>
-        <button class="dropdown-item" data-tab="policia">👮 Polícia & Investigação</button>
       </div>
     </div>
   </header>
@@ -342,11 +331,18 @@
         <p>Políticas de saúde pública, sistemas hospitalares, telemedicina, epidemias e inovações em diagnóstico.</p>
         <div class="theme-badge">clique para explorar →</div>
       </div>
-      <!-- POLÍCIA & INVESTIGAÇÃO (NOVO) -->
+      <!-- POLÍCIA & INVESTIGAÇÃO -->
       <div class="theme-card" data-topic="policia">
         <div class="theme-icon"><i class="fas fa-shield-virus"></i></div>
         <h3>Polícia & Investigação</h3>
         <p>Inteligência policial, investigação criminal, perícia, forças de segurança e modelos de atuação.</p>
+        <div class="theme-badge">clique para explorar →</div>
+      </div>
+      <!-- ECONOMIA DA RIQUEZA & ALTA RENDA -->
+      <div class="theme-card" data-topic="economia-riqueza">
+        <div class="theme-icon"><i class="fas fa-chart-pie"></i></div>
+        <h3>Economia da Riqueza & Alta Renda</h3>
+        <p>Concentração de capital, fortuna familiar, investimentos alternativos, tributação e mercado de luxo.</p>
         <div class="theme-badge">clique para explorar →</div>
       </div>
     </div>
@@ -390,7 +386,7 @@
 
   <script>
     (function() {
-      // ========== DADOS DOS SUBTEMAS POR CATEGORIA (INCLUINDO POLÍCIA) ==========
+      // ========== DADOS DOS SUBTEMAS POR CATEGORIA ==========
       const subtopicsByTopic = {
         justica: [
           { name: "Alienação Parental e seus impactos", slug: "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao" },
@@ -510,7 +506,6 @@
           { name: "Acesso a medicamentos e judicialização da saúde", slug: "acesso-medicamentos-judicializacao" },
           { name: "Saúde da mulher e políticas públicas", slug: "saude-mulher-politicas-publicas" }
         ],
-        // NOVO TÓPICO: POLÍCIA & INVESTIGAÇÃO
         policia: [
           { name: "Inteligência policial estratégica", slug: "inteligencia-policial-estrategica" },
           { name: "Investigação criminal e tecnologia", slug: "investigacao-criminal-tecnologia" },
@@ -522,6 +517,18 @@
           { name: "Uso de IA e videomonitoramento", slug: "ia-videomonitoramento-policial" },
           { name: "Controle externo e ouvidoria", slug: "controle-externo-ouvidoria" },
           { name: "Carreira policial e saúde mental", slug: "carreira-policial-saude-mental" }
+        ],
+        "economia-riqueza": [
+          { name: "Concentração de riqueza e desigualdade estrutural", slug: "concentracao-riqueza-desigualdade" },
+          { name: "Tributação de grandes fortunas (Brasil vs. mundo)", slug: "tributacao-grandes-fortunas" },
+          { name: "Family offices e gestão de patrimônio multigeracional", slug: "family-offices-gestao-patrimonio" },
+          { name: "Investimentos alternativos para o ultra-high-net-worth", slug: "investimentos-alternativos-ultra-ricos" },
+          { name: "O mercado de luxo: moda, arte, imóveis e iates", slug: "mercado-luxo-moda-arte-imoveis" },
+          { name: "Filantropia estratégica dos bilionários", slug: "filantropia-estrategica-bilionarios" },
+          { name: "Paraísos fiscais e offshores: estrutura e controvérsias", slug: "paraisos-fiscais-offshores" },
+          { name: "Sucessão patrimonial e governança familiar", slug: "sucessao-patrimonial-governanca-familiar" },
+          { name: "Impacto econômico dos super-ricos na sociedade", slug: "impacto-super-ricos-sociedade" },
+          { name: "Cripto, ativos digitais e a nova riqueza tecnológica", slug: "cripto-ativos-digitais-riqueza-tecnologica" }
         ]
       };
 
@@ -536,7 +543,8 @@
         filantropia: "Filantropia & Impacto Social",
         psicologia: "Psicologia & Comportamento",
         "saude-medicina": "Saúde & Medicina",
-        policia: "Polícia & Investigação"
+        policia: "Polícia & Investigação",
+        "economia-riqueza": "Economia da Riqueza & Alta Renda"
       };
 
       const topicFolderMap = {
@@ -550,67 +558,121 @@
         filantropia: "filantropia",
         psicologia: "psicologia",
         "saude-medicina": "saude-medicina",
-        policia: "policia"
+        policia: "policia",
+        "economia-riqueza": "economia-riqueza"
       };
 
-      // ========== CONSTRÓI O ARQUIVO COMPLETO A PARTIR DE TODOS OS SUBTEMAS ==========
-      function buildFullArchiveList() {
-        const archiveItems = [];
-        
-        // Artigos já publicados (existentes)
-        const publishedArticlesMap = new Map();
-        const existingPublished = [
-          { title: "Alienação Parental e seus impactos", date: "08.04.2026", link: "/artigo/justica-e-direito/alienacao-parental-entre-a-protecao-e-a-falsa-acusacao.html", category: "Justiça & Direito", slugMatch: "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao" },
-          { title: "Direito de família e saúde mental", date: "10.04.2026", link: "/artigo/justica-e-direito/direito-de-familia-e-saude-mental.html", category: "Justiça & Direito", slugMatch: "direito-de-familia-e-saude-mental" }
-        ];
-        for (const pub of existingPublished) {
-          publishedArticlesMap.set(pub.slugMatch, { date: pub.date, link: pub.link });
+      // ========== CACHE E VERIFICAÇÃO ASSÍNCRONA ==========
+      const pageCache = new Map();      // cache em memória
+      let fullArticlesArchive = [];
+      let archiveLoadPromise = null;
+
+      function loadCacheFromStorage() {
+        try {
+          const stored = localStorage.getItem('PautaZero_pageCache');
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed && parsed.expiry > Date.now()) {
+              for (const [url, exists] of Object.entries(parsed.data)) {
+                pageCache.set(url, exists);
+              }
+              return true;
+            }
+          }
+        } catch(e) {}
+        return false;
+      }
+
+      function saveCacheToStorage() {
+        try {
+          const cacheObj = {};
+          for (const [url, exists] of pageCache.entries()) {
+            cacheObj[url] = exists;
+          }
+          const toStore = {
+            data: cacheObj,
+            expiry: Date.now() + 3600000
+          };
+          localStorage.setItem('PautaZero_pageCache', JSON.stringify(toStore));
+        } catch(e) {}
+      }
+
+      async function checkIfPageExists(url) {
+        if (pageCache.has(url)) return pageCache.get(url);
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 3000);
+          const response = await fetch(url, { method: 'HEAD', signal: controller.signal });
+          clearTimeout(timeoutId);
+          const exists = response.ok;
+          pageCache.set(url, exists);
+          saveCacheToStorage();
+          return exists;
+        } catch (err) {
+          pageCache.set(url, false);
+          saveCacheToStorage();
+          return false;
         }
-        
+      }
+
+      function generateAllPossibleArticles() {
+        const articles = [];
         for (const [topicKey, subtopics] of Object.entries(subtopicsByTopic)) {
           const categoryName = topicTitles[topicKey] || topicKey;
           const folder = topicFolderMap[topicKey] || topicKey;
-          
-          subtopics.forEach((sub, idx) => {
-            let targetUrl = '';
-            let itemDate = 'Em breve';
-            
-            if (topicKey === 'justica') {
-              if (idx < 3) {
-                targetUrl = `/artigo/${folder}/${sub.slug}.html`;
-                if (publishedArticlesMap.has(sub.slug)) {
-                  itemDate = publishedArticlesMap.get(sub.slug).date;
-                }
-              } else {
-                targetUrl = 'construcao.html';
-              }
-            } else {
-              targetUrl = `/artigo/${folder}/${sub.slug}.html`;
-            }
-            
-            archiveItems.push({
+          subtopics.forEach(sub => {
+            const url = `/artigo/${folder}/${sub.slug}.html`;
+            articles.push({
               title: sub.name,
-              date: itemDate,
-              link: targetUrl,
-              category: categoryName
+              category: categoryName,
+              url: url
             });
           });
         }
-        
-        archiveItems.sort((a, b) => {
-          if (a.date === 'Em breve' && b.date !== 'Em breve') return 1;
-          if (a.date !== 'Em breve' && b.date === 'Em breve') return -1;
-          if (a.date !== 'Em breve' && b.date !== 'Em breve') return b.date.localeCompare(a.date);
-          return a.title.localeCompare(b.title);
-        });
-        return archiveItems;
+        return articles;
       }
-      
-      let fullArticlesArchive = buildFullArchiveList();
-      
+
+      async function loadAllArticles() {
+        if (fullArticlesArchive.length > 0) return;
+        const allPossible = generateAllPossibleArticles();
+        const archiveListDiv = document.getElementById('archiveList');
+        const wasOpen = archiveListDiv && (archiveListDiv.innerHTML.includes('Verificando') || document.getElementById('archiveOverlay').classList.contains('active'));
+        if (archiveListDiv && wasOpen) {
+          archiveListDiv.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Verificando artigos disponíveis...</div>';
+        }
+        
+        const concurrencyLimit = 5;
+        const results = [];
+        for (let i = 0; i < allPossible.length; i += concurrencyLimit) {
+          const batch = allPossible.slice(i, i + concurrencyLimit);
+          const batchResults = await Promise.all(batch.map(async (article) => {
+            const exists = await checkIfPageExists(article.url);
+            if (exists) {
+              return {
+                title: article.title,
+                date: 'Publicado',
+                link: article.url,
+                category: article.category
+              };
+            }
+            return null;
+          }));
+          results.push(...batchResults.filter(r => r !== null));
+        }
+        fullArticlesArchive = results;
+        fullArticlesArchive.sort((a, b) => a.title.localeCompare(b.title));
+        if (document.getElementById('archiveOverlay').classList.contains('active')) {
+          renderArchiveList(document.getElementById('archiveSearchInput').value);
+        }
+      }
+
       function renderArchiveList(searchTerm = "") {
         const container = document.getElementById("archiveList");
         if (!container) return;
+        if (fullArticlesArchive.length === 0 && archiveLoadPromise) {
+          container.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Carregando artigos...</div>';
+          return;
+        }
         const term = searchTerm.toLowerCase().trim();
         let filtered = fullArticlesArchive;
         if (term !== "") {
@@ -651,7 +713,10 @@
         });
       }
 
-      // ========== MODAL (mesma lógica, com suporte ao novo tópico) ==========
+      loadCacheFromStorage();
+      archiveLoadPromise = loadAllArticles();
+
+      // ========== MODAL ==========
       const modal = document.getElementById('topicModal');
       const modalTitle = document.getElementById('modalTitle');
       const modalTopicsList = document.getElementById('modalTopicsList');
@@ -669,14 +734,10 @@
           let itemsHtml = '';
           subtopics.forEach((sub, idx) => {
             let targetUrl = '';
-            if (topicKey === 'justica') {
-              if (idx < 3) {
-                targetUrl = `/artigo/${folder}/${sub.slug}.html`;
-              } else {
-                targetUrl = 'construcao.html';
-              }
-            } else {
+            if (idx < 3) {
               targetUrl = `/artigo/${folder}/${sub.slug}.html`;
+            } else {
+              targetUrl = 'construcao.html';
             }
             itemsHtml += `<li><a href="${targetUrl}" target="_self">${escapeHtml(sub.name)}</a></li>`;
           });
@@ -702,7 +763,16 @@
       function openArchive() {
         document.getElementById('archiveOverlay').classList.add('active');
         document.body.classList.add('archive-open');
-        renderArchiveList(document.getElementById('archiveSearchInput').value);
+        if (fullArticlesArchive.length === 0 && archiveLoadPromise) {
+          renderArchiveList('');
+          archiveLoadPromise.then(() => {
+            if (document.getElementById('archiveOverlay').classList.contains('active')) {
+              renderArchiveList(document.getElementById('archiveSearchInput').value);
+            }
+          });
+        } else {
+          renderArchiveList(document.getElementById('archiveSearchInput').value);
+        }
       }
       function closeArchive() {
         document.getElementById('archiveOverlay').classList.remove('active');
@@ -716,45 +786,6 @@
       document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
-
-      // ========== MENU DROPDOWN ==========
-      const menuIconBtn = document.getElementById('menuIconBtn');
-      const menuDropdown = document.getElementById('menuDropdown');
-      const dropdownItems = document.querySelectorAll('.dropdown-item');
-      const currentTabLabel = document.getElementById('currentTabLabel');
-
-      menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
-      document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
-      
-      const pageMap = {
-        home: '/',
-        justica: 'justica.html',
-        politica: 'politica.html',
-        'saude-mental': 'saude-mental.html',
-        tecnologia: 'tecnologia.html',
-        seguranca: 'seguranca.html',
-        negocios: 'negocios.html',
-        global: 'global.html',
-        filantropia: 'filantropia.html',
-        psicologia: 'psicologia.html',
-        'saude-medicina': 'saude-medicina.html',
-        policia: 'policia.html'
-      };
-      
-      dropdownItems.forEach(item => {
-        item.addEventListener('click', () => {
-          const tab = item.dataset.tab;
-          const target = pageMap[tab];
-          if (target) {
-            window.location.href = target;
-          } else {
-            currentTabLabel.innerText = item.innerText.trim();
-            dropdownItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            menuDropdown.classList.remove('active');
-          }
-        });
-      });
     })();
   </script>
 </body>
