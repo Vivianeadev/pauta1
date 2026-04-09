@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Alienação Parental: entre a proteção e a falsa acusação · PautaZero</title>
+  <meta name="description" content="Análise profunda da Lei 12.318/2010, os impactos das falsas denúncias de alienação parental contra mulheres e os desdobramentos jurídicos no Brasil.">
+  <meta property="og:title" content="Alienação Parental: entre a proteção e a falsa acusação · PautaZero">
+  <meta property="og:description" content="Análise profunda da Lei 12.318/2010, os impactos das falsas denúncias de alienação parental contra mulheres e os desdobramentos jurídicos no Brasil.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ========== ESTILOS COMPLETOS (IDÊNTICOS AO ORIGINAL) ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --color-primary: #0a3147; --color-primary-light: #1a4b6d; --gold-primary: #D4AF37;
+      --gold-secondary: #F4E4B8; --gold-dark: #B8860B; --color-dark: #1A1A1A;
+      --color-text: #1e2a3a; --color-text-light: #2c3e4e; --color-bg: #fefaf5;
+      --color-bg-card: #ffffff; --border-light: 1px solid rgba(212, 175, 55, 0.25);
+      --shadow-luxury: 0 20px 35px -12px rgba(10, 49, 71, 0.12);
+      --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+      --gradient-gold-subtle: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(244, 228, 184, 0.05) 100%);
+      --font-serif: 'Cinzel', serif; --font-sans: 'Inter', sans-serif; --font-body: 'Marcellus', serif;
+    }
+    body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 0.95rem; }
+    body.archive-open { overflow: hidden; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
+    h1, h2, h3, h4, .logo, .section-title { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
+    .site-header { position: sticky; top: 0; background: rgba(255, 253, 250, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); z-index: 100; padding: 1rem 0; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 0 36px; gap: 1rem; }
+    .logo-area { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .logo { font-size: 2rem; font-weight: 700; color: var(--color-primary); text-decoration: none; letter-spacing: 1px; }
+    .logo span { color: var(--gold-dark); font-weight: 500; }
+    .slogan { font-size: 0.7rem; font-family: var(--font-body); color: var(--gold-dark); text-transform: uppercase; letter-spacing: 2.5px; border-left: 1px solid rgba(212, 175, 55, 0.5); padding-left: 14px; }
+    .nav-hamburger { display: flex; align-items: center; gap: 1rem; }
+    .archive-btn, .menu-icon-btn { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-primary); cursor: pointer; transition: 0.2s; }
+    .archive-btn:hover, .menu-icon-btn:hover { background: rgba(212, 175, 55, 0.25); border-color: var(--gold-primary); }
+    .menu-icon-btn { font-size: 1.4rem; }
+    .current-tab-name { font-family: var(--font-serif); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-dark); background: rgba(212, 175, 55, 0.08); padding: 0.4rem 1rem; border: 1px solid rgba(212, 175, 55, 0.3); white-space: nowrap; }
+    .menu-dropdown { position: absolute; top: 80px; right: 36px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(16px); box-shadow: 0 20px 40px -12px rgba(10, 49, 71, 0.25); border: 1px solid rgba(212, 175, 55, 0.3); padding: 0.8rem 0; min-width: 260px; z-index: 200; display: none; flex-direction: column; }
+    .menu-dropdown.active { display: flex; animation: fadeSlideIn 0.2s ease; }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .dropdown-item { background: none; border: none; text-align: left; padding: 0.9rem 1.8rem; font-family: var(--font-serif); font-size: 0.85rem; font-weight: 500; color: var(--color-text); letter-spacing: 1px; cursor: pointer; width: 100%; }
+    .dropdown-item:hover { background: var(--gradient-gold-subtle); color: var(--gold-dark); }
+    .dropdown-item.active { background: rgba(212, 175, 55, 0.1); color: var(--gold-dark); border-left: 3px solid var(--gold-primary); }
+    .archive-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 49, 71, 0.8); backdrop-filter: blur(6px); z-index: 1000; display: flex; align-items: center; justify-content: flex-end; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+    .archive-overlay.active { opacity: 1; visibility: visible; }
+    .archive-panel { background: var(--color-bg-card); width: 100%; max-width: 500px; height: 100%; right: 0; position: absolute; box-shadow: -5px 0 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.3s ease; border-left: 1px solid var(--gold-primary); }
+    .archive-overlay.active .archive-panel { transform: translateX(0); }
+    .archive-header { padding: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.2); display: flex; justify-content: space-between; align-items: center; background: white; }
+    .archive-header h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-primary); }
+    .archive-close { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--gold-dark); }
+    .archive-search { padding: 1rem 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.1); }
+    .archive-search input { width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(212,175,55,0.3); font-family: var(--font-sans); font-size: 0.9rem; background: white; outline: none; }
+    .archive-search input:focus { border-color: var(--gold-primary); }
+    .archive-list { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+    .archive-item { background: var(--color-bg-card); border: 1px solid rgba(212,175,55,0.15); padding: 0.8rem 1rem; margin-bottom: 0.8rem; cursor: pointer; }
+    .archive-item:hover { border-color: var(--gold-primary); background: rgba(212,175,55,0.02); }
+    .archive-item-title { font-family: var(--font-serif); font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.2rem; }
+    .archive-item-meta { font-size: 0.65rem; color: var(--gold-dark); display: flex; gap: 1rem; margin-top: 0.2rem; }
+    .no-results { text-align: center; padding: 2rem; color: var(--color-text-light); font-style: italic; }
+    @media (max-width: 700px) {
+      .slogan { display: none; }
+      .current-tab-name { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
+      .menu-dropdown { right: 20px; top: 70px; }
+      .header-inner { padding: 0 20px; }
+      .archive-panel { max-width: 100%; }
+    }
+    .site-footer { border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem 0; color: var(--color-text-light); background: var(--color-bg); font-size: 0.75rem; }
+    .footer-legal { max-width: 1280px; margin: 1rem auto 0; padding: 1rem 36px 0; border-top: 1px solid rgba(212, 175, 55, 0.15); font-size: 0.65rem; line-height: 1.4; color: rgba(44, 62, 78, 0.6); text-align: center; letter-spacing: 0.3px; }
+    @media (max-width: 700px) { .footer-legal { padding: 0.8rem 20px 0; font-size: 0.6rem; } }
+
+    /* PÁGINA DE ARTIGO */
+    .article-page {
+      max-width: 1000px;
+      margin: 2rem auto 3rem;
+      background: var(--color-bg-card);
+      border: var(--border-light);
+      padding: 2rem;
+    }
+    .article-page .article-header {
+      border-bottom: 2px solid rgba(212, 175, 55, 0.35);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .article-page .article-header h1 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--color-primary);
+      margin-bottom: 0.75rem;
+    }
+    .article-page .article-meta {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .article-with-image {
+      overflow: auto;
+    }
+    .article-image {
+      float: left;
+      width: 280px;
+      margin: 0 1.8rem 1rem 0;
+      border: 1px solid rgba(212,175,55,0.3);
+      overflow: hidden;
+      background: #f3efe8;
+    }
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .article-text p {
+      margin-bottom: 1.2rem;
+      line-height: 1.65;
+      color: var(--color-text-light);
+    }
+    @media (max-width: 700px) {
+      .article-image { float: none; width: 100%; margin: 0 0 1.2rem 0; }
+      .article-page .article-header h1 { font-size: 1.6rem; }
+      .article-page { padding: 1.5rem; margin: 1rem auto 2rem; }
+    }
+    .email-capture {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .email-capture p {
+      font-size: 0.8rem;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+    .email-capture form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .email-capture input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      background: white;
+      outline: none;
+    }
+    .email-capture input:focus {
+      border-color: var(--gold-primary);
+    }
+    .email-capture button {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.7rem 1.2rem;
+      font-family: var(--font-serif);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .email-capture button:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--gold-primary);
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--gold-dark);
+      text-decoration: none;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .back-link:hover {
+      color: var(--gold-primary);
+    }
+    
+    /* ========== NOVOS ESTILOS (APENAS PARA COMPARTILHAMENTO MINIATURA) ========== */
+    .share-mini-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0.75rem 0 0.25rem 0;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(212,175,55,0.15);
+      padding-top: 0.75rem;
+    }
+    .share-mini-label {
+      font-size: 0.6rem;
+      font-family: var(--font-serif);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-right: 4px;
+    }
+    .share-mini-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(212,175,55,0.08);
+      border-radius: 30px;
+      width: 28px;
+      height: 28px;
+      font-size: 0.75rem;
+      color: var(--color-primary);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: 1px solid rgba(212,175,55,0.2);
+    }
+    .share-mini-link i {
+      font-size: 0.75rem;
+    }
+    .share-mini-link:hover {
+      background: var(--gradient-gold-subtle);
+      border-color: var(--gold-primary);
+      color: var(--gold-dark);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 700px) {
+      .share-mini-link { width: 26px; height: 26px; font-size: 0.7rem; }
+      .share-mini-bar { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-area"><a href="/" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
+      <div class="nav-hamburger">
+        <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
+        <span class="current-tab-name" id="currentTabLabel">Artigo</span>
+        <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
+      </div>
+      <div class="menu-dropdown" id="menuDropdown">
+        <button class="dropdown-item" data-tab="home">🏠 Home</button>
+        <button class="dropdown-item" data-tab="justica">⚖️ Justiça</button>
+        <button class="dropdown-item" data-tab="politica">🌍 Política</button>
+        <button class="dropdown-item" data-tab="saude-mental">🧠 Saúde Mental</button>
+        <button class="dropdown-item" data-tab="tecnologia">💻 Tecnologia</button>
+        <button class="dropdown-item" data-tab="seguranca">🚔 Segurança</button>
+        <button class="dropdown-item" data-tab="negocios">💼 Negócios</button>
+        <button class="dropdown-item" data-tab="global">✈️ Global</button>
+        <button class="dropdown-item" data-tab="filantropia">🌱 Filantropia</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+      <article class="article-page">
+        <div class="article-header">
+          <div class="article-meta">
+            <span><i class="fas fa-folder-open"></i> Justiça & Direito</span>
+            <span><i class="far fa-calendar-alt"></i> 09.04.2026</span>
+            <span><i class="far fa-clock"></i> 9 min</span>
+          </div>
+          <!-- MINI SHARE BUTTONS (TAMANHO MINÚSCULO) -->
+          <div class="share-mini-bar" id="shareMiniBar">
+            <span class="share-mini-label"><i class="fas fa-share-alt"></i> compartilhe</span>
+            <a href="#" class="share-mini-link" id="shareFacebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="share-mini-link" id="shareX" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="share-mini-link" id="shareLinkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="share-mini-link" id="shareWhatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="share-mini-link" id="shareTelegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" class="share-mini-link" id="shareInstagram" aria-label="Instagram (copiar link)"><i class="fab fa-instagram"></i></a>
+          </div>
+          <h1>Alienação Parental: entre a <span style="color: var(--gold-dark);">proteção</span> e a falsa acusação</h1>
+        </div>
+        <div class="article-with-image">
+          <div class="article-image">
+            <img id="dynamicArticleImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='200' viewBox='0 0 280 200'%3E%3Crect width='280' height='200' fill='%23fefaf5'/%3E%3Ctext x='20' y='110' font-family='monospace' font-size='12' fill='%23B8860B'%3Ecarregando imagem...%3C/text%3E%3C/svg%3E" alt="Alienação parental - imagem ilustrativa" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada';">
+          </div>
+          <div class="article-text">
+            <p>A Lei 12.318/2010, conhecida como Lei da Alienação Parental, foi um marco na tentativa de coibir práticas que afastam crianças e adolescentes de um dos genitores por meio de campanhas difamatórias, desqualificação ou obstrução de convivência. No entanto, mais de uma década depois, a aplicação da lei revela uma face pouco discutida: o uso estratégico do dispositivo jurídico como instrumento de silenciamento, especialmente contra mulheres que denunciam violência doméstica ou abuso.</p>
+
+            <p>De acordo com dados do Conselho Nacional de Justiça (CNJ) e de estudos acadêmicos recentes, em parcela significativa dos processos que envolvem guarda e alienação parental, há indicadores de que a alegação de alienação é utilizada de forma reversa – ou seja, o genitor acusado de violência alega alienação contra a mãe que busca proteção. Esse fenômeno, conhecido como "alienação parental reversa", tem gerado decisões judiciais que, por vezes, invertem a lógica protetiva e penalizam a vítima.</p>
+
+            <h2 style="font-size: 1.3rem; margin: 1.2rem 0 0.8rem; color: var(--color-primary);">A letra da lei e suas lacunas</h2>
+            <p>A Lei 12.318/2010 define alienação parental como a interferência na formação psicológica da criança ou adolescente promovida ou induzida por um dos genitores, pelos avós ou por quem tenha a criança sob sua autoridade, com o objetivo de repudiar o outro genitor ou causar ruptura de vínculos. As condutas exemplificadas incluem: realizar campanha de desqualificação, dificultar o convívio, omitir informações relevantes, mudar de domicílio sem justa causa para dificultar a convivência, entre outras.</p>
+            <p>O problema reside na subjetividade de muitos desses atos. O que seria "desqualificação legítima" em casos de violência doméstica? Como distinguir uma denúncia verdadeira de abuso de uma campanha difamatória? A lei não oferece critérios objetivos claros, deixando ao arbítrio do juiz a interpretação – e isso tem gerado insegurança jurídica e decisões contraditórias.</p>
+
+            <h2 style="font-size: 1.3rem; margin: 1.2rem 0 0.8rem; color: var(--color-primary);">O outro lado da moeda: falsas acusações e mulheres criminalizadas</h2>
+            <p>Embora a alienação parental seja uma realidade grave que atinge tanto homens quanto mulheres, estudos indicam que, nos casos de denúncias falsas ou instrumentalização da lei, as mulheres são desproporcionalmente afetadas. Pesquisas do Instituto de Pesquisa Econômica Aplicada (IPEA) e de grupos de defesa dos direitos das mulheres apontam que, em muitos processos de guarda, o argumento de "alienação parental" é usado para descredibilizar a mãe que relata abusos ou violência doméstica, resultando na perda da guarda e na culpabilização da vítima.</p>
+            <p>Há relatos documentados de mães que, após denunciarem o ex-companheiro por agressão, tiveram seus filhos afastados sob a justificativa de que estariam "influenciando negativamente" a criança contra o pai. Em alguns casos, a própria denúncia de violência foi tratada como ato de alienação. Esse fenômeno é particularmente grave quando envolve alegações de abuso sexual infantil – frequentemente, a mãe que leva o caso ao conhecimento das autoridades acaba sendo processada por falsa denúncia ou alienação, enquanto o suposto abusador permanece impune.</p>
+
+            <h2 style="font-size: 1.3rem; margin: 1.2rem 0 0.8rem; color: var(--color-primary);">Jurisprudência e a necessária revisão</h2>
+            <p>O Superior Tribunal de Justiça (STJ) já manifestou entendimento no sentido de que a alegação de alienação parental não pode ser utilizada para desconsiderar denúncias graves de violência. No entanto, na prática, muitas varas de família ainda carecem de capacitação técnica para distinguir uma verdadeira campanha difamatória de uma genuína tentativa de proteção da criança. Especialistas apontam que a solução não está na revogação da lei, mas na sua regulamentação mais precisa e na criação de protocolos de avaliação psicológica e social que considerem o histórico de violência doméstica, a dinâmica de poder e a vulnerabilidade das partes.</p>
+            <p>Outro ponto crítico é a ausência de estatísticas oficiais consolidadas sobre o uso da Lei de Alienação Parental em contextos de violência doméstica. Sem dados confiáveis, é difícil dimensionar o problema e propor mudanças legislativas eficazes.</p>
+
+            <h2 style="font-size: 1.3rem; margin: 1.2rem 0 0.8rem; color: var(--color-primary);">Uma análise estrutural: equilíbrio necessário</h2>
+            <p>Ao observar o sistema como um todo, fica evidente que a Lei 12.318/2010 foi concebida em um contexto de combate à alienação clássica – geralmente perpetrada pela genitora que detinha a guarda. Com o passar do tempo, a realidade judicial mostrou que o instituto pode ser utilizado como arma retaliatória, especialmente em litígios de alta conflituosidade. A solução, como em quase todas as questões de direito de família, não está na rigidez legal, mas na aplicação criteriosa, com apoio de equipes multidisciplinares e respeito ao princípio do melhor interesse da criança – que inclui o direito de crescer em ambiente livre de violência.</p>
+            <p>Propostas legislativas em tramitação no Congresso Nacional buscam incluir na lei a vedação expressa ao uso da alienação parental como mecanismo de silenciamento de denúncias de violência doméstica ou abuso sexual. Embora ainda incipientes, esses movimentos indicam uma necessária evolução na compreensão do fenômeno.</p>
+
+            <h2 style="font-size: 1.3rem; margin: 1.2rem 0 0.8rem; color: var(--color-primary);">Para além do gênero: quando ambos os lados sofrem</h2>
+            <p>Não se pode ignorar que homens também são vítimas de alienação parental real, em muitos casos com consequências devastadoras para o vínculo paterno-filial. A diferença está na assimetria de poder e no contexto sistêmico: mulheres que sofrem violência doméstica frequentemente têm sua credibilidade questionada quando denunciam, enquanto homens que são efetivamente alienados enfrentam uma batalha judicial longa e cara. Em ambos os cenários, a criança é a maior perdedora.</p>
+            <p>Assim, uma análise honesta exige que se reconheça: a lei é necessária, mas sua aplicação deve ser tecnicamente qualificada, isenta de viés de gênero e baseada em provas robustas, não em percepções subjetivas. O combate à alienação parental não pode servir de escudo para a impunidade de agressores, tampouco para a injustiça contra mães protetoras.</p>
+
+            <p>Como editora-chefe da PautaZero, entendo que o papel da análise institucional é justamente este: iluminar os pontos cegos do sistema, sem extremismos, e propor que as soluções sejam construídas sobre dados, empatia e respeito aos direitos fundamentais de todos os envolvidos – especialmente das crianças, cujo bem-estar deve ser sempre a estrela-guia do direito de família.</p>
+
+            <div style="margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary);" id="editorSignature">
+              <strong>Viviane Bza</strong><br>Editora-Chefe · PautaZero
+            </div>
+          </div>
+        </div>
+        <div class="email-capture">
+          <p><i class="fas fa-envelope"></i> Receba análises futuras</p>
+          <form id="newsletterForm" action="#" method="post">
+            <input type="email" name="email" placeholder="seu@email.com" required>
+            <button type="submit">Inscrever-se</button>
+          </form>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div>© 2026 PautaZero · Revista de análise de sistemas, comportamento e políticas estratégicas.</div>
+      <div style="display: flex; gap: 18px; color: var(--gold-dark); align-items: center;">
+        <i class="fab fa-linkedin"></i> <i class="fab fa-x-twitter"></i> <i class="fas fa-envelope"></i>
+        <span style="font-family: monospace;">editorial.pautazero@outlook.com</span>
+      </div>
+    </div>
+    <div class="footer-legal">Conteúdo editorial independente. As análises apresentadas refletem observações estruturais e não constituem aconselhamento jurídico, financeiro ou clínico. A PautaZero atua com base em critérios de responsabilidade informacional, respeitando contextos legais e institucionais aplicáveis.</div>
+  </footer>
+
+  <div class="archive-overlay" id="archiveOverlay">
+    <div class="archive-panel">
+      <div class="archive-header"><h3><i class="fas fa-archive"></i> Arquivo de artigos</h3><button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button></div>
+      <div class="archive-search"><input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)"></div>
+      <div class="archive-list" id="archiveList"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ========== 1. SISTEMA DINÂMICO DE IMAGEM (NUMERAÇÃO: DIA + PRIMEIRO NOME .jpg) ==========
+      function setupDynamicImage() {
+        const imgElement = document.getElementById('dynamicArticleImage');
+        if (!imgElement) return;
+        
+        // Extrair data do artigo (formato "09.04.2026" -> dia/mês "09.04")
+        const metaSpans = document.querySelectorAll('.article-meta span');
+        let dateStr = '';
+        for (let span of metaSpans) {
+          if (span.innerText.includes('.') && span.innerText.match(/\d{2}\.\d{2}\.\d{4}/)) {
+            dateStr = span.innerText.trim();
+            break;
+          }
+        }
+        let dayMonth = '';
+        if (dateStr) {
+          const parts = dateStr.split('.');
+          if (parts.length >= 2) dayMonth = `${parts[0]}.${parts[1]}`; // "09.04"
+        }
+        
+        // Extrair primeiro nome do editor (dentro de #editorSignature strong)
+        let firstName = 'viviane';
+        const editorStrong = document.querySelector('#editorSignature strong');
+        if (editorStrong && editorStrong.innerText.trim()) {
+          const fullName = editorStrong.innerText.trim();
+          firstName = fullName.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/gi, '');
+        } else {
+          // fallback alternativo: procura qualquer strong com nome de editor
+          const fallbackStrong = document.querySelector('.article-text div strong');
+          if (fallbackStrong) {
+            const fallbackName = fallbackStrong.innerText.trim();
+            firstName = fallbackName.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/gi, '');
+          }
+        }
+        
+        // Monta nome do arquivo seguindo o padrão: "dia-mês-primeiroNome.jpg" ou "09.04-viviane.jpg"
+        let finalFilename = '';
+        if (dayMonth) {
+          finalFilename = `${dayMonth}-${firstName}.jpg`;
+        } else {
+          finalFilename = `default-${firstName}.jpg`;
+        }
+        
+        const imageBasePath = '/assets/images/';
+        const imageSrc = imageBasePath + finalFilename;
+        
+        // Define o src da imagem com fallback nativo
+        imgElement.src = imageSrc;
+        imgElement.alt = `Imagem ilustrativa: alienação parental - ${finalFilename}`;
+        // Se falhar, o onerror já existente ativa o placeholder, mas incluímos log amigável
+        imgElement.onerror = function() {
+          if (!this.hasAttribute('data-fallback-triggered')) {
+            this.setAttribute('data-fallback-triggered', 'true');
+            this.src = 'https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada+('+finalFilename+')';
+          }
+        };
+      }
+      
+      // ========== 2. SHARE BUTTONS (TAMANHO MINÚSCULO, REDES BRASIL) ==========
+      function setupShareButtons() {
+        const currentUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+        
+        const shareFacebook = document.getElementById('shareFacebook');
+        const shareX = document.getElementById('shareX');
+        const shareLinkedin = document.getElementById('shareLinkedin');
+        const shareWhatsapp = document.getElementById('shareWhatsapp');
+        const shareTelegram = document.getElementById('shareTelegram');
+        const shareInstagram = document.getElementById('shareInstagram');
+        
+        if (shareFacebook) shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+        if (shareX) shareX.href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${currentUrl}`;
+        if (shareLinkedin) shareLinkedin.href = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${pageTitle}`;
+        if (shareWhatsapp) shareWhatsapp.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${currentUrl}`;
+        if (shareTelegram) shareTelegram.href = `https://t.me/share/url?url=${currentUrl}&text=${pageTitle}`;
+        
+        // Instagram: não tem share direto via URL, então copiamos link para área de transferência
+        if (shareInstagram) {
+          shareInstagram.addEventListener('click', (e) => {
+            e.preventDefault();
+            const linkToCopy = window.location.href;
+            navigator.clipboard.writeText(linkToCopy).then(() => {
+              alert('🔗 Link do artigo copiado! Agora você pode colar no Instagram, Stories ou Direct.');
+            }).catch(() => {
+              alert('Copie o link manualmente: ' + linkToCopy);
+            });
+          });
+        }
+      }
+      
+      // ========== 3. FUNÇÕES DE ARQUIVO (ORIGINAIS, APENAS MOCK) ==========
+      function openArchive() { document.getElementById('archiveOverlay').classList.add('active'); document.body.classList.add('archive-open'); renderEmptyArchive(); }
+      function closeArchive() { document.getElementById('archiveOverlay').classList.remove('active'); document.body.classList.remove('archive-open'); document.getElementById('archiveSearchInput').value = ''; }
+      function renderEmptyArchive() {
+        const archiveListDiv = document.getElementById('archiveList');
+        archiveListDiv.innerHTML = '<div class="no-results">Nenhum artigo publicado ainda. Em breve, novos conteúdos.</div>';
+      }
+      const searchInput = document.getElementById('archiveSearchInput');
+      if (searchInput) searchInput.addEventListener('input', () => renderEmptyArchive());
+      document.getElementById('archiveBtn').addEventListener('click', openArchive);
+      document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
+      document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
+
+      // Menu dropdown
+      const menuIconBtn = document.getElementById('menuIconBtn');
+      const menuDropdown = document.getElementById('menuDropdown');
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+      const currentTabLabel = document.getElementById('currentTabLabel');
+      menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
+      document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
+      
+      const pageMap = {
+        justica: 'justica.html',
+        politica: 'politica.html',
+        'saude-mental': 'saude-mental.html',
+        tecnologia: 'tecnologia.html',
+        seguranca: 'seguranca.html',
+        negocios: 'negocios.html',
+        global: 'global.html',
+        filantropia: 'filantropia.html',
+        home: '/'
+      };
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const tab = item.dataset.tab;
+          const target = pageMap[tab];
+          if (target) { window.location.href = target; } 
+          else {
+            currentTabLabel.innerText = item.innerText.trim();
+            dropdownItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            menuDropdown.classList.remove('active');
+          }
+        });
+      });
+
+      // Newsletter
+      document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input').value;
+        alert(`Obrigado pelo interesse! Em breve você receberá análises futuras em ${email}`);
+        this.reset();
+      });
+      
+      // Executa setup da imagem dinâmica e dos botões de compartilhamento
+      setupDynamicImage();
+      setupShareButtons();
+    })();
+  </script>
+  <!-- 
+    SISTEMA DE IMAGEM COM NUMERAÇÃO:
+    Padrão implementado: "DIA.MÊS-PRIMEIRONOME.jpg"
+    Exemplo concreto deste artigo: "09.04-viviane.jpg" (data 09.04 + primeiro nome "Viviane").
+    Basta colocar o arquivo correspondente em /assets/images/09.04-viviane.jpg
+    Para milhares de artigos, cada página automaticamente extrai sua data e primeiro nome do editor.
+    Caso queira sobrescrita manual, ajuste os dados no HTML (data no .article-meta e nome no strong da assinatura).
+  -->
+</body>
+</html>
