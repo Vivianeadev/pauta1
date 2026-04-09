@@ -140,6 +140,16 @@
       color: var(--gold-primary);
     }
     
+    /* ========== AJUSTE: Voltar para o início do lado direito ========== */
+    .top-nav-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0;
+    }
+    .top-nav-row .back-link {
+      margin-bottom: 0;
+    }
+    
     /* ========== NOVOS ESTILOS (APENAS PARA COMPARTILHAMENTO MINIATURA) ========== */
     .share-mini-bar {
       display: flex;
@@ -174,12 +184,16 @@
     }
     .share-mini-link i {
       font-size: 0.75rem;
+      color: var(--color-primary); /* garante visibilidade do ícone X */
     }
     .share-mini-link:hover {
       background: var(--gradient-gold-subtle);
       border-color: var(--gold-primary);
       color: var(--gold-dark);
       transform: translateY(-2px);
+    }
+    .share-mini-link:hover i {
+      color: var(--gold-dark);
     }
     @media (max-width: 700px) {
       .share-mini-link { width: 26px; height: 26px; font-size: 0.7rem; }
@@ -197,22 +211,25 @@
         <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
       <div class="menu-dropdown" id="menuDropdown">
-        <button class="dropdown-item" data-tab="home">🏠 Home</button>
-        <button class="dropdown-item" data-tab="justica">⚖️ Justiça</button>
-        <button class="dropdown-item" data-tab="politica">🌍 Política</button>
-        <button class="dropdown-item" data-tab="saude-mental">🧠 Saúde Mental</button>
-        <button class="dropdown-item" data-tab="tecnologia">💻 Tecnologia</button>
-        <button class="dropdown-item" data-tab="seguranca">🚔 Segurança</button>
-        <button class="dropdown-item" data-tab="negocios">💼 Negócios</button>
-        <button class="dropdown-item" data-tab="global">✈️ Global</button>
-        <button class="dropdown-item" data-tab="filantropia">🌱 Filantropia</button>
+        <!-- Novos itens conforme solicitação -->
+        <button class="dropdown-item" data-tab="justica">⚖️ Justiça & Direito</button>
+        <button class="dropdown-item" data-tab="politica">🌍 Política & Geopolítica</button>
+        <button class="dropdown-item" data-tab="saude-mental">🧠 Saúde Mental & Psiquiatria</button>
+        <button class="dropdown-item" data-tab="seguranca">🚔 Segurança & Prisional</button>
+        <button class="dropdown-item" data-tab="negocios">💼 Negócios & Estratégia</button>
+        <button class="dropdown-item" data-tab="global">✈️ Viagens & Visão Global</button>
+        <button class="dropdown-item" data-tab="filantropia">🌱 Filantropia & Impacto</button>
+        <button class="dropdown-item" data-tab="psicologia">🧠 Psicologia & Comportamento</button>
       </div>
     </div>
   </header>
 
   <main>
     <div class="container">
-      <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+      <!-- Link "Voltar para o início" agora alinhado à direita -->
+      <div class="top-nav-row">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+      </div>
       <article class="article-page">
         <div class="article-header">
           <div class="article-meta">
@@ -272,7 +289,7 @@
             </div>
           </div>
         </div>
-        <!-- SEÇÃO DE NEWSLETTER REMOVIDA CONFORME SOLICITADO -->
+        <!-- SEÇÃO DE NEWSLETTER REMOVIDA CONFORME SOLICITADO ANTERIORMENTE -->
       </article>
     </div>
   </main>
@@ -397,7 +414,7 @@
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
 
-      // Menu dropdown
+      // Menu dropdown com novos itens e mapeamento atualizado
       const menuIconBtn = document.getElementById('menuIconBtn');
       const menuDropdown = document.getElementById('menuDropdown');
       const dropdownItems = document.querySelectorAll('.dropdown-item');
@@ -405,23 +422,26 @@
       menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
       document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
       
+      // Mapeamento das novas abas para páginas (mantendo coerência)
       const pageMap = {
         justica: 'justica.html',
         politica: 'politica.html',
         'saude-mental': 'saude-mental.html',
-        tecnologia: 'tecnologia.html',
         seguranca: 'seguranca.html',
         negocios: 'negocios.html',
         global: 'global.html',
         filantropia: 'filantropia.html',
-        home: 'index.html'
+        psicologia: 'psicologia.html'
       };
+      
       dropdownItems.forEach(item => {
         item.addEventListener('click', () => {
           const tab = item.dataset.tab;
           const target = pageMap[tab];
-          if (target) { window.location.href = target; } 
-          else {
+          if (target) { 
+            window.location.href = target; 
+          } else {
+            // Fallback: atualiza o label localmente (caso não haja página)
             currentTabLabel.innerText = item.innerText.trim();
             dropdownItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
