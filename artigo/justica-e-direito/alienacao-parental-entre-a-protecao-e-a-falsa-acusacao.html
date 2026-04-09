@@ -140,6 +140,16 @@
       color: var(--gold-primary);
     }
     
+    /* ========== AJUSTE: Voltar para o início do lado direito ========== */
+    .top-nav-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0;
+    }
+    .top-nav-row .back-link {
+      margin-bottom: 0;
+    }
+    
     /* ========== NOVOS ESTILOS (APENAS PARA COMPARTILHAMENTO MINIATURA) ========== */
     .share-mini-bar {
       display: flex;
@@ -174,12 +184,16 @@
     }
     .share-mini-link i {
       font-size: 0.75rem;
+      color: var(--color-primary); /* garante visibilidade do ícone X */
     }
     .share-mini-link:hover {
       background: var(--gradient-gold-subtle);
       border-color: var(--gold-primary);
       color: var(--gold-dark);
       transform: translateY(-2px);
+    }
+    .share-mini-link:hover i {
+      color: var(--gold-dark);
     }
     @media (max-width: 700px) {
       .share-mini-link { width: 26px; height: 26px; font-size: 0.7rem; }
@@ -197,22 +211,25 @@
         <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
       <div class="menu-dropdown" id="menuDropdown">
-        <button class="dropdown-item" data-tab="home">🏠 Home</button>
-        <button class="dropdown-item" data-tab="justica">⚖️ Justiça</button>
-        <button class="dropdown-item" data-tab="politica">🌍 Política</button>
-        <button class="dropdown-item" data-tab="saude-mental">🧠 Saúde Mental</button>
-        <button class="dropdown-item" data-tab="tecnologia">💻 Tecnologia</button>
-        <button class="dropdown-item" data-tab="seguranca">🚔 Segurança</button>
-        <button class="dropdown-item" data-tab="negocios">💼 Negócios</button>
-        <button class="dropdown-item" data-tab="global">✈️ Global</button>
-        <button class="dropdown-item" data-tab="filantropia">🌱 Filantropia</button>
+        <!-- Novos itens conforme solicitado -->
+        <button class="dropdown-item" data-tab="justica">⚖️ Justiça & Direito</button>
+        <button class="dropdown-item" data-tab="politica">🌍 Política & Geopolítica</button>
+        <button class="dropdown-item" data-tab="saude-mental">🧠 Saúde Mental & Psiquiatria</button>
+        <button class="dropdown-item" data-tab="seguranca">🚔 Segurança & Prisional</button>
+        <button class="dropdown-item" data-tab="negocios">💼 Negócios & Estratégia</button>
+        <button class="dropdown-item" data-tab="global">✈️ Viagens & Visão Global</button>
+        <button class="dropdown-item" data-tab="filantropia">🌱 Filantropia & Impacto</button>
+        <button class="dropdown-item" data-tab="psicologia">🧠 Psicologia & Comportamento</button>
       </div>
     </div>
   </header>
 
   <main>
     <div class="container">
-      <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+      <!-- Link "Voltar para o início" agora alinhado à direita -->
+      <div class="top-nav-row">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+      </div>
       <article class="article-page">
         <div class="article-header">
           <div class="article-meta">
@@ -268,7 +285,7 @@
             </div>
           </div>
         </div>
-        <!-- SEÇÃO DE NEWSLETTER REMOVIDA CONFORME SOLICITADO -->
+        <!-- SEÇÃO DE NEWSLETTER REMOVIDA CONFORME SOLICITADO ANTERIORMENTE -->
       </article>
     </div>
   </main>
@@ -299,7 +316,6 @@
         const imgElement = document.getElementById('dynamicArticleImage');
         if (!imgElement) return;
         
-        // Extrair data do artigo (formato "09.04.2026" -> dia/mês "09.04")
         const metaSpans = document.querySelectorAll('.article-meta span');
         let dateStr = '';
         for (let span of metaSpans) {
@@ -311,17 +327,15 @@
         let dayMonth = '';
         if (dateStr) {
           const parts = dateStr.split('.');
-          if (parts.length >= 2) dayMonth = `${parts[0]}.${parts[1]}`; // "09.04"
+          if (parts.length >= 2) dayMonth = `${parts[0]}.${parts[1]}`;
         }
         
-        // Extrair primeiro nome do editor (dentro de #editorSignature strong)
         let firstName = 'viviane';
         const editorStrong = document.querySelector('#editorSignature strong');
         if (editorStrong && editorStrong.innerText.trim()) {
           const fullName = editorStrong.innerText.trim();
           firstName = fullName.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/gi, '');
         } else {
-          // fallback alternativo: procura qualquer strong com nome de editor
           const fallbackStrong = document.querySelector('.article-text div strong');
           if (fallbackStrong) {
             const fallbackName = fallbackStrong.innerText.trim();
@@ -329,7 +343,6 @@
           }
         }
         
-        // Monta nome do arquivo seguindo o padrão: "dia-mês-primeiroNome.jpg" ou "09.04-viviane.jpg"
         let finalFilename = '';
         if (dayMonth) {
           finalFilename = `${dayMonth}-${firstName}.jpg`;
@@ -340,10 +353,8 @@
         const imageBasePath = '/assets/images/';
         const imageSrc = imageBasePath + finalFilename;
         
-        // Define o src da imagem com fallback nativo
         imgElement.src = imageSrc;
         imgElement.alt = `Imagem ilustrativa: alienação parental - ${finalFilename}`;
-        // Se falhar, o onerror já existente aciona o placeholder, mas incluímos log amigável
         imgElement.onerror = function() {
           if (!this.hasAttribute('data-fallback-triggered')) {
             this.setAttribute('data-fallback-triggered', 'true');
@@ -352,7 +363,7 @@
         };
       }
       
-      // ========== 2. SHARE BUTTONS (TAMANHO MINÚSCULO, REDES BRASIL) ==========
+      // ========== 2. SHARE BUTTONS ==========
       function setupShareButtons() {
         const currentUrl = encodeURIComponent(window.location.href);
         const pageTitle = encodeURIComponent(document.title);
@@ -370,7 +381,6 @@
         if (shareWhatsapp) shareWhatsapp.href = `https://api.whatsapp.com/send?text=${pageTitle}%20${currentUrl}`;
         if (shareTelegram) shareTelegram.href = `https://t.me/share/url?url=${currentUrl}&text=${pageTitle}`;
         
-        // Instagram: não tem share direto via URL, então copiamos link para área de transferência
         if (shareInstagram) {
           shareInstagram.addEventListener('click', (e) => {
             e.preventDefault();
@@ -384,7 +394,7 @@
         }
       }
       
-      // ========== 3. FUNÇÕES DE ARQUIVO (ORIGINAIS, APENAS MOCK) ==========
+      // ========== 3. FUNÇÕES DE ARQUIVO ==========
       function openArchive() { document.getElementById('archiveOverlay').classList.add('active'); document.body.classList.add('archive-open'); renderEmptyArchive(); }
       function closeArchive() { document.getElementById('archiveOverlay').classList.remove('active'); document.body.classList.remove('archive-open'); document.getElementById('archiveSearchInput').value = ''; }
       function renderEmptyArchive() {
@@ -398,7 +408,7 @@
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
 
-      // Menu dropdown
+      // Menu dropdown com novos itens e mapeamento atualizado
       const menuIconBtn = document.getElementById('menuIconBtn');
       const menuDropdown = document.getElementById('menuDropdown');
       const dropdownItems = document.querySelectorAll('.dropdown-item');
@@ -406,23 +416,26 @@
       menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
       document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
       
+      // Mapeamento das novas abas para páginas (mantendo coerência)
       const pageMap = {
         justica: 'justica.html',
         politica: 'politica.html',
         'saude-mental': 'saude-mental.html',
-        tecnologia: 'tecnologia.html',
         seguranca: 'seguranca.html',
         negocios: 'negocios.html',
         global: 'global.html',
         filantropia: 'filantropia.html',
-        home: 'index.html'
+        psicologia: 'psicologia.html'
       };
+      
       dropdownItems.forEach(item => {
         item.addEventListener('click', () => {
           const tab = item.dataset.tab;
           const target = pageMap[tab];
-          if (target) { window.location.href = target; } 
-          else {
+          if (target) { 
+            window.location.href = target; 
+          } else {
+            // Fallback: atualiza o label localmente (caso não haja página)
             currentTabLabel.innerText = item.innerText.trim();
             dropdownItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
@@ -431,18 +444,9 @@
         });
       });
       
-      // Executa setup da imagem dinâmica e dos botões de compartilhamento
       setupDynamicImage();
       setupShareButtons();
     })();
   </script>
-  <!-- 
-    SISTEMA DE IMAGEM COM NUMERAÇÃO:
-    Padrão implementado: "DIA.MÊS-PRIMEIRONOME.jpg"
-    Exemplo concreto deste artigo: "09.04-viviane.jpg" (data 09.04 + primeiro nome "Viviane").
-    Basta colocar o arquivo correspondente em /assets/images/09.04-viviane.jpg
-    Para milhares de artigos, cada página automaticamente extrai sua data e primeiro nome do editor.
-    Caso queira sobrescrita manual, ajuste os dados no HTML (data no .article-meta e nome no strong da assinatura).
-  -->
 </body>
 </html>
