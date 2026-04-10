@@ -184,7 +184,7 @@
     }
     .share-mini-link i {
       font-size: 0.75rem;
-      color: var(--color-primary); /* garante visibilidade do ícone X */
+      color: var(--color-primary);
     }
     .share-mini-link:hover {
       background: var(--gradient-gold-subtle);
@@ -204,14 +204,13 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <div class="logo-area"><a href="index.html" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
+      <div class="logo-area"><a href="/index.html" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
       <div class="nav-hamburger">
         <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
         <span class="current-tab-name" id="currentTabLabel">Justiça & Direito</span>
         <div class="menu-icon-btn" id="menuIconBtn"><i class="fas fa-bars"></i></div>
       </div>
       <div class="menu-dropdown" id="menuDropdown">
-        <!-- Novos itens conforme solicitado -->
         <button class="dropdown-item" data-tab="justica">⚖️ Justiça & Direito</button>
         <button class="dropdown-item" data-tab="politica">🌍 Política & Geopolítica</button>
         <button class="dropdown-item" data-tab="saude-mental">🧠 Saúde Mental & Psiquiatria</button>
@@ -226,9 +225,8 @@
 
   <main>
     <div class="container">
-      <!-- Link "Voltar para o início" agora alinhado à direita -->
       <div class="top-nav-row">
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+        <a href="/index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
       </div>
       <article class="article-page">
         <div class="article-header">
@@ -237,7 +235,6 @@
             <span><i class="far fa-calendar-alt"></i> 09.04.2026</span>
             <span><i class="far fa-clock"></i> 9 min</span>
           </div>
-          <!-- MINI SHARE BUTTONS (TAMANHO MINÚSCULO) -->
           <div class="share-mini-bar" id="shareMiniBar">
             <span class="share-mini-label"><i class="fas fa-share-alt"></i> compartilhe</span>
             <a href="#" class="share-mini-link" id="shareFacebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -285,7 +282,6 @@
             </div>
           </div>
         </div>
-        <!-- SEÇÃO DE NEWSLETTER REMOVIDA CONFORME SOLICITADO ANTERIORMENTE -->
       </article>
     </div>
   </main>
@@ -311,11 +307,12 @@
 
   <script>
     (function() {
-      // ========== 1. SISTEMA DINÂMICO DE IMAGEM (NUMERAÇÃO: DIA + PRIMEIRO NOME .jpg) ==========
+      // ========== 1. SISTEMA DINÂMICO DE IMAGEM (PADRÃO: assets/images/09.04.alienacao.jpg) ==========
       function setupDynamicImage() {
         const imgElement = document.getElementById('dynamicArticleImage');
         if (!imgElement) return;
         
+        // Extrai a data do article-meta (formato "09.04.2026")
         const metaSpans = document.querySelectorAll('.article-meta span');
         let dateStr = '';
         for (let span of metaSpans) {
@@ -324,46 +321,39 @@
             break;
           }
         }
+        
         let dayMonth = '';
         if (dateStr) {
           const parts = dateStr.split('.');
           if (parts.length >= 2) dayMonth = `${parts[0]}.${parts[1]}`;
         }
         
-        let firstName = 'viviane';
-        const editorStrong = document.querySelector('#editorSignature strong');
-        if (editorStrong && editorStrong.innerText.trim()) {
-          const fullName = editorStrong.innerText.trim();
-          firstName = fullName.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/gi, '');
-        } else {
-          const fallbackStrong = document.querySelector('.article-text div strong');
-          if (fallbackStrong) {
-            const fallbackName = fallbackStrong.innerText.trim();
-            firstName = fallbackName.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/gi, '');
-          }
-        }
-        
+        // Define o nome da imagem seguindo o padrão: data.alienacao.jpg
         let finalFilename = '';
         if (dayMonth) {
-          finalFilename = `${dayMonth}-${firstName}.jpg`;
+          finalFilename = `${dayMonth}.alienacao.jpg`;
         } else {
-          finalFilename = `default-${firstName}.jpg`;
+          // fallback caso a data não seja encontrada
+          finalFilename = `default.alienacao.jpg`;
         }
         
+        // Caminho absoluto a partir da raiz do site
         const imageBasePath = '/assets/images/';
         const imageSrc = imageBasePath + finalFilename;
         
         imgElement.src = imageSrc;
-        imgElement.alt = `Imagem ilustrativa: alienação parental - ${finalFilename}`;
+        imgElement.alt = `Imagem ilustrativa: Alienação Parental - ${finalFilename}`;
+        
+        // Tratamento de erro: se a imagem não existir, exibe placeholder informativo
         imgElement.onerror = function() {
           if (!this.hasAttribute('data-fallback-triggered')) {
             this.setAttribute('data-fallback-triggered', 'true');
-            this.src = 'https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada+('+finalFilename+')';
+            this.src = 'https://placehold.co/600x400/fefaf5/B8860B?text=Imagem+não+encontrada+(' + encodeURIComponent(finalFilename) + ')';
           }
         };
       }
       
-      // ========== 2. SHARE BUTTONS ==========
+      // ========== 2. SHARE BUTTONS (mantido original) ==========
       function setupShareButtons() {
         const currentUrl = encodeURIComponent(window.location.href);
         const pageTitle = encodeURIComponent(document.title);
@@ -394,7 +384,7 @@
         }
       }
       
-      // ========== 3. FUNÇÕES DE ARQUIVO ==========
+      // ========== 3. FUNÇÕES DE ARQUIVO (idênticas ao original) ==========
       function openArchive() { document.getElementById('archiveOverlay').classList.add('active'); document.body.classList.add('archive-open'); renderEmptyArchive(); }
       function closeArchive() { document.getElementById('archiveOverlay').classList.remove('active'); document.body.classList.remove('archive-open'); document.getElementById('archiveSearchInput').value = ''; }
       function renderEmptyArchive() {
@@ -408,7 +398,7 @@
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
 
-      // Menu dropdown com novos itens e mapeamento atualizado
+      // Menu dropdown (comportamento original)
       const menuIconBtn = document.getElementById('menuIconBtn');
       const menuDropdown = document.getElementById('menuDropdown');
       const dropdownItems = document.querySelectorAll('.dropdown-item');
@@ -416,7 +406,6 @@
       menuIconBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('active'); });
       document.addEventListener('click', (e) => { if (!menuDropdown.contains(e.target) && !menuIconBtn.contains(e.target)) menuDropdown.classList.remove('active'); });
       
-      // Mapeamento das novas abas para páginas (mantendo coerência)
       const pageMap = {
         justica: 'justica.html',
         politica: 'politica.html',
@@ -435,7 +424,6 @@
           if (target) { 
             window.location.href = target; 
           } else {
-            // Fallback: atualiza o label localmente (caso não haja página)
             currentTabLabel.innerText = item.innerText.trim();
             dropdownItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
@@ -444,6 +432,7 @@
         });
       });
       
+      // Executa as funções
       setupDynamicImage();
       setupShareButtons();
     })();
