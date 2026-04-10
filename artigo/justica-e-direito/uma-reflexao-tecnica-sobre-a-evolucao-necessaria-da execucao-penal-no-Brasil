@@ -341,7 +341,7 @@
         }
         
         // Extrair primeiro nome do editor (dentro de #editorSignature strong)
-        let firstName = 'viviane';
+        let firstName = 'alienacao';
         const editorStrong = document.querySelector('#editorSignature strong');
         if (editorStrong && editorStrong.innerText.trim()) {
           const fullName = editorStrong.innerText.trim();
@@ -461,8 +461,8 @@
   </script>
   <!-- 
     SISTEMA DE IMAGEM COM NUMERAÇÃO:
-    Padrão: "DIA.MÊS-PRIMEIRONOME.jpg" -> neste artigo: "09.04-viviane.jpg"
-    Basta colocar o arquivo correspondente em /assets/images/09.04-viviane.jpg
+    Padrão: "DIA.MÊS-PRIMEIRONOME.jpg" -> neste artigo: "09.04.alienacao.jpg"
+    Basta colocar o arquivo correspondente em /assets/images/09.04.alienacao.jpg
   -->
 </body>
 </html>
