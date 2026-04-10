@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* SEU CSS EXISTENTE - mantenha o mesmo que você já tem */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --color-primary: #0a3147; --gold-primary: #D4AF37; --gold-dark: #B8860B;
@@ -59,26 +58,43 @@
   </style>
 </head>
 <body>
-  <header class="site-header"><div class="header-inner"><a href="/" class="logo">Pauta<span>Zero</span></a></div></header>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">Pauta<span>Zero</span></a>
+    </div>
+  </header>
   <main class="container">
     <div class="construction-icon"><i class="fas fa-hard-hat"></i></div>
     <h1>Conteúdo em construção</h1>
     <p>Estamos desenvolvendo este artigo com a profundidade analítica que você espera da PautaZero.<br>Em breve, publicaremos análises completas sobre este tema.</p>
+    
     <div class="newsletter-box">
       <h2><i class="fas fa-bell"></i> avise-me quando pronto</h2>
       <form id="formNewsletter">
-        <div class="form-group"><input type="email" id="email" placeholder="seu melhor e-mail" required></div>
-        <div class="checkbox-group"><input type="checkbox" id="privacyConsent" required><label for="privacyConsent">aceito a política de privacidade (ver abaixo)</label></div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="seu melhor e-mail" required>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="privacyConsent" required>
+          <label for="privacyConsent">aceito a política de privacidade (ver abaixo)</label>
+        </div>
         <button type="submit" class="btn-subscribe">quero ser avisado</button>
         <div id="statusMsg"></div>
       </form>
     </div>
-    <div class="privacy-note"><i class="fas fa-lock"></i> política de privacidade: seus dados serão usados exclusivamente para enviar atualizações sobre este conteúdo. não compartilhamos com terceiros. você pode cancelar a qualquer momento via link nos e-mails. ao enviar, você concorda com esta política.</div>
+
+    <div class="privacy-note">
+      <i class="fas fa-lock"></i> política de privacidade: seus dados serão usados exclusivamente para enviar atualizações sobre este conteúdo. não compartilhamos com terceiros. você pode cancelar a qualquer momento via link nos e-mails. ao enviar, você concorda com esta política.
+    </div>
+
     <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> voltar para a home</a>
   </main>
-  <footer class="site-footer"><div class="container" style="font-size: 0.65rem;">© 2026 PautaZero · curadoria estrutural sem ruído</div></footer>
+  <footer class="site-footer">
+    <div class="container" style="font-size: 0.65rem;">© 2026 PautaZero · curadoria estrutural sem ruído</div>
+  </footer>
+
   <script>
-    // 🔁 COLE A URL DO SEU WORKER AQUI (ex: https://pautazerowaitlist.abc123.workers.dev)
+    // 🔁 SUBSTITUA A URL ABAIXO PELA URL REAL DO SEU WORKER
     const WORKER_URL = "https://pautazerowaitlist.SEU_SUBDOMINIO.workers.dev";
 
     const form = document.getElementById("formNewsletter");
