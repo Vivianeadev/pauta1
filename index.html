@@ -266,6 +266,77 @@
     @media (max-width: 550px) {
       .topics-list li { width: 100%; }
     }
+
+    /* ========== NOVO ESTILO: POLÍTICA DE PRIVACIDADE EM 3 COLUNAS EXPANSÍVEIS ========== */
+    .privacy-collapsible {
+      max-width: 1100px;
+      margin: 1.5rem auto 0.5rem;
+      padding: 0 20px;
+    }
+    .privacy-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .privacy-col {
+      background: rgba(255,255,245,0.4);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .privacy-col-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: center;
+      letter-spacing: 1px;
+      color: var(--color-primary);
+      background: rgba(212, 175, 55, 0.08);
+      padding: 0.9rem 0.5rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      transition: 0.2s;
+      text-transform: uppercase;
+    }
+    .privacy-col-title:hover {
+      background: rgba(212, 175, 55, 0.18);
+      color: var(--gold-dark);
+    }
+    .privacy-col-content {
+      display: none;
+      padding: 1rem;
+      font-size: 0.7rem;
+      line-height: 1.5;
+      color: var(--color-text-light);
+      background: var(--color-bg-card);
+    }
+    .privacy-col-content p {
+      margin-bottom: 0.6rem;
+    }
+    .privacy-col-content strong {
+      color: var(--color-primary);
+      font-family: var(--font-serif);
+      font-weight: 500;
+    }
+    .privacy-col-content .privacy-email {
+      font-family: monospace;
+      background: rgba(212,175,55,0.1);
+      padding: 0.1rem 0.3rem;
+      border-radius: 6px;
+    }
+    .privacy-header-note {
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 750px) {
+      .privacy-cols { grid-template-columns: 1fr; gap: 0.8rem; }
+      .privacy-collapsible { padding: 0 16px; }
+    }
   </style>
 </head>
 <body>
@@ -315,337 +386,9 @@
         <span style="font-family: monospace;">editorial.pautazero@outlook.com</span>
       </div>
     </div>
-    <div class="footer-legal">Conteúdo editorial independente. As análises apresentadas refletem observações estruturais e não constituem aconselhamento jurídico, financeiro ou clínico. A PautaZero atua com base em critérios de responsabilidade informacional, respeitando contextos legais e institucionais aplicáveis.</div>
-  </footer>
 
-  <div class="archive-overlay" id="archiveOverlay">
-    <div class="archive-panel">
-      <div class="archive-header"><h3><i class="fas fa-archive"></i> Arquivo de artigos</h3><button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button></div>
-      <div class="archive-search"><input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)"></div>
-      <div class="archive-list" id="archiveList"></div>
-    </div>
-  </div>
-
-  <div class="luxury-modal" id="topicModal">
-    <div class="modal-content">
-      <div class="modal-header"><h3 id="modalTitle">Título</h3><button class="modal-close" id="closeModalBtn"><i class="fas fa-times"></i></button></div>
-      <div class="modal-subtitle">SUBGRUPOS & TEMAS ESTRATÉGICOS</div>
-      <div id="modalTopicsList"></div>
-      <div class="modal-footer-note">Artigos completos em breve nesta seção. Conteúdo progressivo.</div>
-    </div>
-  </div>
-
-  <script>
-    (function() {
-      // ==================== TÚNEL DE VERIFICAÇÃO PARA TODOS OS LINKS DE ARTIGO ====================
-      // Cache de existência de páginas (HEAD request + localStorage)
-      const pageCache = new Map();
-      
-      function loadCacheFromStorage() {
-        try {
-          const stored = localStorage.getItem('PautaZero_pageCache');
-          if (stored) {
-            const parsed = JSON.parse(stored);
-            if (parsed && parsed.expiry > Date.now()) {
-              for (const [url, exists] of Object.entries(parsed.data)) pageCache.set(url, exists);
-              return true;
-            }
-          }
-        } catch(e) {}
-        return false;
-      }
-      
-      function saveCacheToStorage() {
-        try {
-          const cacheObj = {};
-          for (const [url, exists] of pageCache.entries()) cacheObj[url] = exists;
-          localStorage.setItem('PautaZero_pageCache', JSON.stringify({ data: cacheObj, expiry: Date.now() + 3600000 }));
-        } catch(e) {}
-      }
-      
-      async function checkIfPageExists(url) {
-        if (pageCache.has(url)) return pageCache.get(url);
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 3000);
-          const response = await fetch(url, { method: 'HEAD', signal: controller.signal });
-          clearTimeout(timeoutId);
-          const exists = response.ok;
-          pageCache.set(url, exists);
-          saveCacheToStorage();
-          return exists;
-        } catch(err) {
-          pageCache.set(url, false);
-          return false;
-        }
-      }
-      
-      // Função principal de navegação com túnel: verifica se a página existe, senão vai para construcao.html
-      let isNavigating = false;
-      async function navigateToWithCheck(url) {
-        if (isNavigating) return;
-        // Evita loop caso a própria construcao.html seja verificada
-        if (url.includes('construcao.html')) {
-          window.location.href = url;
-          return;
-        }
-        isNavigating = true;
-        document.body.classList.add('tunnel-loading');
-        try {
-          const exists = await checkIfPageExists(url);
-          if (exists) {
-            window.location.href = url;
-          } else {
-            window.location.href = 'construcao.html';
-          }
-        } catch (err) {
-          window.location.href = 'construcao.html';
-        } finally {
-          isNavigating = false;
-          document.body.classList.remove('tunnel-loading');
-        }
-      }
-      
-      // Intercepta todos os cliques em links que apontam para artigos (caminho /artigo/...)
-      document.body.addEventListener('click', (e) => {
-        let target = e.target.closest('a');
-        if (!target) return;
-        const href = target.getAttribute('href');
-        if (!href) return;
-        // Apenas links internos que apontam para /artigo/ (não interfere em links externos, #, ou /)
-        if (href.startsWith('/artigo/') || (href.startsWith('./artigo/') || href.startsWith('artigo/'))) {
-          e.preventDefault();
-          let absoluteUrl = href;
-          if (!absoluteUrl.startsWith('/')) absoluteUrl = '/' + absoluteUrl;
-          navigateToWithCheck(absoluteUrl);
-        }
-        // Também intercepta links que venham a ser gerados com url completa (ex: http://.../artigo/...)
-        if (href.includes('/artigo/') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
-          e.preventDefault();
-          navigateToWithCheck(href);
-        }
-      });
-      
-      // ==================== DADOS COMPLETOS: 17 CATEGORIAS ====================
-      const subtopicsByTopic = {
-        politica: {
-          "Política monetária": ["Taxa de juros e inflação", "Emissão de moeda", "Controle econômico estatal"],
-          "Relações internacionais": ["Conflitos por recursos", "Guerra econômica", "Sanções internacionais"],
-          "Regulação global": ["Criptomoedas", "Bancos digitais", "IA e vigilância"],
-          "Poder institucional": ["Lobby político", "Influência corporativa", "Decisões estratégicas"]
-        },
-        "seguranca-total": {
-          "Segurança pessoal": ["Autoproteção urbana", "Rotinas seguras", "Identificação de risco"],
-          "Segurança digital": ["Ataques cibernéticos", "Engenharia social", "Proteção de dados"],
-          "Segurança patrimonial": ["Blindagem de patrimônio", "Segurança para alta renda", "Proteção de ativos"],
-          "Inteligência": ["Coleta de informações", "Análise de risco", "Prevenção estratégica"]
-        },
-        "prisional-policial": {
-          "Estrutura prisional": ["Superlotação", "Facções criminosas", "Economia interna"],
-          "Investigação": ["Perfil criminal", "Interrogatório", "Linguagem corporal"],
-          "Perícia": ["DNA", "Balística", "Cena do crime"],
-          "Inteligência policial": ["Monitoramento", "Operações estratégicas", "Prevenção criminal"]
-        },
-        "politicas-publicas": {
-          "Segurança pública": ["Combate ao crime", "Policiamento", "Políticas de prevenção"],
-          "Saúde pública": ["Saúde mental coletiva", "Acesso a tratamento", "Programas governamentais"],
-          "Economia pública": ["Tributação", "Incentivos", "Desigualdade"],
-          "Regulação": ["Tecnologia", "Mercado financeiro", "Privacidade"]
-        },
-        "economia-super-ricos": {
-          "Alta renda": ["Mentalidade milionária", "Construção de riqueza", "Diferença entre classes"],
-          "Estruturas financeiras": ["Holdings", "Offshores", "Family offices"],
-          "Estratégia patrimonial": ["Diversificação", "Proteção de ativos", "Gestão de risco"],
-          "Invisibilidade": ["Riqueza silenciosa", "Baixo perfil", "Capital oculto"]
-        },
-        "saude-mental": {
-          "Transtornos": ["Ansiedade", "Depressão", "Burnout"],
-          "Emoções": ["Regulação emocional", "Controle de impulsos", "Inteligência emocional"],
-          "Trauma": ["Trauma infantil", "PTSD", "Recuperação"],
-          "Performance": ["Foco", "Disciplina", "Alta performance mental"]
-        },
-        "psicopatia": {
-          "Clínica": ["Transtorno de Personalidade Antissocial", "Estrutura cerebral", "Falta de empatia"],
-          "Social": ["Manipulação", "Gaslighting", "Mentira patológica"],
-          "Corporativa": ["Psicopatas em empresas", "Liderança tóxica", "Poder sem empatia"],
-          "Investigativa": ["Serial killers", "Padrões comportamentais", "Assinatura criminal"]
-        },
-        "familia-alienacao": {
-          "Psicologia familiar": ["Divórcio", "Vínculo parental", "Conflitos"],
-          "Jurídico": ["Guarda", "Provas", "Perícia"],
-          "Alienação parental": ["Manipulação de filhos", "Rejeição induzida", "Consequências psicológicas"],
-          "Falsas acusações": ["Uso estratégico", "Distorção de fatos", "Erros judiciais", "Danos ao acusado"]
-        },
-        "crime-investigacao": {
-          "Criminalidade": ["Crimes violentos", "Crimes financeiros", "Crimes organizados"],
-          "Psicologia criminal": ["Motivação", "Perfil do criminoso", "Escalada de violência"],
-          "Estratégia investigativa": ["Planejamento de crime", "Investigação", "Detecção"]
-        },
-        "saude-mental-extremo": {
-          "Prisional": ["Confinamento", "Sobrevivência psicológica", "Adaptação a risco"],
-          "Alta pressão": ["Colapso emocional", "Burnout extremo", "Resiliência"],
-          "Trauma e recuperação": ["Pós-trauma", "Reintegração", "Terapias de exposição"]
-        },
-        "negocios": {
-          "Empreendedorismo": ["Modelos de negócio", "Startups de impacto", "Estratégias de crescimento"],
-          "Estrutura": ["Holding", "Captação de recursos", "Governança"],
-          "Crescimento & Branding": ["Escala", "Branding pessoal", "Networking de alto valor"]
-        },
-        "visao-global": {
-          "Internacional": ["Países estratégicos", "Cultura institucional global", "Expansão internacional"],
-          "Mobilidade": ["Vistos e residência", "Infraestrutura global", "Estilo de vida nômade"],
-          "Redes globais": ["Networking global", "Negócios internacionais", "Observação de políticas"]
-        },
-        "filantropia": {
-          "Impacto social": ["Tecnologia social", "Inclusão digital", "Projetos humanitários"],
-          "Educação": ["Acesso à educação", "Bolsas e mérito", "Inovação pedagógica"],
-          "Investimento de impacto": ["ESG", "Retorno social", "Legado filantrópico"]
-        },
-        "historias-reais": {
-          "Superação": ["Minha história real", "Erros graves", "Recomeço"],
-          "Queda e ascensão": ["Fracassos públicos", "Reconstrução", "Decisões difíceis"],
-          "Bastidores": ["Verdades ocultas", "O que não contam", "Bastidores do sucesso"]
-        },
-        "anonimo": {
-          "Confissões": ["História anônima", "Segredos de família", "Arrependimento"],
-          "Relatos sensíveis": ["Abuso", "Violência institucional", "Saúde mental em silêncio"],
-          "Apoio e comunidade": ["Pedido de ajuda", "Comunidade segura", "Superação anônima"]
-        },
-        "hibridos": {
-          "Psicopatia + Negócios": ["Liderança psicopática", "Poder sem escrúpulos", "Manipulação corporativa"],
-          "Segurança + Economia": ["Proteção de ultra-ricos", "Risco geopolítico", "Ativos em paraísos"],
-          "Política + Crime": ["Corrupção sistêmica", "Estado paralelo", "Financiamento ilegal"],
-          "Prisional + Psicologia": ["Efeitos do cárcere", "Psicologia da reclusão", "Reintegração falha"],
-          "História pessoal + riqueza": ["Trauma e fortuna", "Herança e conflito", "Ascensão emocional"],
-          "Alienação parental + psicologia": ["Dano psicológico à criança", "Síndrome da alienação", "Justiça e subjetividade"]
-        }
-      };
-
-      const topicTitles = {
-        politica: "Política & Geopolítica", "seguranca-total": "Segurança Total", "prisional-policial": "Sistema Prisional & Policial",
-        "politicas-publicas": "Políticas Públicas", "economia-super-ricos": "Economia & Super Ricos", "saude-mental": "Saúde Mental",
-        "psicopatia": "Psicopatia & Comportamento Extremo", "familia-alienacao": "Família & Alienação Parental",
-        "crime-investigacao": "Crime & Investigação", "saude-mental-extremo": "Saúde Mental em Contextos Extremos",
-        "negocios": "Negócios & Estratégia", "visao-global": "Visão Global", "filantropia": "Impacto & Filantropia",
-        "historias-reais": "Histórias Reais", "anonimo": "Espaço Anônimo", "hibridos": "Conteúdos Híbridos"
-      };
-
-      const topicFolderMap = {
-        politica: "politica", "seguranca-total": "seguranca-total", "prisional-policial": "prisional-policial",
-        "politicas-publicas": "politicas-publicas", "economia-super-ricos": "economia-super-ricos",
-        "saude-mental": "saude-mental", "psicopatia": "psicopatia", "familia-alienacao": "familia-alienacao",
-        "crime-investigacao": "crime-investigacao", "saude-mental-extremo": "saude-mental-extremo",
-        "negocios": "negocios", "visao-global": "visao-global", "filantropia": "filantropia",
-        "historias-reais": "historias-reais", "anonimo": "anonimo", "hibridos": "hibridos"
-      };
-
-      function slugify(text) {
-        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-      }
-
-      // URL canônica para qualquer artigo (o túnel decide se existe ou redireciona para construcao.html)
-      function getArticleUrl(folder, slug) {
-        return `/artigo/${folder}/${slug}.html`;
-      }
-
-      // ==================== MODAL: geração dos links com túnel automático ====================
-      const modal = document.getElementById('topicModal');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalTopicsList = document.getElementById('modalTopicsList');
-      const closeModalBtn = document.getElementById('closeModalBtn');
-
-      function openModal(topicKey) {
-        const title = topicTitles[topicKey] || "Tema";
-        const subcategoriesObj = subtopicsByTopic[topicKey] || {};
-        modalTitle.innerText = title;
-        if (Object.keys(subcategoriesObj).length === 0) {
-          modalTopicsList.innerHTML = '<p style="color: var(--color-text-light);">Subtemas em breve.</p>';
-        } else {
-          let html = '';
-          for (const [subcat, topics] of Object.entries(subcategoriesObj)) {
-            const folder = topicFolderMap[topicKey] || topicKey;
-            html += `<div class="subcategory-group"><div class="subcategory-title">${escapeHtml(subcat)}</div><ul class="topics-list">`;
-            topics.forEach(topic => {
-              const slug = slugify(topic);
-              const url = getArticleUrl(folder, slug);
-              html += `<li><a href="${url}">${escapeHtml(topic)}</a></li>`;
-            });
-            html += `</ul></div>`;
-          }
-          modalTopicsList.innerHTML = html;
-        }
-        modal.classList.add('active');
-        document.body.classList.add('modal-open');
-      }
-      
-      function closeModal() { modal.classList.remove('active'); document.body.classList.remove('modal-open'); }
-      document.querySelectorAll('.theme-card').forEach(card => { card.addEventListener('click', (e) => { const topic = card.getAttribute('data-topic'); if (topic) openModal(topic); }); });
-      closeModalBtn.addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
-
-      // ==================== ARQUIVO (LUPA) - Listagem simples (todos os artigos possíveis) ====================
-      function generateAllArticles() {
-        const articles = [];
-        for (const [topicKey, subcategories] of Object.entries(subtopicsByTopic)) {
-          const categoryName = topicTitles[topicKey] || topicKey;
-          const folder = topicFolderMap[topicKey] || topicKey;
-          for (const [subcat, topics] of Object.entries(subcategories)) {
-            topics.forEach(topic => {
-              const slug = slugify(topic);
-              const url = getArticleUrl(folder, slug);
-              articles.push({ title: topic, category: categoryName + " · " + subcat, url: url, date: "Em breve" });
-            });
-          }
-        }
-        return articles.sort((a,b) => a.title.localeCompare(b.title));
-      }
-
-      let fullArticlesArchive = generateAllArticles();
-      
-      function renderArchiveList(searchTerm = "") {
-        const container = document.getElementById("archiveList");
-        if (!container) return;
-        const term = searchTerm.toLowerCase().trim();
-        let filtered = fullArticlesArchive;
-        if (term !== "") {
-          filtered = fullArticlesArchive.filter(article => article.title.toLowerCase().includes(term) || article.category.toLowerCase().includes(term));
-        }
-        if (filtered.length === 0) {
-          container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo encontrado.</div>';
-          return;
-        }
-        container.innerHTML = filtered.map(article => `
-          <a class="archive-item" href="${article.url}">
-            <div class="archive-item-title">${escapeHtml(article.title)}</div>
-            <div class="archive-item-meta"><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="fas fa-folder"></i> ${escapeHtml(article.category)}</span></div>
-          </a>
-        `).join('');
-        // Não precisa adicionar listener manual, o delegado global cuida do clique nos links
-      }
-
-      function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m === '&') return '&amp;'; if(m === '<') return '&lt;'; if(m === '>') return '&gt;'; return m;}); }
-
-      // ==================== CONTROLES DO ARQUIVO ====================
-      function openArchive() {
-        document.getElementById('archiveOverlay').classList.add('active');
-        document.body.classList.add('archive-open');
-        renderArchiveList(document.getElementById('archiveSearchInput').value);
-      }
-      function closeArchive() {
-        document.getElementById('archiveOverlay').classList.remove('active');
-        document.body.classList.remove('archive-open');
-        document.getElementById('archiveSearchInput').value = '';
-        renderArchiveList('');
-      }
-      document.getElementById('archiveBtn').addEventListener('click', openArchive);
-      document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
-      document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
-      document.getElementById('archiveSearchInput').addEventListener('input', (e) => renderArchiveList(e.target.value));
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
-
-      loadCacheFromStorage();
-    })();
-  </script>
-</body>
-</html>
+    <!-- POLÍTICA DE PRIVACIDADE EM TRÊS COLUNAS EXPANSÍVEIS (MENOS PALAVRAS INICIALMENTE) -->
+    <div class="privacy-collapsible">
+      <div class="privacy-header-note">Política de Privacidade – PautaZero · clique nos títulos para expandir</div>
+      <div class="privacy-cols">
+        <!-- Coluna 1: Ambiente + Dados coletados
