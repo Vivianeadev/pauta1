@@ -27,6 +27,7 @@
     }
     body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 0.95rem; }
     body.modal-open { overflow: hidden; }
+    body.tunnel-loading { cursor: wait; }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
     h1, h2, h3, h4, .logo, .section-title { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
     h2 { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 500; color: var(--color-primary); border-bottom: 2px solid rgba(212, 175, 55, 0.35); display: inline-block; padding-bottom: 8px; }
@@ -65,7 +66,7 @@
     .archive-search input { width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(212,175,55,0.3); font-family: var(--font-sans); font-size: 0.9rem; background: white; outline: none; }
     .archive-search input:focus { border-color: var(--gold-primary); }
     .archive-list { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
-    .archive-item { background: var(--color-bg-card); border: 1px solid rgba(212,175,55,0.15); padding: 0.8rem 1rem; margin-bottom: 0.8rem; cursor: pointer; transition: all 0.2s; }
+    .archive-item { background: var(--color-bg-card); border: 1px solid rgba(212,175,55,0.15); padding: 0.8rem 1rem; margin-bottom: 0.8rem; cursor: pointer; transition: all 0.2s; display: block; text-decoration: none; color: inherit; }
     .archive-item:hover { border-color: var(--gold-primary); background: rgba(212,175,55,0.02); transform: translateX(3px); }
     .archive-item-title { font-family: var(--font-serif); font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.2rem; }
     .archive-item-meta { font-size: 0.65rem; color: var(--gold-dark); display: flex; gap: 1rem; margin-top: 0.2rem; }
@@ -247,6 +248,7 @@
       padding-left: 0.6rem;
       display: inline-block;
       transition: all 0.2s;
+      cursor: pointer;
     }
     .topics-list a:hover {
       border-left-color: var(--gold-primary);
@@ -283,7 +285,6 @@
     </div>
 
     <div class="thematic-grid">
-      <!-- 17 CATEGORIAS CONFORME ESTRUTURA EXPANDIDA -->
       <div class="theme-card" data-topic="politica"><div class="theme-icon"><i class="fas fa-landmark"></i></div><h3>Política & Geopolítica</h3><p>Monetária, relações internacionais, regulação e poder institucional.</p><div class="theme-badge">clique para explorar →</div></div>
       <div class="theme-card" data-topic="seguranca-total"><div class="theme-icon"><i class="fas fa-shield-alt"></i></div><h3>Segurança Total</h3><p>Pessoal, digital, patrimonial e inteligência estratégica.</p><div class="theme-badge">clique para explorar →</div></div>
       <div class="theme-card" data-topic="prisional-policial"><div class="theme-icon"><i class="fas fa-gavel"></i></div><h3>Sistema Prisional & Policial</h3><p>Estrutura carcerária, investigação, perícia e inteligência policial.</p><div class="theme-badge">clique para explorar →</div></div>
@@ -336,7 +337,96 @@
 
   <script>
     (function() {
-      // ========== DADOS COMPLETOS: 17 CATEGORIAS COM SUBCATEGORIAS E SUBTEMAS ==========
+      // ==================== TÚNEL DE VERIFICAÇÃO PARA TODOS OS LINKS DE ARTIGO ====================
+      // Cache de existência de páginas (HEAD request + localStorage)
+      const pageCache = new Map();
+      
+      function loadCacheFromStorage() {
+        try {
+          const stored = localStorage.getItem('PautaZero_pageCache');
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed && parsed.expiry > Date.now()) {
+              for (const [url, exists] of Object.entries(parsed.data)) pageCache.set(url, exists);
+              return true;
+            }
+          }
+        } catch(e) {}
+        return false;
+      }
+      
+      function saveCacheToStorage() {
+        try {
+          const cacheObj = {};
+          for (const [url, exists] of pageCache.entries()) cacheObj[url] = exists;
+          localStorage.setItem('PautaZero_pageCache', JSON.stringify({ data: cacheObj, expiry: Date.now() + 3600000 }));
+        } catch(e) {}
+      }
+      
+      async function checkIfPageExists(url) {
+        if (pageCache.has(url)) return pageCache.get(url);
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 3000);
+          const response = await fetch(url, { method: 'HEAD', signal: controller.signal });
+          clearTimeout(timeoutId);
+          const exists = response.ok;
+          pageCache.set(url, exists);
+          saveCacheToStorage();
+          return exists;
+        } catch(err) {
+          pageCache.set(url, false);
+          return false;
+        }
+      }
+      
+      // Função principal de navegação com túnel: verifica se a página existe, senão vai para construcao.html
+      let isNavigating = false;
+      async function navigateToWithCheck(url) {
+        if (isNavigating) return;
+        // Evita loop caso a própria construcao.html seja verificada
+        if (url.includes('construcao.html')) {
+          window.location.href = url;
+          return;
+        }
+        isNavigating = true;
+        document.body.classList.add('tunnel-loading');
+        try {
+          const exists = await checkIfPageExists(url);
+          if (exists) {
+            window.location.href = url;
+          } else {
+            window.location.href = 'construcao.html';
+          }
+        } catch (err) {
+          window.location.href = 'construcao.html';
+        } finally {
+          isNavigating = false;
+          document.body.classList.remove('tunnel-loading');
+        }
+      }
+      
+      // Intercepta todos os cliques em links que apontam para artigos (caminho /artigo/...)
+      document.body.addEventListener('click', (e) => {
+        let target = e.target.closest('a');
+        if (!target) return;
+        const href = target.getAttribute('href');
+        if (!href) return;
+        // Apenas links internos que apontam para /artigo/ (não interfere em links externos, #, ou /)
+        if (href.startsWith('/artigo/') || (href.startsWith('./artigo/') || href.startsWith('artigo/'))) {
+          e.preventDefault();
+          let absoluteUrl = href;
+          if (!absoluteUrl.startsWith('/')) absoluteUrl = '/' + absoluteUrl;
+          navigateToWithCheck(absoluteUrl);
+        }
+        // Também intercepta links que venham a ser gerados com url completa (ex: http://.../artigo/...)
+        if (href.includes('/artigo/') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+          e.preventDefault();
+          navigateToWithCheck(href);
+        }
+      });
+      
+      // ==================== DADOS COMPLETOS: 17 CATEGORIAS ====================
       const subtopicsByTopic = {
         politica: {
           "Política monetária": ["Taxa de juros e inflação", "Emissão de moeda", "Controle econômico estatal"],
@@ -432,22 +522,12 @@
       };
 
       const topicTitles = {
-        politica: "Política & Geopolítica",
-        "seguranca-total": "Segurança Total",
-        "prisional-policial": "Sistema Prisional & Policial",
-        "politicas-publicas": "Políticas Públicas",
-        "economia-super-ricos": "Economia & Super Ricos",
-        "saude-mental": "Saúde Mental",
-        "psicopatia": "Psicopatia & Comportamento Extremo",
-        "familia-alienacao": "Família & Alienação Parental",
-        "crime-investigacao": "Crime & Investigação",
-        "saude-mental-extremo": "Saúde Mental em Contextos Extremos",
-        "negocios": "Negócios & Estratégia",
-        "visao-global": "Visão Global",
-        "filantropia": "Impacto & Filantropia",
-        "historias-reais": "Histórias Reais",
-        "anonimo": "Espaço Anônimo",
-        "hibridos": "Conteúdos Híbridos"
+        politica: "Política & Geopolítica", "seguranca-total": "Segurança Total", "prisional-policial": "Sistema Prisional & Policial",
+        "politicas-publicas": "Políticas Públicas", "economia-super-ricos": "Economia & Super Ricos", "saude-mental": "Saúde Mental",
+        "psicopatia": "Psicopatia & Comportamento Extremo", "familia-alienacao": "Família & Alienação Parental",
+        "crime-investigacao": "Crime & Investigação", "saude-mental-extremo": "Saúde Mental em Contextos Extremos",
+        "negocios": "Negócios & Estratégia", "visao-global": "Visão Global", "filantropia": "Impacto & Filantropia",
+        "historias-reais": "Histórias Reais", "anonimo": "Espaço Anônimo", "hibridos": "Conteúdos Híbridos"
       };
 
       const topicFolderMap = {
@@ -459,56 +539,16 @@
         "historias-reais": "historias-reais", "anonimo": "anonimo", "hibridos": "hibridos"
       };
 
-      // Geração de slugs para os links
       function slugify(text) {
         return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
       }
 
-      // ========== CACHE E VERIFICAÇÃO ASSÍNCRONA (mantido) ==========
-      const pageCache = new Map();
-      let fullArticlesArchive = [];
-      let archiveLoadPromise = null;
-      function loadCacheFromStorage() { try { const stored = localStorage.getItem('PautaZero_pageCache'); if(stored){ const parsed = JSON.parse(stored); if(parsed && parsed.expiry > Date.now()){ for (const [url, exists] of Object.entries(parsed.data)) pageCache.set(url, exists); return true; } } } catch(e){} return false; }
-      function saveCacheToStorage() { try { const cacheObj = {}; for (const [url, exists] of pageCache.entries()) cacheObj[url] = exists; localStorage.setItem('PautaZero_pageCache', JSON.stringify({ data: cacheObj, expiry: Date.now() + 3600000 })); } catch(e){} }
-      async function checkIfPageExists(url) { if(pageCache.has(url)) return pageCache.get(url); try { const controller = new AbortController(); const timeoutId = setTimeout(() => controller.abort(), 3000); const response = await fetch(url, { method: 'HEAD', signal: controller.signal }); clearTimeout(timeoutId); const exists = response.ok; pageCache.set(url, exists); saveCacheToStorage(); return exists; } catch(err) { pageCache.set(url, false); return false; } }
-      
-      function generateAllPossibleArticles() {
-        const articles = [];
-        for (const [topicKey, subcategories] of Object.entries(subtopicsByTopic)) {
-          const categoryName = topicTitles[topicKey] || topicKey;
-          const folder = topicFolderMap[topicKey] || topicKey;
-          for (const [subcat, topics] of Object.entries(subcategories)) {
-            topics.forEach(topic => {
-              const slug = slugify(topic);
-              const url = `/artigo/${folder}/${slug}.html`;
-              articles.push({ title: topic, category: categoryName + " · " + subcat, url: url });
-            });
-          }
-        }
-        return articles;
+      // URL canônica para qualquer artigo (o túnel decide se existe ou redireciona para construcao.html)
+      function getArticleUrl(folder, slug) {
+        return `/artigo/${folder}/${slug}.html`;
       }
 
-      async function loadAllArticles() {
-        if (fullArticlesArchive.length > 0) return;
-        const allPossible = generateAllPossibleArticles();
-        const archiveListDiv = document.getElementById('archiveList');
-        if (archiveListDiv && document.getElementById('archiveOverlay').classList.contains('active')) archiveListDiv.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Verificando artigos disponíveis...</div>';
-        const concurrencyLimit = 5;
-        const results = [];
-        for (let i = 0; i < allPossible.length; i += concurrencyLimit) {
-          const batch = allPossible.slice(i, i + concurrencyLimit);
-          const batchResults = await Promise.all(batch.map(async (article) => { const exists = await checkIfPageExists(article.url); if (exists) return { title: article.title, date: 'Publicado', link: article.url, category: article.category }; return null; }));
-          results.push(...batchResults.filter(r => r !== null));
-        }
-        fullArticlesArchive = results.sort((a,b) => a.title.localeCompare(b.title));
-        if (document.getElementById('archiveOverlay').classList.contains('active')) renderArchiveList(document.getElementById('archiveSearchInput').value);
-      }
-      function renderArchiveList(searchTerm = "") { const container = document.getElementById("archiveList"); if(!container) return; if(fullArticlesArchive.length === 0 && archiveLoadPromise) { container.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Carregando artigos...</div>'; return; } const term = searchTerm.toLowerCase().trim(); let filtered = fullArticlesArchive; if(term !== "") filtered = fullArticlesArchive.filter(article => article.title.toLowerCase().includes(term) || article.category.toLowerCase().includes(term) || article.date.toLowerCase().includes(term)); if(filtered.length === 0) { container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo encontrado.</div>'; return; } container.innerHTML = filtered.map(article => `<div class="archive-item" data-url="${article.link}"><div class="archive-item-title">${escapeHtml(article.title)}</div><div class="archive-item-meta"><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="fas fa-folder"></i> ${escapeHtml(article.category)}</span></div></div>`).join(''); document.querySelectorAll('.archive-item').forEach(el => el.addEventListener('click', () => { const url = el.getAttribute('data-url'); if(url) window.location.href = url; })); }
-      function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m === '&') return '&amp;'; if(m === '<') return '&lt;'; if(m === '>') return '&gt;'; return m;}); }
-      loadCacheFromStorage();
-      archiveLoadPromise = loadAllArticles();
-
-      // ========== MODAL COM SUBCATEGORIAS E SUBTEMAS ==========
+      // ==================== MODAL: geração dos links com túnel automático ====================
       const modal = document.getElementById('topicModal');
       const modalTitle = document.getElementById('modalTitle');
       const modalTopicsList = document.getElementById('modalTopicsList');
@@ -527,8 +567,8 @@
             html += `<div class="subcategory-group"><div class="subcategory-title">${escapeHtml(subcat)}</div><ul class="topics-list">`;
             topics.forEach(topic => {
               const slug = slugify(topic);
-              const targetUrl = `/artigo/${folder}/${slug}.html`;
-              html += `<li><a href="${targetUrl}" target="_self">${escapeHtml(topic)}</a></li>`;
+              const url = getArticleUrl(folder, slug);
+              html += `<li><a href="${url}">${escapeHtml(topic)}</a></li>`;
             });
             html += `</ul></div>`;
           }
@@ -537,20 +577,74 @@
         modal.classList.add('active');
         document.body.classList.add('modal-open');
       }
+      
       function closeModal() { modal.classList.remove('active'); document.body.classList.remove('modal-open'); }
       document.querySelectorAll('.theme-card').forEach(card => { card.addEventListener('click', (e) => { const topic = card.getAttribute('data-topic'); if (topic) openModal(topic); }); });
       closeModalBtn.addEventListener('click', closeModal);
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
 
-      // ========== ARQUIVO (LUPA) ==========
-      function openArchive() { document.getElementById('archiveOverlay').classList.add('active'); document.body.classList.add('archive-open'); if(fullArticlesArchive.length === 0 && archiveLoadPromise) { renderArchiveList(''); archiveLoadPromise.then(() => { if(document.getElementById('archiveOverlay').classList.contains('active')) renderArchiveList(document.getElementById('archiveSearchInput').value); }); } else { renderArchiveList(document.getElementById('archiveSearchInput').value); } }
-      function closeArchive() { document.getElementById('archiveOverlay').classList.remove('active'); document.body.classList.remove('archive-open'); document.getElementById('archiveSearchInput').value = ''; renderArchiveList(''); }
+      // ==================== ARQUIVO (LUPA) - Listagem simples (todos os artigos possíveis) ====================
+      function generateAllArticles() {
+        const articles = [];
+        for (const [topicKey, subcategories] of Object.entries(subtopicsByTopic)) {
+          const categoryName = topicTitles[topicKey] || topicKey;
+          const folder = topicFolderMap[topicKey] || topicKey;
+          for (const [subcat, topics] of Object.entries(subcategories)) {
+            topics.forEach(topic => {
+              const slug = slugify(topic);
+              const url = getArticleUrl(folder, slug);
+              articles.push({ title: topic, category: categoryName + " · " + subcat, url: url, date: "Em breve" });
+            });
+          }
+        }
+        return articles.sort((a,b) => a.title.localeCompare(b.title));
+      }
+
+      let fullArticlesArchive = generateAllArticles();
+      
+      function renderArchiveList(searchTerm = "") {
+        const container = document.getElementById("archiveList");
+        if (!container) return;
+        const term = searchTerm.toLowerCase().trim();
+        let filtered = fullArticlesArchive;
+        if (term !== "") {
+          filtered = fullArticlesArchive.filter(article => article.title.toLowerCase().includes(term) || article.category.toLowerCase().includes(term));
+        }
+        if (filtered.length === 0) {
+          container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo encontrado.</div>';
+          return;
+        }
+        container.innerHTML = filtered.map(article => `
+          <a class="archive-item" href="${article.url}">
+            <div class="archive-item-title">${escapeHtml(article.title)}</div>
+            <div class="archive-item-meta"><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="fas fa-folder"></i> ${escapeHtml(article.category)}</span></div>
+          </a>
+        `).join('');
+        // Não precisa adicionar listener manual, o delegado global cuida do clique nos links
+      }
+
+      function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m === '&') return '&amp;'; if(m === '<') return '&lt;'; if(m === '>') return '&gt;'; return m;}); }
+
+      // ==================== CONTROLES DO ARQUIVO ====================
+      function openArchive() {
+        document.getElementById('archiveOverlay').classList.add('active');
+        document.body.classList.add('archive-open');
+        renderArchiveList(document.getElementById('archiveSearchInput').value);
+      }
+      function closeArchive() {
+        document.getElementById('archiveOverlay').classList.remove('active');
+        document.body.classList.remove('archive-open');
+        document.getElementById('archiveSearchInput').value = '';
+        renderArchiveList('');
+      }
       document.getElementById('archiveBtn').addEventListener('click', openArchive);
       document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
       document.getElementById('archiveSearchInput').addEventListener('input', (e) => renderArchiveList(e.target.value));
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
+
+      loadCacheFromStorage();
     })();
   </script>
 </body>
