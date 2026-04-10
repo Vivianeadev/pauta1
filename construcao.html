@@ -28,13 +28,165 @@
     .logo span { color: var(--gold-dark); }
     .site-footer { border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem 0; margin-top: 2rem; background: var(--color-bg); font-size: 0.7rem; text-align: center; }
     
-    /* Estilos do formulário - campo de e-mail sem pontas arredondadas */
     .newsletter-box {
       margin: 2rem auto 1.5rem;
       max-width: 450px;
       background: rgba(255,255,240,0.6);
       padding: 1.5rem;
       border-radius: 24px;
+      border: 1px solid rgba(212,175,55,0.3);
+    }
+    .newsletter-box h2 {
+      font-size: 1.3rem;
+      font-family: var(--font-serif);
+      color: var(--color-primary);
+      margin-bottom: 0.75rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0;          /* sem arredondamento */
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      background: white;
+      transition: 0.2s;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      text-align: left;
+      margin: 1rem 0;
+    }
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
+    .btn-subscribe {
+      background: var(--gold-primary);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-weight: 600;
+      border-radius: 0;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--color-primary);
+      transition: 0.2s;
+      width: 100%;
+    }
+    .btn-subscribe:hover {
+      background: var(--gold-dark);
+      color: white;
+    }
+    #statusMsg {
+      font-size: 0.8rem;
+      margin-top: 1rem;
+    }
+    .privacy-note {
+      font-size: 0.65rem;
+      text-transform: lowercase;
+      color: #7a6e5c;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(212,175,55,0.2);
+      padding-top: 1rem;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width: 700px) { .header-inner { padding: 0 20px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">Pauta<span>Zero</span></a>
+    </div>
+  </header>
+  <main class="container">
+    <div class="construction-icon"><i class="fas fa-hard-hat"></i></div>
+    <h1>Conteúdo em construção</h1>
+    <p>Estamos desenvolvendo este artigo com a profundidade analítica que você espera da PautaZero.<br>Em breve, publicaremos análises completas sobre este tema.</p>
+    
+    <div class="newsletter-box">
+      <h2><i class="fas fa-bell"></i> avise-me quando pronto</h2>
+      <form id="formNewsletter">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="seu melhor e-mail" required>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="privacyConsent" required>
+          <label for="privacyConsent">aceito a política de privacidade (ver abaixo)</label>
+        </div>
+        <button type="submit" class="btn-subscribe">quero ser avisado</button>
+        <div id="statusMsg"></div>
+      </form>
+    </div>
+
+    <div class="privacy-note">
+      <i class="fas fa-lock"></i> política de privacidade: seus dados serão usados exclusivamente para enviar atualizações sobre este conteúdo. não compartilhamos com terceiros. você pode cancelar a qualquer momento via link nos e-mails. ao enviar, você concorda com esta política.
+    </div>
+
+    <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> voltar para a home</a>
+  </main>
+  <footer class="site-footer">
+    <div class="container" style="font-size: 0.65rem;">© 2026 PautaZero · curadoria estrutural sem ruído</div>
+  </footer>
+
+  <script>
+    // 🔁 COLE A URL DO SEU WORKER AQUI
+    const WORKER_URL = "https://pautazerowaitlist.seu-subdominio.workers.dev";
+
+    const form = document.getElementById("formNewsletter");
+    const statusDiv = document.getElementById("statusMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const consent = document.getElementById("privacyConsent").checked;
+
+      if (!email || !email.includes("@")) {
+        statusDiv.innerHTML = "❌ e-mail inválido";
+        return;
+      }
+      if (!consent) {
+        statusDiv.innerHTML = "❌ você precisa aceitar a política de privacidade";
+        return;
+      }
+
+      statusDiv.innerHTML = "enviando...";
+      statusDiv.style.color = "#b8860b";
+
+      try {
+        const response = await fetch(WORKER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email })
+        });
+        const result = await response.json();
+        if (response.ok) {
+          statusDiv.innerHTML = "✅ e-mail registrado! avisaremos você.";
+          form.reset();
+        } else {
+          statusDiv.innerHTML = `❌ ${result.error || "erro ao registrar."}`;
+        }
+      } catch (error) {
+        statusDiv.innerHTML = "❌ falha na conexão. tente mais tarde.";
+      }
+    });
+  </script>
+</body>
+</html>      border-radius: 24px;
       border: 1px solid rgba(212,175,55,0.3);
     }
     .newsletter-box h2 {
