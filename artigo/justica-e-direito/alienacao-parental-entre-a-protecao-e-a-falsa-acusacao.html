@@ -307,44 +307,20 @@
 
   <script>
     (function() {
-      // ========== 1. SISTEMA DINÂMICO DE IMAGEM (PADRÃO: assets/images/09.04.alienacao.jpg) ==========
+      // ========== 1. SISTEMA DINÂMICO DE IMAGEM (CORRIGIDO) ==========
       function setupDynamicImage() {
         const imgElement = document.getElementById('dynamicArticleImage');
         if (!imgElement) return;
         
-        // Extrai a data do article-meta (formato "09.04.2026")
-        const metaSpans = document.querySelectorAll('.article-meta span');
-        let dateStr = '';
-        for (let span of metaSpans) {
-          if (span.innerText.includes('.') && span.innerText.match(/\d{2}\.\d{2}\.\d{4}/)) {
-            dateStr = span.innerText.trim();
-            break;
-          }
-        }
-        
-        let dayMonth = '';
-        if (dateStr) {
-          const parts = dateStr.split('.');
-          if (parts.length >= 2) dayMonth = `${parts[0]}.${parts[1]}`;
-        }
-        
-        // Define o nome da imagem seguindo o padrão: data.alienacao.jpg
-        let finalFilename = '';
-        if (dayMonth) {
-          finalFilename = `${dayMonth}.alienacao.jpg`;
-        } else {
-          // fallback caso a data não seja encontrada
-          finalFilename = `default.alienacao.jpg`;
-        }
-        
-        // Caminho absoluto a partir da raiz do site
+        // Nome correto do arquivo conforme fornecido: assets/images/09.04.alienacaoreversa.jpg
+        const finalFilename = '09.04.alienacaoreversa.jpg';
         const imageBasePath = '/assets/images/';
         const imageSrc = imageBasePath + finalFilename;
         
         imgElement.src = imageSrc;
-        imgElement.alt = `Imagem ilustrativa: Alienação Parental - ${finalFilename}`;
+        imgElement.alt = `Imagem ilustrativa: Alienação Parental Reversa - ${finalFilename}`;
         
-        // Tratamento de erro: se a imagem não existir, exibe placeholder informativo
+        // Fallback caso a imagem não seja encontrada (exibe aviso informativo)
         imgElement.onerror = function() {
           if (!this.hasAttribute('data-fallback-triggered')) {
             this.setAttribute('data-fallback-triggered', 'true');
