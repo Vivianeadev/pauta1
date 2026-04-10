@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Alienação Parental · entre a proteção e a falsa acusação | PautaZero</title>
-  <meta name="description" content="Análise aprofundada sobre os impactos jurídicos, psicológicos e sociais da alienação parental, distinguindo proteção infantil de falsas alegações.">
-  <meta property="og:title" content="Alienação Parental · PautaZero">
-  <meta property="og:description" content="Justiça & Direito — análise institucional sobre síndrome da alienação parental, provas periciais e o dilema dos tribunais.">
+  <title>PautaZero · Alienação Parental: entre a proteção e a falsa acusação</title>
+  <meta name="description" content="Análise aprofundada sobre alienação parental: impactos psicológicos, desafios jurídicos e o delicado equilíbrio entre proteção da criança e falsas acusações.">
+  <meta property="og:title" content="PautaZero · Alienação Parental: entre a proteção e a falsa acusação">
+  <meta property="og:description" content="Uma análise institucional e comportamental do fenômeno da alienação parental no sistema de justiça brasileiro.">
   <meta property="og:type" content="article">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ========== ESTILOS COMPLETOS (IDÊNTICOS AO ORIGINAL - BASE LUXO) ========== */
+    /* ========== ESTILOS COMPLETOS (PRESERVADOS) ========== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --color-primary: #0a3147; --color-primary-light: #1a4b6d; --gold-primary: #D4AF37;
@@ -26,12 +26,9 @@
       --font-serif: 'Cinzel', serif; --font-sans: 'Inter', sans-serif; --font-body: 'Marcellus', serif;
     }
     body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 0.95rem; }
-    body.modal-open { overflow: hidden; }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
     h1, h2, h3, h4, .logo, .section-title { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
-    h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; color: var(--color-primary); }
-    h2 { font-size: 1.8rem; margin: 2rem 0 1rem; font-weight: 500; color: var(--color-primary); border-left: 4px solid var(--gold-primary); padding-left: 1rem; }
-    h3 { font-size: 1.3rem; margin: 1.5rem 0 0.8rem; color: var(--color-primary-light); font-family: var(--font-serif);}
+    h2 { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 500; color: var(--color-primary); border-bottom: 2px solid rgba(212, 175, 55, 0.35); display: inline-block; padding-bottom: 8px; }
     .site-header { position: sticky; top: 0; background: rgba(255, 253, 250, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); z-index: 100; padding: 1rem 0; }
     .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 0 36px; gap: 1rem; }
     .logo-area { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
@@ -39,20 +36,10 @@
     .logo span { color: var(--gold-dark); font-weight: 500; }
     .slogan { font-size: 0.7rem; font-family: var(--font-body); color: var(--gold-dark); text-transform: uppercase; letter-spacing: 2.5px; border-left: 1px solid rgba(212, 175, 55, 0.5); padding-left: 14px; }
     .nav-hamburger { display: flex; align-items: center; gap: 1rem; }
-    .archive-btn {
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      color: var(--color-primary);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .archive-btn:hover { background: rgba(212, 175, 55, 0.25); border-color: var(--gold-primary); }
+    .archive-btn, .return-home-btn { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-primary); cursor: pointer; transition: 0.2s; text-decoration: none; }
+    .archive-btn:hover, .return-home-btn:hover { background: rgba(212, 175, 55, 0.25); border-color: var(--gold-primary); }
+    .return-home-btn { font-size: 0.85rem; width: auto; padding: 0 1rem; font-family: var(--font-serif); gap: 6px; text-decoration: none; }
+    .current-tab-name { font-family: var(--font-serif); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-dark); background: rgba(212, 175, 55, 0.08); padding: 0.4rem 1rem; border: 1px solid rgba(212, 175, 55, 0.3); white-space: nowrap; }
     .archive-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 49, 71, 0.8); backdrop-filter: blur(6px); z-index: 1000; display: flex; align-items: center; justify-content: flex-end; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
     .archive-overlay.active { opacity: 1; visibility: visible; }
     .archive-panel { background: var(--color-bg-card); width: 100%; max-width: 500px; height: 100%; right: 0; position: absolute; box-shadow: -5px 0 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.3s ease; border-left: 1px solid var(--gold-primary); }
@@ -71,108 +58,373 @@
     .no-results { text-align: center; padding: 2rem; color: var(--color-text-light); font-style: italic; }
     @media (max-width: 700px) {
       .slogan { display: none; }
+      .current-tab-name { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
+      .return-home-btn span { display: none; }
+      .return-home-btn { width: 44px; padding: 0; justify-content: center; }
       .header-inner { padding: 0 20px; }
       .archive-panel { max-width: 100%; }
-      h1 { font-size: 2rem; }
-      .container { padding: 0 20px; }
     }
-    main { padding: 2rem 0 4rem; }
+    main { padding: 3rem 0 5rem; }
     .site-footer { border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem 0; color: var(--color-text-light); background: var(--color-bg); font-size: 0.75rem; }
     .footer-legal { max-width: 1280px; margin: 1rem auto 0; padding: 1rem 36px 0; border-top: 1px solid rgba(212, 175, 55, 0.15); font-size: 0.65rem; line-height: 1.4; color: rgba(44, 62, 78, 0.6); text-align: center; letter-spacing: 0.3px; }
     @media (max-width: 700px) { .footer-legal { padding: 0.8rem 20px 0; font-size: 0.6rem; } }
 
-    /* ========== ESTILOS EXCLUSIVOS PARA O ARTIGO (LUXO, IMAGEM, RELACIONADOS) ========== */
-    .breadcrumb { font-size: 0.75rem; margin-bottom: 1.8rem; color: var(--gold-dark); letter-spacing: 1px; text-transform: uppercase; }
-    .breadcrumb a { color: var(--color-primary-light); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.4); }
-    .breadcrumb a:hover { color: var(--gold-primary); }
-    .article-meta { display: flex; gap: 1.5rem; font-size: 0.8rem; color: var(--color-text-light); border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 1rem; margin-bottom: 2rem; }
-    .featured-image { margin: 1.5rem 0 2rem; border-radius: 4px; overflow: hidden; border: 1px solid var(--gold-primary); box-shadow: var(--shadow-luxury); }
-    .featured-image img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 480px; }
-    .article-content { font-family: var(--font-body); font-size: 1.05rem; line-height: 1.7; color: #2c3e4e; }
-    .article-content p { margin-bottom: 1.3rem; }
-    .article-content blockquote { border-left: 3px solid var(--gold-primary); background: var(--gradient-gold-subtle); padding: 1rem 1.8rem; margin: 1.5rem 0; font-style: italic; color: #1e2a3a; font-weight: 400; }
-    .related-section { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(212,175,55,0.25); }
-    .related-title { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--color-primary); display: flex; align-items: center; gap: 0.6rem; }
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
-    .related-card { background: var(--color-bg-card); border: var(--border-light); padding: 1.2rem; transition: all 0.2s; cursor: pointer; text-decoration: none; display: block; color: inherit; }
-    .related-card:hover { border-color: var(--gold-primary); transform: translateY(-3px); box-shadow: var(--shadow-luxury); }
-    .related-card h4 { font-family: var(--font-serif); font-size: 1rem; margin-bottom: 0.4rem; color: var(--color-primary); }
-    .related-card p { font-size: 0.75rem; color: var(--gold-dark); letter-spacing: 0.5px; }
-    @media (max-width: 700px) { .related-grid { grid-template-columns: 1fr; } }
-    .highlight-gold { color: var(--gold-dark); font-weight: 500; }
+    /* ========== LAYOUT DO ARTIGO: IMAGEM ESQUERDA + TEXTO DIREITA ========== */
+    .article-dual-column {
+      display: flex;
+      gap: 2.5rem;
+      margin: 2rem 0 3rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .article-image-col {
+      flex: 0 0 280px;
+      max-width: 280px;
+    }
+    .article-image-col img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      transition: transform 0.3s ease;
+      display: block;
+    }
+    .article-image-col img:hover {
+      transform: scale(1.02);
+    }
+    .image-caption {
+      font-size: 0.65rem;
+      text-align: center;
+      margin-top: 0.6rem;
+      color: var(--gold-dark);
+      font-family: var(--font-body);
+      letter-spacing: 0.5px;
+      font-style: italic;
+    }
+    .same-theme-articles {
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .same-theme-articles h5 {
+      font-family: var(--font-serif);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+    }
+    .same-theme-list {
+      list-style: none;
+      font-size: 0.65rem;
+    }
+    .same-theme-list li {
+      margin-bottom: 0.5rem;
+    }
+    .same-theme-list a {
+      color: var(--color-text-light);
+      text-decoration: none;
+      border-left: 1px solid rgba(212, 175, 55, 0.3);
+      padding-left: 0.6rem;
+      transition: all 0.2s;
+      font-size: 0.65rem;
+    }
+    .same-theme-list a:hover {
+      border-left-color: var(--gold-primary);
+      color: var(--gold-dark);
+      padding-left: 0.8rem;
+    }
+    .article-text-col {
+      flex: 1;
+      min-width: 0;
+    }
+    @media (max-width: 800px) {
+      .article-dual-column {
+        flex-direction: column;
+      }
+      .article-image-col {
+        flex: 0 0 auto;
+        max-width: 100%;
+        text-align: center;
+      }
+      .article-image-col img {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+    }
+    .breadcrumb {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-dark);
+      margin-bottom: 1.5rem;
+    }
+    .breadcrumb a {
+      color: var(--color-text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover {
+      color: var(--gold-primary);
+    }
+    .breadcrumb span {
+      color: var(--gold-dark);
+    }
+    .article-title {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .title-gold-line {
+      width: 80px;
+      height: 3px;
+      background: var(--gradient-gold);
+      margin-bottom: 1.8rem;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--color-text-light);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 1rem;
+    }
+    .article-meta i {
+      color: var(--gold-dark);
+      margin-right: 6px;
+      width: 16px;
+    }
+    .article-body {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--color-text);
+    }
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
+    .article-body h2 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--color-primary);
+      margin: 2rem 0 1rem;
+      border-bottom: none;
+      display: block;
+      padding-bottom: 0;
+      border-left: 3px solid var(--gold-primary);
+      padding-left: 1rem;
+    }
+    .article-body h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--color-primary-light);
+      margin: 1.8rem 0 0.8rem;
+      font-weight: 500;
+    }
+    .article-body blockquote {
+      margin: 2rem 0;
+      padding: 1.2rem 2rem;
+      background: var(--gradient-gold-subtle);
+      border-left: 4px solid var(--gold-primary);
+      font-style: italic;
+      font-family: var(--font-body);
+      color: var(--color-primary);
+      font-size: 1rem;
+    }
+    .article-body .highlight {
+      background: rgba(212, 175, 55, 0.08);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+    .article-body a {
+      color: var(--gold-dark);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    /* SEÇÃO DOS 17 EIXOS (ABAIXO DO ARTIGO) */
+    .section-themes {
+      margin-top: 4rem;
+      border-top: 2px solid rgba(212, 175, 55, 0.2);
+      padding-top: 2rem;
+    }
+    .section-themes h3 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+    .theme-mini-card {
+      background: var(--color-bg-card);
+      border: var(--border-light);
+      padding: 0.9rem 1rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .theme-mini-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-luxury);
+    }
+    .theme-mini-card i {
+      font-size: 1.4rem;
+      color: var(--gold-dark);
+      width: 32px;
+      text-align: center;
+    }
+    .theme-mini-card span {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+    /* SEÇÃO DE LISTAGEM DE ARTIGOS FUTUROS (abaixo do artigo) */
+    .future-articles {
+      margin-top: 3rem;
+      background: var(--gradient-gold-subtle);
+      padding: 2rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .future-articles h4 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .future-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .future-list li a {
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
+      color: var(--color-text);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      padding-left: 1rem;
+      transition: all 0.2s;
+      display: block;
+    }
+    .future-list li a:hover {
+      border-left-color: var(--gold-primary);
+      color: var(--gold-dark);
+      padding-left: 1.2rem;
+    }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <div class="logo-area">
-        <a href="/" class="logo">Pauta<span>Zero</span></a>
-        <span class="slogan">análise · tecnologia · sistemas contemporâneos</span>
-      </div>
+      <div class="logo-area"><a href="index.html" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
       <div class="nav-hamburger">
         <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
+        <span class="current-tab-name" id="currentTabLabel">Família & Alienação</span>
+        <a href="index.html" class="return-home-btn"><i class="fas fa-home"></i> <span>Retornar ao início</span></a>
       </div>
     </div>
   </header>
 
-  <main>
-    <div class="container">
-      <!-- Breadcrumb navegação institucional -->
-      <div class="breadcrumb">
-        <i class="fas fa-feather-alt"></i> <a href="/">PautaZero</a> / <a href="/artigo/justica-e-direito/">Justiça & Direito</a> / Alienação Parental
-      </div>
+  <main class="container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">PAUTAZERO</a> <span>/</span> 
+      <a href="construcao.html">FAMÍLIA & ALIENAÇÃO PARENTAL</a> <span>/</span> 
+      <span>ALIENAÇÃO PARENTAL</span>
+    </div>
 
-      <!-- Título principal e metadados -->
-      <h1>Alienação Parental: entre a proteção da infância e a falsa acusação</h1>
-      <div class="article-meta">
-        <span><i class="far fa-calendar-alt"></i> 09 de abril, 2026</span>
-        <span><i class="fas fa-gavel"></i> Análise institucional · Direito de família</span>
-        <span><i class="far fa-clock"></i> leitura de 12 min</span>
-      </div>
-
-      <!-- Imagem de destaque (luxo e contextual) -->
-      <div class="featured-image">
-        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1400&h=550&fit=crop" alt="Tribunal, justiça e balança, simbolizando alienação parental" loading="eager">
-      </div>
-
-      <!-- Conteúdo aprofundado do artigo -->
-      <div class="article-content">
-        <p>A síndrome da alienação parental (SAP) configura um dos fenômenos mais complexos do direito das famílias contemporâneo. Definida inicialmente por Richard Gardner na década de 1980, a expressão descreve o processo pelo qual uma criança é manipulada ou "programada" por um dos genitores para rejeitar o outro de forma injustificada. No entanto, décadas de prática jurídica e estudos psicológicos revelaram uma fronteira tênue: <strong class="highlight-gold">onde termina a proteção legítima da criança e começa a falsa alegação de alienação?</strong></p>
+    <!-- ARTIGO EM DUAS COLUNAS -->
+    <div class="article-dual-column">
+      <div class="article-image-col">
+        <img src="assets/images/10.04alienacao.jpg" alt="Balança da justiça com livros de direito ao fundo - representação simbólica de alienação parental" loading="lazy">
+        <div class="image-caption">Entre a proteção da criança e a falsa acusação</div>
         
-        <p>No Brasil, a Lei 12.318/2010 regulamenta a alienação parental, estabelecendo medidas que vão desde advertência até a modificação da guarda. Contudo, a aplicação prática esbarra em subjetividades: tribunais frequentemente se deparam com alegações cruzadas, onde um genitor acusa o outro de alienar enquanto, na verdade, busca ocultar situações reais de abuso ou negligência. A análise institucional exige, portanto, um olhar que ultrapasse o senso comum e incorpore evidências periciais robustas.</p>
-        
-        <h2>O dilema probatório</h2>
-        <p>A principal dificuldade reside na produção de prova técnica. Enquanto nos casos de violência doméstica há registros de ocorrência, laudos de lesão corporal e testemunhas, na alienação parental os indícios são predominantemente comportamentais: frases ensaiadas, medo irracional, ausência de memórias afetivas positivas com o genitor alienado. A psicologia forense desenvolveu protocolos como a <em>Análise de Interação Familiar Estruturada</em> e o <em>Teste de Rorschach</em> para auxiliar juízes, mas a formação de peritos ainda é heterogênea.</p>
-        
-        <blockquote>“A inversão de ônus probatório não pode banalizar a acusação de alienação. É necessário equilíbrio para que a lei não sirva a genitores que, sob a retórica da alienação, tentam silenciar denúncias legítimas de abuso.” — Desembargadora Maria Helena Pires (TJ-SP, 2024)</blockquote>
-        
-        <h2>Falsas alegações e o sistema de justiça</h2>
-        <p>Estudos do Núcleo de Pesquisa em Psicologia Jurídica da USP indicam que em aproximadamente 30% dos processos de guarda contenciosa há alegações de alienação parental não comprovadas. Em muitos casos, a acusação é utilizada como estratégia de contra-ataque por genitores que perderiam a guarda em razão de histórico de violência. O Judiciário, ao aplicar sanções severas como a inversão da guarda com base apenas em indícios frágeis, pode gerar danos irreversíveis à relação entre a criança e o genitor protetor.</p>
-        
-        <p>Para mitigar esse risco, tribunais como o TJRS e TJMG passaram a exigir, em suas Câmaras de Família, a realização obrigatória de estudo psicossocial com equipe interdisciplinar antes de qualquer decisão que altere a convivência familiar. Além disso, a escuta especializada da criança, quando recomendada, deve ser feita por profissionais capacitados, evitando revitimização.</p>
-        
-        <h2>Impactos na saúde mental infantil</h2>
-        <p>Independentemente de quem esteja instrumentalizando o discurso, a criança é sempre a parte mais vulnerável. Estudos longitudinais apontam que filhos expostos a campanhas de desmoralização de um dos pais desenvolvem maior propensão a transtornos de ansiedade, depressão e dificuldades de vinculação afetiva na vida adulta. A resolução do conflito exige abordagem terapêutica paralela: o genitor alienador precisa de acompanhamento psicológico para desconstruir comportamentos, e a criança precisa de espaço seguro para reelaborar seus sentimentos sem culpa.</p>
-        
-        <p>A PautaZero defende que o sistema de justiça adote <strong>câmaras técnicas especializadas</strong> em alienação parental, com juízes, psicólogos e assistentes sociais treinados na diferenciação entre alienação e afastamento protetivo. A tecnologia pode auxiliar: sistemas de machine learning aplicados a laudos periciais já começam a ser testados no Tribunal de Justiça de São Paulo para identificar padrões de linguagem que sugerem manipulação ou falsa alegação.</p>
-        
-        <h2>Perspectivas internacionais e legislação comparada</h2>
-        <p>Países como França e Canadá adotam abordagens mais restritivas à aplicação do conceito de alienação parental, sobretudo após críticas de que o termo foi utilizado para deslegitimar denúncias de violência doméstica. Na Austrália, a reforma de 2021 da <em>Family Law Act</em> removeu menções explícitas à "alienação parental", substituindo por cláusulas que priorizam o "melhor interesse da criança" com base em evidências concretas de risco. O Brasil caminha para um debate semelhante: o projeto de lei 503/2023 propõe a revisão da Lei 12.318/2010 para incluir a obrigatoriedade de perícia multidisciplinar e a criação de um cadastro nacional de peritos especializados.</p>
-        
-        <p>Enquanto isso, o papel da revista e dos observatórios institucionais é iluminar esses vazios hermenêuticos. Apenas com dados, transparência e rigor técnico será possível desenhar políticas públicas que, de fato, protejam crianças e adolescentes sem que o direito de família se torne arena de batalhas simbólicas.</p>
-      </div>
-
-      <!-- SEÇÃO DE ARTIGOS RELACIONADOS (MESMA CATEGORIA) -->
-      <div class="related-section">
-        <div class="related-title">
-          <i class="fas fa-layer-group" style="color: var(--gold-dark);"></i> Outros artigos — Justiça & Direito
-          <span style="font-size: 0.7rem; background: rgba(212,175,55,0.1); padding: 0.2rem 0.6rem; border-radius: 30px;">navegação temática</span>
+        <!-- LISTAGEM DE ARTIGOS PRONTOS DO MESMO TEMA (abaixo da foto) -->
+        <div class="same-theme-articles">
+          <h5><i class="fas fa-check-circle"></i> Artigos prontos – mesmo tema</h5>
+          <ul class="same-theme-list">
+            <li><a href="#">Alienação Parental: entre a proteção e a falsa acusação</a></li>
+            <li><a href="construcao.html">Falsas acusações de alienação parental: como identificar</a></li>
+            <li><a href="construcao.html">Os desafios da guarda compartilhada no Brasil</a></li>
+          </ul>
         </div>
-        <div class="related-grid" id="relatedArticlesContainer">
-          <!-- Os links serão injetados dinamicamente via JS baseado nos subtópicos de justiça, mantendo a consistência -->
-        </div>
-        <p style="font-size: 0.7rem; text-align: right; margin-top: 1rem; color: var(--gold-dark);"><i class="fas fa-sync-alt"></i> Clique em qualquer card para expandir o conteúdo na mesma categoria</p>
       </div>
+      <div class="article-text-col">
+        <h1 class="article-title">Alienação Parental: entre a proteção da criança e a falsa acusação</h1>
+        <div class="title-gold-line"></div>
+        <div class="article-meta">
+          <span><i class="far fa-calendar-alt"></i> <time datetime="2026-04-08">08 de abril de 2026</time></span>
+          <span><i class="fas fa-tag"></i> Família & Alienação Parental</span>
+          <span><i class="far fa-clock"></i> 8 min de leitura</span>
+          <span><i class="fas fa-chalkboard-user"></i> Análise institucional</span>
+        </div>
+        <div class="article-body">
+          <p>O conceito de alienação parental, previsto na Lei 12.318/2010, representa um dos maiores desafios contemporâneos do direito de família. Originalmente concebido para proteger crianças e adolescentes de campanhas sistemáticas de desmoralização de um dos genitores, o instrumento também abriu espaço para interpretações extensivas e, em muitos casos, para falsas alegações utilizadas como estratégia litigiosa. A presente análise busca dissecar a dupla face do fenômeno: a necessária proteção da saúde mental infantil versus o risco de banalização do conceito.</p>
+          
+          <h2>Os limites entre proteção e litígio</h2>
+          <p>Estudos do Instituto Brasileiro de Direito de Família (IBDFAM) indicam que, entre 2018 e 2024, o número de ações baseadas em suposta alienação parental cresceu 230% nos tribunais estaduais. Contudo, apenas 18% dessas ações resultaram em comprovação efetiva da síndrome. O dado sugere uma instrumentalização perigosa: a alegação de alienação passou a ser usada como contra-ataque em disputas de guarda, muitas vezes desviando o foco do bem-estar da criança.</p>
+          
+          <blockquote>
+            <p>“A simples discordância sobre o modelo de guarda ou a existência de conflitos comuns na separação não configura alienação parental. É preciso haver um padrão de conduta deliberado para destruir o vínculo afetivo.” — Desembargadora Maria Helena Pires (TJ-SP)</p>
+          </blockquote>
+          
+          <h3>Impactos psicológicos reais</h3>
+          <p>Quando genuína, a alienação parental causa danos profundos e duradouros. Crianças expostas a campanhas de desmoralização do genitor-alvo podem desenvolver ansiedade crônica, depressão, distorção da memória e dificuldade de construir vínculos afetivos saudáveis. Estudos longitudinais apontam que adolescentes vítimas de alienação parental têm 3,5 vezes mais probabilidade de apresentar ideação suicida. O sistema de justiça, portanto, não pode negligenciar esses casos.</p>
+          
+          <p>Por outro lado, falsas acusações de alienação produzem igualmente um efeito devastador: desgastam o Judiciário, prolongam litígios e, frequentemente, afastam o genitor que verdadeiramente busca proteger o filho de abusos ou negligência. O resultado é um sistema que, em vez de pacificar, retroalimenta o conflito.</p>
+          
+          <h2>A necessidade de perícia técnica multidisciplinar</h2>
+          <p>A solução apontada por especialistas é a obrigatoriedade de avaliação psicológica e social aprofundada, com equipes interdisciplinares (psicólogos, assistentes sociais e pedagogos) antes da aplicação de qualquer sanção ou inversão de guarda. Atualmente, menos de 30% das varas de família no Brasil contam com estrutura mínima para esse tipo de análise.</p>
+          
+          <p>Ademais, propõe-se a criação de um protocolo nacional de indicadores de alienação, diferenciando-a de conflitos comuns de separação. A tecnologia poderia auxiliar: sistemas de inteligência artificial aplicados à análise de processos já conseguem identificar padrões textuais que sugerem litigância de má-fé. <span class="highlight">PautaZero</span> acompanha iniciativas como o projeto "Justiça 4.0" do CNJ, que testa algoritmos de apoio à decisão em varas de família.</p>
+          
+          <h3>Recomendações para advogados e magistrados</h3>
+          <p>Para equilibrar a balança entre proteção e prevenção da falsa acusação, recomenda-se: (i) exigir laudo pericial fundamentado antes de qualquer decisão que altere guarda ou suspenda visitas; (ii) capacitação continuada sobre saúde mental infantil; (iii) aplicação de multa processual por litigância de má-fé quando comprovada alegação infundada de alienação. Apenas com cautela técnica e humanizada será possível honrar o princípio do melhor interesse da criança sem transformar a alienação parental em uma arma forense.</p>
+          
+          <p>A PautaZero continuará monitorando decisões judiciais, projetos de lei e pesquisas sobre o tema. Acompanhe nossa seção <a href="construcao.html">Família & Alienação Parental</a> para análises semanais.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LISTAGEM DE ARTIGOS FUTUROS (abaixo do artigo principal) -->
+    <div class="future-articles">
+      <h4><i class="fas fa-pen-fancy"></i> Artigos em desenvolvimento</h4>
+      <ul class="future-list">
+        <li><a href="construcao.html">Falsas acusações de alienação parental: como o Judiciário tem reagido?</a></li>
+        <li><a href="construcao.html">Os desafios da guarda compartilhada no Brasil</a></li>
+        <li><a href="construcao.html">Síndrome da alienação parental: mito ou realidade clínica?</a></li>
+        <li><a href="construcao.html">O papel da perícia psicológica nas varas de família</a></li>
+        <li><a href="construcao.html">Alienação parental e saúde mental da criança: revisão de estudos</a></li>
+        <li><a href="construcao.html">Legislação comparada: como outros países tratam a alienação parental</a></li>
+      </ul>
+    </div>
+
+    <!-- SEÇÃO DOS 17 EIXOS (ABAIXO DO ARTIGO) - TODOS REDIRECIONAM PARA construcao.html -->
+    <div class="section-themes">
+      <h3><i class="fas fa-compass"></i> Navegue pelos 17 eixos</h3>
+      <div class="themes-grid" id="themesGrid"></div>
     </div>
   </main>
 
@@ -187,210 +439,122 @@
     <div class="footer-legal">Conteúdo editorial independente. As análises apresentadas refletem observações estruturais e não constituem aconselhamento jurídico, financeiro ou clínico. A PautaZero atua com base em critérios de responsabilidade informacional, respeitando contextos legais e institucionais aplicáveis.</div>
   </footer>
 
-  <!-- ARCHIVE OVERLAY (mesmo componente da página principal) -->
+  <!-- ARCHIVE OVERLAY (LUPA) -->
   <div class="archive-overlay" id="archiveOverlay">
     <div class="archive-panel">
-      <div class="archive-header"><h3><i class="fas fa-archive"></i> Arquivo de artigos</h3><button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button></div>
-      <div class="archive-search"><input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)"></div>
+      <div class="archive-header"><h3><i class="fas fa-archive"></i> Arquivo de eixos</h3><button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button></div>
+      <div class="archive-search"><input type="text" id="archiveSearchInput" placeholder="Buscar por tema, eixo..."></div>
       <div class="archive-list" id="archiveList"></div>
     </div>
   </div>
 
   <script>
     (function() {
-      // ========== DADOS DOS SUBTEMAS (MESMOS DA PÁGINA PRINCIPAL PARA JUSTIÇA) ==========
-      const justicaSubtopics = [
-        { name: "Alienação Parental e seus impactos", slug: "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao" },
-        { name: "Direito de família e saúde mental", slug: "direito-de-familia-e-saude-mental" },
-        { name: "Sistema prisional e direitos humanos", slug: "sistema-prisional-direitos-humanos" },
-        { name: "Justiça e tecnologia", slug: "justica-tecnologia" },
-        { name: "Políticas públicas e legislação", slug: "politicas-publicas-legislacao" },
-        { name: "Responsabilidade do Estado", slug: "responsabilidade-estado" },
-        { name: "Segurança pública e estrutura legal", slug: "seguranca-publica-legal" },
-        { name: "Direitos de pessoas privadas de liberdade", slug: "direitos-pessoas-privadas-liberdade" },
-        { name: "Judicialização da saúde", slug: "judicializacao-saude" }
-      ];
-      const currentSlug = "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao";
-      const folder = "justica-e-direito";
+      // ========== DADOS DOS 17 EIXOS (para a lupa e para os cards) ==========
+      const topicTitles = {
+        politica: "Política & Geopolítica",
+        "seguranca-total": "Segurança Total",
+        "prisional-policial": "Sistema Prisional & Policial",
+        "politicas-publicas": "Políticas Públicas",
+        "economia-super-ricos": "Economia & Super Ricos",
+        "saude-mental": "Saúde Mental",
+        "psicopatia": "Psicopatia & Comportamento Extremo",
+        "familia-alienacao": "Família & Alienação Parental",
+        "crime-investigacao": "Crime & Investigação",
+        "saude-mental-extremo": "Saúde Mental em Contextos Extremos",
+        "negocios": "Negócios & Estratégia",
+        "visao-global": "Visão Global",
+        "filantropia": "Impacto & Filantropia",
+        "historias-reais": "Histórias Reais",
+        "anonimo": "Espaço Anônimo",
+        "hibridos": "Conteúdos Híbridos"
+      };
 
-      // Renderizar os cards relacionados (exceto o artigo atual)
-      function renderRelatedArticles() {
-        const container = document.getElementById('relatedArticlesContainer');
-        if (!container) return;
-        const others = justicaSubtopics.filter(item => item.slug !== currentSlug);
-        if (others.length === 0) {
-          container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">Mais artigos em breve.</p>';
-          return;
-        }
-        const cardsHtml = others.map(article => `
-          <a href="/artigo/${folder}/${article.slug}.html" class="related-card">
-            <h4><i class="fas fa-balance-scale" style="color: var(--gold-dark); font-size: 0.9rem;"></i> ${escapeHtml(article.name)}</h4>
-            <p>Justiça & Direito · análise institucional</p>
-          </a>
-        `).join('');
-        container.innerHTML = cardsHtml;
+      const topicIcons = {
+        politica: "fas fa-landmark",
+        "seguranca-total": "fas fa-shield-alt",
+        "prisional-policial": "fas fa-gavel",
+        "politicas-publicas": "fas fa-chalkboard-user",
+        "economia-super-ricos": "fas fa-chart-pie",
+        "saude-mental": "fas fa-brain",
+        "psicopatia": "fas fa-user-ninja",
+        "familia-alienacao": "fas fa-heart-broken",
+        "crime-investigacao": "fas fa-fingerprint",
+        "saude-mental-extremo": "fas fa-skull",
+        "negocios": "fas fa-chart-line",
+        "visao-global": "fas fa-globe-americas",
+        "filantropia": "fas fa-hand-holding-heart",
+        "historias-reais": "fas fa-book-open",
+        "anonimo": "fas fa-user-secret",
+        "hibridos": "fas fa-code-branch"
+      };
+
+      // Gera a grade dos 17 eixos (cards)
+      const themesGrid = document.getElementById('themesGrid');
+      for (const [key, title] of Object.entries(topicTitles)) {
+        const card = document.createElement('a');
+        card.className = 'theme-mini-card';
+        card.href = 'construcao.html';
+        card.innerHTML = `<i class="${topicIcons[key]}"></i><span>${title}</span>`;
+        themesGrid.appendChild(card);
       }
+
+      // ========== ARQUIVO (LUPA) - exibe os 17 eixos como itens pesquisáveis ==========
+      const today = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const themesForArchive = Object.entries(topicTitles).map(([key, title]) => ({
+        title: title,
+        date: today,
+        link: 'construcao.html',
+        category: 'Eixo PautaZero'
+      }));
 
       function escapeHtml(str) {
-        return str.replace(/[&<>]/g, function(m) {
-          if (m === '&') return '&amp;';
-          if (m === '<') return '&lt;';
-          if (m === '>') return '&gt;';
+        return str.replace(/[&<>]/g, function(m){
+          if(m === '&') return '&amp;';
+          if(m === '<') return '&lt;';
+          if(m === '>') return '&gt;';
           return m;
         });
-      }
-
-      // ========== ARQUIVO / CACHE E VERIFICAÇÃO DE ARTIGOS (MESMA LÓGICA DA HOME) ==========
-      const pageCache = new Map();
-      let fullArticlesArchive = [];
-      let archiveLoadPromise = null;
-
-      function loadCacheFromStorage() {
-        try {
-          const stored = localStorage.getItem('PautaZero_pageCache');
-          if (stored) {
-            const parsed = JSON.parse(stored);
-            if (parsed && parsed.expiry > Date.now()) {
-              for (const [url, exists] of Object.entries(parsed.data)) {
-                pageCache.set(url, exists);
-              }
-              return true;
-            }
-          }
-        } catch(e) {}
-        return false;
-      }
-
-      function saveCacheToStorage() {
-        try {
-          const cacheObj = {};
-          for (const [url, exists] of pageCache.entries()) {
-            cacheObj[url] = exists;
-          }
-          const toStore = { data: cacheObj, expiry: Date.now() + 3600000 };
-          localStorage.setItem('PautaZero_pageCache', JSON.stringify(toStore));
-        } catch(e) {}
-      }
-
-      async function checkIfPageExists(url) {
-        if (pageCache.has(url)) return pageCache.get(url);
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 3000);
-          const response = await fetch(url, { method: 'HEAD', signal: controller.signal });
-          clearTimeout(timeoutId);
-          const exists = response.ok;
-          pageCache.set(url, exists);
-          saveCacheToStorage();
-          return exists;
-        } catch (err) {
-          pageCache.set(url, false);
-          saveCacheToStorage();
-          return false;
-        }
-      }
-
-      function generateAllPossibleArticles() {
-        const topicsMap = {
-          justica: { title: "Justiça & Direito", subtopics: justicaSubtopics, folder: "justica-e-direito" }
-        };
-        const articles = [];
-        for (const [topicKey, topicData] of Object.entries(topicsMap)) {
-          topicData.subtopics.forEach(sub => {
-            const url = `/artigo/${topicData.folder}/${sub.slug}.html`;
-            articles.push({ title: sub.name, category: topicData.title, url: url });
-          });
-        }
-        return articles;
-      }
-
-      async function loadAllArticles() {
-        if (fullArticlesArchive.length > 0) return;
-        const allPossible = generateAllPossibleArticles();
-        const archiveListDiv = document.getElementById('archiveList');
-        const wasOpen = archiveListDiv && (archiveListDiv.innerHTML.includes('Verificando') || document.getElementById('archiveOverlay').classList.contains('active'));
-        if (archiveListDiv && wasOpen) {
-          archiveListDiv.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Verificando artigos disponíveis...</div>';
-        }
-        const concurrencyLimit = 5;
-        const results = [];
-        for (let i = 0; i < allPossible.length; i += concurrencyLimit) {
-          const batch = allPossible.slice(i, i + concurrencyLimit);
-          const batchResults = await Promise.all(batch.map(async (article) => {
-            const exists = await checkIfPageExists(article.url);
-            if (exists) return { title: article.title, date: 'Publicado', link: article.url, category: article.category };
-            return null;
-          }));
-          results.push(...batchResults.filter(r => r !== null));
-        }
-        fullArticlesArchive = results;
-        fullArticlesArchive.sort((a, b) => a.title.localeCompare(b.title));
-        if (document.getElementById('archiveOverlay').classList.contains('active')) {
-          renderArchiveList(document.getElementById('archiveSearchInput').value);
-        }
       }
 
       function renderArchiveList(searchTerm = "") {
         const container = document.getElementById("archiveList");
         if (!container) return;
-        if (fullArticlesArchive.length === 0 && archiveLoadPromise) {
-          container.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Carregando artigos...</div>';
-          return;
-        }
         const term = searchTerm.toLowerCase().trim();
-        let filtered = fullArticlesArchive;
+        let filtered = themesForArchive;
         if (term !== "") {
-          filtered = fullArticlesArchive.filter(article => 
-            article.title.toLowerCase().includes(term) || article.category.toLowerCase().includes(term)
+          filtered = themesForArchive.filter(item => 
+            item.title.toLowerCase().includes(term) || 
+            item.category.toLowerCase().includes(term)
           );
         }
         if (filtered.length === 0) {
-          container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo encontrado.</div>';
+          container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum eixo encontrado.</div>';
           return;
         }
-        const html = filtered.map(article => `
-          <div class="archive-item" data-url="${article.link}">
-            <div class="archive-item-title">${escapeHtml(article.title)}</div>
-            <div class="archive-item-meta"><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="fas fa-folder"></i> ${escapeHtml(article.category)}</span></div>
+        container.innerHTML = filtered.map(item => `
+          <div class="archive-item" data-url="${item.link}">
+            <div class="archive-item-title">${escapeHtml(item.title)}</div>
+            <div class="archive-item-meta"><span><i class="far fa-calendar-alt"></i> ${item.date}</span><span><i class="fas fa-folder"></i> ${escapeHtml(item.category)}</span></div>
           </div>
         `).join('');
-        container.innerHTML = html;
         document.querySelectorAll('.archive-item').forEach(el => {
-          el.addEventListener('click', () => { const url = el.getAttribute('data-url'); if (url) window.location.href = url; });
+          el.addEventListener('click', () => { window.location.href = el.getAttribute('data-url'); });
         });
       }
 
-      loadCacheFromStorage();
-      archiveLoadPromise = loadAllArticles();
-
-      // Archive overlay handlers
-      function openArchive() {
-        document.getElementById('archiveOverlay').classList.add('active');
-        document.body.classList.add('archive-open');
-        if (fullArticlesArchive.length === 0 && archiveLoadPromise) {
-          renderArchiveList('');
-          archiveLoadPromise.then(() => {
-            if (document.getElementById('archiveOverlay').classList.contains('active')) renderArchiveList(document.getElementById('archiveSearchInput').value);
-          });
-        } else {
-          renderArchiveList(document.getElementById('archiveSearchInput').value);
-        }
-      }
-      function closeArchive() {
-        document.getElementById('archiveOverlay').classList.remove('active');
-        document.body.classList.remove('archive-open');
-        document.getElementById('archiveSearchInput').value = '';
-        renderArchiveList('');
-      }
-      document.getElementById('archiveBtn').addEventListener('click', openArchive);
-      document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
-      document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
+      // Controles da lupa
+      const archiveBtn = document.getElementById('archiveBtn');
+      const archiveOverlay = document.getElementById('archiveOverlay');
+      const archiveCloseBtn = document.getElementById('archiveCloseBtn');
+      const searchInput = document.getElementById('archiveSearchInput');
+      function openArchive() { archiveOverlay.classList.add('active'); renderArchiveList(searchInput.value); }
+      function closeArchive() { archiveOverlay.classList.remove('active'); searchInput.value = ''; renderArchiveList(''); }
+      if (archiveBtn) archiveBtn.addEventListener('click', openArchive);
+      if (archiveCloseBtn) archiveCloseBtn.addEventListener('click', closeArchive);
+      if (archiveOverlay) archiveOverlay.addEventListener('click', (e) => { if(e.target === archiveOverlay) closeArchive(); });
+      if (searchInput) searchInput.addEventListener('input', (e) => renderArchiveList(e.target.value));
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
-      const searchInputArchive = document.getElementById('archiveSearchInput');
-      if (searchInputArchive) searchInputArchive.addEventListener('input', (e) => renderArchiveList(e.target.value));
-
-      // Inicializar artigos relacionados
-      renderRelatedArticles();
     })();
   </script>
 </body>
