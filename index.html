@@ -146,7 +146,7 @@
       font-size: 1.8rem;
     }
 
-    /* ========== MODAL DE LUXO ========== */
+    /* ========== MODAL DE LUXO (COM SUBTÍTULOS E SUBGRUPOS) ========== */
     .luxury-modal {
       position: fixed;
       top: 0;
@@ -169,7 +169,7 @@
     }
     .modal-content {
       background: var(--color-bg-card);
-      max-width: 550px;
+      max-width: 700px;
       width: 90%;
       border: 1px solid var(--gold-primary);
       box-shadow: 0 30px 50px rgba(0,0,0,0.3);
@@ -177,6 +177,8 @@
       transform: scale(0.95);
       transition: transform 0.3s ease;
       position: relative;
+      max-height: 85vh;
+      overflow-y: auto;
     }
     .luxury-modal.active .modal-content {
       transform: scale(1);
@@ -212,27 +214,44 @@
       color: var(--gold-dark);
       margin-bottom: 1.2rem;
     }
+    .subcategory-group {
+      margin-bottom: 1.8rem;
+      border-left: 2px solid rgba(212,175,55,0.3);
+      padding-left: 1rem;
+    }
+    .subcategory-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-primary);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.2px;
+    }
     .topics-list {
       list-style: none;
-      margin: 1rem 0 0.5rem;
+      margin: 0.5rem 0 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
     }
     .topics-list li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.4rem;
+      width: calc(50% - 1rem);
     }
     .topics-list a {
       text-decoration: none;
       font-family: var(--font-serif);
-      font-size: 1rem;
+      font-size: 0.85rem;
       color: var(--color-text);
       border-left: 2px solid transparent;
-      padding-left: 1rem;
-      display: block;
+      padding-left: 0.6rem;
+      display: inline-block;
       transition: all 0.2s;
     }
     .topics-list a:hover {
       border-left-color: var(--gold-primary);
       color: var(--gold-dark);
-      padding-left: 1.2rem;
+      padding-left: 0.9rem;
     }
     .modal-footer-note {
       margin-top: 1.8rem;
@@ -241,6 +260,9 @@
       color: var(--gold-dark);
       text-align: center;
       border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    @media (max-width: 550px) {
+      .topics-list li { width: 100%; }
     }
   </style>
 </head>
@@ -261,94 +283,26 @@
     </div>
 
     <div class="thematic-grid">
-      <!-- JUSTIÇA -->
-      <div class="theme-card" data-topic="justica">
-        <div class="theme-icon"><i class="fas fa-gavel"></i></div>
-        <h3>Justiça & Direito</h3>
-        <p>Sistema prisional, direitos humanos, alienação parental, políticas públicas e estrutura legal.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- POLÍTICA -->
-      <div class="theme-card" data-topic="politica">
-        <div class="theme-icon"><i class="fas fa-landmark"></i></div>
-        <h3>Política & Geopolítica</h3>
-        <p>Estrutura de governos, relações internacionais, governança digital, transparência e poder.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- SAÚDE MENTAL -->
-      <div class="theme-card" data-topic="saude-mental">
-        <div class="theme-icon"><i class="fas fa-brain"></i></div>
-        <h3>Saúde Mental & Psiquiatria</h3>
-        <p>Políticas públicas, atendimento prisional, diagnóstico precoce, burnout e psiquiatria digital.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- TECNOLOGIA -->
-      <div class="theme-card" data-topic="tecnologia">
-        <div class="theme-icon"><i class="fas fa-microchip"></i></div>
-        <h3>Tecnologia & Inovação</h3>
-        <p>IA no setor público, blockchain, identidade digital, cidades inteligentes e sistemas institucionais.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- SEGURANÇA -->
-      <div class="theme-card" data-topic="seguranca">
-        <div class="theme-icon"><i class="fas fa-shield-alt"></i></div>
-        <h3>Segurança & Prisional</h3>
-        <p>Gestão penitenciária, superlotação, tecnologia em segurança, reincidência e modelos internacionais.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- NEGÓCIOS -->
-      <div class="theme-card" data-topic="negocios">
-        <div class="theme-icon"><i class="fas fa-chart-line"></i></div>
-        <h3>Negócios & Estratégia</h3>
-        <p>Alto valor, modelos digitais, branding pessoal, startups de impacto e negócios institucionais.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- GLOBAL -->
-      <div class="theme-card" data-topic="global">
-        <div class="theme-icon"><i class="fas fa-globe-americas"></i></div>
-        <h3>Viagens & Visão Global</h3>
-        <p>Sistemas públicos no mundo, cultura institucional global, mobilidade e infraestrutura internacional.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- FILANTROPIA -->
-      <div class="theme-card" data-topic="filantropia">
-        <div class="theme-icon"><i class="fas fa-hand-holding-heart"></i></div>
-        <h3>Filantropia & Impacto</h3>
-        <p>Tecnologia social, inclusão digital, projetos humanitários e sustentabilidade institucional.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- PSICOLOGIA -->
-      <div class="theme-card" data-topic="psicologia">
-        <div class="theme-icon"><i class="fas fa-user-md"></i></div>
-        <h3>Psicologia & Comportamento</h3>
-        <p>Narcisismo, psicopatia funcional, manipulação, inteligência emocional e psicologia do poder.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- SAÚDE & MEDICINA -->
-      <div class="theme-card" data-topic="saude-medicina">
-        <div class="theme-icon"><i class="fas fa-notes-medical"></i></div>
-        <h3>Saúde & Medicina</h3>
-        <p>Políticas de saúde pública, sistemas hospitalares, telemedicina, epidemias e inovações em diagnóstico.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- POLÍCIA & INVESTIGAÇÃO -->
-      <div class="theme-card" data-topic="policia">
-        <div class="theme-icon"><i class="fas fa-shield-virus"></i></div>
-        <h3>Polícia & Investigação</h3>
-        <p>Inteligência policial, investigação criminal, perícia, forças de segurança e modelos de atuação.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
-      <!-- ECONOMIA DA RIQUEZA & ALTA RENDA -->
-      <div class="theme-card" data-topic="economia-riqueza">
-        <div class="theme-icon"><i class="fas fa-chart-pie"></i></div>
-        <h3>Economia da Riqueza & Alta Renda</h3>
-        <p>Concentração de capital, fortuna familiar, investimentos alternativos, tributação e mercado de luxo.</p>
-        <div class="theme-badge">clique para explorar →</div>
-      </div>
+      <!-- 17 CATEGORIAS CONFORME ESTRUTURA EXPANDIDA -->
+      <div class="theme-card" data-topic="politica"><div class="theme-icon"><i class="fas fa-landmark"></i></div><h3>Política & Geopolítica</h3><p>Monetária, relações internacionais, regulação e poder institucional.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="seguranca-total"><div class="theme-icon"><i class="fas fa-shield-alt"></i></div><h3>Segurança Total</h3><p>Pessoal, digital, patrimonial e inteligência estratégica.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="prisional-policial"><div class="theme-icon"><i class="fas fa-gavel"></i></div><h3>Sistema Prisional & Policial</h3><p>Estrutura carcerária, investigação, perícia e inteligência policial.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="politicas-publicas"><div class="theme-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Políticas Públicas</h3><p>Segurança, saúde, economia pública e regulação.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="economia-super-ricos"><div class="theme-icon"><i class="fas fa-chart-pie"></i></div><h3>Economia & Super Ricos</h3><p>Alta renda, offshores, family offices e patrimônio invisível.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="saude-mental"><div class="theme-icon"><i class="fas fa-brain"></i></div><h3>Saúde Mental</h3><p>Transtornos, emoções, trauma e alta performance.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="psicopatia"><div class="theme-icon"><i class="fas fa-user-ninja"></i></div><h3>Psicopatia & Comportamento Extremo</h3><p>Manipulação, liderança tóxica, serial killers e falta de empatia.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="familia-alienacao"><div class="theme-icon"><i class="fas fa-heart-broken"></i></div><h3>Família & Alienação Parental</h3><p>Divórcio, guarda, falsas acusações e danos psicológicos.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="crime-investigacao"><div class="theme-icon"><i class="fas fa-fingerprint"></i></div><h3>Crime & Investigação</h3><p>Perfil criminal, crimes financeiros, motivação e detecção.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="saude-mental-extremo"><div class="theme-icon"><i class="fas fa-skull"></i></div><h3>Saúde Mental em Contextos Extremos</h3><p>Prisional, alta pressão, colapso e sobrevivência psicológica.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="negocios"><div class="theme-icon"><i class="fas fa-chart-line"></i></div><h3>Negócios & Estratégia</h3><p>Modelos de negócio, holdings, captação e branding.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="visao-global"><div class="theme-icon"><i class="fas fa-globe-americas"></i></div><h3>Visão Global</h3><p>Networking internacional, mobilidade e expansão.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="filantropia"><div class="theme-icon"><i class="fas fa-hand-holding-heart"></i></div><h3>Impacto & Filantropia</h3><p>Social, educação, investimento de impacto e legado.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="historias-reais"><div class="theme-icon"><i class="fas fa-book-open"></i></div><h3>Histórias Reais</h3><p>Superação, queda, ascensão e bastidores.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="anonimo"><div class="theme-icon"><i class="fas fa-user-secret"></i></div><h3>Espaço Anônimo</h3><p>Confissões, relatos sensíveis, apoio e comunidade.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="hibridos"><div class="theme-icon"><i class="fas fa-code-branch"></i></div><h3>Conteúdos Híbridos</h3><p>Psicopatia+negócios, segurança+economia, prisão+psicologia.</p><div class="theme-badge">clique para explorar →</div></div>
     </div>
-
     <div style="margin: 2rem 0 0; text-align: center; font-size: 0.7rem; color: var(--gold-dark); letter-spacing: 1px;">
-      <i class="fas fa-chalkboard-teacher"></i> Selecione um tema e escolha o subtópico desejado
+      <i class="fas fa-chalkboard-teacher"></i> Selecione um tema e explore subcategorias e subtemas
     </div>
   </main>
 
@@ -371,263 +325,165 @@
     </div>
   </div>
 
-  <!-- MODAL DE LUXO -->
   <div class="luxury-modal" id="topicModal">
     <div class="modal-content">
-      <div class="modal-header">
-        <h3 id="modalTitle">Título</h3>
-        <button class="modal-close" id="closeModalBtn"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-subtitle">ESCOLHA O SUBTEMA</div>
-      <div id="modalTopicsList" class="topics-list"></div>
-      <div class="modal-footer-note">Os artigos serão disponibilizados em breve nesta seção.</div>
+      <div class="modal-header"><h3 id="modalTitle">Título</h3><button class="modal-close" id="closeModalBtn"><i class="fas fa-times"></i></button></div>
+      <div class="modal-subtitle">SUBGRUPOS & TEMAS ESTRATÉGICOS</div>
+      <div id="modalTopicsList"></div>
+      <div class="modal-footer-note">Artigos completos em breve nesta seção. Conteúdo progressivo.</div>
     </div>
   </div>
 
   <script>
     (function() {
-      // ========== DADOS DOS SUBTEMAS POR CATEGORIA ==========
+      // ========== DADOS COMPLETOS: 17 CATEGORIAS COM SUBCATEGORIAS E SUBTEMAS ==========
       const subtopicsByTopic = {
-        justica: [
-          { name: "Alienação Parental e seus impactos", slug: "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao" },
-          { name: "Direito de família e saúde mental", slug: "direito-de-familia-e-saude-mental" },
-          { name: "Sistema prisional e direitos humanos", slug: "sistema-prisional-direitos-humanos" },
-          { name: "Justiça e tecnologia", slug: "justica-tecnologia" },
-          { name: "Políticas públicas e legislação", slug: "politicas-publicas-legislacao" },
-          { name: "Responsabilidade do Estado", slug: "responsabilidade-estado" },
-          { name: "Segurança pública e estrutura legal", slug: "seguranca-publica-legal" },
-          { name: "Direitos de pessoas privadas de liberdade", slug: "direitos-pessoas-privadas-liberdade" },
-          { name: "Judicialização da saúde", slug: "judicializacao-saude" }
-        ],
-        politica: [
-          { name: "Estrutura de governos modernos", slug: "estrutura-governos-modernos" },
-          { name: "Políticas públicas globais", slug: "politicas-publicas-globais" },
-          { name: "Relações internacionais", slug: "relacoes-internacionais" },
-          { name: "Governança digital", slug: "governanca-digital" },
-          { name: "Poder e influência", slug: "poder-influencia" },
-          { name: "Transparência pública", slug: "transparencia-publica" },
-          { name: "Estratégia estatal", slug: "estrategia-estatal" },
-          { name: "Impacto social de decisões políticas", slug: "impacto-social-decisoes-politicas" },
-          { name: "Cooperação internacional", slug: "cooperacao-internacional" }
-        ],
-        "saude-mental": [
-          { name: "Atendimento psiquiátrico no sistema prisional", slug: "atendimento-psiquiatrico-prisional" },
-          { name: "Falta de políticas públicas em saúde mental", slug: "falta-politicas-saude-mental" },
-          { name: "Diagnóstico precoce e prevenção", slug: "diagnostico-precoce-prevencao" },
-          { name: "Psiquiatria digital (tecnologia aplicada)", slug: "psiquiatria-digital" },
-          { name: "Saúde mental infantil e familiar", slug: "saude-mental-infantil-familiar" },
-          { name: "Impacto da negligência psicológica", slug: "impacto-negligencia-psicologica" },
-          { name: "Burnout e esgotamento social", slug: "burnout-esgotamento-social" },
-          { name: "Saúde mental em ambientes institucionais", slug: "saude-mental-ambientes-institucionais" },
-          { name: "Dependência química e sistema público", slug: "dependencia-quimica-sistema-publico" },
-          { name: "Reintegração social e saúde mental", slug: "reintegracao-social-saude-mental" }
-        ],
-        tecnologia: [
-          { name: "Inteligência artificial aplicada ao setor público", slug: "ia-setor-publico" },
-          { name: "Sistemas institucionais digitais", slug: "sistemas-institucionais-digitais" },
-          { name: "Identidade digital", slug: "identidade-digital" },
-          { name: "Blockchain em governos", slug: "blockchain-governos" },
-          { name: "Big data e decisões públicas", slug: "big-data-decisoes-publicas" },
-          { name: "Automação de processos", slug: "automacao-processos" },
-          { name: "Cidades inteligentes", slug: "cidades-inteligentes" },
-          { name: "Segurança da informação", slug: "seguranca-informacao" },
-          { name: "Tecnologia para saúde mental", slug: "tecnologia-saude-mental" },
-          { name: "Infraestrutura digital pública", slug: "infraestrutura-digital-publica" }
-        ],
-        seguranca: [
-          { name: "Estrutura do sistema prisional no Brasil", slug: "estrutura-sistema-prisional-brasil" },
-          { name: "Superlotação carcerária", slug: "superlotacao-carceraria" },
-          { name: "Gestão penitenciária", slug: "gestao-penitenciaria" },
-          { name: "Tecnologia em segurança pública", slug: "tecnologia-seguranca-publica" },
-          { name: "Inteligência aplicada à polícia", slug: "inteligencia-policia" },
-          { name: "Reincidência criminal", slug: "reincidencia-criminal" },
-          { name: "Monitoramento e controle institucional", slug: "monitoramento-controle-institucional" },
-          { name: "Modelos internacionais de presídios", slug: "modelos-internacionais-presidios" },
-          { name: "Segurança urbana", slug: "seguranca-urbana" }
-        ],
-        negocios: [
-          { name: "Posicionamento de alto valor (high-ticket)", slug: "posicionamento-alto-valor" },
-          { name: "Modelos de negócios digitais", slug: "modelos-negocios-digitais" },
-          { name: "Branding pessoal estratégico", slug: "branding-pessoal-estrategico" },
-          { name: "Economia digital", slug: "economia-digital" },
-          { name: "Negócios internacionais", slug: "negocios-internacionais" },
-          { name: "Startups de impacto social", slug: "startups-impacto-social" },
-          { name: "Escalabilidade de projetos", slug: "escalabilidade-projetos" },
-          { name: "Gestão de inovação", slug: "gestao-inovacao" },
-          { name: "Mercado global de tecnologia", slug: "mercado-global-tecnologia" },
-          { name: "Negócios institucionais", slug: "negocios-institucionais" }
-        ],
-        global: [
-          { name: "Viagens com propósito (não turismo comum)", slug: "viagens-proposito" },
-          { name: "Sistemas públicos em outros países", slug: "sistemas-publicos-outros-paises" },
-          { name: "Cultura institucional global", slug: "cultura-institucional-global" },
-          { name: "Experiência em ambientes internacionais", slug: "experiencia-ambientes-internacionais" },
-          { name: "Observação de políticas públicas no mundo", slug: "observacao-politicas-publicas-mundo" },
-          { name: "Mobilidade global", slug: "mobilidade-global" },
-          { name: "Infraestrutura urbana internacional", slug: "infraestrutura-urbana-internacional" },
-          { name: "Estilo de vida global", slug: "estilo-vida-global" },
-          { name: "Expansão de negócios internacionais", slug: "expansao-negocios-internacionais" }
-        ],
-        filantropia: [
-          { name: "Tecnologia para impacto social", slug: "tecnologia-impacto-social" },
-          { name: "Projetos humanitários", slug: "projetos-humanitarios" },
-          { name: "Inclusão digital", slug: "inclusao-digital" },
-          { name: "Acesso à saúde mental", slug: "acesso-saude-mental" },
-          { name: "Desenvolvimento em países africanos", slug: "desenvolvimento-paises-africanos" },
-          { name: "Responsabilidade social", slug: "responsabilidade-social" },
-          { name: "Iniciativas globais", slug: "iniciativas-globais" },
-          { name: "Impacto social escalável", slug: "impacto-social-escalavel" },
-          { name: "Investimento social", slug: "investimento-social" },
-          { name: "Sustentabilidade institucional", slug: "sustentabilidade-institucional" }
-        ],
-        psicologia: [
-          { name: "Narcisismo nas relações pessoais e institucionais", slug: "narcisismo-relacoes" },
-          { name: "Psicopatia funcional (no poder, empresas, liderança)", slug: "psicopatia-funcional" },
-          { name: "Transtornos de personalidade e impacto social", slug: "transtornos-personalidade" },
-          { name: "Manipulação psicológica em ambientes profissionais", slug: "manipulacao-psicologica" },
-          { name: "Inteligência emocional aplicada à liderança", slug: "inteligencia-emocional-lideranca" },
-          { name: "Saúde mental em ambientes de alta pressão", slug: "saude-mental-alta-pressao" },
-          { name: "Comportamento humano em ambientes prisionais", slug: "comportamento-ambientes-prisionais" },
-          { name: "Psicologia do poder", slug: "psicologia-poder" },
-          { name: "Trauma psicológico e sistema institucional", slug: "trauma-psicologico-sistema" },
-          { name: "Perfil psicológico de lideranças públicas", slug: "perfil-psicologico-liderancas" },
-          { name: "Gaslighting e relações modernas", slug: "gaslighting-relacoes" },
-          { name: "Psicologia da decisão", slug: "psicologia-decisao" }
-        ],
-        "saude-medicina": [
-          { name: "Políticas públicas de saúde no Brasil", slug: "politicas-publicas-saude-brasil" },
-          { name: "Comparação internacional de sistemas de saúde", slug: "comparacao-sistemas-saude-internacional" },
-          { name: "Telemedicina e regulação", slug: "telemedicina-regulacao" },
-          { name: "Gestão hospitalar e eficiência", slug: "gestao-hospitalar-eficiencia" },
-          { name: "Epidemias e gestão de crises sanitárias", slug: "epidemias-gestao-crises-sanitarias" },
-          { name: "Inovações em diagnóstico (IA, imagem)", slug: "inovacoes-diagnostico-ia" },
-          { name: "Medicina preventiva e rastreamento populacional", slug: "medicina-preventiva-rastreamento" },
-          { name: "Saúde digital e prontuário eletrônico", slug: "saude-digital-prontuario-eletronico" },
-          { name: "Acesso a medicamentos e judicialização da saúde", slug: "acesso-medicamentos-judicializacao" },
-          { name: "Saúde da mulher e políticas públicas", slug: "saude-mulher-politicas-publicas" }
-        ],
-        policia: [
-          { name: "Inteligência policial estratégica", slug: "inteligencia-policial-estrategica" },
-          { name: "Investigação criminal e tecnologia", slug: "investigacao-criminal-tecnologia" },
-          { name: "Polícia científica e perícia", slug: "policia-cientifica-pericia" },
-          { name: "Gestão de crises e forças táticas", slug: "gestao-crises-forcas-taticas" },
-          { name: "Corpo de Bombeiros e defesa civil", slug: "bombeiros-defesa-civil" },
-          { name: "Modelos internacionais de polícia", slug: "modelos-internacionais-policia" },
-          { name: "Polícia comunitária e confiança pública", slug: "policia-comunitaria-confianca" },
-          { name: "Uso de IA e videomonitoramento", slug: "ia-videomonitoramento-policial" },
-          { name: "Controle externo e ouvidoria", slug: "controle-externo-ouvidoria" },
-          { name: "Carreira policial e saúde mental", slug: "carreira-policial-saude-mental" }
-        ],
-        "economia-riqueza": [
-          { name: "Concentração de riqueza e desigualdade estrutural", slug: "concentracao-riqueza-desigualdade" },
-          { name: "Tributação de grandes fortunas (Brasil vs. mundo)", slug: "tributacao-grandes-fortunas" },
-          { name: "Family offices e gestão de patrimônio multigeracional", slug: "family-offices-gestao-patrimonio" },
-          { name: "Investimentos alternativos para o ultra-high-net-worth", slug: "investimentos-alternativos-ultra-ricos" },
-          { name: "O mercado de luxo: moda, arte, imóveis e iates", slug: "mercado-luxo-moda-arte-imoveis" },
-          { name: "Filantropia estratégica dos bilionários", slug: "filantropia-estrategica-bilionarios" },
-          { name: "Paraísos fiscais e offshores: estrutura e controvérsias", slug: "paraisos-fiscais-offshores" },
-          { name: "Sucessão patrimonial e governança familiar", slug: "sucessao-patrimonial-governanca-familiar" },
-          { name: "Impacto econômico dos super-ricos na sociedade", slug: "impacto-super-ricos-sociedade" },
-          { name: "Cripto, ativos digitais e a nova riqueza tecnológica", slug: "cripto-ativos-digitais-riqueza-tecnologica" }
-        ]
+        politica: {
+          "Política monetária": ["Taxa de juros e inflação", "Emissão de moeda", "Controle econômico estatal"],
+          "Relações internacionais": ["Conflitos por recursos", "Guerra econômica", "Sanções internacionais"],
+          "Regulação global": ["Criptomoedas", "Bancos digitais", "IA e vigilância"],
+          "Poder institucional": ["Lobby político", "Influência corporativa", "Decisões estratégicas"]
+        },
+        "seguranca-total": {
+          "Segurança pessoal": ["Autoproteção urbana", "Rotinas seguras", "Identificação de risco"],
+          "Segurança digital": ["Ataques cibernéticos", "Engenharia social", "Proteção de dados"],
+          "Segurança patrimonial": ["Blindagem de patrimônio", "Segurança para alta renda", "Proteção de ativos"],
+          "Inteligência": ["Coleta de informações", "Análise de risco", "Prevenção estratégica"]
+        },
+        "prisional-policial": {
+          "Estrutura prisional": ["Superlotação", "Facções criminosas", "Economia interna"],
+          "Investigação": ["Perfil criminal", "Interrogatório", "Linguagem corporal"],
+          "Perícia": ["DNA", "Balística", "Cena do crime"],
+          "Inteligência policial": ["Monitoramento", "Operações estratégicas", "Prevenção criminal"]
+        },
+        "politicas-publicas": {
+          "Segurança pública": ["Combate ao crime", "Policiamento", "Políticas de prevenção"],
+          "Saúde pública": ["Saúde mental coletiva", "Acesso a tratamento", "Programas governamentais"],
+          "Economia pública": ["Tributação", "Incentivos", "Desigualdade"],
+          "Regulação": ["Tecnologia", "Mercado financeiro", "Privacidade"]
+        },
+        "economia-super-ricos": {
+          "Alta renda": ["Mentalidade milionária", "Construção de riqueza", "Diferença entre classes"],
+          "Estruturas financeiras": ["Holdings", "Offshores", "Family offices"],
+          "Estratégia patrimonial": ["Diversificação", "Proteção de ativos", "Gestão de risco"],
+          "Invisibilidade": ["Riqueza silenciosa", "Baixo perfil", "Capital oculto"]
+        },
+        "saude-mental": {
+          "Transtornos": ["Ansiedade", "Depressão", "Burnout"],
+          "Emoções": ["Regulação emocional", "Controle de impulsos", "Inteligência emocional"],
+          "Trauma": ["Trauma infantil", "PTSD", "Recuperação"],
+          "Performance": ["Foco", "Disciplina", "Alta performance mental"]
+        },
+        "psicopatia": {
+          "Clínica": ["Transtorno de Personalidade Antissocial", "Estrutura cerebral", "Falta de empatia"],
+          "Social": ["Manipulação", "Gaslighting", "Mentira patológica"],
+          "Corporativa": ["Psicopatas em empresas", "Liderança tóxica", "Poder sem empatia"],
+          "Investigativa": ["Serial killers", "Padrões comportamentais", "Assinatura criminal"]
+        },
+        "familia-alienacao": {
+          "Psicologia familiar": ["Divórcio", "Vínculo parental", "Conflitos"],
+          "Jurídico": ["Guarda", "Provas", "Perícia"],
+          "Alienação parental": ["Manipulação de filhos", "Rejeição induzida", "Consequências psicológicas"],
+          "Falsas acusações": ["Uso estratégico", "Distorção de fatos", "Erros judiciais", "Danos ao acusado"]
+        },
+        "crime-investigacao": {
+          "Criminalidade": ["Crimes violentos", "Crimes financeiros", "Crimes organizados"],
+          "Psicologia criminal": ["Motivação", "Perfil do criminoso", "Escalada de violência"],
+          "Estratégia investigativa": ["Planejamento de crime", "Investigação", "Detecção"]
+        },
+        "saude-mental-extremo": {
+          "Prisional": ["Confinamento", "Sobrevivência psicológica", "Adaptação a risco"],
+          "Alta pressão": ["Colapso emocional", "Burnout extremo", "Resiliência"],
+          "Trauma e recuperação": ["Pós-trauma", "Reintegração", "Terapias de exposição"]
+        },
+        "negocios": {
+          "Empreendedorismo": ["Modelos de negócio", "Startups de impacto", "Estratégias de crescimento"],
+          "Estrutura": ["Holding", "Captação de recursos", "Governança"],
+          "Crescimento & Branding": ["Escala", "Branding pessoal", "Networking de alto valor"]
+        },
+        "visao-global": {
+          "Internacional": ["Países estratégicos", "Cultura institucional global", "Expansão internacional"],
+          "Mobilidade": ["Vistos e residência", "Infraestrutura global", "Estilo de vida nômade"],
+          "Redes globais": ["Networking global", "Negócios internacionais", "Observação de políticas"]
+        },
+        "filantropia": {
+          "Impacto social": ["Tecnologia social", "Inclusão digital", "Projetos humanitários"],
+          "Educação": ["Acesso à educação", "Bolsas e mérito", "Inovação pedagógica"],
+          "Investimento de impacto": ["ESG", "Retorno social", "Legado filantrópico"]
+        },
+        "historias-reais": {
+          "Superação": ["Minha história real", "Erros graves", "Recomeço"],
+          "Queda e ascensão": ["Fracassos públicos", "Reconstrução", "Decisões difíceis"],
+          "Bastidores": ["Verdades ocultas", "O que não contam", "Bastidores do sucesso"]
+        },
+        "anonimo": {
+          "Confissões": ["História anônima", "Segredos de família", "Arrependimento"],
+          "Relatos sensíveis": ["Abuso", "Violência institucional", "Saúde mental em silêncio"],
+          "Apoio e comunidade": ["Pedido de ajuda", "Comunidade segura", "Superação anônima"]
+        },
+        "hibridos": {
+          "Psicopatia + Negócios": ["Liderança psicopática", "Poder sem escrúpulos", "Manipulação corporativa"],
+          "Segurança + Economia": ["Proteção de ultra-ricos", "Risco geopolítico", "Ativos em paraísos"],
+          "Política + Crime": ["Corrupção sistêmica", "Estado paralelo", "Financiamento ilegal"],
+          "Prisional + Psicologia": ["Efeitos do cárcere", "Psicologia da reclusão", "Reintegração falha"],
+          "História pessoal + riqueza": ["Trauma e fortuna", "Herança e conflito", "Ascensão emocional"],
+          "Alienação parental + psicologia": ["Dano psicológico à criança", "Síndrome da alienação", "Justiça e subjetividade"]
+        }
       };
 
       const topicTitles = {
-        justica: "Justiça & Direito",
         politica: "Política & Geopolítica",
-        "saude-mental": "Saúde Mental & Psiquiatria",
-        tecnologia: "Tecnologia & Inovação",
-        seguranca: "Segurança & Sistema Prisional",
-        negocios: "Negócios & Estratégia",
-        global: "Viagens & Visão Global",
-        filantropia: "Filantropia & Impacto Social",
-        psicologia: "Psicologia & Comportamento",
-        "saude-medicina": "Saúde & Medicina",
-        policia: "Polícia & Investigação",
-        "economia-riqueza": "Economia da Riqueza & Alta Renda"
+        "seguranca-total": "Segurança Total",
+        "prisional-policial": "Sistema Prisional & Policial",
+        "politicas-publicas": "Políticas Públicas",
+        "economia-super-ricos": "Economia & Super Ricos",
+        "saude-mental": "Saúde Mental",
+        "psicopatia": "Psicopatia & Comportamento Extremo",
+        "familia-alienacao": "Família & Alienação Parental",
+        "crime-investigacao": "Crime & Investigação",
+        "saude-mental-extremo": "Saúde Mental em Contextos Extremos",
+        "negocios": "Negócios & Estratégia",
+        "visao-global": "Visão Global",
+        "filantropia": "Impacto & Filantropia",
+        "historias-reais": "Histórias Reais",
+        "anonimo": "Espaço Anônimo",
+        "hibridos": "Conteúdos Híbridos"
       };
 
       const topicFolderMap = {
-        justica: "justica-e-direito",
-        politica: "politica",
-        "saude-mental": "saude-mental",
-        tecnologia: "tecnologia",
-        seguranca: "seguranca",
-        negocios: "negocios",
-        global: "global",
-        filantropia: "filantropia",
-        psicologia: "psicologia",
-        "saude-medicina": "saude-medicina",
-        policia: "policia",
-        "economia-riqueza": "economia-riqueza"
+        politica: "politica", "seguranca-total": "seguranca-total", "prisional-policial": "prisional-policial",
+        "politicas-publicas": "politicas-publicas", "economia-super-ricos": "economia-super-ricos",
+        "saude-mental": "saude-mental", "psicopatia": "psicopatia", "familia-alienacao": "familia-alienacao",
+        "crime-investigacao": "crime-investigacao", "saude-mental-extremo": "saude-mental-extremo",
+        "negocios": "negocios", "visao-global": "visao-global", "filantropia": "filantropia",
+        "historias-reais": "historias-reais", "anonimo": "anonimo", "hibridos": "hibridos"
       };
 
-      // ========== CACHE E VERIFICAÇÃO ASSÍNCRONA ==========
-      const pageCache = new Map();      // cache em memória
+      // Geração de slugs para os links
+      function slugify(text) {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      }
+
+      // ========== CACHE E VERIFICAÇÃO ASSÍNCRONA (mantido) ==========
+      const pageCache = new Map();
       let fullArticlesArchive = [];
       let archiveLoadPromise = null;
-
-      function loadCacheFromStorage() {
-        try {
-          const stored = localStorage.getItem('PautaZero_pageCache');
-          if (stored) {
-            const parsed = JSON.parse(stored);
-            if (parsed && parsed.expiry > Date.now()) {
-              for (const [url, exists] of Object.entries(parsed.data)) {
-                pageCache.set(url, exists);
-              }
-              return true;
-            }
-          }
-        } catch(e) {}
-        return false;
-      }
-
-      function saveCacheToStorage() {
-        try {
-          const cacheObj = {};
-          for (const [url, exists] of pageCache.entries()) {
-            cacheObj[url] = exists;
-          }
-          const toStore = {
-            data: cacheObj,
-            expiry: Date.now() + 3600000
-          };
-          localStorage.setItem('PautaZero_pageCache', JSON.stringify(toStore));
-        } catch(e) {}
-      }
-
-      async function checkIfPageExists(url) {
-        if (pageCache.has(url)) return pageCache.get(url);
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 3000);
-          const response = await fetch(url, { method: 'HEAD', signal: controller.signal });
-          clearTimeout(timeoutId);
-          const exists = response.ok;
-          pageCache.set(url, exists);
-          saveCacheToStorage();
-          return exists;
-        } catch (err) {
-          pageCache.set(url, false);
-          saveCacheToStorage();
-          return false;
-        }
-      }
-
+      function loadCacheFromStorage() { try { const stored = localStorage.getItem('PautaZero_pageCache'); if(stored){ const parsed = JSON.parse(stored); if(parsed && parsed.expiry > Date.now()){ for (const [url, exists] of Object.entries(parsed.data)) pageCache.set(url, exists); return true; } } } catch(e){} return false; }
+      function saveCacheToStorage() { try { const cacheObj = {}; for (const [url, exists] of pageCache.entries()) cacheObj[url] = exists; localStorage.setItem('PautaZero_pageCache', JSON.stringify({ data: cacheObj, expiry: Date.now() + 3600000 })); } catch(e){} }
+      async function checkIfPageExists(url) { if(pageCache.has(url)) return pageCache.get(url); try { const controller = new AbortController(); const timeoutId = setTimeout(() => controller.abort(), 3000); const response = await fetch(url, { method: 'HEAD', signal: controller.signal }); clearTimeout(timeoutId); const exists = response.ok; pageCache.set(url, exists); saveCacheToStorage(); return exists; } catch(err) { pageCache.set(url, false); return false; } }
+      
       function generateAllPossibleArticles() {
         const articles = [];
-        for (const [topicKey, subtopics] of Object.entries(subtopicsByTopic)) {
+        for (const [topicKey, subcategories] of Object.entries(subtopicsByTopic)) {
           const categoryName = topicTitles[topicKey] || topicKey;
           const folder = topicFolderMap[topicKey] || topicKey;
-          subtopics.forEach(sub => {
-            const url = `/artigo/${folder}/${sub.slug}.html`;
-            articles.push({
-              title: sub.name,
-              category: categoryName,
-              url: url
+          for (const [subcat, topics] of Object.entries(subcategories)) {
+            topics.forEach(topic => {
+              const slug = slugify(topic);
+              const url = `/artigo/${folder}/${slug}.html`;
+              articles.push({ title: topic, category: categoryName + " · " + subcat, url: url });
             });
-          });
+          }
         }
         return articles;
       }
@@ -636,87 +492,23 @@
         if (fullArticlesArchive.length > 0) return;
         const allPossible = generateAllPossibleArticles();
         const archiveListDiv = document.getElementById('archiveList');
-        const wasOpen = archiveListDiv && (archiveListDiv.innerHTML.includes('Verificando') || document.getElementById('archiveOverlay').classList.contains('active'));
-        if (archiveListDiv && wasOpen) {
-          archiveListDiv.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Verificando artigos disponíveis...</div>';
-        }
-        
+        if (archiveListDiv && document.getElementById('archiveOverlay').classList.contains('active')) archiveListDiv.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Verificando artigos disponíveis...</div>';
         const concurrencyLimit = 5;
         const results = [];
         for (let i = 0; i < allPossible.length; i += concurrencyLimit) {
           const batch = allPossible.slice(i, i + concurrencyLimit);
-          const batchResults = await Promise.all(batch.map(async (article) => {
-            const exists = await checkIfPageExists(article.url);
-            if (exists) {
-              return {
-                title: article.title,
-                date: 'Publicado',
-                link: article.url,
-                category: article.category
-              };
-            }
-            return null;
-          }));
+          const batchResults = await Promise.all(batch.map(async (article) => { const exists = await checkIfPageExists(article.url); if (exists) return { title: article.title, date: 'Publicado', link: article.url, category: article.category }; return null; }));
           results.push(...batchResults.filter(r => r !== null));
         }
-        fullArticlesArchive = results;
-        fullArticlesArchive.sort((a, b) => a.title.localeCompare(b.title));
-        if (document.getElementById('archiveOverlay').classList.contains('active')) {
-          renderArchiveList(document.getElementById('archiveSearchInput').value);
-        }
+        fullArticlesArchive = results.sort((a,b) => a.title.localeCompare(b.title));
+        if (document.getElementById('archiveOverlay').classList.contains('active')) renderArchiveList(document.getElementById('archiveSearchInput').value);
       }
-
-      function renderArchiveList(searchTerm = "") {
-        const container = document.getElementById("archiveList");
-        if (!container) return;
-        if (fullArticlesArchive.length === 0 && archiveLoadPromise) {
-          container.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Carregando artigos...</div>';
-          return;
-        }
-        const term = searchTerm.toLowerCase().trim();
-        let filtered = fullArticlesArchive;
-        if (term !== "") {
-          filtered = fullArticlesArchive.filter(article => 
-            article.title.toLowerCase().includes(term) || 
-            article.category.toLowerCase().includes(term) || 
-            article.date.toLowerCase().includes(term)
-          );
-        }
-        if (filtered.length === 0) {
-          container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo encontrado.</div>';
-          return;
-        }
-        const html = filtered.map(article => `
-          <div class="archive-item" data-url="${article.link}">
-            <div class="archive-item-title">${escapeHtml(article.title)}</div>
-            <div class="archive-item-meta">
-              <span><i class="far fa-calendar-alt"></i> ${article.date}</span>
-              <span><i class="fas fa-folder"></i> ${escapeHtml(article.category)}</span>
-            </div>
-          </div>
-        `).join('');
-        container.innerHTML = html;
-        document.querySelectorAll('.archive-item').forEach(el => {
-          el.addEventListener('click', () => {
-            const url = el.getAttribute('data-url');
-            if (url) window.location.href = url;
-          });
-        });
-      }
-      
-      function escapeHtml(str) {
-        return str.replace(/[&<>]/g, function(m) {
-          if (m === '&') return '&amp;';
-          if (m === '<') return '&lt;';
-          if (m === '>') return '&gt;';
-          return m;
-        });
-      }
-
+      function renderArchiveList(searchTerm = "") { const container = document.getElementById("archiveList"); if(!container) return; if(fullArticlesArchive.length === 0 && archiveLoadPromise) { container.innerHTML = '<div class="no-results"><i class="fas fa-spinner fa-pulse"></i> Carregando artigos...</div>'; return; } const term = searchTerm.toLowerCase().trim(); let filtered = fullArticlesArchive; if(term !== "") filtered = fullArticlesArchive.filter(article => article.title.toLowerCase().includes(term) || article.category.toLowerCase().includes(term) || article.date.toLowerCase().includes(term)); if(filtered.length === 0) { container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo encontrado.</div>'; return; } container.innerHTML = filtered.map(article => `<div class="archive-item" data-url="${article.link}"><div class="archive-item-title">${escapeHtml(article.title)}</div><div class="archive-item-meta"><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="fas fa-folder"></i> ${escapeHtml(article.category)}</span></div></div>`).join(''); document.querySelectorAll('.archive-item').forEach(el => el.addEventListener('click', () => { const url = el.getAttribute('data-url'); if(url) window.location.href = url; })); }
+      function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m === '&') return '&amp;'; if(m === '<') return '&lt;'; if(m === '>') return '&gt;'; return m;}); }
       loadCacheFromStorage();
       archiveLoadPromise = loadAllArticles();
 
-      // ========== MODAL ==========
+      // ========== MODAL COM SUBCATEGORIAS E SUBTEMAS ==========
       const modal = document.getElementById('topicModal');
       const modalTitle = document.getElementById('modalTitle');
       const modalTopicsList = document.getElementById('modalTopicsList');
@@ -724,67 +516,40 @@
 
       function openModal(topicKey) {
         const title = topicTitles[topicKey] || "Tema";
-        const subtopics = subtopicsByTopic[topicKey] || [];
+        const subcategoriesObj = subtopicsByTopic[topicKey] || {};
         modalTitle.innerText = title;
-        const folder = topicFolderMap[topicKey] || topicKey;
-        
-        if (subtopics.length === 0) {
+        if (Object.keys(subcategoriesObj).length === 0) {
           modalTopicsList.innerHTML = '<p style="color: var(--color-text-light);">Subtemas em breve.</p>';
         } else {
-          let itemsHtml = '';
-          subtopics.forEach((sub, idx) => {
-            let targetUrl = '';
-            if (idx < 3) {
-              targetUrl = `/artigo/${folder}/${sub.slug}.html`;
-            } else {
-              targetUrl = 'construcao.html';
-            }
-            itemsHtml += `<li><a href="${targetUrl}" target="_self">${escapeHtml(sub.name)}</a></li>`;
-          });
-          modalTopicsList.innerHTML = `<ul class="topics-list">${itemsHtml}</ul>`;
+          let html = '';
+          for (const [subcat, topics] of Object.entries(subcategoriesObj)) {
+            const folder = topicFolderMap[topicKey] || topicKey;
+            html += `<div class="subcategory-group"><div class="subcategory-title">${escapeHtml(subcat)}</div><ul class="topics-list">`;
+            topics.forEach(topic => {
+              const slug = slugify(topic);
+              const targetUrl = `/artigo/${folder}/${slug}.html`;
+              html += `<li><a href="${targetUrl}" target="_self">${escapeHtml(topic)}</a></li>`;
+            });
+            html += `</ul></div>`;
+          }
+          modalTopicsList.innerHTML = html;
         }
         modal.classList.add('active');
         document.body.classList.add('modal-open');
       }
-
       function closeModal() { modal.classList.remove('active'); document.body.classList.remove('modal-open'); }
-
-      document.querySelectorAll('.theme-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-          const topic = card.getAttribute('data-topic');
-          if (topic) openModal(topic);
-        });
-      });
+      document.querySelectorAll('.theme-card').forEach(card => { card.addEventListener('click', (e) => { const topic = card.getAttribute('data-topic'); if (topic) openModal(topic); }); });
       closeModalBtn.addEventListener('click', closeModal);
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
 
       // ========== ARQUIVO (LUPA) ==========
-      function openArchive() {
-        document.getElementById('archiveOverlay').classList.add('active');
-        document.body.classList.add('archive-open');
-        if (fullArticlesArchive.length === 0 && archiveLoadPromise) {
-          renderArchiveList('');
-          archiveLoadPromise.then(() => {
-            if (document.getElementById('archiveOverlay').classList.contains('active')) {
-              renderArchiveList(document.getElementById('archiveSearchInput').value);
-            }
-          });
-        } else {
-          renderArchiveList(document.getElementById('archiveSearchInput').value);
-        }
-      }
-      function closeArchive() {
-        document.getElementById('archiveOverlay').classList.remove('active');
-        document.body.classList.remove('archive-open');
-        document.getElementById('archiveSearchInput').value = '';
-        renderArchiveList('');
-      }
-      const searchInput = document.getElementById('archiveSearchInput');
-      if (searchInput) searchInput.addEventListener('input', (e) => renderArchiveList(e.target.value));
+      function openArchive() { document.getElementById('archiveOverlay').classList.add('active'); document.body.classList.add('archive-open'); if(fullArticlesArchive.length === 0 && archiveLoadPromise) { renderArchiveList(''); archiveLoadPromise.then(() => { if(document.getElementById('archiveOverlay').classList.contains('active')) renderArchiveList(document.getElementById('archiveSearchInput').value); }); } else { renderArchiveList(document.getElementById('archiveSearchInput').value); } }
+      function closeArchive() { document.getElementById('archiveOverlay').classList.remove('active'); document.body.classList.remove('archive-open'); document.getElementById('archiveSearchInput').value = ''; renderArchiveList(''); }
       document.getElementById('archiveBtn').addEventListener('click', openArchive);
       document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
       document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
+      document.getElementById('archiveSearchInput').addEventListener('input', (e) => renderArchiveList(e.target.value));
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
     })();
   </script>
