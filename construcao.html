@@ -8,6 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pautazero.com/">
+  <meta property="og:title" content="PautaZero · Análise que revela. Conhecimento que liberta.">
+  <meta property="og:description" content="Análises independentes sobre sistemas, comportamento, tecnologia e políticas estratégicas que moldam o nosso tempo.">
+  <meta property="og:image" content="https://pautazero.com/assets/images/topo-pautazero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PautaZero · Análise que revela. Conhecimento que liberta.">
+  <meta name="twitter:description" content="Análises independentes sobre sistemas, comportamento e tecnologia.">
+  <meta name="twitter:image" content="https://pautazero.com/assets/images/topo-pautazero.jpg">
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -94,8 +106,8 @@
   </footer>
 
   <script>
-    // 🔁 SUBSTITUA A URL ABAIXO PELA URL REAL DO SEU WORKER
-    const WORKER_URL = "https://pautazerowaitlist.SEU_SUBDOMINIO.workers.dev";
+    // ✅ URL do Worker fornecida pelo usuário
+    const WORKER_URL = "https://pautazerowaitlist.avizaecosystem.workers.dev";
 
     const form = document.getElementById("formNewsletter");
     const statusDiv = document.getElementById("statusMsg");
