@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ========== ESTILOS COMPLETOS (IDÊNTICOS AO ORIGINAL - LUXO) ========== */
+    /* ========== ESTILOS COMPLETOS (LUXO - IDÊNTICO AO ORIGINAL) ========== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --color-primary: #0a3147; --color-primary-light: #1a4b6d; --gold-primary: #D4AF37;
@@ -69,11 +69,12 @@
     .footer-legal { max-width: 1280px; margin: 1rem auto 0; padding: 1rem 36px 0; border-top: 1px solid rgba(212, 175, 55, 0.15); font-size: 0.65rem; line-height: 1.4; color: rgba(44, 62, 78, 0.6); text-align: center; letter-spacing: 0.3px; }
     @media (max-width: 700px) { .footer-legal { padding: 0.8rem 20px 0; font-size: 0.6rem; } }
 
-    /* ========== ESTILOS DO ARTIGO (MESMO PADRÃO DO PRIMEIRO) ========== */
+    /* ========== ESTILOS DO ARTIGO (MESMO PADRÃO) ========== */
     .breadcrumb { font-size: 0.75rem; margin-bottom: 1.8rem; color: var(--gold-dark); letter-spacing: 1px; text-transform: uppercase; }
     .breadcrumb a { color: var(--color-primary-light); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.4); }
     .breadcrumb a:hover { color: var(--gold-primary); }
-    .article-meta { display: flex; gap: 1.5rem; font-size: 0.8rem; color: var(--color-text-light); border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 1rem; margin-bottom: 2rem; }
+    .article-meta { display: flex; gap: 1.5rem; font-size: 0.8rem; color: var(--color-text-light); border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 1rem; margin-bottom: 2rem; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    .meta-left { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .featured-image { margin: 1.5rem 0 2rem; border-radius: 4px; overflow: hidden; border: 1px solid var(--gold-primary); box-shadow: var(--shadow-luxury); }
     .featured-image img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 480px; }
     .article-content { font-family: var(--font-body); font-size: 1.05rem; line-height: 1.7; color: #2c3e4e; }
@@ -89,6 +90,53 @@
     @media (max-width: 700px) { .related-grid { grid-template-columns: 1fr; } }
     .highlight-gold { color: var(--gold-dark); font-weight: 500; }
     #editorSignature { margin-top: 2rem; font-family: var(--font-serif); color: var(--color-primary); border-top: 1px solid rgba(212,175,55,0.2); padding-top: 1.5rem; }
+
+    /* ========== BOTÕES DE COMPARTILHAMENTO (MINÚSCULO, LUXUOSO) ========== */
+    .share-tools {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(212, 175, 55, 0.04);
+      padding: 0.35rem 0.9rem;
+      border-radius: 40px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      backdrop-filter: blur(2px);
+      font-size: 0.7rem;
+    }
+    .share-label {
+      font-family: var(--font-serif);
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-right: 0.2rem;
+    }
+    .share-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--color-primary-light);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .share-icon:hover {
+      background: var(--gold-primary);
+      color: #0a3147;
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 650px) {
+      .article-meta { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .share-tools { align-self: flex-start; margin-top: 0.2rem; }
+    }
   </style>
 </head>
 <body>
@@ -106,21 +154,33 @@
 
   <main>
     <div class="container">
-      <!-- Breadcrumb institucional -->
       <div class="breadcrumb">
         <i class="fas fa-feather-alt"></i> <a href="/">PautaZero</a> / <a href="/artigo/justica-e-direito/">Justiça & Direito</a> / Direito de Família e Saúde Mental
       </div>
 
       <h1>Direito de Família e Saúde Mental: entre o sofrimento materno e a manipulação narrativa</h1>
+      
+      <!-- METADADOS + COMPARTILHAMENTO INTEGRADO (MINÚSCULO) -->
       <div class="article-meta">
-        <span><i class="far fa-calendar-alt"></i> 09 de abril, 2026</span>
-        <span><i class="fas fa-gavel"></i> Direito de família · Saúde mental</span>
-        <span><i class="far fa-clock"></i> leitura de 14 min</span>
+        <div class="meta-left">
+          <span><i class="far fa-calendar-alt"></i> 09 de abril, 2026</span>
+          <span><i class="fas fa-gavel"></i> Direito de família · Saúde mental</span>
+          <span><i class="far fa-clock"></i> leitura de 14 min</span>
+        </div>
+        <div class="share-tools" id="socialShareBar">
+          <span class="share-label"><i class="fas fa-share-alt"></i> Compartilhar</span>
+          <a href="#" class="share-icon" id="shareX" title="Compartilhar no X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="share-icon" id="shareInstagram" title="Compartilhar no Instagram (link copiado)"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="share-icon" id="shareWhatsapp" title="Compartilhar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="share-icon" id="shareFacebook" title="Compartilhar no Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="share-icon" id="shareLinkedin" title="Compartilhar no LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="share-icon" id="shareCopyLink" title="Copiar link"><i class="fas fa-link"></i></a>
+        </div>
       </div>
 
-      <!-- Imagem de destaque (luxo e contextual) -->
+      <!-- IMAGEM LOCAL: assets/images/11.04-alienacao-parental.jpg -->
       <div class="featured-image">
-        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1400&h=550&fit=crop" alt="Mãe e filho, representando o cuidado e os desafios do direito de família" loading="eager">
+        <img src="assets/images/11.04-alienacao-parental.jpg" alt="Mãe e filho, representando o cuidado e os desafios do direito de família" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1400&h=550&fit=crop';">
       </div>
 
       <div class="article-content">
@@ -155,113 +215,8 @@
         </div>
       </div>
 
-      <!-- SEÇÃO DE ARTIGOS RELACIONADOS (MESMA CATEGORIA: JUSTIÇA & DIREITO) -->
+      <!-- SEÇÃO DE ARTIGOS RELACIONADOS -->
       <div class="related-section">
         <div class="related-title">
           <i class="fas fa-layer-group" style="color: var(--gold-dark);"></i> Outros artigos — Justiça & Direito
-          <span style="font-size: 0.7rem; background: rgba(212,175,55,0.1); padding: 0.2rem 0.6rem; border-radius: 30px;">navegação temática</span>
-        </div>
-        <div class="related-grid" id="relatedArticlesContainer">
-          <!-- Preenchido dinamicamente com os subtópicos da categoria -->
-        </div>
-        <p style="font-size: 0.7rem; text-align: right; margin-top: 1rem; color: var(--gold-dark);"><i class="fas fa-sync-alt"></i> Clique em qualquer card para expandir o conteúdo na mesma categoria</p>
-      </div>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-      <div>© 2026 PautaZero · Revista de análise de sistemas, comportamento e políticas estratégicas.</div>
-      <div style="display: flex; gap: 18px; color: var(--gold-dark); align-items: center;">
-        <i class="fab fa-linkedin"></i> <i class="fab fa-x-twitter"></i> <i class="fas fa-envelope"></i>
-        <span style="font-family: monospace;">editorial.pautazero@outlook.com</span>
-      </div>
-    </div>
-    <div class="footer-legal">Conteúdo editorial independente. As análises apresentadas refletem observações estruturais e não constituem aconselhamento jurídico, financeiro ou clínico. A PautaZero atua com base em critérios de responsabilidade informacional, respeitando contextos legais e institucionais aplicáveis.</div>
-  </footer>
-
-  <!-- ARCHIVE OVERLAY (mesmo componente da página principal) -->
-  <div class="archive-overlay" id="archiveOverlay">
-    <div class="archive-panel">
-      <div class="archive-header"><h3><i class="fas fa-archive"></i> Arquivo de artigos</h3><button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button></div>
-      <div class="archive-search"><input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)"></div>
-      <div class="archive-list" id="archiveList"></div>
-    </div>
-  </div>
-
-  <script>
-    (function() {
-      // ========== DADOS DOS SUBTEMAS DE JUSTIÇA & DIREITO (MESMOS DA HOME) ==========
-      // Inclui todos os subtópicos, inclusive o artigo atual e o anterior (alienação)
-      const justicaSubtopics = [
-        { name: "Alienação Parental e seus impactos", slug: "alienacao-parental-entre-a-protecao-e-a-falsa-acusacao" },
-        { name: "Direito de família e saúde mental", slug: "direito-de-familia-e-saude-mental" },
-        { name: "Sistema prisional e direitos humanos", slug: "sistema-prisional-direitos-humanos" },
-        { name: "Justiça e tecnologia", slug: "justica-tecnologia" },
-        { name: "Políticas públicas e legislação", slug: "politicas-publicas-legislacao" },
-        { name: "Responsabilidade do Estado", slug: "responsabilidade-estado" },
-        { name: "Segurança pública e estrutura legal", slug: "seguranca-publica-legal" },
-        { name: "Direitos de pessoas privadas de liberdade", slug: "direitos-pessoas-privadas-liberdade" },
-        { name: "Judicialização da saúde", slug: "judicializacao-saude" }
-      ];
-      const currentSlug = "direito-de-familia-e-saude-mental";
-      const folder = "justica-e-direito";
-
-      // Renderizar os cards relacionados (excluindo o artigo atual)
-      function renderRelatedArticles() {
-        const container = document.getElementById('relatedArticlesContainer');
-        if (!container) return;
-        const others = justicaSubtopics.filter(item => item.slug !== currentSlug);
-        if (others.length === 0) {
-          container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">Mais artigos em breve.</p>';
-          return;
-        }
-        const cardsHtml = others.map(article => `
-          <a href="/artigo/${folder}/${article.slug}.html" class="related-card">
-            <h4><i class="fas fa-balance-scale" style="color: var(--gold-dark); font-size: 0.9rem;"></i> ${escapeHtml(article.name)}</h4>
-            <p>Justiça & Direito · análise institucional</p>
-          </a>
-        `).join('');
-        container.innerHTML = cardsHtml;
-      }
-
-      function escapeHtml(str) {
-        return str.replace(/[&<>]/g, function(m) {
-          if (m === '&') return '&amp;';
-          if (m === '<') return '&lt;';
-          if (m === '>') return '&gt;';
-          return m;
-        });
-      }
-
-      // ========== ARQUIVO (LUPA) - VERSÃO SIMPLIFICADA ==========
-      function openArchive() {
-        document.getElementById('archiveOverlay').classList.add('active');
-        document.body.classList.add('archive-open');
-        renderArchiveList('');
-      }
-      function closeArchive() {
-        document.getElementById('archiveOverlay').classList.remove('active');
-        document.body.classList.remove('archive-open');
-        document.getElementById('archiveSearchInput').value = '';
-        renderArchiveList('');
-      }
-      function renderArchiveList(searchTerm) {
-        const container = document.getElementById('archiveList');
-        if (!container) return;
-        // Simulação de arquivo vazio (para manter a interface)
-        container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo publicado ainda. Em breve, novos conteúdos.</div>';
-      }
-      document.getElementById('archiveBtn').addEventListener('click', openArchive);
-      document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
-      document.getElementById('archiveOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('archiveOverlay')) closeArchive(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
-      const searchInputArchive = document.getElementById('archiveSearchInput');
-      if (searchInputArchive) searchInputArchive.addEventListener('input', (e) => renderArchiveList(e.target.value));
-
-      // Inicializar artigos relacionados
-      renderRelatedArticles();
-    })();
-  </script>
-</body>
-</html>
+          <span style="font-size: 0.7rem; background: rgba(212,175,55,0.1); padding: 0.2rem 0.6rem; border-radius: 30px;">navegação temátic
