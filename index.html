@@ -5,9 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>PautaZero · Análise Institucional & Tecnologia</title>
   <meta name="description" content="PautaZero é uma revista digital dedicada à análise de sistemas institucionais, tecnologia, comportamento e políticas estratégicas.">
+
+  <!-- ========== METATAGS PARA REDES SOCIAIS (DOMÍNIO PERSONALIZADO pautazero.com) ========== -->
   <meta property="og:title" content="PautaZero · Análise Institucional & Tecnologia">
   <meta property="og:description" content="Análise independente de sistemas, comportamento e políticas estratégicas.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pautazero.com/">
+  <meta property="og:image" content="https://pautazero.com/assets/imagens/topo-pautazero.jpg">
+  <meta property="og:image:alt" content="PautaZero - Capa com análise institucional e tecnologia">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PautaZero · Análise Institucional & Tecnologia">
+  <meta name="twitter:description" content="Análise independente de sistemas, comportamento e políticas estratégicas.">
+  <meta name="twitter:image" content="https://pautazero.com/assets/imagens/topo-pautazero.jpg">
+  <meta name="twitter:image:alt" content="PautaZero - Imagem de destaque">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
@@ -802,7 +816,6 @@
       const spotlightCards = document.querySelectorAll('.spotlight-card');
       spotlightCards.forEach(card => {
         card.addEventListener('click', (e) => {
-          // Evita conflito se clicou exatamente no link interno (já tratado pelo evento global)
           if (e.target.closest('.read-more')) return;
           const link = card.getAttribute('data-article-link');
           if (link) {
