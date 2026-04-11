@@ -11,7 +11,7 @@
   <meta property="og:description" content="Análise independente de sistemas, comportamento e políticas estratégicas.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pautazero.com/">
-  <meta property="og:image" content="https://pautazero.com/assets/images/topo-pautazero.jpg">
+  <meta property="og:image" content="https://pautazero.com/assets/imagens/topo-pautazero.jpg">
   <meta property="og:image:alt" content="PautaZero - Capa com análise institucional e tecnologia">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -549,13 +549,15 @@
       <div class="theme-card" data-topic="historias-reais"><div class="theme-icon"><i class="fas fa-book-open"></i></div><h3>Histórias Reais</h3><p>Superação, queda, ascensão e bastidores.</p><div class="theme-badge">clique para explorar →</div></div>
       <div class="theme-card" data-topic="anonimo"><div class="theme-icon"><i class="fas fa-user-secret"></i></div><h3>Espaço Anônimo</h3><p>Confissões, relatos sensíveis, apoio e comunidade.</p><div class="theme-badge">clique para explorar →</div></div>
       <div class="theme-card" data-topic="hibridos"><div class="theme-icon"><i class="fas fa-code-branch"></i></div><h3>Conteúdos Híbridos</h3><p>Psicopatia+negócios, segurança+economia, prisão+psicologia.</p><div class="theme-badge">clique para explorar →</div></div>
-      <!-- NOVOS CARDS PARA OS 6 EIXOS ADICIONAIS (mantendo o mesmo estilo visual) -->
       <div class="theme-card" data-topic="familia-saude-mental"><div class="theme-icon"><i class="fas fa-heartbeat"></i></div><h3>Direito de Família e Saúde Mental</h3><p>Sofrimento materno, perícias psicológicas e manipulação narrativa.</p><div class="theme-badge">clique para explorar →</div></div>
       <div class="theme-card" data-topic="justica-tecnologia"><div class="theme-icon"><i class="fas fa-microchip"></i></div><h3>Justiça e Tecnologia</h3><p>IA no judiciário, provas digitais, cibercrimes e automação.</p><div class="theme-badge">clique para explorar →</div></div>
-      <div class="theme-card" data-topic="genero-poder"><div class="theme-icon"><i class="fas fa-venus-mars"></i></div><h3>Gênero e Poder</h3><p>Violência de gênero, feminicídio, representação política e transgeneridade.</p><div class="theme-badge">clique para explorar →</div></div>
       <div class="theme-card" data-topic="educacao-desigualdade"><div class="theme-icon"><i class="fas fa-graduation-cap"></i></div><h3>Educação e Desigualdade</h3><p>Ensino público, privatização, cotas e tecnologia na educação.</p><div class="theme-badge">clique para explorar →</div></div>
       <div class="theme-card" data-topic="meio-ambiente"><div class="theme-icon"><i class="fas fa-tree"></i></div><h3>Meio Ambiente e Conflitos</h3><p>Garimpo ilegal, desmatamento, justiça climática e greenwashing.</p><div class="theme-badge">clique para explorar →</div></div>
       <div class="theme-card" data-topic="direitos-humanos"><div class="theme-icon"><i class="fas fa-hand-peace"></i></div><h3>Direitos Humanos e Sistema de Justiça</h3><p>Tortura, população em situação de rua, migração e comunidades tradicionais.</p><div class="theme-badge">clique para explorar →</div></div>
+      <!-- NOVO EIXO: Agronegócio, Logística e Transporte -->
+      <div class="theme-card" data-topic="agro-logistica"><div class="theme-icon"><i class="fas fa-truck"></i></div><h3>Agronegócio, Logística e Transporte</h3><p>Política de fretes, greves de caminhoneiros, infraestrutura e impactos.</p><div class="theme-badge">clique para explorar →</div></div>
+      <!-- NOVO EIXO: Saúde Física e Medicina (substitui o antigo Gênero e Poder) -->
+      <div class="theme-card" data-topic="saude-fisica"><div class="theme-icon"><i class="fas fa-stethoscope"></i></div><h3>Saúde Física e Medicina</h3><p>Erros médicos, acesso a tratamentos, pandemias e sistema de saúde.</p><div class="theme-badge">clique para explorar →</div></div>
     </div>
     <div style="margin: 2rem 0 0; text-align: center; font-size: 0.7rem; color: var(--gold-dark); letter-spacing: 1px;">
       <i class="fas fa-chalkboard-teacher"></i> Selecione um tema e explore subcategorias e subtemas
@@ -566,7 +568,6 @@
     <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
       <div>© 2026 PautaZero · Revista de análise de sistemas, comportamento e políticas estratégicas.</div>
       <div style="display: flex; gap: 18px; color: var(--gold-dark); align-items: center;">
-        <!-- NOVO BOTÃO MANIFESTO PAUTA ZERO - Mesma estrutura e contexto -->
         <a href="manifesto.html" style="color: inherit; text-decoration: none; transition: 0.2s; display: inline-flex; align-items: center; gap: 5px;" onmouseover="this.style.color='var(--gold-primary)'" onmouseout="this.style.color='inherit'">
           <i class="fas fa-scroll"></i> Manifesto Pauta Zero
         </a>
@@ -711,7 +712,7 @@
         }
       });
       
-      // ==================== DADOS COMPLETOS: 22 EIXOS (SUBSTITUÍDOS PELA VERSÃO EXPANDIDA) ====================
+      // ==================== DADOS COMPLETOS: 23 EIXOS (sem Gênero, com Saúde Física) ====================
       const subtopicsByTopic = {
         politica: {
           "Poder e Corrupção Estrutural": ["Caixa dois e financiamento ilegal de campanhas", "Lobby empresarial e captura do estado", "Propina sistêmica em contratos públicos", "Impunidade de altas patentes"],
@@ -758,7 +759,7 @@
         "familia-alienacao": {
           "Dinâmicas de Divórcio Litigioso": ["Uso de perícias psicológicas como arma", "Falsa denúncia de abuso sexual em disputas de guarda", "Perfil de genitores manipuladores", "Assédio judicial como ferramenta de controle"],
           "Alienação Parental e Seus Efeitos": ["Síndrome da alienação parental – controvérsia científica", "Consequências psicológicas a longo prazo", "Intervenção do judiciário e remoção da guarda", "Rejeição induzida e rompimento de vínculos"],
-          "Violência Doméstica e Gênero": ["Ciclo de violência e dificuldade de saída", "Feminicídio e falhas na rede de proteção", "Violência psicológica como prova pericial", "Medidas protetivas e revitimização"],
+          "Violência Doméstica e Relações de Poder": ["Ciclo de violência e dificuldade de saída", "Feminicídio e falhas na rede de proteção", "Violência psicológica como prova pericial", "Medidas protetivas e revitimização"],
           "Interesse Superior da Criança": ["Conflito entre direitos parentais e proteção", "Abuso institucional em conselhos tutelares", "Adoção tardia e estigma", "Crianças como objeto de disputa emocional"]
         },
         "crime-investigacao": {
@@ -821,12 +822,6 @@
           "Cibercrimes e Legislação": ["Lei de segurança nacional e vigilância", "Doxing e stalking eletrônico", "Invasão de dispositivos por parceiros abusivos", "Responsabilidade de provedores por conteúdo"],
           "Automação e Eficiência Judicial": ["Processo eletrônico e exclusão digital", "Assinaturas digitais e fraudes", "Balcão virtual e atendimento remoto", "Risco de decisões automatizadas sem revisão"]
         },
-        "genero-poder": {
-          "Violência de Gênero no Ambiente Corporativo": ["Assédio sexual estrutural em altos cargos", "Maternidade como barreira à promoção", "Diferencial salarial e negociação salarial", "Cultura de assédio em escritórios de advocacia"],
-          "Feminicídio e Falhas do Sistema": ["Medidas protetivas descumpridas", "Subnotificação de ameaças", "Patriarcado e leniência judicial", "Vítimas de classes altas e invisibilidade"],
-          "Representação Política e Teto de Vidro": ["Cotas de gênero e resistência", "Violência política contra mulheres", "Mulheres em cargos de chefia e assédio", "Dupla jornada e política"],
-          "Transgeneridade e Direitos": ["Acesso a cirurgias e hormonização pelo SUS", "Discriminação no mercado de trabalho", "Famílias trans e guarda de filhos", "Violência letal contra pessoas trans"]
-        },
         "educacao-desigualdade": {
           "Ensino Público e Abandono": ["Evasão escolar por pobreza extrema", "Violência nas escolas e falta de políticas", "Currículo defasado e desinteresse", "Greves de professores e impacto"],
           "Educação Privada e Elitismo": ["Ensino bilíngue como ferramenta de segregação", "Testes de admissão e exclusão", "Mensalidades abusivas e bolsas limitadas", "Rede de contatos como diferencial"],
@@ -844,6 +839,59 @@
           "População em Situação de Rua": ["Criminalização da pobreza", "Remoções forçadas e reintegração", "Saúde mental e dependência química", "Falta de políticas habitacionais"],
           "Migração e Apátridas": ["Detenção de migrantes e deportações", "Tráfico de pessoas e exploração", "Direitos de crianças migrantes", "Barreiras legais para refúgio"],
           "Comunidades Tradicionais": ["Quilombolas e ameaças de despejo", "Povos indígenas e mineração", "Quebra de consulta prévia", "Violência contra lideranças"]
+        },
+        "agro-logistica": {
+          "Política de Fretes e Greves de Caminhoneiros": [
+            "Tabela de frete mínimo e judicialização",
+            "Impacto das greves no abastecimento nacional",
+            "Caminhoneiros autônomos vs. transportadoras",
+            "Participação política da categoria e pautas"
+          ],
+          "Infraestrutura Rodoviária e Concessões": [
+            "Pedágios abusivos e qualidade das estradas",
+            "Corrupção em contratos de concessão",
+            "Pontos críticos e acidentes fatais",
+            "Privatização de rodovias e monopólios regionais"
+          ],
+          "Agronegócio e Impactos Socioambientais": [
+            "Concentração de terras e latifúndio improdutivo",
+            "Uso de agrotóxicos e saúde dos trabalhadores",
+            "Desmatamento para monocultura de soja e pecuária",
+            "Conflitos agrários e violência no campo"
+          ],
+          "Logística, Escoamento e Dependência do Diesel": [
+            "Portos, ferrovias e o gargalo do escoamento",
+            "Subsídio ao diesel e pressão sobre preços",
+            "Custo Brasil logístico e competitividade",
+            "Alternativas: hidrovias e cabotagem vs. lobby rodoviário"
+          ]
+        },
+        // NOVO EIXO: Saúde Física e Medicina (extenso)
+        "saude-fisica": {
+          "Erros Médicos e Imperícia": [
+            "Subdiagnóstico e negligência em pronto-socorros",
+            "Cirurgias em paciente errado e falhas de protocolo",
+            "Responsabilização criminal de médicos",
+            "Indenizações milionárias e omissão de prontuários"
+          ],
+          "Acesso a Tratamentos de Alto Custo": [
+            "Judicialização da saúde e medicamentos fora da lista do SUS",
+            "Planos de saúde que negam cobertura de terapias",
+            "Tratamentos experimentais e comitês de ética",
+            "Desabastecimento de fármacos essenciais"
+          ],
+          "Pandemia e Resposta Institucional": [
+            "Colapso de UTIs e decisões de alocação de recursos",
+            "Vacinação obrigatória e liberdade individual",
+            "Negacionismo científico no poder público",
+            "Efeitos pós-pandemia na infraestrutura hospitalar"
+          ],
+          "Sistema de Saúde e Desigualdade Regional": [
+            "Fila única do SUS e diferenças entre estados",
+            "Fugas de profissionais para a rede privada",
+            "Hospitais filantrópicos e gestão por OSs",
+            "Subfinanciamento crônico e sucateamento"
+          ]
         }
       };
 
@@ -866,10 +914,11 @@
         "hibridos": "Conteúdos Híbridos",
         "familia-saude-mental": "Direito de Família e Saúde Mental",
         "justica-tecnologia": "Justiça e Tecnologia",
-        "genero-poder": "Gênero e Poder",
         "educacao-desigualdade": "Educação e Desigualdade",
         "meio-ambiente": "Meio Ambiente e Conflitos",
-        "direitos-humanos": "Direitos Humanos e Sistema de Justiça"
+        "direitos-humanos": "Direitos Humanos e Sistema de Justiça",
+        "agro-logistica": "Agronegócio, Logística e Transporte",
+        "saude-fisica": "Saúde Física e Medicina"
       };
 
       const topicFolderMap = { ...topicTitles };
@@ -910,33 +959,22 @@
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
       
-      // ARQUIVO (gera lista de todos os subtemas para a lupa)
-      function generateAllArticles() {
-        const articles = [];
-        for (const [topicKey, subcategories] of Object.entries(subtopicsByTopic)) {
-          const categoryName = topicTitles[topicKey] || topicKey;
-          const folder = topicFolderMap[topicKey] || topicKey;
-          for (const [subcat, topics] of Object.entries(subcategories)) {
-            topics.forEach(topic => { const slug = slugify(topic); const url = getArticleUrl(folder, slug); articles.push({ title: topic, category: categoryName + " · " + subcat, url: url, date: "Em breve" }); });
-          }
-        }
-        return articles.sort((a,b) => a.title.localeCompare(b.title));
-      }
-      let fullArticlesArchive = generateAllArticles();
+      // ========== LUPA: NENHUM ARTIGO REAL AINDA ==========
+      // Array vazio porque não há nenhum arquivo .html publicado no servidor.
+      let fullArticlesArchive = [];
+      
       function renderArchiveList(searchTerm = "") {
         const container = document.getElementById("archiveList");
         if (!container) return;
-        const term = searchTerm.toLowerCase().trim();
-        let filtered = fullArticlesArchive;
-        if (term !== "") filtered = fullArticlesArchive.filter(article => article.title.toLowerCase().includes(term) || article.category.toLowerCase().includes(term));
-        if (filtered.length === 0) { container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo encontrado.</div>'; return; }
-        container.innerHTML = filtered.map(article => `<a class="archive-item" href="${article.url}"><div class="archive-item-title">${escapeHtml(article.title)}</div><div class="archive-item-meta"><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="fas fa-folder"></i> ${escapeHtml(article.category)}</span></div></a>`).join('');
+        // Sempre exibe que não há artigos, pois nenhum foi criado.
+        container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo publicado até o momento.</div>';
       }
+      
       function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m === '&') return '&amp;'; if(m === '<') return '&lt;'; if(m === '>') return '&gt;'; return m;}); }
       
       const archiveOverlay = document.getElementById('archiveOverlay');
-      function openArchive() { archiveOverlay.classList.add('active'); renderArchiveList(document.getElementById('archiveSearchInput').value); }
-      function closeArchive() { archiveOverlay.classList.remove('active'); document.getElementById('archiveSearchInput').value = ''; renderArchiveList(''); }
+      function openArchive() { archiveOverlay.classList.add('active'); renderArchiveList(); }
+      function closeArchive() { archiveOverlay.classList.remove('active'); document.getElementById('archiveSearchInput').value = ''; renderArchiveList(); }
       document.getElementById('archiveBtn').addEventListener('click', openArchive);
       document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
       archiveOverlay.addEventListener('click', (e) => { if (e.target === archiveOverlay) closeArchive(); });
@@ -959,7 +997,7 @@
       });
       document.querySelectorAll('.privacy-col-content').forEach(cont => { cont.style.display = 'none'; });
       
-      // ========== INTERCEPTA CLIQUE NOS CARDS DE DESTAQUE (FOTO CLICÁVEL) ==========
+      // ========== INTERCEPTA CLIQUE NOS CARDS DE DESTAQUE ==========
       const spotlightCards = document.querySelectorAll('.spotlight-card');
       spotlightCards.forEach(card => {
         card.addEventListener('click', (e) => {
