@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>PautaZero · Análise Institucional & Tecnologia</title>
+  <meta name="description" content="PautaZero é uma revista digital dedicada à análise de sistemas institucionais, tecnologia, comportamento e políticas estratégicas.">
+
+  <!-- ========== METATAGS PARA REDES SOCIAIS (DOMÍNIO PERSONALIZADO pautazero.com) ========== -->
+  <meta property="og:title" content="PautaZero · Análise Institucional & Tecnologia">
+  <meta property="og:description" content="Análise independente de sistemas, comportamento e políticas estratégicas.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pautazero.com/">
+  <meta property="og:image" content="https://pautazero.com/assets/imagens/topo-pautazero.jpg">
+  <meta property="og:image:alt" content="PautaZero - Capa com análise institucional e tecnologia">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PautaZero · Análise Institucional & Tecnologia">
+  <meta name="twitter:description" content="Análise independente de sistemas, comportamento e políticas estratégicas.">
+  <meta name="twitter:image" content="https://pautazero.com/assets/imagens/topo-pautazero.jpg">
+  <meta name="twitter:image:alt" content="PautaZero - Imagem de destaque">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cinzel:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ========== ESTILOS COMPLETOS (IDÊNTICOS AO ORIGINAL) ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --color-primary: #0a3147; --color-primary-light: #1a4b6d; --gold-primary: #D4AF37;
+      --gold-secondary: #F4E4B8; --gold-dark: #B8860B; --color-dark: #1A1A1A;
+      --color-text: #1e2a3a; --color-text-light: #2c3e4e; --color-bg: #fefaf5;
+      --color-bg-card: #ffffff; --border-light: 1px solid rgba(212, 175, 55, 0.25);
+      --shadow-luxury: 0 20px 35px -12px rgba(10, 49, 71, 0.12);
+      --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
+      --gradient-gold-subtle: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(244, 228, 184, 0.05) 100%);
+      --font-serif: 'Cinzel', serif; --font-sans: 'Inter', sans-serif; --font-body: 'Marcellus', serif;
+    }
+    body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 0.95rem; }
+    body.modal-open { overflow: hidden; }
+    body.tunnel-loading { cursor: wait; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
+    h1, h2, h3, h4, .logo, .section-title { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
+    h2 { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 500; color: var(--color-primary); border-bottom: 2px solid rgba(212, 175, 55, 0.35); display: inline-block; padding-bottom: 8px; }
+    .site-header { position: sticky; top: 0; background: rgba(255, 253, 250, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); z-index: 100; padding: 1rem 0; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 0 36px; gap: 1rem; }
+    .logo-area { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .logo { font-size: 2rem; font-weight: 700; color: var(--color-primary); text-decoration: none; letter-spacing: 1px; }
+    .logo span { color: var(--gold-dark); font-weight: 500; }
+    .slogan { font-size: 0.7rem; font-family: var(--font-body); color: var(--gold-dark); text-transform: uppercase; letter-spacing: 2.5px; border-left: 1px solid rgba(212, 175, 55, 0.5); padding-left: 14px; }
+    .nav-hamburger { display: flex; align-items: center; gap: 1rem; }
+    .archive-btn {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .archive-btn:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--gold-primary);
+    }
+    .archive-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 49, 71, 0.8); backdrop-filter: blur(6px); z-index: 1000; display: flex; align-items: center; justify-content: flex-end; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+    .archive-overlay.active { opacity: 1; visibility: visible; }
+    .archive-panel { background: var(--color-bg-card); width: 100%; max-width: 500px; height: 100%; right: 0; position: absolute; box-shadow: -5px 0 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.3s ease; border-left: 1px solid var(--gold-primary); }
+    .archive-overlay.active .archive-panel { transform: translateX(0); }
+    .archive-header { padding: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.2); display: flex; justify-content: space-between; align-items: center; background: white; }
+    .archive-header h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-primary); }
+    .archive-close { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--gold-dark); }
+    .archive-search { padding: 1rem 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.1); }
+    .archive-search input { width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(212,175,55,0.3); font-family: var(--font-sans); font-size: 0.9rem; background: white; outline: none; }
+    .archive-search input:focus { border-color: var(--gold-primary); }
+    .archive-list { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+    .archive-item { background: var(--color-bg-card); border: 1px solid rgba(212,175,55,0.15); padding: 0.8rem 1rem; margin-bottom: 0.8rem; cursor: pointer; transition: all 0.2s; display: block; text-decoration: none; color: inherit; }
+    .archive-item:hover { border-color: var(--gold-primary); background: rgba(212,175,55,0.02); transform: translateX(3px); }
+    .archive-item-title { font-family: var(--font-serif); font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.2rem; }
+    .archive-item-meta { font-size: 0.65rem; color: var(--gold-dark); display: flex; gap: 1rem; margin-top: 0.2rem; }
+    .no-results { text-align: center; padding: 2rem; color: var(--color-text-light); font-style: italic; }
+    @media (max-width: 700px) {
+      .slogan { display: none; }
+      .header-inner { padding: 0 20px; }
+      .archive-panel { max-width: 100%; }
+    }
+    main { padding: 3rem 0 5rem; }
+    .site-footer { border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem 0; color: var(--color-text-light); background: var(--color-bg); font-size: 0.75rem; }
+    .footer-legal { max-width: 1280px; margin: 1rem auto 0; padding: 1rem 36px 0; border-top: 1px solid rgba(212, 175, 55, 0.15); font-size: 0.65rem; line-height: 1.4; color: rgba(44, 62, 78, 0.6); text-align: center; letter-spacing: 0.3px; }
+    @media (max-width: 700px) { .footer-legal { padding: 0.8rem 20px 0; font-size: 0.6rem; } }
+
+    /* ========== GRADE DE CARDS TEMÁTICOS (RETÂNGULOS DE LUXO) ========== */
+    .thematic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+    .theme-card {
+      background: var(--color-bg-card);
+      border: var(--border-light);
+      padding: 1.8rem 1.5rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+    .theme-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-luxury);
+    }
+    .theme-icon {
+      font-size: 2.2rem;
+      color: var(--gold-dark);
+      margin-bottom: 1rem;
+    }
+    .theme-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.3px;
+    }
+    .theme-card p {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--color-text-light);
+      margin-bottom: 1rem;
+    }
+    .theme-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-dark);
+      border-top: 1px solid rgba(212, 175, 55, 0.25);
+      padding-top: 0.8rem;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .thematic-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 550px) {
+      .thematic-grid { grid-template-columns: 1fr; }
+    }
+    .section-intro {
+      margin-bottom: 1rem;
+    }
+    .section-intro h2 {
+      border-bottom: none;
+      font-size: 1.8rem;
+    }
+
+    /* ========== MODAL DE LUXO (COM SUBTÍTULOS E SUBGRUPOS) ========== */
+    .luxury-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 49, 71, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .luxury-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background: var(--color-bg-card);
+      max-width: 700px;
+      width: 90%;
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+      padding: 2rem;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+      position: relative;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    .luxury-modal.active .modal-content {
+      transform: scale(1);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.35);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-header h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--color-primary);
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--gold-dark);
+      transition: 0.2s;
+    }
+    .modal-close:hover {
+      color: var(--gold-primary);
+    }
+    .modal-subtitle {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-dark);
+      margin-bottom: 1.2rem;
+    }
+    .subcategory-group {
+      margin-bottom: 1.8rem;
+      border-left: 2px solid rgba(212,175,55,0.3);
+      padding-left: 1rem;
+    }
+    .subcategory-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-primary);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.2px;
+    }
+    .topics-list {
+      list-style: none;
+      margin: 0.5rem 0 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+    }
+    .topics-list li {
+      margin-bottom: 0.4rem;
+      width: calc(50% - 1rem);
+    }
+    .topics-list a {
+      text-decoration: none;
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      color: var(--color-text);
+      border-left: 2px solid transparent;
+      padding-left: 0.6rem;
+      display: inline-block;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .topics-list a:hover {
+      border-left-color: var(--gold-primary);
+      color: var(--gold-dark);
+      padding-left: 0.9rem;
+    }
+    .modal-footer-note {
+      margin-top: 1.8rem;
+      padding-top: 1rem;
+      font-size: 0.7rem;
+      color: var(--gold-dark);
+      text-align: center;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    @media (max-width: 550px) {
+      .topics-list li { width: 100%; }
+    }
+
+    /* ========== SEÇÃO DE ARTIGOS POLÊMICOS (FOTOS CLICÁVEIS) ========== */
+    .featured-spotlight {
+      margin-bottom: 3rem;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+      padding-bottom: 1.8rem;
+    }
+    .spotlight-title {
+      font-family: var(--font-serif);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .spotlight-title i {
+      font-size: 0.9rem;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .spotlight-card {
+      background: var(--color-bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .spotlight-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-luxury);
+      border-color: var(--gold-primary);
+    }
+    .card-image {
+      width: 100%;
+      background: linear-gradient(145deg, #e9e2d4, #d6cdbb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 160px;
+    }
+    .card-image .img-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      font-size: 2rem;
+      color: var(--gold-dark);
+      background: rgba(212, 175, 55, 0.1);
+      text-align: center;
+      line-height: 1.2;
+      padding: 1rem;
+    }
+    .spotlight-card.larger .card-image {
+      min-height: 200px;
+    }
+    .card-content {
+      padding: 1.2rem 1rem 1.2rem;
+      flex: 1;
+    }
+    .card-badge {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-dark);
+      border-left: 2px solid var(--gold-primary);
+      padding-left: 8px;
+      margin-bottom: 0.6rem;
+    }
+    .spotlight-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .spotlight-card.larger h4 {
+      font-size: 1.2rem;
+    }
+    .card-excerpt {
+      font-size: 0.75rem;
+      color: var(--color-text-light);
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+    .read-more {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--gold-dark);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--gold-primary);
+      transition: 0.2s;
+      display: inline-block;
+    }
+    .read-more:hover {
+      color: var(--gold-primary);
+      border-bottom-style: solid;
+    }
+    @media (max-width: 850px) {
+      .spotlight-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .spotlight-card.larger .card-image {
+        min-height: 180px;
+      }
+    }
+
+    /* ========== POLÍTICA DE PRIVACIDADE EM 3 COLUNAS EXPANSÍVEIS ========== */
+    .privacy-collapsible {
+      max-width: 1100px;
+      margin: 1.5rem auto 0.5rem;
+      padding: 0 20px;
+    }
+    .privacy-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .privacy-col {
+      background: rgba(255,255,245,0.4);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .privacy-col-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: center;
+      letter-spacing: 1px;
+      color: var(--color-primary);
+      background: rgba(212, 175, 55, 0.08);
+      padding: 0.9rem 0.5rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      transition: 0.2s;
+      text-transform: uppercase;
+    }
+    .privacy-col-title:hover {
+      background: rgba(212, 175, 55, 0.18);
+      color: var(--gold-dark);
+    }
+    .privacy-col-content {
+      display: none;
+      padding: 1rem;
+      font-size: 0.7rem;
+      line-height: 1.5;
+      color: var(--color-text-light);
+      background: var(--color-bg-card);
+    }
+    .privacy-col-content p {
+      margin-bottom: 0.6rem;
+    }
+    .privacy-col-content strong {
+      color: var(--color-primary);
+      font-family: var(--font-serif);
+      font-weight: 500;
+    }
+    .privacy-col-content .privacy-email {
+      font-family: monospace;
+      background: rgba(212,175,55,0.1);
+      padding: 0.1rem 0.3rem;
+      border-radius: 6px;
+    }
+    .privacy-header-note {
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 750px) {
+      .privacy-cols { grid-template-columns: 1fr; gap: 0.8rem; }
+      .privacy-collapsible { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-area"><a href="/" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
+      <div class="nav-hamburger">
+        <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- SEÇÃO DE DESTAQUE: TRÊS ARTIGOS POLÊMICOS (DOIS MÉDIOS, UM MAIOR) -->
+    <div class="featured-spotlight">
+      <div class="spotlight-title">
+        <i class="fas fa-fire"></i> <span>POLÊMICAS & BASTIDORES</span> <i class="fas fa-skull"></i>
+      </div>
+      <div class="spotlight-grid">
+        <!-- Card esquerdo: tamanho médio -->
+        <div class="spotlight-card" data-article-link="/artigo/polemicas/o-silencio-que-condena.html">
+          <div class="card-image">
+            <div class="img-placeholder"><i class="fas fa-gavel" style="font-size: 2.2rem; opacity: 0.7;"></i><br><span style="font-size: 0.6rem;">Foto: Arquivo</span></div>
+          </div>
+          <div class="card-content">
+            <div class="card-badge">Investigação</div>
+            <h4>O silêncio que condena</h4>
+            <div class="card-excerpt">Como omissões institucionais transformam vítimas em algozes e o peso da prova no sistema de justiça.</div>
+            <a href="#" class="read-more">Acessar matéria →</a>
+          </div>
+        </div>
+        <!-- Card central: tamanho maior (destacado) -->
+        <div class="spotlight-card larger" data-article-link="/artigo/polemicas/a-psicopatia-do-poder.html">
+          <div class="card-image">
+            <div class="img-placeholder"><i class="fas fa-crown" style="font-size: 2.8rem; opacity: 0.7;"></i><br><span style="font-size: 0.65rem;">Foto: Representação</span></div>
+          </div>
+          <div class="card-content">
+            <div class="card-badge">Psicopatia & Liderança</div>
+            <h4>A psicopatia do poder: quando a falta de empatia vence eleições</h4>
+            <div class="card-excerpt">Manipulação estratégica, perfis dissimulados e o custo social de líderes sem freio emocional. Uma análise profunda.</div>
+            <a href="#" class="read-more">Ler artigo completo →</a>
+          </div>
+        </div>
+        <!-- Card direito: tamanho médio -->
+        <div class="spotlight-card" data-article-link="/artigo/polemicas/justica-as-cegas.html">
+          <div class="card-image">
+            <div class="img-placeholder"><i class="fas fa-balance-scale" style="font-size: 2.2rem; opacity: 0.7;"></i><br><span style="font-size: 0.6rem;">Ilustração</span></div>
+          </div>
+          <div class="card-content">
+            <div class="card-badge">Sistema Prisional</div>
+            <h4>Justiça às cegas: as entranhas do cárcere privado</h4>
+            <div class="card-excerpt">Violência estrutural, facções e a falência do discurso ressocializador. Relatos de dentro.</div>
+            <a href="#" class="read-more">Explorar →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-intro">
+      <h2 style="border-bottom: none;">Eixos de <span style="color: var(--gold-dark);">análise</span></h2>
+      <p style="color: var(--gold-dark); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">Curadoria estrutural · Sem ruído</p>
+    </div>
+
+    <div class="thematic-grid">
+      <div class="theme-card" data-topic="politica"><div class="theme-icon"><i class="fas fa-landmark"></i></div><h3>Política & Geopolítica</h3><p>Monetária, relações internacionais, regulação e poder institucional.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="seguranca-total"><div class="theme-icon"><i class="fas fa-shield-alt"></i></div><h3>Segurança Total</h3><p>Pessoal, digital, patrimonial e inteligência estratégica.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="prisional-policial"><div class="theme-icon"><i class="fas fa-gavel"></i></div><h3>Sistema Prisional & Policial</h3><p>Estrutura carcerária, investigação, perícia e inteligência policial.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="politicas-publicas"><div class="theme-icon"><i class="fas fa-chalkboard-user"></i></div><h3>Políticas Públicas</h3><p>Segurança, saúde, economia pública e regulação.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="economia-super-ricos"><div class="theme-icon"><i class="fas fa-chart-pie"></i></div><h3>Economia & Super Ricos</h3><p>Alta renda, offshores, family offices e patrimônio invisível.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="saude-mental"><div class="theme-icon"><i class="fas fa-brain"></i></div><h3>Saúde Mental</h3><p>Transtornos, emoções, trauma e alta performance.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="psicopatia"><div class="theme-icon"><i class="fas fa-user-ninja"></i></div><h3>Psicopatia & Comportamento Extremo</h3><p>Manipulação, liderança tóxica, serial killers e falta de empatia.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="familia-alienacao"><div class="theme-icon"><i class="fas fa-heart-broken"></i></div><h3>Família & Alienação Parental</h3><p>Divórcio, guarda, falsas acusações e danos psicológicos.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="crime-investigacao"><div class="theme-icon"><i class="fas fa-fingerprint"></i></div><h3>Crime & Investigação</h3><p>Perfil criminal, crimes financeiros, motivação e detecção.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="saude-mental-extremo"><div class="theme-icon"><i class="fas fa-skull"></i></div><h3>Saúde Mental em Contextos Extremos</h3><p>Prisional, alta pressão, colapso e sobrevivência psicológica.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="negocios"><div class="theme-icon"><i class="fas fa-chart-line"></i></div><h3>Negócios & Estratégia</h3><p>Modelos de negócio, holdings, captação e branding.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="visao-global"><div class="theme-icon"><i class="fas fa-globe-americas"></i></div><h3>Visão Global</h3><p>Networking internacional, mobilidade e expansão.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="filantropia"><div class="theme-icon"><i class="fas fa-hand-holding-heart"></i></div><h3>Impacto & Filantropia</h3><p>Social, educação, investimento de impacto e legado.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="historias-reais"><div class="theme-icon"><i class="fas fa-book-open"></i></div><h3>Histórias Reais</h3><p>Superação, queda, ascensão e bastidores.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="anonimo"><div class="theme-icon"><i class="fas fa-user-secret"></i></div><h3>Espaço Anônimo</h3><p>Confissões, relatos sensíveis, apoio e comunidade.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="hibridos"><div class="theme-icon"><i class="fas fa-code-branch"></i></div><h3>Conteúdos Híbridos</h3><p>Psicopatia+negócios, segurança+economia, prisão+psicologia.</p><div class="theme-badge">clique para explorar →</div></div>
+      <!-- NOVOS CARDS PARA OS 6 EIXOS ADICIONAIS (mantendo o mesmo estilo visual) -->
+      <div class="theme-card" data-topic="familia-saude-mental"><div class="theme-icon"><i class="fas fa-heartbeat"></i></div><h3>Direito de Família e Saúde Mental</h3><p>Sofrimento materno, perícias psicológicas e manipulação narrativa.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="justica-tecnologia"><div class="theme-icon"><i class="fas fa-microchip"></i></div><h3>Justiça e Tecnologia</h3><p>IA no judiciário, provas digitais, cibercrimes e automação.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="genero-poder"><div class="theme-icon"><i class="fas fa-venus-mars"></i></div><h3>Gênero e Poder</h3><p>Violência de gênero, feminicídio, representação política e transgeneridade.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="educacao-desigualdade"><div class="theme-icon"><i class="fas fa-graduation-cap"></i></div><h3>Educação e Desigualdade</h3><p>Ensino público, privatização, cotas e tecnologia na educação.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="meio-ambiente"><div class="theme-icon"><i class="fas fa-tree"></i></div><h3>Meio Ambiente e Conflitos</h3><p>Garimpo ilegal, desmatamento, justiça climática e greenwashing.</p><div class="theme-badge">clique para explorar →</div></div>
+      <div class="theme-card" data-topic="direitos-humanos"><div class="theme-icon"><i class="fas fa-hand-peace"></i></div><h3>Direitos Humanos e Sistema de Justiça</h3><p>Tortura, população em situação de rua, migração e comunidades tradicionais.</p><div class="theme-badge">clique para explorar →</div></div>
+    </div>
+    <div style="margin: 2rem 0 0; text-align: center; font-size: 0.7rem; color: var(--gold-dark); letter-spacing: 1px;">
+      <i class="fas fa-chalkboard-teacher"></i> Selecione um tema e explore subcategorias e subtemas
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div>© 2026 PautaZero · Revista de análise de sistemas, comportamento e políticas estratégicas.</div>
+      <div style="display: flex; gap: 18px; color: var(--gold-dark); align-items: center;">
+        <!-- NOVO BOTÃO MANIFESTO PAUTA ZERO - Mesma estrutura e contexto -->
+        <a href="manifesto.html" style="color: inherit; text-decoration: none; transition: 0.2s; display: inline-flex; align-items: center; gap: 5px;" onmouseover="this.style.color='var(--gold-primary)'" onmouseout="this.style.color='inherit'">
+          <i class="fas fa-scroll"></i> Manifesto Pauta Zero
+        </a>
+        <span style="color: rgba(212,175,55,0.4);">|</span>
+        <i class="fab fa-linkedin"></i> <i class="fab fa-x-twitter"></i> <i class="fas fa-envelope"></i>
+        <span style="font-family: monospace;">editorial.pautazero@outlook.com</span>
+      </div>
+    </div>
+
+    <!-- POLÍTICA DE PRIVACIDADE EM TRÊS COLUNAS EXPANSÍVEIS -->
+    <div class="privacy-collapsible">
+      <div class="privacy-header-note">Política de Privacidade – PautaZero · clique nos títulos para expandir</div>
+      <div class="privacy-cols">
+        <div class="privacy-col">
+          <div class="privacy-col-title">Ambiente & Dados</div>
+          <div class="privacy-col-content">
+            <p><strong>Ambiente independente</strong><br>Este ambiente digital é mantido por responsável independente, atuando na produção de conteúdo informacional e analítico, comprometido com a proteção da privacidade e dos direitos fundamentais dos titulares de dados.</p>
+            <p><strong>Dados coletados</strong><br>Dados de navegação (IP anonimizado, cookies técnicos), informações enviadas voluntariamente por e-mail ou formulários. Nunca coletamos dados sensíveis sem consentimento explícito.</p>
+          </div>
+        </div>
+        <div class="privacy-col">
+          <div class="privacy-col-title">Finalidade & LGPD</div>
+          <div class="privacy-col-content">
+            <p><strong>Finalidade</strong><br>Melhorar a experiência, gerar estatísticas agregadas, responder contatos e garantir a segurança do site. Sem tratamento abusivo ou compartilhamento com terceiros não autorizados.</p>
+            <p><strong>Base legal (LGPD)</strong><br>Execução de legítimo interesse, cumprimento de obrigação legal e consentimento quando necessário. Respeitamos a Lei 13.709/2018 e os direitos dos titulares.</p>
+          </div>
+        </div>
+        <div class="privacy-col">
+          <div class="privacy-col-title">Direitos & Contato</div>
+          <div class="privacy-col-content">
+            <p><strong>Seus direitos</strong><br>Você pode acessar, retificar, eliminar, limitar ou portar seus dados a qualquer momento. Pedidos devem ser enviados ao e-mail abaixo.</p>
+            <p><strong>Canal de atendimento ao titular:</strong> <span class="privacy-email">editorial.pautazero@outlook.com</span> – Respondemos em até 15 dias úteis.</p>
+            <p><em>Esta política pode ser atualizada periodicamente. Consulte sempre a versão mais recente neste rodapé.</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal">Conteúdo editorial independente. As análises apresentadas refletem observações estruturais e não constituem aconselhamento jurídico, financeiro ou clínico. A PautaZero atua com base em critérios de responsabilidade informacional, respeitando contextos legais e institucionais aplicáveis.</div>
+  </footer>
+
+  <div class="archive-overlay" id="archiveOverlay">
+    <div class="archive-panel">
+      <div class="archive-header"><h3><i class="fas fa-archive"></i> Arquivo de artigos</h3><button class="archive-close" id="archiveCloseBtn"><i class="fas fa-times"></i></button></div>
+      <div class="archive-search"><input type="text" id="archiveSearchInput" placeholder="Buscar por título, categoria ou data (ex: 08.04)"></div>
+      <div class="archive-list" id="archiveList"></div>
+    </div>
+  </div>
+
+  <div class="luxury-modal" id="topicModal">
+    <div class="modal-content">
+      <div class="modal-header"><h3 id="modalTitle">Título</h3><button class="modal-close" id="closeModalBtn"><i class="fas fa-times"></i></button></div>
+      <div class="modal-subtitle">SUBGRUPOS & TEMAS ESTRATÉGICOS</div>
+      <div id="modalTopicsList"></div>
+      <div class="modal-footer-note">Artigos completos em breve nesta seção. Conteúdo progressivo.</div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ==================== TÚNEL DE VERIFICAÇÃO PARA TODOS OS LINKS DE ARTIGO ====================
+      const pageCache = new Map();
+      
+      function loadCacheFromStorage() {
+        try {
+          const stored = localStorage.getItem('PautaZero_pageCache');
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed && parsed.expiry > Date.now()) {
+              for (const [url, exists] of Object.entries(parsed.data)) pageCache.set(url, exists);
+              return true;
+            }
+          }
+        } catch(e) {}
+        return false;
+      }
+      
+      function saveCacheToStorage() {
+        try {
+          const cacheObj = {};
+          for (const [url, exists] of pageCache.entries()) cacheObj[url] = exists;
+          localStorage.setItem('PautaZero_pageCache', JSON.stringify({ data: cacheObj, expiry: Date.now() + 3600000 }));
+        } catch(e) {}
+      }
+      
+      async function checkIfPageExists(url) {
+        if (pageCache.has(url)) return pageCache.get(url);
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 3000);
+          const response = await fetch(url, { method: 'HEAD', signal: controller.signal });
+          clearTimeout(timeoutId);
+          const exists = response.ok;
+          pageCache.set(url, exists);
+          saveCacheToStorage();
+          return exists;
+        } catch(err) {
+          pageCache.set(url, false);
+          return false;
+        }
+      }
+      
+      let isNavigating = false;
+      async function navigateToWithCheck(url) {
+        if (isNavigating) return;
+        if (url.includes('construcao.html')) {
+          window.location.href = url;
+          return;
+        }
+        isNavigating = true;
+        document.body.classList.add('tunnel-loading');
+        try {
+          const exists = await checkIfPageExists(url);
+          if (exists) {
+            window.location.href = url;
+          } else {
+            window.location.href = 'construcao.html';
+          }
+        } catch (err) {
+          window.location.href = 'construcao.html';
+        } finally {
+          isNavigating = false;
+          document.body.classList.remove('tunnel-loading');
+        }
+      }
+      
+      // Intercepta todos os cliques em links que apontam para artigos (caminho /artigo/...)
+      document.body.addEventListener('click', (e) => {
+        let target = e.target.closest('a');
+        if (!target) return;
+        const href = target.getAttribute('href');
+        if (!href) return;
+        if (href.startsWith('/artigo/') || (href.startsWith('./artigo/') || href.startsWith('artigo/'))) {
+          e.preventDefault();
+          let absoluteUrl = href;
+          if (!absoluteUrl.startsWith('/')) absoluteUrl = '/' + absoluteUrl;
+          navigateToWithCheck(absoluteUrl);
+        }
+        if (href.includes('/artigo/') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+          e.preventDefault();
+          navigateToWithCheck(href);
+        }
+      });
+      
+      // ==================== DADOS COMPLETOS: 22 EIXOS (SUBSTITUÍDOS PELA VERSÃO EXPANDIDA) ====================
+      const subtopicsByTopic = {
+        politica: {
+          "Poder e Corrupção Estrutural": ["Caixa dois e financiamento ilegal de campanhas", "Lobby empresarial e captura do estado", "Propina sistêmica em contratos públicos", "Impunidade de altas patentes"],
+          "Geopolítica e Conflitos Híbridos": ["Guerra de informação e fake news patrocinadas", "Intervenção militar e 'democracia' exportada", "Espionagem econômica e sabotagem industrial", "Sanções como arma geopolítica"],
+          "Crise dos Sistemas Políticos": ["Ascensão do populismo autoritário", "Erosão da separação de poderes", "Judicialização da política e ativismo", "Crises de representação e partidos vazios"],
+          "Regulação e Vigilância Global": ["Acordos de vigilância digital (Five Eyes, 14 Eyes)", "Controle de fronteiras e refugiados geopolíticos", "Regulação de armas e comércio de defesa", "Criptomoedas e guerra financeira"]
+        },
+        "seguranca-total": {
+          "Segurança Pessoal em Ambiente Hostil": ["Avaliação de risco para juízes e promotores", "Proteção de ativistas e defensores de direitos", "Estratégias de baixo perfil para vítimas de ameaça", "Comportamento preventivo em áreas de conflito"],
+          "Segurança Digital e Privacidade": ["Vazamento de dados íntimos e revenge porn", "Rastreamento governamental e quebra de sigilos", "Engenharia social em golpes financeiros", "Deepfakes e extorsão algorítmica"],
+          "Segurança Patrimonial e Blindagem": ["Holdings e offshores: limites legais e éticos", "Proteção de heranças em divórcios de alta conflito", "Criptoativos e rastreabilidade forense", "Risco de sequestro patrimonial no exterior"],
+          "Inteligência Estratégica": ["Contrainteligência em empresas familiares", "Análise de ameaças internas (funcionários e sócios)", "Perfil de risco de parceiros comerciais", "Coleta de informações em ambientes regulados"]
+        },
+        "prisional-policial": {
+          "Violência Estrutural no Cárcere": ["Superlotação como tortura indireta", "Facções criminosas e controle do estado paralelo", "Morte sob custódia: estatísticas oficiais vs. realidade", "Trabalho análogo à escravidão dentro das prisões"],
+          "Investigação e Perfilamento Criminal": ["Bases de dados genéticos e privacidade", "Reconhecimento facial e falsos positivos", "Perfil racial em abordagens policiais", "Interrogatórios coercitivos e confissões forjadas"],
+          "Corrupção e Milícias": ["Milícias armadas e controle territorial", "Policiais envolvidos com tráfico de armas", "Desvio de verbas penitenciárias", "Sindicatos policiais e imunidade tácita"],
+          "Reintegração e Reincidência": ["Falência dos programas de ressocialização", "Efeito carimbo e exclusão do mercado", "Monitoramento eletrônico como espetáculo punitivo", "Falta de políticas de saúde mental pós-prisão"]
+        },
+        "politicas-publicas": {
+          "Segurança Pública e Violência": ["Uso de força letal por forças de segurança", "Política de drogas e encarceramento em massa", "Pacotes anticrime e endurecimento penal simbólico", "Prevenção comunitária vs. militarização"],
+          "Saúde Coletiva e Negligência": ["Filas de espera para cirurgias eletivas", "Saúde mental desassistida nas periferias", "Pandemias e colapso do sistema público", "Indústria de planos de saúde e regulação falha"],
+          "Economia Pública e Desigualdade": ["Renúncias fiscais para super-ricos", "Previdência complementar e rombo previdenciário", "Programas de renda mínima e condicionalidades", "Endividamento público e ajuste fiscal seletivo"],
+          "Regulação e Controle": ["Anistia de multas ambientais", "Fragilidade da lei de acesso à informação", "Influência de setores regulados na criação de leis", "Patentes farmacêuticas e acesso a medicamentos"]
+        },
+        "economia-super-ricos": {
+          "Estruturas Offshores e Paraísos Fiscais": ["Panama Papers e o mercado de opacidade", "Trusts e fundações privadas no Caribe", "Criptomoedas anônimas e lavagem facilitada", "Falsas doações para instituições de caridade"],
+          "Family Offices e Blindagem Patrimonial": ["Estratégias legais de proteção contra credores", "Separação de patrimônio em divórcios bilionários", "Holdings familiares e conflitos de sucessão", "Investimento em arte e ativos não rastreáveis"],
+          "Mercado de Luxo e Invisibilidade": ["Iates e jatos particulares como sonegação fiscal", "Propriedades fantasmas em paraísos fiscais", "Educação de elite e círculos de poder", "Assessoramento de risco para alta renda"],
+          "Desigualdade e Herança": ["Concentração de riqueza em 0,1% da população", "Tributação regressiva e isenções fiscais", "Poder dinástico na política e economia", "Filantropia como escudo reputacional"]
+        },
+        "saude-mental": {
+          "Transtornos e Estigma Social": ["Borderline e a patologização da emoção feminina", "TDAH em adultos: superdiagnóstico ou negligência?", "Depressão e o viés de gênero nos tratamentos", "Transtornos alimentares e pressão estética"],
+          "Trauma e Abuso Infantil": ["Repetição transgeracional do abuso", "Vítimas que se tornam algozes", "Memória reprimida e falsas memórias em terapia", "Abuso espiritual e seitas religiosas"],
+          "Saúde Mental no Sistema Prisional": ["Transtornos induzidos por isolamento", "Uso indiscriminado de psicotrópicos", "Suicídio como epidemia invisível", "Falta de assistência psiquiátrica pós-cárcere"],
+          "Performance e Alto Rendimento": ["Burnout em executivos e a síndrome do impostor", "Doping cognitivo em ambientes competitivos", "Ansiedade de desempenho e cobrança tóxica", "Culto à produtividade e esgotamento extremo"]
+        },
+        "psicopatia": {
+          "Perfil Clínico e Forense": ["Traços antissociais em líderes corporativos", "Psicopatia primária vs. secundária", "Estrutura cerebral e empatia zero", "Teste PCL-R e polêmicas diagnósticas"],
+          "Manipulação e Gaslighting": ["Táticas de isolamento social", "Distorção da realidade em relações abusivas", "Mentiras patológicas e criação de narrativas", "Coerção psicológica em ambientes de trabalho"],
+          "Psicopatas no Poder": ["Autocratas e a ausência de freios emocionais", "Líderes religiosos manipuladores", "Executivos que destroem empresas", "Psicopatia institucionalizada em regimes autoritários"],
+          "Serial Killers e Violência Extrema": ["Fascínio midiático e glamourização", "Motivações sexuais e rituais", "Comunicação com assassinos em série", "Falhas na investigação de vítimas marginalizadas"]
+        },
+        "familia-alienacao": {
+          "Dinâmicas de Divórcio Litigioso": ["Uso de perícias psicológicas como arma", "Falsa denúncia de abuso sexual em disputas de guarda", "Perfil de genitores manipuladores", "Assédio judicial como ferramenta de controle"],
+          "Alienação Parental e Seus Efeitos": ["Síndrome da alienação parental – controvérsia científica", "Consequências psicológicas a longo prazo", "Intervenção do judiciário e remoção da guarda", "Rejeição induzida e rompimento de vínculos"],
+          "Violência Doméstica e Gênero": ["Ciclo de violência e dificuldade de saída", "Feminicídio e falhas na rede de proteção", "Violência psicológica como prova pericial", "Medidas protetivas e revitimização"],
+          "Interesse Superior da Criança": ["Conflito entre direitos parentais e proteção", "Abuso institucional em conselhos tutelares", "Adoção tardia e estigma", "Crianças como objeto de disputa emocional"]
+        },
+        "crime-investigacao": {
+          "Crimes Financeiros e Lavagem": ["Esquemas de pirâmide financeira", "Criptomoedas em ransomwares", "Lavagem via setor imobiliário", "Corrupção em compras públicas"],
+          "Crimes Violentos e Perícia": ["Homicídios por encomenda", "Violência sexual e cadeia de custódia", "Forense digital em crimes cibernéticos", "Reconstrução de cena do crime"],
+          "Psicologia Criminal": ["Motivação por vingança ou ciúmes", "Assassinos em série com pausas", "Criminosos contadores e fraudadores", "Perfil de stalker e assédio obsessivo"],
+          "Estratégia Investigativa": ["Entrevistas cognitivas e memória de testemunhas", "Delação premiada e credibilidade", "Inteligência de fontes abertas (OSINT)", "Infiltração policial e limites éticos"]
+        },
+        "saude-mental-extremo": {
+          "Confinamento e Isolamento": ["Efeitos psicológicos do isolamento total", "Prisão domiciliar e saúde mental", "Estratégias de sobrevivência em cativeiro", "Transtorno de estresse pós-traumático complexo"],
+          "Alta Pressão e Colapso": ["Burnout em profissionais da saúde", "Médicos plantonistas e transtornos do sono", "Síndrome de desgaste profissional em policiais", "Suicídio entre juízes e advogados"],
+          "Trauma e Recuperação": ["Terapia de exposição prolongada", "EMDR e controvérsias científicas", "Uso de psicodélicos em PTSD", "Reintegração após tortura ou sequestro"],
+          "Sobrevivência Psicológica": ["Resiliência em desastres naturais", "Apoio comunitário e saúde mental pós-catástrofe", "Culto à positividade tóxica", "Luto complicado e intervenções"]
+        },
+        "negocios": {
+          "Modelos de Negócio Disruptivos": ["Startups de vigilância e ética", "Economia de bicos e precarização", "Marketplaces e responsabilidade sobre vendedores", "Franchising e armadilhas contratuais"],
+          "Estruturação Patrimonial Empresarial": ["Holdings familiares e conflitos", "Offshores como planejamento tributário", "Sucessão e guerra entre herdeiros", "Venda de empresas para fundos de private equity"],
+          "Branding Pessoal e Reputação": ["Cancelamento e crise de imagem", "Assessoria de imprensa para acusações graves", "Construção de narrativa de superação", "Influenciadores digitais e responsabilidade"],
+          "Estratégias de Crescimento Agressivo": ["Aquisições hostis e defesas antiaquisição", "Venture capital e perda de controle", "IPO e pressão de resultados", "Fusões e demissões em massa"]
+        },
+        "visao-global": {
+          "Mobilidade Internacional e Refúgio": ["Vistos de investimento e cidadania por dinheiro", "Refugiados climáticos e lacuna legal", "Apátridas e direitos negados", "Extradição e tratados bilaterais"],
+          "Cultura Institucional Global": ["Diferenças entre common law e civil law", "Arbitragem internacional e soberania", "Compliance anticorrupção em multinacionais", "Sanções da ONU e bloqueios comerciais"],
+          "Networking de Alto Valor": ["Clubes privados e círculos de influência", "Conferências fechadas e tomada de decisão", "Famílias reais e poder simbólico", "Think tanks e formulação de políticas"],
+          "Risco Geopolético para Investidores": ["Expropriação de ativos em governos instáveis", "Seguro de risco político", "Golpes de estado e contratos", "Zonas de conflito e oportunidades"]
+        },
+        "filantropia": {
+          "Filantropia Estratégica e Reputação": ["Doações com contrapartidas fiscais", "Fundações familiares e controle corporativo", "Causas de alto impacto vs. marketing social", "Voluntariado corporativo como lavagem de imagem"],
+          "Investimento de Impacto Social": ["ESG e greenwashing", "Retorno financeiro vs. retorno social", "Avaliação de impacto real", "Títulos de impacto social e parcerias público-privadas"],
+          "Educação e Merito": ["Bolsas de estudo para grupos privilegiados", "Ensino bilíngue e elitismo", "Cotas e ações afirmativas", "Educação a distância e qualidade"],
+          "Justiça Social e Ativismo": ["Fundações financiadas por bilionários ativistas", "Movimentos sociais cooptados", "ONGs e dependência de doadores", "Ativismo judicial e limitações"]
+        },
+        "historias-reais": {
+          "Superação e Traumas Públicos": ["Relato de ex-presidiário e reintegração", "Vítima de violência doméstica que reage", "Empresário falido que recomeça", "Depoimento de refugiado político"],
+          "Queda e Ascensão Íntima": ["Do estrelato ao anonimato forçado", "Perda total de patrimônio e reconstrução", "Erro médico e luta por justiça", "Demissão humilhante e virada de carreira"],
+          "Bastidores do Sucesso": ["O preço psicológico da fama", "Relações abusivas nos bastidores de empresas", "Segredos de família real", "Assédio moral em startups de sucesso"],
+          "Erros e Aprendizados": ["Sócio que roubou a empresa", "Confiar em sócio errado", "Golpe financeiro que destruiu poupança", "Fraude contábil descoberta tarde"]
+        },
+        "anonimo": {
+          "Confissões Anônimas": ["Cometi um crime e nunca fui descoberto", "Traí meu parceiro durante anos", "Menti sobre minhas qualificações profissionais", "Desviei dinheiro da empresa"],
+          "Relatos Sensíveis": ["Fui abusado por familiar e não denunciei", "Testemunhei uma execução policial", "Sofri violência institucional em hospital", "Fui pressionado a assinar documento falso"],
+          "Apoio e Comunidade": ["Como saí de um relacionamento abusivo", "Grupo de apoio anônimo para dependentes", "Compartilhando estratégias de segurança", "Acolhimento após tentativa de suicídio"],
+          "Segredos de Família": ["Descobri que meu pai não é biológico", "Herança escondida por irmãos", "Parente criminoso que a família protege", "Casamento arranjado e violência velada"]
+        },
+        "hibridos": {
+          "Psicopatia + Negócios": ["CEO psicopata que destruiu a cultura", "Táticas de manipulação em reuniões", "Assédio moral estratégico para demissão", "Fundador narcisista e crise de sucessão"],
+          "Segurança + Economia": ["Seguro contra sequestro para ultra-ricos", "Proteção de ativos em paraísos fiscais", "Risco geopolítico para holdings offshore", "Criptomoedas e extorsão digital"],
+          "Política + Crime": ["Financiamento de campanha pelo tráfico", "Milícias digitais e desinformação eleitoral", "Corrupção em contratos de segurança", "Caixa dois e compra de sentenças"],
+          "Prisional + Psicologia": ["Transtorno de estresse pós-cárcere", "Adaptação à violência como mecanismo", "Religião como refúgio no presídio", "Rituais de iniciação em facções"]
+        },
+        "familia-saude-mental": {
+          "Sofrimento Materno e Perícias Psicológicas": ["Uso de laudos psiquiátricos em disputas de guarda", "Sobrecarga materna como alegação de incapacidade", "Manipulação narrativa por genitor dominante", "Esgotamento emocional vs. transtorno mental"],
+          "Perfil do Genitor Manipulador": ["Gaslighting e desqualificação sistemática", "Construção de imagem pública estável vs. privada", "Estratégias de alienação indireta", "Uso de falsas acusações de abuso"],
+          "Impacto da Alta Conflituosidade nas Crianças": ["Síndrome da alienação parental revisitada", "Ansiedade e depressão infantil pós-divórcio", "Lealdades divididas e culpa", "Testemunho infantil em vara de família"],
+          "Defesa da Mãe no Sistema Judiciário": ["Como reunir provas de manipulação", "Importância de perícia psicossocial aprofundada", "Estratégias jurídicas para reverter guarda", "Rede de apoio e saúde mental durante processo"]
+        },
+        "justica-tecnologia": {
+          "Inteligência Artificial no Judiciário": ["Algoritmos de decisão e viés racial", "Ferramentas de predição de reincidência", "Advocacia automatizada e acesso à justiça", "LGPD e tratamento de dados sensíveis"],
+          "Provas Digitais e Cadeia de Custódia": ["Admissibilidade de prints e mensagens apagadas", "Perícia em criptomoedas e rastreamento", "Deepfake como prova falsa", "Acesso a dispositivos móveis na investigação"],
+          "Cibercrimes e Legislação": ["Lei de segurança nacional e vigilância", "Doxing e stalking eletrônico", "Invasão de dispositivos por parceiros abusivos", "Responsabilidade de provedores por conteúdo"],
+          "Automação e Eficiência Judicial": ["Processo eletrônico e exclusão digital", "Assinaturas digitais e fraudes", "Balcão virtual e atendimento remoto", "Risco de decisões automatizadas sem revisão"]
+        },
+        "genero-poder": {
+          "Violência de Gênero no Ambiente Corporativo": ["Assédio sexual estrutural em altos cargos", "Maternidade como barreira à promoção", "Diferencial salarial e negociação salarial", "Cultura de assédio em escritórios de advocacia"],
+          "Feminicídio e Falhas do Sistema": ["Medidas protetivas descumpridas", "Subnotificação de ameaças", "Patriarcado e leniência judicial", "Vítimas de classes altas e invisibilidade"],
+          "Representação Política e Teto de Vidro": ["Cotas de gênero e resistência", "Violência política contra mulheres", "Mulheres em cargos de chefia e assédio", "Dupla jornada e política"],
+          "Transgeneridade e Direitos": ["Acesso a cirurgias e hormonização pelo SUS", "Discriminação no mercado de trabalho", "Famílias trans e guarda de filhos", "Violência letal contra pessoas trans"]
+        },
+        "educacao-desigualdade": {
+          "Ensino Público e Abandono": ["Evasão escolar por pobreza extrema", "Violência nas escolas e falta de políticas", "Currículo defasado e desinteresse", "Greves de professores e impacto"],
+          "Educação Privada e Elitismo": ["Ensino bilíngue como ferramenta de segregação", "Testes de admissão e exclusão", "Mensalidades abusivas e bolsas limitadas", "Rede de contatos como diferencial"],
+          "Cotas e Ações Afirmativas": ["Debate sobre mérito vs. reparação", "Fraudes na autodeclaração racial", "Cotas para escolas públicas e regionais", "Resultados a longo prazo"],
+          "Tecnologia na Educação": ["Ensino remoto e exclusão digital", "Plataformas de vigilância de alunos", "Gamificação e aprendizagem real", "Dependência de grandes techs"]
+        },
+        "meio-ambiente": {
+          "Garimpo Ilegal e Violência": ["Invasão de terras indígenas", "Trabalho escravo em garimpos", "Contaminação por mercúrio e saúde", "Conflitos armados por recursos"],
+          "Desmatamento e Impunidade": ["Fazendeiros e grileiros", "Fiscalização ambiental capturada", "Queimadas criminosas e agronegócio", "Licenciamento ambiental fraudulento"],
+          "Justiça Climática e Refugiados": ["Deslocados por desastres naturais", "Responsabilidade de empresas poluidoras", "Litígios climáticos internacionais", "Políticas de adaptação ineficazes"],
+          "Economia Verde e Greenwashing": ["Créditos de carbono falsos", "Empresas que poluem e compensam", "Energia limpa e impactos sociais", "Agroecologia vs. agronegócio"]
+        },
+        "direitos-humanos": {
+          "Tortura e Maus-Tratos": ["Casos de tortura em delegacias", "Câmaras de gás em presídios", "Violência policial em protestos", "Responsabilização de agentes"],
+          "População em Situação de Rua": ["Criminalização da pobreza", "Remoções forçadas e reintegração", "Saúde mental e dependência química", "Falta de políticas habitacionais"],
+          "Migração e Apátridas": ["Detenção de migrantes e deportações", "Tráfico de pessoas e exploração", "Direitos de crianças migrantes", "Barreiras legais para refúgio"],
+          "Comunidades Tradicionais": ["Quilombolas e ameaças de despejo", "Povos indígenas e mineração", "Quebra de consulta prévia", "Violência contra lideranças"]
+        }
+      };
+
+      const topicTitles = {
+        politica: "Política & Geopolítica",
+        "seguranca-total": "Segurança Total",
+        "prisional-policial": "Sistema Prisional & Policial",
+        "politicas-publicas": "Políticas Públicas",
+        "economia-super-ricos": "Economia & Super Ricos",
+        "saude-mental": "Saúde Mental",
+        "psicopatia": "Psicopatia & Comportamento Extremo",
+        "familia-alienacao": "Família & Alienação Parental",
+        "crime-investigacao": "Crime & Investigação",
+        "saude-mental-extremo": "Saúde Mental em Contextos Extremos",
+        "negocios": "Negócios & Estratégia",
+        "visao-global": "Visão Global",
+        "filantropia": "Impacto & Filantropia",
+        "historias-reais": "Histórias Reais",
+        "anonimo": "Espaço Anônimo",
+        "hibridos": "Conteúdos Híbridos",
+        "familia-saude-mental": "Direito de Família e Saúde Mental",
+        "justica-tecnologia": "Justiça e Tecnologia",
+        "genero-poder": "Gênero e Poder",
+        "educacao-desigualdade": "Educação e Desigualdade",
+        "meio-ambiente": "Meio Ambiente e Conflitos",
+        "direitos-humanos": "Direitos Humanos e Sistema de Justiça"
+      };
+
+      const topicFolderMap = { ...topicTitles };
+      for (let k in topicFolderMap) {
+        topicFolderMap[k] = k;
+      }
+      
+      function slugify(text) {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      }
+      function getArticleUrl(folder, slug) { return `/artigo/${folder}/${slug}.html`; }
+      
+      // MODAL TEMÁTICO
+      const modal = document.getElementById('topicModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalTopicsList = document.getElementById('modalTopicsList');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      function openModal(topicKey) {
+        const title = topicTitles[topicKey] || "Tema";
+        const subcategoriesObj = subtopicsByTopic[topicKey] || {};
+        modalTitle.innerText = title;
+        if (Object.keys(subcategoriesObj).length === 0) modalTopicsList.innerHTML = '<p style="color: var(--color-text-light);">Subtemas em breve.</p>';
+        else {
+          let html = '';
+          for (const [subcat, topics] of Object.entries(subcategoriesObj)) {
+            const folder = topicFolderMap[topicKey] || topicKey;
+            html += `<div class="subcategory-group"><div class="subcategory-title">${escapeHtml(subcat)}</div><ul class="topics-list">`;
+            topics.forEach(topic => { const slug = slugify(topic); const url = getArticleUrl(folder, slug); html += `<li><a href="${url}">${escapeHtml(topic)}</a></li>`; });
+            html += `</ul></div>`;
+          }
+          modalTopicsList.innerHTML = html;
+        }
+        modal.classList.add('active'); document.body.classList.add('modal-open');
+      }
+      function closeModal() { modal.classList.remove('active'); document.body.classList.remove('modal-open'); }
+      document.querySelectorAll('.theme-card').forEach(card => { card.addEventListener('click', (e) => { const topic = card.getAttribute('data-topic'); if (topic) openModal(topic); }); });
+      closeModalBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+      
+      // ARQUIVO (gera lista de todos os subtemas para a lupa)
+      function generateAllArticles() {
+        const articles = [];
+        for (const [topicKey, subcategories] of Object.entries(subtopicsByTopic)) {
+          const categoryName = topicTitles[topicKey] || topicKey;
+          const folder = topicFolderMap[topicKey] || topicKey;
+          for (const [subcat, topics] of Object.entries(subcategories)) {
+            topics.forEach(topic => { const slug = slugify(topic); const url = getArticleUrl(folder, slug); articles.push({ title: topic, category: categoryName + " · " + subcat, url: url, date: "Em breve" }); });
+          }
+        }
+        return articles.sort((a,b) => a.title.localeCompare(b.title));
+      }
+      let fullArticlesArchive = generateAllArticles();
+      function renderArchiveList(searchTerm = "") {
+        const container = document.getElementById("archiveList");
+        if (!container) return;
+        const term = searchTerm.toLowerCase().trim();
+        let filtered = fullArticlesArchive;
+        if (term !== "") filtered = fullArticlesArchive.filter(article => article.title.toLowerCase().includes(term) || article.category.toLowerCase().includes(term));
+        if (filtered.length === 0) { container.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i> Nenhum artigo encontrado.</div>'; return; }
+        container.innerHTML = filtered.map(article => `<a class="archive-item" href="${article.url}"><div class="archive-item-title">${escapeHtml(article.title)}</div><div class="archive-item-meta"><span><i class="far fa-calendar-alt"></i> ${article.date}</span><span><i class="fas fa-folder"></i> ${escapeHtml(article.category)}</span></div></a>`).join('');
+      }
+      function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m === '&') return '&amp;'; if(m === '<') return '&lt;'; if(m === '>') return '&gt;'; return m;}); }
+      
+      const archiveOverlay = document.getElementById('archiveOverlay');
+      function openArchive() { archiveOverlay.classList.add('active'); renderArchiveList(document.getElementById('archiveSearchInput').value); }
+      function closeArchive() { archiveOverlay.classList.remove('active'); document.getElementById('archiveSearchInput').value = ''; renderArchiveList(''); }
+      document.getElementById('archiveBtn').addEventListener('click', openArchive);
+      document.getElementById('archiveCloseBtn').addEventListener('click', closeArchive);
+      archiveOverlay.addEventListener('click', (e) => { if (e.target === archiveOverlay) closeArchive(); });
+      document.getElementById('archiveSearchInput').addEventListener('input', (e) => renderArchiveList(e.target.value));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && archiveOverlay.classList.contains('active')) closeArchive(); });
+      
+      // EXPANSÃO DAS TRÊS COLUNAS DA POLÍTICA DE PRIVACIDADE
+      const colTitles = document.querySelectorAll('.privacy-col-title');
+      colTitles.forEach(title => {
+        title.addEventListener('click', function(e) {
+          const content = this.parentElement.querySelector('.privacy-col-content');
+          if (content) {
+            if (content.style.display === 'none' || getComputedStyle(content).display === 'none') {
+              content.style.display = 'block';
+            } else {
+              content.style.display = 'none';
+            }
+          }
+        });
+      });
+      document.querySelectorAll('.privacy-col-content').forEach(cont => { cont.style.display = 'none'; });
+      
+      // ========== INTERCEPTA CLIQUE NOS CARDS DE DESTAQUE (FOTO CLICÁVEL) ==========
+      const spotlightCards = document.querySelectorAll('.spotlight-card');
+      spotlightCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.read-more')) return;
+          const link = card.getAttribute('data-article-link');
+          if (link) {
+            e.preventDefault();
+            navigateToWithCheck(link);
+          }
+        });
+      });
+      
+      loadCacheFromStorage();
+    })();
+  </script>
+</body>
+</html>
