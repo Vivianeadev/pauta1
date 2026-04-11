@@ -106,47 +106,66 @@
   </footer>
 
   <script>
-    // 🔁 URL corrigida: aponta para o novo Worker e para a rota /subscribe
+  (function () {
+
     const WORKER_URL = "https://pautazerowaitlist1.avizaecosystem.workers.dev/subscribe";
 
     const form = document.getElementById("formNewsletter");
     const statusDiv = document.getElementById("statusMsg");
 
-    form.addEventListener("submit", async (e) => {
+    if (!form) return;
+
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
-      const email = document.getElementById("email").value.trim();
-      const consent = document.getElementById("privacyConsent").checked;
+
+      const emailField = document.getElementById("email");
+      const consentField = document.getElementById("privacyConsent");
+
+      const email = emailField.value.trim();
+      const consent = consentField ? consentField.checked : true;
 
       if (!email || !email.includes("@")) {
         statusDiv.innerHTML = "❌ e-mail inválido";
         return;
       }
+
       if (!consent) {
         statusDiv.innerHTML = "❌ você precisa aceitar a política de privacidade";
         return;
       }
 
       statusDiv.innerHTML = "enviando...";
-      statusDiv.style.color = "#b8860b";
 
       try {
         const response = await fetch(WORKER_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email })
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email: email
+          })
         });
-        const result = await response.json();
+
+        let result = {};
+        try {
+          result = await response.json();
+        } catch (_) {}
+
         if (response.ok) {
           statusDiv.innerHTML = "✅ e-mail registrado! avisaremos você.";
           form.reset();
         } else {
-          statusDiv.innerHTML = `❌ ${result.error || "erro ao registrar."}`;
+          statusDiv.innerHTML = "❌ " + (result.error || "erro ao registrar");
         }
+
       } catch (error) {
-        console.error("Fetch error:", error);
         statusDiv.innerHTML = "❌ falha na conexão. tente mais tarde.";
       }
     });
+
+  })();
   </script>
 </body>
 </html>
