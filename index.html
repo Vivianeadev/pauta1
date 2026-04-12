@@ -260,12 +260,10 @@
     @media (max-width: 750px) { .privacy-cols { grid-template-columns: 1fr; gap: 0.8rem; } .privacy-collapsible { padding: 0 16px; } }
 
     /* ====== INÍCIO BLOCO CUSTOMIZÁVEL (CSS adicional) ====== */
-    /* Título do carrossel original com tamanho reduzido */
     .horizontal-carousel-section .carousel-header h3 {
       font-size: 0.85rem !important;
       letter-spacing: 0px;
     }
-    /* Carrossel de palavras em movimento - bordas sem arredondamento */
     .word-carousel {
       margin: 1rem 0 2rem;
       background: rgba(212, 175, 55, 0.05);
@@ -293,7 +291,7 @@
       text-decoration: none;
       transition: 0.2s;
       padding: 0.2rem 0.5rem;
-      border-radius: 0;   /* ALTERADO: sem arredondamento */
+      border-radius: 0;
     }
     .word-carousel-item i {
       margin-right: 6px;
@@ -309,7 +307,6 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    /* Carrossel dinâmico (sem botões azuis) */
     .dynamic-carousel-section {
       margin: 2rem 0 2rem;
       padding-top: 1rem;
@@ -379,7 +376,7 @@
     }
     /* ====== FIM BLOCO CUSTOMIZÁVEL ====== */
 
-    /* ====== INÍCIO BUSCA INTELIGENTE CMS (CSS ADICIONAL) ====== */
+    /* ====== INÍCIO BUSCA INTELIGENTE CMS ====== */
     .search-carousel-container {
       margin: 0 0 1rem 0;
       padding: 0.5rem 0;
@@ -478,13 +475,10 @@
       <div class="carousel-fade"><div class="carousel-scroll" id="carouselScroll"></div></div>
     </div>
 
-    <!-- ====== INÍCIO BLOCO CUSTOMIZÁVEL (CARROSSEL DE PALAVRAS) ====== -->
+    <!-- CARROSSEL DE PALAVRAS -->
     <div class="word-carousel">
-      <div class="word-carousel-track" id="wordTrack">
-        <!-- itens serão inseridos via JS dinamicamente -->
-      </div>
+      <div class="word-carousel-track" id="wordTrack"></div>
     </div>
-    <!-- ====== FIM BLOCO CUSTOMIZÁVEL ====== -->
 
     <!-- COMPARTILHAMENTO ORIGINAL -->
     <div class="share-bar">
@@ -560,7 +554,7 @@
 
   <script>
     (function() {
-      // ==================== DADOS DOS 23 EIXOS ORIGINAIS ====================
+      // ==================== DADOS DOS 24 EIXOS (incluindo NUTRIÇÃO) ====================
       const subtopicsByTopic = {
         politica: {
           "Poder e Corrupção Estrutural": ["Caixa dois e financiamento ilegal de campanhas", "Lobby empresarial e captura do estado", "Propina sistêmica em contratos públicos", "Impunidade de altas patentes"],
@@ -686,109 +680,80 @@
           "Política de Fretes e Greves de Caminhoneiros": ["Tabela de frete mínimo e judicialização", "Impacto das greves no abastecimento nacional", "Caminhoneiros autônomos vs. transportadoras", "Participação política da categoria e pautas"],
           "Infraestrutura Rodoviária e Concessões": ["Pedágios abusivos e qualidade das estradas", "Corrupção em contratos de concessão", "Pontos críticos e acidentes fatais", "Privatização de rodovias e monopólios regionais"],
           "Agronegócio e Impactos Socioambientais": ["Concentração de terras e latifúndio improdutivo", "Uso de agrotóxicos e saúde dos trabalhadores", "Desmatamento para monocultura de soja e pecuária", "Conflitos agrários e violência no campo"],
-          "Logística, Escoamento e Dependência do Diesel": ["Portos, ferrovias e o gargalo do escoamento", "Subsídio ao diesel e pressão sobre preços", "Custo Brasil logístico e competitividade", "Alternativas: hidrovias e cabotagem vs. lobby rodoviário"]
+          "Logística, Escoamento e Dependência do Diesel": ["Portos, ferrovias e o gargalo do escoamento", "Subsídio ao diesel e pressão sobre preços", "Custo Brasil logístico e competitividade", "Alternativas: hidrovias e cabotagem vs. lobby rodoviário"],
+          "Homenagem aos Caminhoneiros": ["Histórias reais de caminhoneiros no Brasil", "A importância invisível da logística rodoviária", "Rotina, risco e resistência nas estradas", "Impacto dos caminhoneiros na economia nacional"]
         },
         "saude-fisica": {
           "Erros Médicos e Imperícia": ["Subdiagnóstico e negligência em pronto-socorros", "Cirurgias em paciente errado e falhas de protocolo", "Responsabilização criminal de médicos", "Indenizações milionárias e omissão de prontuários"],
           "Acesso a Tratamentos de Alto Custo": ["Judicialização da saúde e medicamentos fora da lista do SUS", "Planos de saúde que negam cobertura de terapias", "Tratamentos experimentais e comitês de ética", "Desabastecimento de fármacos essenciais"],
           "Pandemia e Resposta Institucional": ["Colapso de UTIs e decisões de alocação de recursos", "Vacinação obrigatória e liberdade individual", "Negacionismo científico no poder público", "Efeitos pós-pandemia na infraestrutura hospitalar"],
           "Sistema de Saúde e Desigualdade Regional": ["Fila única do SUS e diferenças entre estados", "Fugas de profissionais para a rede privada", "Hospitais filantrópicos e gestão por OSs", "Subfinanciamento crônico e sucateamento"]
+        },
+        futurismo: {
+          "Inteligência Artificial e Sociedade": ["Ética da IA em decisões judiciais", "Automação e desemprego estrutural", "Viés algorítmico e discriminação", "Regulação de sistemas autônomos"],
+          "Cidades Inteligentes e Vigilância": ["Monitoramento urbano e privacidade", "Dados em massa e controle social", "IoT e segurança pública", "Governança digital participativa"],
+          "Transumanismo e Biotecnologia": ["Melhoramento humano e desigualdade", "Edição genética e dilemas morais", "Longevidade e previdência", "Ciborgues e direitos civis"],
+          "Trabalho e Economia Pós-Escassez": ["Renda básica universal", "Plataformas descentralizadas", "Tokenização da economia", "Novos modelos de propriedade"]
+        },
+        religiao: {
+          "Domínio do Cristianismo na Esfera Pública": ["Poder político evangélico e bancada religiosa", "Influência de lideranças cristãs nas decisões do STF", "Cristianismo como religião oficial implícita no Brasil", "Privilégios fiscais para igrejas e a questão da laicidade"],
+          "Perseguição Religiosa e Mártires Contemporâneos": ["Cristãos perseguidos em países de maioria islâmica", "Mártires da fé no século XXI (Nigéria, Índia, Paquistão)", "Intolerância religiosa contra evangélicos em territórios de matriz afro", "Violência anticristã na China e Coreia do Norte"],
+          "Teologia Política e Fundamentalismo": ["Teologia da dominação e o projeto de poder", "Nacionalismo cristão e seus impactos na democracia", "Fundamentalismo protestante e censura moral", "Cruzadas modernas: intervenções religiosas em políticas públicas"],
+          "Cristianismo e Direitos Humanos": ["Apoio religioso a causas sociais (moradores de rua, presos)", "Igrejas como refúgio para vítimas de violência doméstica", "Contradições entre discurso cristão e práticas discriminatórias", "O papel dos cristãos na luta contra a fome e a desigualdade"]
+        },
+        esportes: {
+          "Futebol: Paixão Nacional": ["Clássicos e rivalidades que movem multidões", "Torcidas organizadas: violência ou paixão extrema?", "Craques que marcaram época: de Pelé a Neymar", "Copa do Mundo e memória afetiva do brasileiro"],
+          "Ídolos e Mitos Esportivos": ["Pelé, Maradona e a construção do mito no imaginário popular", "O peso da fama e da pressão psicológica sobre atletas", "Carreira pós-aposentadoria: glória ou ostracismo?", "Ídolos que viraram políticos: sucesso ou oportunismo?"],
+          "Outros Esportes em Destaque": ["Vôlei brasileiro: conquistas, superação e identidade nacional", "Basquete: a influência da NBA e o crescimento no Brasil", "Esportes olímpicos: legado, desafios e novos talentos", "Automobilismo: Ayrton Senna e a paixão nacional pela velocidade"],
+          "Política e Corrupção no Esporte": ["Máfia do apito e arbitragem: quando a justiça falha", "Desvio de verbas em confederações e federações", "Patrocínios milionários e suspeitas de lavagem de dinheiro", "Manipulação de resultados e apostas: o lado obscuro do esporte"],
+          "Psicologia do Esporte e Performance": ["Pressão psicológica em atletas de alto rendimento", "Burnout e depressão no mundo esportivo", "Preparação mental para grandes competições", "Superação de lesões e traumas: histórias de resiliência"]
+        },
+        // ====== NOVO EIXO: NUTRIÇÃO & PESQUISA ALIMENTAR ======
+        nutricao: {
+          "Bases Científicas da Nutrição": [
+            "Macronutrientes: proteínas, carboidratos e gorduras na prática clínica",
+            "Micronutrientes e deficiências silenciosas (ferro, zinco, vitamina D)",
+            "Nutrigenômica: como os alimentos interagem com seu DNA",
+            "Cronobiologia alimentar: impacto dos horários nas refeições"
+          ],
+          "Dietas e Estratégias Populares": [
+            "Jejum intermitente: evidências e controvérsias",
+            "Low carb vs. low fat: meta-análises recentes",
+            "Dieta cetogênica para performance e epilepsia",
+            "Plant-based e veganismo: nutrientes críticos e suplementação"
+          ],
+          "Alimentos Funcionais e Fitoterápicos": [
+            "Cúrcuma e curcumina: anti-inflamatório natural",
+            "Probióticos, prebióticos e saúde intestinal",
+            "Adaptógenos: ashwagandha, rhodiola e estresse",
+            "Polifenóis do cacau, chá verde e resveratrol"
+          ],
+          "Nutrição Esportiva e Performance": [
+            "Periodização nutricional para hipertrofia e endurance",
+            "Suplementos com evidência: creatina, beta-alanina, cafeína",
+            "Hidratação e eletrólitos em atletas",
+            "Janela anabólica: mito ou realidade?"
+          ],
+          "Metabolismo, Emagrecimento e Composição Corporal": [
+            "Termogênese e gasto calórico: o que realmente funciona",
+            "Efeito rebote e reprogramação metabólica",
+            "Avaliação de composição corporal (DEXA, bioimpedância)",
+            "Estratégias comportamentais para adesão a longo prazo"
+          ],
+          "Nutrição Clínica e Doenças Crônicas": [
+            "Diabetes tipo 2: abordagem nutricional baseada em evidências",
+            "Hipertensão e dieta DASH",
+            "Nutrição oncológica: suporte durante quimioterapia",
+            "Doenças autoimunes e dietas de eliminação"
+          ],
+          "Receoterapia e Culinária Funcional": [
+            "Preparo que preserva nutrientes: cocção a vapor, baixa temperatura",
+            "Substituições inteligentes (farinhas, açúcares, gorduras)",
+            "Planejamento de refeições e batch cooking",
+            "Receitas anti-inflamatórias: exemplos práticos"
+          ]
         }
       };
-
-      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (NOVO EIXO FUTURISMO + SUBTEMAS) ======
-      subtopicsByTopic["futurismo"] = {
-        "Inteligência Artificial e Sociedade": ["Ética da IA em decisões judiciais", "Automação e desemprego estrutural", "Viés algorítmico e discriminação", "Regulação de sistemas autônomos"],
-        "Cidades Inteligentes e Vigilância": ["Monitoramento urbano e privacidade", "Dados em massa e controle social", "IoT e segurança pública", "Governança digital participativa"],
-        "Transumanismo e Biotecnologia": ["Melhoramento humano e desigualdade", "Edição genética e dilemas morais", "Longevidade e previdência", "Ciborgues e direitos civis"],
-        "Trabalho e Economia Pós-Escassez": ["Renda básica universal", "Plataformas descentralizadas", "Tokenização da economia", "Novos modelos de propriedade"]
-      };
-      // ====== FIM BLOCO CUSTOMIZÁVEL ======
-
-      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (EXTENSÃO DE SUBTEMAS SOLICITADOS) ======
-      if (!subtopicsByTopic["agro-logistica"]["Homenagem aos Caminhoneiros"]) {
-        subtopicsByTopic["agro-logistica"]["Homenagem aos Caminhoneiros"] = [
-          "Histórias reais de caminhoneiros no Brasil",
-          "A importância invisível da logística rodoviária",
-          "Rotina, risco e resistência nas estradas",
-          "Impacto dos caminhoneiros na economia nacional"
-        ];
-      }
-      if (!subtopicsByTopic["familia-saude-mental"]["Filhos de mães narcisistas"]) {
-        subtopicsByTopic["familia-saude-mental"]["Filhos de mães narcisistas"] = [
-          "Impactos psicológicos no desenvolvimento infantil",
-          "Construção de identidade sob manipulação materna",
-          "Dificuldade de vínculo afetivo na vida adulta",
-          "Estratégias de recuperação emocional"
-        ];
-      }
-      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (NOVO EIXO RELIGIÃO, CRISTIANISMO E PERSEGUIÇÕES) ======
-      subtopicsByTopic["religiao"] = {
-        "Domínio do Cristianismo na Esfera Pública": [
-          "Poder político evangélico e bancada religiosa",
-          "Influência de lideranças cristãs nas decisões do STF",
-          "Cristianismo como religião oficial implícita no Brasil",
-          "Privilégios fiscais para igrejas e a questão da laicidade"
-        ],
-        "Perseguição Religiosa e Mártires Contemporâneos": [
-          "Cristãos perseguidos em países de maioria islâmica",
-          "Mártires da fé no século XXI (Nigéria, Índia, Paquistão)",
-          "Intolerância religiosa contra evangélicos em territórios de matriz afro",
-          "Violência anticristã na China e Coreia do Norte"
-        ],
-        "Teologia Política e Fundamentalismo": [
-          "Teologia da dominação e o projeto de poder",
-          "Nacionalismo cristão e seus impactos na democracia",
-          "Fundamentalismo protestante e censura moral",
-          "Cruzadas modernas: intervenções religiosas em políticas públicas"
-        ],
-        "Cristianismo e Direitos Humanos": [
-          "Apoio religioso a causas sociais (moradores de rua, presos)",
-          "Igrejas como refúgio para vítimas de violência doméstica",
-          "Contradições entre discurso cristão e práticas discriminatórias",
-          "O papel dos cristãos na luta contra a fome e a desigualdade"
-        ]
-        // "Religião, Gênero e Moralidade" e "Escândalos e Hipocrisia Religiosa" foram REMOVIDOS.
-      };
-      // ====== FIM BLOCO CUSTOMIZÁVEL ======
-
-      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (NOVO EIXO ESPORTES, FUTEBOL & ÍDOLOS) ======
-      subtopicsByTopic["esportes"] = {
-        "Futebol: Paixão Nacional": [
-          "Clássicos e rivalidades que movem multidões",
-          "Torcidas organizadas: violência ou paixão extrema?",
-          "Craques que marcaram época: de Pelé a Neymar",
-          "Copa do Mundo e memória afetiva do brasileiro"
-        ],
-        "Ídolos e Mitos Esportivos": [
-          "Pelé, Maradona e a construção do mito no imaginário popular",
-          "O peso da fama e da pressão psicológica sobre atletas",
-          "Carreira pós-aposentadoria: glória ou ostracismo?",
-          "Ídolos que viraram políticos: sucesso ou oportunismo?"
-        ],
-        "Outros Esportes em Destaque": [
-          "Vôlei brasileiro: conquistas, superação e identidade nacional",
-          "Basquete: a influência da NBA e o crescimento no Brasil",
-          "Esportes olímpicos: legado, desafios e novos talentos",
-          "Automobilismo: Ayrton Senna e a paixão nacional pela velocidade"
-        ],
-        "Política e Corrupção no Esporte": [
-          "Máfia do apito e arbitragem: quando a justiça falha",
-          "Desvio de verbas em confederações e federações",
-          "Patrocínios milionários e suspeitas de lavagem de dinheiro",
-          "Manipulação de resultados e apostas: o lado obscuro do esporte"
-        ],
-        "Psicologia do Esporte e Performance": [
-          "Pressão psicológica em atletas de alto rendimento",
-          "Burnout e depressão no mundo esportivo",
-          "Preparação mental para grandes competições",
-          "Superação de lesões e traumas: histórias de resiliência"
-        ]
-      };
-      // ====== FIM BLOCO CUSTOMIZÁVEL ======
-      // ====== FIM BLOCO CUSTOMIZÁVEL (EXTENSÃO) ======
-
-      // ====== O EIXO "anonimo" (Espaço Anônimo) FOI TOTALMENTE REMOVIDO ======
 
       // Mapeamento de chave do eixo -> nome da pasta (URL)
       const topicFolderMap = {
@@ -798,15 +763,15 @@
         "politicas-publicas": "politicas-publicas",
         "economia-super-ricos": "economia-e-super-ricos",
         "saude-mental": "saude-mental",
-        "psicopatia": "psicopatia-e-comportamento-extremo",
+        psicopatia: "psicopatia-e-comportamento-extremo",
         "familia-alienacao": "familia-e-alienacao-parental",
         "crime-investigacao": "crime-e-investigacao",
         "saude-mental-extremo": "saude-mental-em-contextos-extremos",
-        "negocios": "negocios-e-estrategia",
+        negocios: "negocios-e-estrategia",
         "visao-global": "visao-global",
-        "filantropia": "impacto-e-filantropia",
+        filantropia: "impacto-e-filantropia",
         "historias-reais": "historias-reais",
-        "hibridos": "conteudos-hibridos",
+        hibridos: "conteudos-hibridos",
         "familia-saude-mental": "direito-de-familia-e-saude-mental",
         "justica-tecnologia": "justica-e-tecnologia",
         "educacao-desigualdade": "educacao-e-desigualdade",
@@ -814,9 +779,10 @@
         "direitos-humanos": "direitos-humanos-e-sistema-de-justica",
         "agro-logistica": "agronegocio-logistica-e-transporte",
         "saude-fisica": "saude-fisica-e-medicina",
-        "futurismo": "futurismo-e-inovacao",
-        "religiao": "religiao-cristianismo-perseguicoes",
-        "esportes": "esportes-futebol-idolos"
+        futurismo: "futurismo-e-inovacao",
+        religiao: "religiao-cristianismo-perseguicoes",
+        esportes: "esportes-futebol-idolos",
+        nutricao: "nutricao-e-pesquisa-alimentar"
       };
 
       const topicTitles = {
@@ -826,15 +792,15 @@
         "politicas-publicas": "Políticas Públicas",
         "economia-super-ricos": "Economia & Super Ricos",
         "saude-mental": "Saúde Mental",
-        "psicopatia": "Psicopatia & Comportamento Extremo",
+        psicopatia: "Psicopatia & Comportamento Extremo",
         "familia-alienacao": "Família & Alienação Parental",
         "crime-investigacao": "Crime & Investigação",
         "saude-mental-extremo": "Saúde Mental em Contextos Extremos",
-        "negocios": "Negócios & Estratégia",
+        negocios: "Negócios & Estratégia",
         "visao-global": "Visão Global",
-        "filantropia": "Impacto & Filantropia",
+        filantropia: "Impacto & Filantropia",
         "historias-reais": "Histórias Reais",
-        "hibridos": "Conteúdos Híbridos",
+        hibridos: "Conteúdos Híbridos",
         "familia-saude-mental": "Direito de Família e Saúde Mental",
         "justica-tecnologia": "Justiça e Tecnologia",
         "educacao-desigualdade": "Educação e Desigualdade",
@@ -842,22 +808,72 @@
         "direitos-humanos": "Direitos Humanos e Sistema de Justiça",
         "agro-logistica": "Agronegócio, Logística e Transporte",
         "saude-fisica": "Saúde Física e Medicina",
-        "futurismo": "Futurismo & Inovação",
-        "religiao": "Religião, Cristianismo & Perseguições",
-        "esportes": "Esportes, Futebol & Ídolos"
+        futurismo: "Futurismo & Inovação",
+        religiao: "Religião, Cristianismo & Perseguições",
+        esportes: "Esportes, Futebol & Ídolos",
+        nutricao: "Nutrição & Pesquisa Alimentar"
       };
 
       const topicIcons = {
-        politica: "fas fa-landmark", "seguranca-total": "fas fa-shield-alt", "prisional-policial": "fas fa-gavel",
-        "politicas-publicas": "fas fa-chalkboard-user", "economia-super-ricos": "fas fa-chart-pie",
-        "saude-mental": "fas fa-brain", "psicopatia": "fas fa-user-ninja", "familia-alienacao": "fas fa-heart-broken",
-        "crime-investigacao": "fas fa-fingerprint", "saude-mental-extremo": "fas fa-skull", "negocios": "fas fa-chart-line",
-        "visao-global": "fas fa-globe-americas", "filantropia": "fas fa-hand-holding-heart", "historias-reais": "fas fa-book-open",
-        "hibridos": "fas fa-code-branch", "familia-saude-mental": "fas fa-heartbeat",
-        "justica-tecnologia": "fas fa-microchip", "educacao-desigualdade": "fas fa-graduation-cap", "meio-ambiente": "fas fa-tree",
-        "direitos-humanos": "fas fa-hand-peace", "agro-logistica": "fas fa-truck", "saude-fisica": "fas fa-stethoscope",
-        "futurismo": "fas fa-robot", "religiao": "fas fa-church", "esportes": "fas fa-futbol"
+        politica: "fas fa-landmark",
+        "seguranca-total": "fas fa-shield-alt",
+        "prisional-policial": "fas fa-gavel",
+        "politicas-publicas": "fas fa-chalkboard-user",
+        "economia-super-ricos": "fas fa-chart-pie",
+        "saude-mental": "fas fa-brain",
+        psicopatia: "fas fa-user-ninja",
+        "familia-alienacao": "fas fa-heart-broken",
+        "crime-investigacao": "fas fa-fingerprint",
+        "saude-mental-extremo": "fas fa-skull",
+        negocios: "fas fa-chart-line",
+        "visao-global": "fas fa-globe-americas",
+        filantropia: "fas fa-hand-holding-heart",
+        "historias-reais": "fas fa-book-open",
+        hibridos: "fas fa-code-branch",
+        "familia-saude-mental": "fas fa-heartbeat",
+        "justica-tecnologia": "fas fa-microchip",
+        "educacao-desigualdade": "fas fa-graduation-cap",
+        "meio-ambiente": "fas fa-tree",
+        "direitos-humanos": "fas fa-hand-peace",
+        "agro-logistica": "fas fa-truck",
+        "saude-fisica": "fas fa-stethoscope",
+        futurismo: "fas fa-robot",
+        religiao: "fas fa-church",
+        esportes: "fas fa-futbol",
+        nutricao: "fas fa-apple-alt"
       };
+
+      function getDescription(key) {
+        const desc = {
+          politica: "Monetária, relações internacionais, regulação e poder institucional.",
+          "seguranca-total": "Pessoal, digital, patrimonial e inteligência estratégica.",
+          "prisional-policial": "Estrutura carcerária, investigação, perícia e inteligência policial.",
+          "politicas-publicas": "Segurança, saúde, economia pública e regulação.",
+          "economia-super-ricos": "Alta renda, offshores, family offices e patrimônio invisível.",
+          "saude-mental": "Transtornos, emoções, trauma e alta performance.",
+          psicopatia: "Manipulação, liderança tóxica, serial killers e falta de empatia.",
+          "familia-alienacao": "Divórcio, guarda, falsas acusações e danos psicológicos.",
+          "crime-investigacao": "Perfil criminal, crimes financeiros, motivação e detecção.",
+          "saude-mental-extremo": "Prisional, alta pressão, colapso e sobrevivência psicológica.",
+          negocios: "Modelos de negócio, holdings, captação e branding.",
+          "visao-global": "Networking internacional, mobilidade e expansão.",
+          filantropia: "Social, educação, investimento de impacto e legado.",
+          "historias-reais": "Superação, queda, ascensão e bastidores.",
+          hibridos: "Psicopatia+negócios, segurança+economia, prisão+psicologia.",
+          "familia-saude-mental": "Sofrimento materno, perícias psicológicas e manipulação narrativa.",
+          "justica-tecnologia": "IA no judiciário, provas digitais, cibercrimes e automação.",
+          "educacao-desigualdade": "Ensino público, privatização, cotas e tecnologia na educação.",
+          "meio-ambiente": "Garimpo ilegal, desmatamento, justiça climática e greenwashing.",
+          "direitos-humanos": "Tortura, população em situação de rua, migração e comunidades tradicionais.",
+          "agro-logistica": "Política de fretes, greves de caminhoneiros, infraestrutura e impactos.",
+          "saude-fisica": "Erros médicos, acesso a tratamentos, pandemias e sistema de saúde.",
+          futurismo: "IA, cidades inteligentes, transumanismo e pós-escassez.",
+          religiao: "Cristianismo, poder eclesiástico, perseguições, intolerância e fé.",
+          esportes: "Futebol, ídolos, outros esportes, política esportiva e psicologia do atleta.",
+          nutricao: "Bases científicas, dietas estratégicas, alimentos funcionais, nutrição esportiva e receoterapia baseada em evidências."
+        };
+        return desc[key] || "Análise estrutural e comportamental.";
+      }
 
       function slugify(text) {
         return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -870,7 +886,7 @@
         return `/artigo/${folder}/${subcatSlug}/${topicSlug}.html`;
       }
 
-      // ========== TÚNEL DE VERIFICAÇÃO ==========
+      // ========== TÚNEL DE VERIFICAÇÃO (mesmo código original) ==========
       const pageCache = new Map();
       function loadCacheFromStorage() {
         try {
@@ -940,7 +956,7 @@
         }
       });
 
-      // ========== RENDERIZAÇÃO DOS CARDS TEMÁTICOS ==========
+      // ========== RENDERIZAÇÃO DOS CARDS TEMÁTICOS (inclui nutrição) ==========
       const grid = document.getElementById('thematicGrid');
       for (const [key, title] of Object.entries(topicTitles)) {
         const card = document.createElement('div');
@@ -949,38 +965,8 @@
         card.innerHTML = `<div class="theme-icon"><i class="${topicIcons[key]}"></i></div><h3>${title}</h3><p>${getDescription(key)}</p><div class="theme-badge">clique para explorar →</div>`;
         grid.appendChild(card);
       }
-      function getDescription(key) {
-        const desc = {
-          politica: "Monetária, relações internacionais, regulação e poder institucional.",
-          "seguranca-total": "Pessoal, digital, patrimonial e inteligência estratégica.",
-          "prisional-policial": "Estrutura carcerária, investigação, perícia e inteligência policial.",
-          "politicas-publicas": "Segurança, saúde, economia pública e regulação.",
-          "economia-super-ricos": "Alta renda, offshores, family offices e patrimônio invisível.",
-          "saude-mental": "Transtornos, emoções, trauma e alta performance.",
-          "psicopatia": "Manipulação, liderança tóxica, serial killers e falta de empatia.",
-          "familia-alienacao": "Divórcio, guarda, falsas acusações e danos psicológicos.",
-          "crime-investigacao": "Perfil criminal, crimes financeiros, motivação e detecção.",
-          "saude-mental-extremo": "Prisional, alta pressão, colapso e sobrevivência psicológica.",
-          "negocios": "Modelos de negócio, holdings, captação e branding.",
-          "visao-global": "Networking internacional, mobilidade e expansão.",
-          "filantropia": "Social, educação, investimento de impacto e legado.",
-          "historias-reais": "Superação, queda, ascensão e bastidores.",
-          "hibridos": "Psicopatia+negócios, segurança+economia, prisão+psicologia.",
-          "familia-saude-mental": "Sofrimento materno, perícias psicológicas e manipulação narrativa.",
-          "justica-tecnologia": "IA no judiciário, provas digitais, cibercrimes e automação.",
-          "educacao-desigualdade": "Ensino público, privatização, cotas e tecnologia na educação.",
-          "meio-ambiente": "Garimpo ilegal, desmatamento, justiça climática e greenwashing.",
-          "direitos-humanos": "Tortura, população em situação de rua, migração e comunidades tradicionais.",
-          "agro-logistica": "Política de fretes, greves de caminhoneiros, infraestrutura e impactos.",
-          "saude-fisica": "Erros médicos, acesso a tratamentos, pandemias e sistema de saúde.",
-          "futurismo": "IA, cidades inteligentes, transumanismo e pós-escassez.",
-          "religiao": "Cristianismo, poder eclesiástico, perseguições, intolerância e fé.",
-          "esportes": "Futebol, ídolos, outros esportes, política esportiva e psicologia do atleta."
-        };
-        return desc[key] || "Análise estrutural e comportamental.";
-      }
 
-      // ========== MODAL ==========
+      // ========== MODAL (compartilhado) ==========
       const modal = document.getElementById('topicModal');
       const modalTitle = document.getElementById('modalTitle');
       const modalTopicsList = document.getElementById('modalTopicsList');
@@ -1053,7 +1039,7 @@
       carouselContainer.addEventListener('mouseup', () => { isDown = false; carouselContainer.style.cursor = 'grab'; });
       carouselContainer.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); const x = e.pageX - carouselContainer.offsetLeft; const walk = (x - startX) * 1.5; carouselContainer.scrollLeft = scrollLeft - walk; });
 
-      // ========== COMPARTILHAMENTO ORIGINAL ==========
+      // ========== COMPARTILHAMENTO ==========
       const currentUrl = encodeURIComponent(window.location.href);
       const shareText = encodeURIComponent("PautaZero · Análise Institucional & Tecnologia");
       document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
@@ -1144,7 +1130,7 @@
         });
       });
 
-      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (CARROSSEL DINÂMICO AUTO-ATUALIZÁVEL) ======
+      // ========== CARROSSEL DINÂMICO (mesmo original) ==========
       async function initDynamicCarousel() {
         const mainContainer = document.querySelector('main.container');
         if (!mainContainer) return;
@@ -1202,7 +1188,8 @@
         dynamicScroll.addEventListener('mouseup', () => { isDownDynamic = false; dynamicScroll.style.cursor = 'grab'; });
         dynamicScroll.addEventListener('mousemove', (e) => { if (!isDownDynamic) return; e.preventDefault(); const x = e.pageX - dynamicScroll.offsetLeft; const walk = (x - startXDynamic) * 1.5; dynamicScroll.scrollLeft = scrollLeftDynamic - walk; });
       }
-      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (CARROSSEL DE PALAVRAS COM LINKS) ======
+
+      // ========== CARROSSEL DE PALAVRAS ==========
       function initWordCarousel() {
         const track = document.getElementById('wordTrack');
         if (!track) return;
@@ -1215,7 +1202,8 @@
           { icon: "fas fa-truck", name: "Logística", topicKey: "agro-logistica" },
           { icon: "fas fa-globe", name: "Geopolítica", topicKey: "politica" },
           { icon: "fas fa-church", name: "Religião", topicKey: "religiao" },
-          { icon: "fas fa-futbol", name: "Esportes", topicKey: "esportes" }
+          { icon: "fas fa-futbol", name: "Esportes", topicKey: "esportes" },
+          { icon: "fas fa-apple-alt", name: "Nutrição", topicKey: "nutricao" }
         ];
         let html = '';
         for (let i = 0; i < 3; i++) {
@@ -1232,13 +1220,11 @@
           });
         });
       }
-      // ====== FIM BLOCO CUSTOMIZÁVEL ======
 
-      // ====== INÍCIO BUSCA INTELIGENTE CMS ======
+      // ========== BUSCA INTELIGENTE CMS ==========
       let searchDebounceTimer;
       const searchInput = document.getElementById('archiveSearchInput');
       let searchCarouselContainer = null;
-
       function ensureSearchCarouselContainer() {
         if (searchCarouselContainer && document.body.contains(searchCarouselContainer)) return searchCarouselContainer;
         const archivePanel = document.querySelector('.archive-panel');
@@ -1265,7 +1251,6 @@
         searchCarouselContainer = container;
         return container;
       }
-
       function renderSearchCarousel(term) {
         const container = ensureSearchCarouselContainer();
         if (!container) return;
@@ -1273,7 +1258,6 @@
         if (!scrollDiv) return;
         const archiveListDiv = document.getElementById('archiveList');
         if (!archiveListDiv) return;
-
         const cleanTerm = term.trim().toLowerCase();
         if (cleanTerm === '') {
           container.style.display = 'none';
@@ -1328,7 +1312,6 @@
         scrollDiv.addEventListener('mouseup', cleanDrag);
         scrollDiv.addEventListener('mousemove', (e) => { if (!isDownSmart) return; e.preventDefault(); const x = e.pageX - scrollDiv.offsetLeft; const walk = (x - startXSmart) * 1.5; scrollDiv.scrollLeft = scrollLeftSmart - walk; });
       }
-
       function setupSmartSearch() {
         if (!searchInput) return;
         searchInput.addEventListener('input', (e) => {
@@ -1349,8 +1332,8 @@
         });
         observer.observe(archiveOverlay, { attributes: true, attributeFilter: ['class'] });
       }
-      // ====== FIM BUSCA INTELIGENTE CMS ======
 
+      // ========== INICIALIZAÇÕES ==========
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => { initDynamicCarousel(); initWordCarousel(); setupSmartSearch(); });
       } else {
