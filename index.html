@@ -258,6 +258,126 @@
     .privacy-col-content .privacy-email { font-family: monospace; background: rgba(212,175,55,0.1); padding: 0.1rem 0.3rem; border-radius: 6px; }
     .privacy-header-note { text-align: center; font-family: var(--font-serif); font-size: 0.7rem; letter-spacing: 1px; color: var(--gold-dark); margin-bottom: 0.5rem; }
     @media (max-width: 750px) { .privacy-cols { grid-template-columns: 1fr; gap: 0.8rem; } .privacy-collapsible { padding: 0 16px; } }
+
+    /* ====== INÍCIO BLOCO CUSTOMIZÁVEL (CSS adicional) ====== */
+    /* Título do carrossel original com tamanho reduzido */
+    .horizontal-carousel-section .carousel-header h3 {
+      font-size: 0.85rem !important;
+      letter-spacing: 0px;
+    }
+    /* Carrossel de palavras em movimento */
+    .word-carousel {
+      margin: 1rem 0 2rem;
+      background: rgba(212, 175, 55, 0.05);
+      border-radius: 40px;
+      padding: 0.5rem 0;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .word-carousel-track {
+      display: inline-flex;
+      animation: scrollWords 25s linear infinite;
+    }
+    .word-carousel-track:hover {
+      animation-play-state: paused;
+    }
+    .word-carousel-item {
+      display: inline-flex;
+      align-items: center;
+      margin: 0 1rem;
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: 0.2s;
+      padding: 0.2rem 0.5rem;
+      border-radius: 30px;
+    }
+    .word-carousel-item i {
+      margin-right: 6px;
+      color: var(--gold-dark);
+      font-size: 0.7rem;
+    }
+    .word-carousel-item:hover {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-dark);
+      transform: translateY(-2px);
+    }
+    @keyframes scrollWords {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    /* Carrossel dinâmico (sem botões azuis) */
+    .dynamic-carousel-section {
+      margin: 2rem 0 2rem;
+      padding-top: 1rem;
+    }
+    .dynamic-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .dynamic-header h3 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--color-primary);
+      letter-spacing: -0.2px;
+    }
+    .dynamic-header h3 i {
+      color: var(--gold-dark);
+      margin-right: 6px;
+    }
+    .carousel-card--compact {
+      flex: 0 0 240px;
+      scroll-snap-align: start;
+      background: var(--color-bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .carousel-card--compact:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-luxury);
+    }
+    .carousel-card--compact .carousel-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      background: linear-gradient(145deg, #e9e2d4, #d6cdbb);
+      transition: transform 0.3s ease;
+    }
+    .carousel-card--compact:hover .carousel-img {
+      transform: scale(1.02);
+    }
+    .carousel-card--compact .carousel-content {
+      padding: 0.7rem 0.8rem 0.9rem;
+    }
+    .carousel-card--compact .carousel-category {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-bottom: 0.3rem;
+    }
+    .carousel-card--compact .carousel-title {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      line-height: 1.3;
+    }
+    /* ====== FIM BLOCO CUSTOMIZÁVEL ====== */
   </style>
 </head>
 <body>
@@ -269,13 +389,21 @@
   </header>
 
   <main class="container">
-    <!-- CARROSSEL HORIZONTAL -->
+    <!-- CARROSSEL HORIZONTAL ORIGINAL -->
     <div class="horizontal-carousel-section">
       <div class="carousel-header"><h3><i class="fas fa-newspaper"></i> Artigos publicados recentemente</h3><span style="font-size:0.7rem; color:var(--gold-dark);">← arraste →</span></div>
       <div class="carousel-fade"><div class="carousel-scroll" id="carouselScroll"></div></div>
     </div>
 
-    <!-- COMPARTILHAMENTO -->
+    <!-- ====== INÍCIO BLOCO CUSTOMIZÁVEL (CARROSSEL DE PALAVRAS) ====== -->
+    <div class="word-carousel">
+      <div class="word-carousel-track" id="wordTrack">
+        <!-- itens serão inseridos via JS dinamicamente -->
+      </div>
+    </div>
+    <!-- ====== FIM BLOCO CUSTOMIZÁVEL ====== -->
+
+    <!-- COMPARTILHAMENTO ORIGINAL -->
     <div class="share-bar">
       <span class="share-label"><i class="fas fa-share-alt"></i> Compartilhe:</span>
       <a href="#" id="shareFacebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
@@ -349,7 +477,7 @@
 
   <script>
     (function() {
-      // ==================== DADOS DOS 23 EIXOS ====================
+      // ==================== DADOS DOS 23 EIXOS ORIGINAIS ====================
       const subtopicsByTopic = {
         politica: {
           "Poder e Corrupção Estrutural": ["Caixa dois e financiamento ilegal de campanhas", "Lobby empresarial e captura do estado", "Propina sistêmica em contratos públicos", "Impunidade de altas patentes"],
@@ -491,6 +619,34 @@
         }
       };
 
+      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (NOVO EIXO FUTURISMO + SUBTEMAS) ======
+      subtopicsByTopic["futurismo"] = {
+        "Inteligência Artificial e Sociedade": ["Ética da IA em decisões judiciais", "Automação e desemprego estrutural", "Viés algorítmico e discriminação", "Regulação de sistemas autônomos"],
+        "Cidades Inteligentes e Vigilância": ["Monitoramento urbano e privacidade", "Dados em massa e controle social", "IoT e segurança pública", "Governança digital participativa"],
+        "Transumanismo e Biotecnologia": ["Melhoramento humano e desigualdade", "Edição genética e dilemas morais", "Longevidade e previdência", "Ciborgues e direitos civis"],
+        "Trabalho e Economia Pós-Escassez": ["Renda básica universal", "Plataformas descentralizadas", "Tokenização da economia", "Novos modelos de propriedade"]
+      };
+      // ====== FIM BLOCO CUSTOMIZÁVEL ======
+
+      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (EXTENSÃO DE SUBTEMAS SOLICITADOS) ======
+      if (!subtopicsByTopic["agro-logistica"]["Homenagem aos Caminhoneiros"]) {
+        subtopicsByTopic["agro-logistica"]["Homenagem aos Caminhoneiros"] = [
+          "Histórias reais de caminhoneiros no Brasil",
+          "A importância invisível da logística rodoviária",
+          "Rotina, risco e resistência nas estradas",
+          "Impacto dos caminhoneiros na economia nacional"
+        ];
+      }
+      if (!subtopicsByTopic["familia-saude-mental"]["Filhos de mães narcisistas"]) {
+        subtopicsByTopic["familia-saude-mental"]["Filhos de mães narcisistas"] = [
+          "Impactos psicológicos no desenvolvimento infantil",
+          "Construção de identidade sob manipulação materna",
+          "Dificuldade de vínculo afetivo na vida adulta",
+          "Estratégias de recuperação emocional"
+        ];
+      }
+      // ====== FIM BLOCO CUSTOMIZÁVEL ======
+
       // Mapeamento de chave do eixo -> nome da pasta (URL)
       const topicFolderMap = {
         politica: "politica-e-geopolitica",
@@ -515,7 +671,8 @@
         "meio-ambiente": "meio-ambiente-e-conflitos",
         "direitos-humanos": "direitos-humanos-e-sistema-de-justica",
         "agro-logistica": "agronegocio-logistica-e-transporte",
-        "saude-fisica": "saude-fisica-e-medicina"
+        "saude-fisica": "saude-fisica-e-medicina",
+        "futurismo": "futurismo-e-inovacao"
       };
 
       const topicTitles = {
@@ -541,7 +698,8 @@
         "meio-ambiente": "Meio Ambiente e Conflitos",
         "direitos-humanos": "Direitos Humanos e Sistema de Justiça",
         "agro-logistica": "Agronegócio, Logística e Transporte",
-        "saude-fisica": "Saúde Física e Medicina"
+        "saude-fisica": "Saúde Física e Medicina",
+        "futurismo": "Futurismo & Inovação"
       };
 
       const topicIcons = {
@@ -552,7 +710,8 @@
         "visao-global": "fas fa-globe-americas", "filantropia": "fas fa-hand-holding-heart", "historias-reais": "fas fa-book-open",
         "anonimo": "fas fa-user-secret", "hibridos": "fas fa-code-branch", "familia-saude-mental": "fas fa-heartbeat",
         "justica-tecnologia": "fas fa-microchip", "educacao-desigualdade": "fas fa-graduation-cap", "meio-ambiente": "fas fa-tree",
-        "direitos-humanos": "fas fa-hand-peace", "agro-logistica": "fas fa-truck", "saude-fisica": "fas fa-stethoscope"
+        "direitos-humanos": "fas fa-hand-peace", "agro-logistica": "fas fa-truck", "saude-fisica": "fas fa-stethoscope",
+        "futurismo": "fas fa-robot"
       };
 
       function slugify(text) {
@@ -636,7 +795,7 @@
         }
       });
 
-      // ========== RENDERIZAÇÃO DOS CARDS TEMÁTICOS ==========
+      // ========== RENDERIZAÇÃO DOS CARDS TEMÁTICOS (incluindo futurismo) ==========
       const grid = document.getElementById('thematicGrid');
       for (const [key, title] of Object.entries(topicTitles)) {
         const card = document.createElement('div');
@@ -669,7 +828,8 @@
           "meio-ambiente": "Garimpo ilegal, desmatamento, justiça climática e greenwashing.",
           "direitos-humanos": "Tortura, população em situação de rua, migração e comunidades tradicionais.",
           "agro-logistica": "Política de fretes, greves de caminhoneiros, infraestrutura e impactos.",
-          "saude-fisica": "Erros médicos, acesso a tratamentos, pandemias e sistema de saúde."
+          "saude-fisica": "Erros médicos, acesso a tratamentos, pandemias e sistema de saúde.",
+          "futurismo": "IA, cidades inteligentes, transumanismo e pós-escassez."
         };
         return desc[key] || "Análise estrutural e comportamental.";
       }
@@ -709,7 +869,7 @@
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
 
-      // ========== CARROSSEL COM IMAGENS DINÂMICAS ==========
+      // ========== CARROSSEL ORIGINAL (mantido) ==========
       const articlesData = [
         { title: "Alienação Parental: entre a proteção e a falsa acusação", category: "Família & Alienação", url: getArticleUrl("familia-alienacao", "Dinâmicas de Divórcio Litigioso", "Uso de perícias psicológicas como arma") },
         { title: "Subdiagnóstico e negligência em pronto-socorros", category: "Saúde Física", url: getArticleUrl("saude-fisica", "Erros Médicos e Imperícia", "Subdiagnóstico e negligência em pronto-socorros") },
@@ -717,7 +877,6 @@
         { title: "Justiça às cegas", category: "Sistema Prisional", url: getArticleUrl("prisional-policial", "Violência Estrutural no Cárcere", "Superlotação como tortura indireta") },
         { title: "Greve dos caminhoneiros e impacto econômico", category: "Agronegócio", url: getArticleUrl("agro-logistica", "Política de Fretes e Greves de Caminhoneiros", "Tabela de frete mínimo e judicialização") }
       ];
-
       const carouselContainer = document.getElementById('carouselScroll');
       function buildCarousel() {
         carouselContainer.innerHTML = '';
@@ -738,14 +897,13 @@
         });
       }
       buildCarousel();
-
       let isDown = false, startX, scrollLeft;
       carouselContainer.addEventListener('mousedown', (e) => { isDown = true; carouselContainer.style.cursor = 'grabbing'; startX = e.pageX - carouselContainer.offsetLeft; scrollLeft = carouselContainer.scrollLeft; });
       carouselContainer.addEventListener('mouseleave', () => { isDown = false; carouselContainer.style.cursor = 'grab'; });
       carouselContainer.addEventListener('mouseup', () => { isDown = false; carouselContainer.style.cursor = 'grab'; });
       carouselContainer.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); const x = e.pageX - carouselContainer.offsetLeft; const walk = (x - startX) * 1.5; carouselContainer.scrollLeft = scrollLeft - walk; });
 
-      // ========== COMPARTILHAMENTO ==========
+      // ========== COMPARTILHAMENTO ORIGINAL ==========
       const currentUrl = encodeURIComponent(window.location.href);
       const shareText = encodeURIComponent("PautaZero · Análise Institucional & Tecnologia");
       document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
@@ -754,7 +912,7 @@
       document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${shareText}%20${currentUrl}`;
       document.getElementById('shareEmail').href = `mailto:?subject=${shareText}&body=${currentUrl}`;
 
-      // ========== LUPA (APENAS ARTIGOS EXISTENTES) ==========
+      // ========== LUPA (ARQUIVO) ==========
       function generateAllPotentialArticles() {
         const articles = [];
         for (const [topicKey, subcategories] of Object.entries(subtopicsByTopic)) {
@@ -836,6 +994,100 @@
         });
       });
 
+      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (CARROSSEL DINÂMICO AUTO-ATUALIZÁVEL - SEM BOTÕES AZUIS) ======
+      async function initDynamicCarousel() {
+        const mainContainer = document.querySelector('main.container');
+        if (!mainContainer) return;
+        if (document.getElementById('dynamicCarouselSection')) return;
+        const dynamicSection = document.createElement('div');
+        dynamicSection.id = 'dynamicCarouselSection';
+        dynamicSection.className = 'dynamic-carousel-section';
+        dynamicSection.innerHTML = `
+          <div class="dynamic-header">
+            <h3><i class="fas fa-robot"></i> Artigos dinâmicos · verificação profunda</h3>
+            <span class="dynamic-sub"><i class="fas fa-sync-alt"></i> baseado em arquivos existentes</span>
+          </div>
+          <div class="carousel-fade">
+            <div class="carousel-scroll" id="dynamicCarouselScroll"></div>
+          </div>
+        `;
+        const originalCarouselSection = document.querySelector('.horizontal-carousel-section');
+        if (originalCarouselSection && originalCarouselSection.nextSibling) {
+          mainContainer.insertBefore(dynamicSection, originalCarouselSection.nextSibling);
+        } else {
+          mainContainer.appendChild(dynamicSection);
+        }
+        const dynamicScroll = document.getElementById('dynamicCarouselScroll');
+        if (!dynamicScroll) return;
+        dynamicScroll.innerHTML = '<div class="no-results" style="padding: 2rem;"><i class="fas fa-spinner fa-pulse"></i> Verificando artigos publicados...</div>';
+        const existingArticlesList = [];
+        for (const article of allPotentialArticles) {
+          const exists = await checkIfPageExists(article.url);
+          if (exists) existingArticlesList.push(article);
+        }
+        if (existingArticlesList.length === 0) {
+          dynamicScroll.innerHTML = '<div class="no-results"><i class="fas fa-newspaper"></i> Nenhum artigo publicado ainda. Volte em breve!</div>';
+          return;
+        }
+        const articlesToShow = existingArticlesList.slice(0, 12);
+        dynamicScroll.innerHTML = '';
+        articlesToShow.forEach(article => {
+          const card = document.createElement('a');
+          card.href = article.url;
+          card.className = 'carousel-card--compact';
+          const imgSlug = slugify(article.title);
+          const imgUrl = `assets/images/${imgSlug}.jpg`;
+          card.innerHTML = `
+            <img class="carousel-img" src="${imgUrl}" alt="${escapeHtml(article.title)}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x200/fefaf5/D4AF37?text=PautaZero'">
+            <div class="carousel-content">
+              <div class="carousel-category">${escapeHtml(article.category.split(' · ')[0])}</div>
+              <div class="carousel-title">${escapeHtml(article.title)}</div>
+            </div>
+          `;
+          dynamicScroll.appendChild(card);
+        });
+        let isDownDynamic = false, startXDynamic, scrollLeftDynamic;
+        dynamicScroll.addEventListener('mousedown', (e) => { isDownDynamic = true; dynamicScroll.style.cursor = 'grabbing'; startXDynamic = e.pageX - dynamicScroll.offsetLeft; scrollLeftDynamic = dynamicScroll.scrollLeft; });
+        dynamicScroll.addEventListener('mouseleave', () => { isDownDynamic = false; dynamicScroll.style.cursor = 'grab'; });
+        dynamicScroll.addEventListener('mouseup', () => { isDownDynamic = false; dynamicScroll.style.cursor = 'grab'; });
+        dynamicScroll.addEventListener('mousemove', (e) => { if (!isDownDynamic) return; e.preventDefault(); const x = e.pageX - dynamicScroll.offsetLeft; const walk = (x - startXDynamic) * 1.5; dynamicScroll.scrollLeft = scrollLeftDynamic - walk; });
+      }
+      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (CARROSSEL DE PALAVRAS COM LINKS) ======
+      function initWordCarousel() {
+        const track = document.getElementById('wordTrack');
+        if (!track) return;
+        const items = [
+          { icon: "fas fa-gavel", name: "Direito e Justiça", topicKey: "justica-tecnologia" },
+          { icon: "fas fa-chart-line", name: "Economia", topicKey: "economia-super-ricos" },
+          { icon: "fas fa-stethoscope", name: "Medicina", topicKey: "saude-fisica" },
+          { icon: "fas fa-robot", name: "Futurismo", topicKey: "futurismo" },
+          { icon: "fas fa-brain", name: "Psicologia", topicKey: "psicopatia" },
+          { icon: "fas fa-truck", name: "Logística", topicKey: "agro-logistica" },
+          { icon: "fas fa-globe", name: "Geopolítica", topicKey: "politica" }
+        ];
+        let html = '';
+        for (let i = 0; i < 3; i++) {
+          items.forEach(item => {
+            html += `<a href="#" class="word-carousel-item" data-topic="${item.topicKey}"><i class="${item.icon}"></i> ${item.name}</a>`;
+          });
+        }
+        track.innerHTML = html;
+        document.querySelectorAll('.word-carousel-item').forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const topic = link.getAttribute('data-topic');
+            if (topic && subtopicsByTopic[topic]) openModal(topic);
+          });
+        });
+      }
+      // ====== FIM BLOCO CUSTOMIZÁVEL ======
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => { initDynamicCarousel(); initWordCarousel(); });
+      } else {
+        initDynamicCarousel();
+        initWordCarousel();
+      }
       loadCacheFromStorage();
     })();
   </script>
