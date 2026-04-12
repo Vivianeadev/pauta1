@@ -646,12 +646,6 @@
           "Bastidores do Sucesso": ["O preço psicológico da fama", "Relações abusivas nos bastidores de empresas", "Segredos de família real", "Assédio moral em startups de sucesso"],
           "Erros e Aprendizados": ["Sócio que roubou a empresa", "Confiar em sócio errado", "Golpe financeiro que destruiu poupança", "Fraude contábil descoberta tarde"]
         },
-        "anonimo": {
-          "Confissões Anônimas": ["Cometi um crime e nunca fui descoberto", "Traí meu parceiro durante anos", "Menti sobre minhas qualificações profissionais", "Desviei dinheiro da empresa"],
-          "Relatos Sensíveis": ["Fui abusado por familiar e não denunciei", "Testemunhei uma execução policial", "Sofri violência institucional em hospital", "Fui pressionado a assinar documento falso"],
-          "Apoio e Comunidade": ["Como saí de um relacionamento abusivo", "Grupo de apoio anônimo para dependentes", "Compartilhando estratégias de segurança", "Acolhimento após tentativa de suicídio"],
-          "Segredos de Família": ["Descobri que meu pai não é biológico", "Herança escondida por irmãos", "Parente criminoso que a família protege", "Casamento arranjado e violência velada"]
-        },
         "hibridos": {
           "Psicopatia + Negócios": ["CEO psicopata que destruiu a cultura", "Táticas de manipulação em reuniões", "Assédio moral estratégico para demissão", "Fundador narcisista e crise de sucessão"],
           "Segurança + Economia": ["Seguro contra sequestro para ultra-ricos", "Proteção de ativos em paraísos fiscais", "Risco geopolítico para holdings offshore", "Criptomoedas e extorsão digital"],
@@ -754,7 +748,7 @@
           "Contradições entre discurso cristão e práticas discriminatórias",
           "O papel dos cristãos na luta contra a fome e a desigualdade"
         ]
-        // "Religião, Gênero e Moralidade" e "Escândalos e Hipocrisia Religiosa" foram REMOVIDOS conforme solicitado.
+        // "Religião, Gênero e Moralidade" e "Escândalos e Hipocrisia Religiosa" foram REMOVIDOS.
       };
       // ====== FIM BLOCO CUSTOMIZÁVEL ======
 
@@ -794,6 +788,8 @@
       // ====== FIM BLOCO CUSTOMIZÁVEL ======
       // ====== FIM BLOCO CUSTOMIZÁVEL (EXTENSÃO) ======
 
+      // ====== O EIXO "anonimo" (Espaço Anônimo) FOI TOTALMENTE REMOVIDO ======
+
       // Mapeamento de chave do eixo -> nome da pasta (URL)
       const topicFolderMap = {
         politica: "politica-e-geopolitica",
@@ -810,7 +806,6 @@
         "visao-global": "visao-global",
         "filantropia": "impacto-e-filantropia",
         "historias-reais": "historias-reais",
-        "anonimo": "espaco-anonimo",
         "hibridos": "conteudos-hibridos",
         "familia-saude-mental": "direito-de-familia-e-saude-mental",
         "justica-tecnologia": "justica-e-tecnologia",
@@ -839,7 +834,6 @@
         "visao-global": "Visão Global",
         "filantropia": "Impacto & Filantropia",
         "historias-reais": "Histórias Reais",
-        "anonimo": "Espaço Anônimo",
         "hibridos": "Conteúdos Híbridos",
         "familia-saude-mental": "Direito de Família e Saúde Mental",
         "justica-tecnologia": "Justiça e Tecnologia",
@@ -859,7 +853,7 @@
         "saude-mental": "fas fa-brain", "psicopatia": "fas fa-user-ninja", "familia-alienacao": "fas fa-heart-broken",
         "crime-investigacao": "fas fa-fingerprint", "saude-mental-extremo": "fas fa-skull", "negocios": "fas fa-chart-line",
         "visao-global": "fas fa-globe-americas", "filantropia": "fas fa-hand-holding-heart", "historias-reais": "fas fa-book-open",
-        "anonimo": "fas fa-user-secret", "hibridos": "fas fa-code-branch", "familia-saude-mental": "fas fa-heartbeat",
+        "hibridos": "fas fa-code-branch", "familia-saude-mental": "fas fa-heartbeat",
         "justica-tecnologia": "fas fa-microchip", "educacao-desigualdade": "fas fa-graduation-cap", "meio-ambiente": "fas fa-tree",
         "direitos-humanos": "fas fa-hand-peace", "agro-logistica": "fas fa-truck", "saude-fisica": "fas fa-stethoscope",
         "futurismo": "fas fa-robot", "religiao": "fas fa-church", "esportes": "fas fa-futbol"
@@ -946,7 +940,7 @@
         }
       });
 
-      // ========== RENDERIZAÇÃO DOS CARDS TEMÁTICOS (incluindo futurismo, religiao e esportes) ==========
+      // ========== RENDERIZAÇÃO DOS CARDS TEMÁTICOS ==========
       const grid = document.getElementById('thematicGrid');
       for (const [key, title] of Object.entries(topicTitles)) {
         const card = document.createElement('div');
@@ -971,7 +965,6 @@
           "visao-global": "Networking internacional, mobilidade e expansão.",
           "filantropia": "Social, educação, investimento de impacto e legado.",
           "historias-reais": "Superação, queda, ascensão e bastidores.",
-          "anonimo": "Confissões, relatos sensíveis, apoio e comunidade.",
           "hibridos": "Psicopatia+negócios, segurança+economia, prisão+psicologia.",
           "familia-saude-mental": "Sofrimento materno, perícias psicológicas e manipulação narrativa.",
           "justica-tecnologia": "IA no judiciário, provas digitais, cibercrimes e automação.",
@@ -1151,7 +1144,7 @@
         });
       });
 
-      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (CARROSSEL DINÂMICO AUTO-ATUALIZÁVEL - SEM BOTÕES AZUIS) ======
+      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (CARROSSEL DINÂMICO AUTO-ATUALIZÁVEL) ======
       async function initDynamicCarousel() {
         const mainContainer = document.querySelector('main.container');
         if (!mainContainer) return;
@@ -1241,7 +1234,7 @@
       }
       // ====== FIM BLOCO CUSTOMIZÁVEL ======
 
-      // ====== INÍCIO BUSCA INTELIGENTE CMS (SISTEMA DE BUSCA GLOBAL EM CARROSSEL) ======
+      // ====== INÍCIO BUSCA INTELIGENTE CMS ======
       let searchDebounceTimer;
       const searchInput = document.getElementById('archiveSearchInput');
       let searchCarouselContainer = null;
@@ -1338,7 +1331,6 @@
 
       function setupSmartSearch() {
         if (!searchInput) return;
-        const originalInputHandler = searchInput.oninput;
         searchInput.addEventListener('input', (e) => {
           if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
           searchDebounceTimer = setTimeout(() => {
