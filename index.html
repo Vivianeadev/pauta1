@@ -378,6 +378,89 @@
       line-height: 1.3;
     }
     /* ====== FIM BLOCO CUSTOMIZÁVEL ====== */
+
+    /* ====== INÍCIO BUSCA INTELIGENTE CMS (CSS ADICIONAL) ====== */
+    .search-carousel-container {
+      margin: 0 0 1rem 0;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .search-carousel-title {
+      font-family: var(--font-serif);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .search-carousel-scroll {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 0.8rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold-dark) rgba(212,175,55,0.2);
+      cursor: grab;
+    }
+    .search-carousel-scroll:active { cursor: grabbing; }
+    .search-carousel-scroll::-webkit-scrollbar { height: 4px; }
+    .search-carousel-scroll::-webkit-scrollbar-track { background: rgba(212,175,55,0.1); border-radius: 10px; }
+    .search-carousel-scroll::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 10px; }
+    .search-card {
+      flex: 0 0 220px;
+      scroll-snap-align: start;
+      background: var(--color-bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .search-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-luxury);
+    }
+    .search-card-img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      background: linear-gradient(145deg, #e9e2d4, #d6cdbb);
+      transition: transform 0.2s ease;
+    }
+    .search-card:hover .search-card-img { transform: scale(1.02); }
+    .search-card-content { padding: 0.6rem 0.7rem 0.8rem; }
+    .search-card-category {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .search-card-title {
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    @media (max-width: 550px) { .search-card { flex: 0 0 180px; } .search-card-img { height: 100px; } }
+    /* ====== FIM BUSCA INTELIGENTE CMS ====== */
   </style>
 </head>
 <body>
@@ -1082,11 +1165,130 @@
       }
       // ====== FIM BLOCO CUSTOMIZÁVEL ======
 
+      // ====== INÍCIO BUSCA INTELIGENTE CMS (SISTEMA DE BUSCA GLOBAL EM CARROSSEL) ======
+      let searchDebounceTimer;
+      const searchInput = document.getElementById('archiveSearchInput');
+      let searchCarouselContainer = null;
+
+      function ensureSearchCarouselContainer() {
+        if (searchCarouselContainer && document.body.contains(searchCarouselContainer)) return searchCarouselContainer;
+        const archivePanel = document.querySelector('.archive-panel');
+        if (!archivePanel) return null;
+        const searchDiv = archivePanel.querySelector('.archive-search');
+        if (!searchDiv) return null;
+        let existing = document.getElementById('smartSearchCarousel');
+        if (existing) {
+          searchCarouselContainer = existing;
+          return existing;
+        }
+        const container = document.createElement('div');
+        container.id = 'smartSearchCarousel';
+        container.className = 'search-carousel-container';
+        container.style.display = 'none';
+        container.innerHTML = `
+          <div class="search-carousel-title">
+            <i class="fas fa-magic"></i> Resultados da busca inteligente
+            <span style="font-size:0.6rem; margin-left:auto;">← arraste →</span>
+          </div>
+          <div class="search-carousel-scroll" id="smartSearchScroll"></div>
+        `;
+        searchDiv.insertAdjacentElement('afterend', container);
+        searchCarouselContainer = container;
+        return container;
+      }
+
+      function renderSearchCarousel(term) {
+        const container = ensureSearchCarouselContainer();
+        if (!container) return;
+        const scrollDiv = document.getElementById('smartSearchScroll');
+        if (!scrollDiv) return;
+        const archiveListDiv = document.getElementById('archiveList');
+        if (!archiveListDiv) return;
+
+        const cleanTerm = term.trim().toLowerCase();
+        if (cleanTerm === '') {
+          container.style.display = 'none';
+          archiveListDiv.style.display = '';
+          return;
+        }
+        if (!archiveLoaded || existingArticles.length === 0) {
+          scrollDiv.innerHTML = '<div class="no-results" style="padding:1rem;"><i class="fas fa-spinner fa-pulse"></i> Indexando artigos...</div>';
+          container.style.display = 'block';
+          archiveListDiv.style.display = 'none';
+          return;
+        }
+        const filtered = existingArticles.filter(article => {
+          const titleMatch = article.title.toLowerCase().includes(cleanTerm);
+          const categoryMatch = article.category.toLowerCase().includes(cleanTerm);
+          const slug = slugify(article.title);
+          const slugMatch = slug.includes(cleanTerm);
+          const tema = article.category.split(' · ')[0]?.toLowerCase() || '';
+          const subtema = article.category.split(' · ')[1]?.toLowerCase() || '';
+          const temaMatch = tema.includes(cleanTerm);
+          const subtemaMatch = subtema.includes(cleanTerm);
+          return titleMatch || categoryMatch || slugMatch || temaMatch || subtemaMatch;
+        });
+        if (filtered.length === 0) {
+          scrollDiv.innerHTML = '<div class="no-results" style="padding:1rem;"><i class="fas fa-search"></i> Nenhum artigo encontrado para "' + escapeHtml(cleanTerm) + '"</div>';
+          container.style.display = 'block';
+          archiveListDiv.style.display = 'none';
+          return;
+        }
+        scrollDiv.innerHTML = '';
+        filtered.slice(0, 20).forEach(article => {
+          const card = document.createElement('a');
+          card.href = article.url;
+          card.className = 'search-card';
+          const imgSlug = slugify(article.title);
+          const imgUrl = `assets/images/${imgSlug}.jpg`;
+          card.innerHTML = `
+            <img class="search-card-img" src="${imgUrl}" alt="${escapeHtml(article.title)}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x200/fefaf5/D4AF37?text=PautaZero'">
+            <div class="search-card-content">
+              <div class="search-card-category">${escapeHtml(article.category.split(' · ')[0])}</div>
+              <div class="search-card-title">${escapeHtml(article.title)}</div>
+            </div>
+          `;
+          scrollDiv.appendChild(card);
+        });
+        container.style.display = 'block';
+        archiveListDiv.style.display = 'none';
+        let isDownSmart = false, startXSmart, scrollLeftSmart;
+        const cleanDrag = () => { isDownSmart = false; scrollDiv.style.cursor = 'grab'; };
+        scrollDiv.addEventListener('mousedown', (e) => { isDownSmart = true; scrollDiv.style.cursor = 'grabbing'; startXSmart = e.pageX - scrollDiv.offsetLeft; scrollLeftSmart = scrollDiv.scrollLeft; });
+        scrollDiv.addEventListener('mouseleave', cleanDrag);
+        scrollDiv.addEventListener('mouseup', cleanDrag);
+        scrollDiv.addEventListener('mousemove', (e) => { if (!isDownSmart) return; e.preventDefault(); const x = e.pageX - scrollDiv.offsetLeft; const walk = (x - startXSmart) * 1.5; scrollDiv.scrollLeft = scrollLeftSmart - walk; });
+      }
+
+      function setupSmartSearch() {
+        if (!searchInput) return;
+        const originalInputHandler = searchInput.oninput;
+        searchInput.addEventListener('input', (e) => {
+          if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+          searchDebounceTimer = setTimeout(() => {
+            renderSearchCarousel(e.target.value);
+          }, 300);
+        });
+        const observer = new MutationObserver(() => {
+          if (archiveOverlay.classList.contains('active') && archiveLoaded && existingArticles.length > 0 && searchInput.value.trim() !== '') {
+            renderSearchCarousel(searchInput.value);
+          } else if (!archiveOverlay.classList.contains('active')) {
+            const container = ensureSearchCarouselContainer();
+            if (container) container.style.display = 'none';
+            const archiveListDiv = document.getElementById('archiveList');
+            if (archiveListDiv) archiveListDiv.style.display = '';
+          }
+        });
+        observer.observe(archiveOverlay, { attributes: true, attributeFilter: ['class'] });
+      }
+      // ====== FIM BUSCA INTELIGENTE CMS ======
+
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => { initDynamicCarousel(); initWordCarousel(); });
+        document.addEventListener('DOMContentLoaded', () => { initDynamicCarousel(); initWordCarousel(); setupSmartSearch(); });
       } else {
         initDynamicCarousel();
         initWordCarousel();
+        setupSmartSearch();
       }
       loadCacheFromStorage();
     })();
