@@ -265,7 +265,7 @@
       font-size: 0.85rem !important;
       letter-spacing: 0px;
     }
-    /* Carrossel de palavras em movimento */
+    /* Carrossel de palavras em movimento - bordas sem arredondamento */
     .word-carousel {
       margin: 1rem 0 2rem;
       background: rgba(212, 175, 55, 0.05);
@@ -293,7 +293,7 @@
       text-decoration: none;
       transition: 0.2s;
       padding: 0.2rem 0.5rem;
-      border-radius: 30px;
+      border-radius: 0;   /* ALTERADO: sem arredondamento */
     }
     .word-carousel-item i {
       margin-right: 6px;
@@ -728,7 +728,71 @@
           "Estratégias de recuperação emocional"
         ];
       }
+      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (NOVO EIXO RELIGIÃO, CRISTIANISMO E PERSEGUIÇÕES) ======
+      subtopicsByTopic["religiao"] = {
+        "Domínio do Cristianismo na Esfera Pública": [
+          "Poder político evangélico e bancada religiosa",
+          "Influência de lideranças cristãs nas decisões do STF",
+          "Cristianismo como religião oficial implícita no Brasil",
+          "Privilégios fiscais para igrejas e a questão da laicidade"
+        ],
+        "Perseguição Religiosa e Mártires Contemporâneos": [
+          "Cristãos perseguidos em países de maioria islâmica",
+          "Mártires da fé no século XXI (Nigéria, Índia, Paquistão)",
+          "Intolerância religiosa contra evangélicos em territórios de matriz afro",
+          "Violência anticristã na China e Coreia do Norte"
+        ],
+        "Teologia Política e Fundamentalismo": [
+          "Teologia da dominação e o projeto de poder",
+          "Nacionalismo cristão e seus impactos na democracia",
+          "Fundamentalismo protestante e censura moral",
+          "Cruzadas modernas: intervenções religiosas em políticas públicas"
+        ],
+        "Cristianismo e Direitos Humanos": [
+          "Apoio religioso a causas sociais (moradores de rua, presos)",
+          "Igrejas como refúgio para vítimas de violência doméstica",
+          "Contradições entre discurso cristão e práticas discriminatórias",
+          "O papel dos cristãos na luta contra a fome e a desigualdade"
+        ]
+        // "Religião, Gênero e Moralidade" e "Escândalos e Hipocrisia Religiosa" foram REMOVIDOS conforme solicitado.
+      };
       // ====== FIM BLOCO CUSTOMIZÁVEL ======
+
+      // ====== INÍCIO BLOCO CUSTOMIZÁVEL (NOVO EIXO ESPORTES, FUTEBOL & ÍDOLOS) ======
+      subtopicsByTopic["esportes"] = {
+        "Futebol: Paixão Nacional": [
+          "Clássicos e rivalidades que movem multidões",
+          "Torcidas organizadas: violência ou paixão extrema?",
+          "Craques que marcaram época: de Pelé a Neymar",
+          "Copa do Mundo e memória afetiva do brasileiro"
+        ],
+        "Ídolos e Mitos Esportivos": [
+          "Pelé, Maradona e a construção do mito no imaginário popular",
+          "O peso da fama e da pressão psicológica sobre atletas",
+          "Carreira pós-aposentadoria: glória ou ostracismo?",
+          "Ídolos que viraram políticos: sucesso ou oportunismo?"
+        ],
+        "Outros Esportes em Destaque": [
+          "Vôlei brasileiro: conquistas, superação e identidade nacional",
+          "Basquete: a influência da NBA e o crescimento no Brasil",
+          "Esportes olímpicos: legado, desafios e novos talentos",
+          "Automobilismo: Ayrton Senna e a paixão nacional pela velocidade"
+        ],
+        "Política e Corrupção no Esporte": [
+          "Máfia do apito e arbitragem: quando a justiça falha",
+          "Desvio de verbas em confederações e federações",
+          "Patrocínios milionários e suspeitas de lavagem de dinheiro",
+          "Manipulação de resultados e apostas: o lado obscuro do esporte"
+        ],
+        "Psicologia do Esporte e Performance": [
+          "Pressão psicológica em atletas de alto rendimento",
+          "Burnout e depressão no mundo esportivo",
+          "Preparação mental para grandes competições",
+          "Superação de lesões e traumas: histórias de resiliência"
+        ]
+      };
+      // ====== FIM BLOCO CUSTOMIZÁVEL ======
+      // ====== FIM BLOCO CUSTOMIZÁVEL (EXTENSÃO) ======
 
       // Mapeamento de chave do eixo -> nome da pasta (URL)
       const topicFolderMap = {
@@ -755,7 +819,9 @@
         "direitos-humanos": "direitos-humanos-e-sistema-de-justica",
         "agro-logistica": "agronegocio-logistica-e-transporte",
         "saude-fisica": "saude-fisica-e-medicina",
-        "futurismo": "futurismo-e-inovacao"
+        "futurismo": "futurismo-e-inovacao",
+        "religiao": "religiao-cristianismo-perseguicoes",
+        "esportes": "esportes-futebol-idolos"
       };
 
       const topicTitles = {
@@ -782,7 +848,9 @@
         "direitos-humanos": "Direitos Humanos e Sistema de Justiça",
         "agro-logistica": "Agronegócio, Logística e Transporte",
         "saude-fisica": "Saúde Física e Medicina",
-        "futurismo": "Futurismo & Inovação"
+        "futurismo": "Futurismo & Inovação",
+        "religiao": "Religião, Cristianismo & Perseguições",
+        "esportes": "Esportes, Futebol & Ídolos"
       };
 
       const topicIcons = {
@@ -794,7 +862,7 @@
         "anonimo": "fas fa-user-secret", "hibridos": "fas fa-code-branch", "familia-saude-mental": "fas fa-heartbeat",
         "justica-tecnologia": "fas fa-microchip", "educacao-desigualdade": "fas fa-graduation-cap", "meio-ambiente": "fas fa-tree",
         "direitos-humanos": "fas fa-hand-peace", "agro-logistica": "fas fa-truck", "saude-fisica": "fas fa-stethoscope",
-        "futurismo": "fas fa-robot"
+        "futurismo": "fas fa-robot", "religiao": "fas fa-church", "esportes": "fas fa-futbol"
       };
 
       function slugify(text) {
@@ -878,7 +946,7 @@
         }
       });
 
-      // ========== RENDERIZAÇÃO DOS CARDS TEMÁTICOS (incluindo futurismo) ==========
+      // ========== RENDERIZAÇÃO DOS CARDS TEMÁTICOS (incluindo futurismo, religiao e esportes) ==========
       const grid = document.getElementById('thematicGrid');
       for (const [key, title] of Object.entries(topicTitles)) {
         const card = document.createElement('div');
@@ -912,7 +980,9 @@
           "direitos-humanos": "Tortura, população em situação de rua, migração e comunidades tradicionais.",
           "agro-logistica": "Política de fretes, greves de caminhoneiros, infraestrutura e impactos.",
           "saude-fisica": "Erros médicos, acesso a tratamentos, pandemias e sistema de saúde.",
-          "futurismo": "IA, cidades inteligentes, transumanismo e pós-escassez."
+          "futurismo": "IA, cidades inteligentes, transumanismo e pós-escassez.",
+          "religiao": "Cristianismo, poder eclesiástico, perseguições, intolerância e fé.",
+          "esportes": "Futebol, ídolos, outros esportes, política esportiva e psicologia do atleta."
         };
         return desc[key] || "Análise estrutural e comportamental.";
       }
@@ -931,10 +1001,14 @@
           let html = '';
           for (const [subcat, topics] of Object.entries(subcategoriesObj)) {
             html += `<div class="subcategory-group"><div class="subcategory-title">${escapeHtml(subcat)}</div><ul class="topics-list">`;
-            topics.forEach(topic => {
-              const url = getArticleUrl(topicKey, subcat, topic);
-              html += `<li><a href="${url}">${escapeHtml(topic)}</a></li>`;
-            });
+            if (topics.length === 0) {
+              html += `<li style="width:100%; color: var(--color-text-light); font-style:italic;">Nenhum tópico disponível no momento.</li>`;
+            } else {
+              topics.forEach(topic => {
+                const url = getArticleUrl(topicKey, subcat, topic);
+                html += `<li><a href="${url}">${escapeHtml(topic)}</a></li>`;
+              });
+            }
             html += `</ul></div>`;
           }
           modalTopicsList.innerHTML = html;
@@ -1146,7 +1220,9 @@
           { icon: "fas fa-robot", name: "Futurismo", topicKey: "futurismo" },
           { icon: "fas fa-brain", name: "Psicologia", topicKey: "psicopatia" },
           { icon: "fas fa-truck", name: "Logística", topicKey: "agro-logistica" },
-          { icon: "fas fa-globe", name: "Geopolítica", topicKey: "politica" }
+          { icon: "fas fa-globe", name: "Geopolítica", topicKey: "politica" },
+          { icon: "fas fa-church", name: "Religião", topicKey: "religiao" },
+          { icon: "fas fa-futbol", name: "Esportes", topicKey: "esportes" }
         ];
         let html = '';
         for (let i = 0; i < 3; i++) {
