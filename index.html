@@ -167,7 +167,7 @@
     .modal-footer-note { margin-top: 1.8rem; padding-top: 1rem; font-size: 0.7rem; color: var(--gold-dark); text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2); }
     @media (max-width: 550px) { .topics-list li { width: 100%; } }
 
-    /* ========== SEÇÃO DE ARTIGOS POLÊMICOS ========== */
+    /* ========== SEÇÃO DE ARTIGOS POLÊMICOS (mantida apenas CSS, HTML removido) ========== */
     .featured-spotlight {
       margin-bottom: 3rem;
       border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
@@ -215,7 +215,7 @@
       .spotlight-card.larger .card-image { min-height: 180px; }
     }
 
-    /* ========== CARROSSEL HORIZONTAL ========== */
+    /* ========== CARROSSEL HORIZONTAL (mantido CSS, HTML removido) ========== */
     .horizontal-carousel-section { margin-bottom: 3rem; }
     .carousel-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .carousel-header h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-primary); letter-spacing: -0.3px; }
@@ -469,18 +469,12 @@
   </header>
 
   <main class="container">
-    <!-- CARROSSEL HORIZONTAL ORIGINAL -->
-    <div class="horizontal-carousel-section">
-      <div class="carousel-header"><h3><i class="fas fa-newspaper"></i> Artigos publicados recentemente</h3><span style="font-size:0.7rem; color:var(--gold-dark);">← arraste →</span></div>
-      <div class="carousel-fade"><div class="carousel-scroll" id="carouselScroll"></div></div>
-    </div>
-
-    <!-- CARROSSEL DE PALAVRAS -->
+    <!-- CARROSSEL DE PALAVRAS (mantido) -->
     <div class="word-carousel">
       <div class="word-carousel-track" id="wordTrack"></div>
     </div>
 
-    <!-- COMPARTILHAMENTO ORIGINAL -->
+    <!-- COMPARTILHAMENTO (link do X atualizado para x.com) -->
     <div class="share-bar">
       <span class="share-label"><i class="fas fa-share-alt"></i> Compartilhe:</span>
       <a href="#" id="shareFacebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
@@ -490,24 +484,7 @@
       <a href="#" id="shareEmail"><i class="fas fa-envelope"></i></a>
     </div>
 
-    <!-- DESTAQUE POLÊMICAS -->
-    <div class="featured-spotlight">
-      <div class="spotlight-title"><i class="fas fa-fire"></i> <span>POLÊMICAS & BASTIDORES</span> <i class="fas fa-skull"></i></div>
-      <div class="spotlight-grid">
-        <div class="spotlight-card" data-article-link="/artigo/polemicas/o-silencio-que-condena.html">
-          <div class="card-image"><div class="img-placeholder"><i class="fas fa-gavel" style="font-size: 2.2rem; opacity: 0.7;"></i><br><span style="font-size: 0.6rem;">Foto: Arquivo</span></div></div>
-          <div class="card-content"><div class="card-badge">Investigação</div><h4>O silêncio que condena</h4><div class="card-excerpt">Como omissões institucionais transformam vítimas em algozes e o peso da prova no sistema de justiça.</div><a href="#" class="read-more">Acessar matéria →</a></div>
-        </div>
-        <div class="spotlight-card larger" data-article-link="/artigo/polemicas/a-psicopatia-do-poder.html">
-          <div class="card-image"><div class="img-placeholder"><i class="fas fa-crown" style="font-size: 2.8rem; opacity: 0.7;"></i><br><span style="font-size: 0.65rem;">Foto: Representação</span></div></div>
-          <div class="card-content"><div class="card-badge">Psicopatia & Liderança</div><h4>A psicopatia do poder: quando a falta de empatia vence eleições</h4><div class="card-excerpt">Manipulação estratégica, perfis dissimulados e o custo social de líderes sem freio emocional. Uma análise profunda.</div><a href="#" class="read-more">Ler artigo completo →</a></div>
-        </div>
-        <div class="spotlight-card" data-article-link="/artigo/polemicas/justica-as-cegas.html">
-          <div class="card-image"><div class="img-placeholder"><i class="fas fa-balance-scale" style="font-size: 2.2rem; opacity: 0.7;"></i><br><span style="font-size: 0.6rem;">Ilustração</span></div></div>
-          <div class="card-content"><div class="card-badge">Sistema Prisional</div><h4>Justiça às cegas: as entranhas do cárcere privado</h4><div class="card-excerpt">Violência estrutural, facções e a falência do discurso ressocializador. Relatos de dentro.</div><a href="#" class="read-more">Explorar →</a></div>
-        </div>
-      </div>
-    </div>
+    <!-- SEÇÃO "POLÊMICAS & BASTIDORES" REMOVIDA -->
 
     <div class="section-intro"><h2 style="border-bottom: none;">Eixos de <span style="color: var(--gold-dark);">análise</span></h2><p style="color: var(--gold-dark); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">Curadoria estrutural · Sem ruído</p></div>
     <div class="thematic-grid" id="thematicGrid"></div>
@@ -1005,45 +982,15 @@
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
 
-      // ========== CARROSSEL ORIGINAL (mantido) ==========
-      const articlesData = [
-        { title: "Alienação Parental: entre a proteção e a falsa acusação", category: "Família & Alienação", url: getArticleUrl("familia-alienacao", "Dinâmicas de Divórcio Litigioso", "Uso de perícias psicológicas como arma") },
-        { title: "Subdiagnóstico e negligência em pronto-socorros", category: "Saúde Física", url: getArticleUrl("saude-fisica", "Erros Médicos e Imperícia", "Subdiagnóstico e negligência em pronto-socorros") },
-        { title: "A psicopatia do poder", category: "Psicopatia", url: getArticleUrl("psicopatia", "Psicopatas no Poder", "Autocratas e a ausência de freios emocionais") },
-        { title: "Justiça às cegas", category: "Sistema Prisional", url: getArticleUrl("prisional-policial", "Violência Estrutural no Cárcere", "Superlotação como tortura indireta") },
-        { title: "Greve dos caminhoneiros e impacto econômico", category: "Agronegócio", url: getArticleUrl("agro-logistica", "Política de Fretes e Greves de Caminhoneiros", "Tabela de frete mínimo e judicialização") }
-      ];
-      const carouselContainer = document.getElementById('carouselScroll');
-      function buildCarousel() {
-        carouselContainer.innerHTML = '';
-        articlesData.forEach(article => {
-          const card = document.createElement('a');
-          card.href = article.url;
-          card.className = 'carousel-card';
-          const imgSlug = slugify(article.title);
-          const imgUrl = `assets/images/${imgSlug}.jpg`;
-          card.innerHTML = `
-            <img class="carousel-img" src="${imgUrl}" alt="${escapeHtml(article.title)}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x200/fefaf5/D4AF37?text=PautaZero'">
-            <div class="carousel-content">
-              <div class="carousel-category">${escapeHtml(article.category)}</div>
-              <div class="carousel-title">${escapeHtml(article.title)}</div>
-            </div>
-          `;
-          carouselContainer.appendChild(card);
-        });
-      }
-      buildCarousel();
-      let isDown = false, startX, scrollLeft;
-      carouselContainer.addEventListener('mousedown', (e) => { isDown = true; carouselContainer.style.cursor = 'grabbing'; startX = e.pageX - carouselContainer.offsetLeft; scrollLeft = carouselContainer.scrollLeft; });
-      carouselContainer.addEventListener('mouseleave', () => { isDown = false; carouselContainer.style.cursor = 'grab'; });
-      carouselContainer.addEventListener('mouseup', () => { isDown = false; carouselContainer.style.cursor = 'grab'; });
-      carouselContainer.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); const x = e.pageX - carouselContainer.offsetLeft; const walk = (x - startX) * 1.5; carouselContainer.scrollLeft = scrollLeft - walk; });
+      // ========== CARROSSEL ORIGINAL (mantido, mas não renderizado porque HTML foi removido) ==========
+      // Apenas mantemos a função buildCarousel para referência, mas não a chamamos.
+      // O carrossel dinâmico (initDynamicCarousel) é que será usado.
 
-      // ========== COMPARTILHAMENTO ==========
+      // ========== COMPARTILHAMENTO (link do X atualizado para x.com) ==========
       const currentUrl = encodeURIComponent(window.location.href);
       const shareText = encodeURIComponent("PautaZero · Análise Institucional & Tecnologia");
       document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
-      document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${currentUrl}`;
+      document.getElementById('shareTwitter').href = `https://x.com/intent/tweet?text=${shareText}&url=${currentUrl}`;  // ALTERADO PARA x.com
       document.getElementById('shareLinkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`;
       document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${shareText}%20${currentUrl}`;
       document.getElementById('shareEmail').href = `mailto:?subject=${shareText}&body=${currentUrl}`;
@@ -1120,15 +1067,8 @@
       });
       document.querySelectorAll('.privacy-col-content').forEach(cont => { cont.style.display = 'none'; });
 
-      // ========== SPOTLIGHT CARDS ==========
-      const spotlightCards = document.querySelectorAll('.spotlight-card');
-      spotlightCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-          if (e.target.closest('.read-more')) return;
-          const link = card.getAttribute('data-article-link');
-          if (link) { e.preventDefault(); navigateToWithCheck(link); }
-        });
-      });
+      // ========== SPOTLIGHT CARDS (removidos do HTML, então não há listeners) ==========
+      // Nenhuma ação necessária.
 
       // ========== CARROSSEL DINÂMICO (mesmo original) ==========
       async function initDynamicCarousel() {
@@ -1147,9 +1087,10 @@
             <div class="carousel-scroll" id="dynamicCarouselScroll"></div>
           </div>
         `;
-        const originalCarouselSection = document.querySelector('.horizontal-carousel-section');
-        if (originalCarouselSection && originalCarouselSection.nextSibling) {
-          mainContainer.insertBefore(dynamicSection, originalCarouselSection.nextSibling);
+        // Insere após a share-bar ou no final do main
+        const shareBar = document.querySelector('.share-bar');
+        if (shareBar && shareBar.nextSibling) {
+          mainContainer.insertBefore(dynamicSection, shareBar.nextSibling);
         } else {
           mainContainer.appendChild(dynamicSection);
         }
