@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>PautaZero · Ultra Luxo · Eixos Expandidos</title>
+  
+  <!-- Fontes & Ícones preservados -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* ===== CSS EXATAMENTE COMO NO ORIGINAL (luxo preservado) ===== */
+    :root{
+      --bg-color: #ffffff;
+      --petrol-blue: #0a3147;
+      --petrol-light: #1a4b6d;
+      --aged-gold: #b8860b;
+      --gold-line: rgba(184, 134, 11, 0.18);
+      --text-muted: #5a7d91;
+      --font-sans: 'Inter', sans-serif;
+      --font-serif: 'Cinzel', serif;
+      --font-body: 'Marcellus', serif;
+      --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background-color:var(--bg-color); color:var(--petrol-blue); font-family:var(--font-sans); line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    .container { max-width:1400px; margin:0 auto; padding:0 60px; }
+    header { padding:60px 0 30px; text-align:center; position:sticky; top:0; background:rgb(255 255 255 / 0.98); backdrop-filter:blur(15px); z-index:1000; border-bottom:0.5px solid var(--gold-line); }
+    .logo { font-family:var(--font-serif); font-size:3rem; font-weight:400; letter-spacing:8px; text-decoration:none; color:var(--petrol-blue); display:block; margin-bottom:10px; transition:var(--transition); }
+    .logo span { color:var(--aged-gold); font-weight:700; }
+    .tagline { font-family:var(--font-body); font-size:0.75rem; text-transform:uppercase; letter-spacing:6px; color:var(--aged-gold); opacity:0.8; }
+    .ethereal-divider { width:100%; height:1px; background:linear-gradient(90deg,transparent 0%,rgb(184 134 11 / 0.25) 20%,rgb(184 134 11 / 0.4) 50%,rgb(184 134 11 / 0.25) 80%,transparent 100%); margin:0; border:0; opacity:0.5; pointer-events:none; }
+    .hero { padding:100px 0; text-align:center; }
+    .section-label { font-family:var(--font-body); font-size:0.7rem; text-transform:uppercase; letter-spacing:5px; color:var(--aged-gold); margin-bottom:40px; display:block; }
+    .hero-title { font-family:var(--font-serif); font-size:3.5rem; line-height:1.1; margin-bottom:30px; font-weight:400; max-width:1100px; margin-left:auto; margin-right:auto; }
+    .highlight-lucidez { color:var(--aged-gold); font-weight:700; text-shadow:0 0 15px rgba(184,134,11,0.15); transition:var(--transition); }
+    @media (min-width:901px) { .hero-title { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:3.2rem; } }
+    .article-preview-panel { margin:40px 0 60px; border:0.5px solid var(--gold-line); background:rgb(255 255 255 / 0.7); backdrop-filter:blur(8px); padding:30px 30px; transition:var(--transition); box-shadow:0 15px 30px -10px rgb(10 49 71 / 0.05); }
+    .preview-container { display:grid; grid-template-columns:280px 1fr; gap:30px; }
+    .preview-sidebar { border-right:0.5px solid var(--gold-line); padding-right:25px; }
+    .preview-label { font-family:var(--font-serif); font-size:0.75rem; text-transform:uppercase; letter-spacing:3px; color:var(--aged-gold); margin-bottom:20px; padding-bottom:8px; border-bottom:0.5px solid var(--gold-line); }
+    .article-list { list-style:none; }
+    .article-list-item { padding:10px 0; border-bottom:0.5px dotted var(--gold-line); cursor:pointer; transition:var(--transition); }
+    .article-list-item:hover { color:var(--aged-gold); padding-left:8px; }
+    .article-list-item.active { color:var(--aged-gold); font-weight:500; border-left:2px solid var(--aged-gold); padding-left:15px; }
+    .list-item-title { font-family:var(--font-body); font-size:0.85rem; font-weight:400; margin-bottom:4px; }
+    .list-item-meta { font-size:0.6rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); }
+    .preview-main { display:flex; flex-direction:column; }
+    .preview-image { width:100%; aspect-ratio:21 / 9; background:#eaeaea; margin-bottom:20px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:2px; border:0.5px solid var(--gold-line); background-size:cover; background-position:center; }
+    .preview-subtema { font-size:0.6rem; text-transform:uppercase; letter-spacing:3px; color:var(--aged-gold); margin-bottom:8px; }
+    .preview-title { font-family:var(--font-serif); font-size:1.8rem; font-weight:400; line-height:1.2; margin-bottom:15px; color:var(--petrol-blue); }
+    .preview-excerpt { font-family:var(--font-body); color:var(--text-muted); font-size:0.95rem; margin-bottom:25px; line-height:1.6; }
+    .preview-link { text-decoration:none; color:var(--aged-gold); font-size:0.75rem; text-transform:uppercase; letter-spacing:3px; display:inline-flex; align-items:center; gap:10px; border-bottom:1px solid #fff0; transition:var(--transition); align-self:flex-start; }
+    .preview-link i { font-size:0.7rem; }
+    .preview-link:hover { border-bottom-color:var(--aged-gold); gap:15px; }
+    .niche-section { padding:80px 0; border-top:0.5px solid var(--gold-line); }
+    .niche-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; }
+    .niche-group { border-left:0.5px solid var(--gold-line); padding-left:25px; margin-bottom:40px; transition:var(--transition); }
+    .group-header { display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; }
+    .group-title { font-family:var(--font-serif); font-size:0.9rem; text-transform:uppercase; letter-spacing:3px; color:var(--aged-gold); font-weight:700; margin:0; transition:var(--transition); }
+    .group-header i { color:var(--aged-gold); font-size:0.9rem; transition:transform 0.3s ease; opacity:0.6; }
+    .niche-group.expanded .group-header i { transform:rotate(180deg); }
+    .group-content { max-height:0; opacity:0; overflow:hidden; transition:max-height 0.7s cubic-bezier(0.19,1,0.22,1),opacity 0.5s ease,margin 0.3s ease; margin-top:0; }
+    .niche-group.expanded .group-content { max-height:1400px; opacity:1; margin-top:25px; }
+    .theme-list { list-style:none; margin-bottom:10px; display:flex; flex-wrap:wrap; gap:8px 20px; }
+    .theme-item { position:relative; }
+    .theme-link { text-decoration:none; color:var(--petrol-blue); font-size:0.8rem; font-weight:300; transition:var(--transition); display:inline-block; padding:3px 0; border-bottom:1px dotted #fff0; cursor:pointer; }
+    .theme-link:hover { color:var(--aged-gold); border-bottom-color:var(--aged-gold); }
+    .macro-carousel { padding:25px 0; background:#fafafa; border-top:0.5px solid var(--gold-line); border-bottom:0.5px solid var(--gold-line); overflow:hidden; }
+    .carousel-track { display:flex; gap:50px; justify-content:center; align-items:center; animation:scroll 40s linear infinite; width:max-content; }
+    @keyframes scroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+    .macro-item { font-family:var(--font-sans); font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:3px; color:var(--petrol-blue); text-decoration:none; white-space:nowrap; display:flex; align-items:center; gap:10px; transition:var(--transition); opacity:0.6; cursor:pointer; }
+    .macro-item:hover { opacity:1; color:var(--aged-gold); }
+    .macro-item::after { content:"•"; color:var(--aged-gold); margin-left:40px; }
+    footer { padding:80px 0 40px; background:var(--petrol-blue); color:#fff; }
+    .footer-logo { font-family:var(--font-serif); font-size:2rem; letter-spacing:10px; color:#fff; margin-bottom:30px; display:block; text-align:center; }
+    .footer-logo span { color:var(--aged-gold); }
+    .footer-links { display:flex; justify-content:center; gap:60px; margin-bottom:50px; font-size:0.7rem; text-transform:uppercase; letter-spacing:3px; }
+    .footer-links a, .footer-links .privacy-toggle { color:rgb(255 255 255 / 0.6); text-decoration:none; transition:var(--transition); cursor:pointer; border-bottom:1px dotted #fff0; }
+    .footer-links a:hover, .footer-links .privacy-toggle:hover { color:var(--aged-gold); border-bottom-color:var(--aged-gold); }
+    .privacy-panel { max-width:800px; margin:0 auto 40px; background:rgb(255 255 255 / 0.03); border:0.5px solid var(--gold-line); padding:25px 30px; font-size:0.65rem; color:rgb(255 255 255 / 0.7); line-height:1.6; transition:var(--transition); backdrop-filter:blur(4px); }
+    .privacy-panel h4 { font-family:var(--font-serif); color:var(--aged-gold); font-size:0.75rem; letter-spacing:2px; margin:20px 0 10px; font-weight:400; border-bottom:0.5px solid var(--gold-line); padding-bottom:5px; }
+    .privacy-panel h4:first-of-type { margin-top:0; }
+    .copyright { text-align:center; font-size:0.55rem; color:rgb(255 255 255 / 0.25); letter-spacing:3px; text-transform:uppercase; }
+    .highlight-expand { animation:highlightPulse 0.8s ease; }
+    @keyframes highlightPulse { 0% { background-color:#fff0; } 50% { background-color:rgb(184 134 11 / 0.08); } 100% { background-color:#fff0; } }
+    .hidden-section { display:none !important; }
+    @media (max-width:1200px) { .niche-grid { grid-template-columns:repeat(3,1fr); } .container { padding:0 40px; } .preview-container { grid-template-columns:220px 1fr; } }
+    @media (max-width:900px) { .niche-grid { grid-template-columns:repeat(2,1fr); gap:30px; } .hero-title { font-size:2.5rem; white-space:normal; } .logo { font-size:2.5rem; } .preview-container { grid-template-columns:1fr; gap:20px; } .preview-sidebar { border-right:none; padding-right:0; } }
+    @media (max-width:600px) { .niche-grid { grid-template-columns:1fr; gap:24px; } .container { padding:0 20px; } .hero-title { font-size:1.8rem; } .logo { font-size:2rem; letter-spacing:6px; } .macro-item { font-size:0.75rem; } .footer-links { flex-direction:column; gap:20px; align-items:center; } }
+    html { scroll-behavior:smooth; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="/" class="logo">PAUTA<span>ZERO</span></a>
+      <div class="tagline">A Revista Digital do Futuro</div>
+    </div>
+  </header>
+
+  <hr class="ethereal-divider" aria-hidden="true">
+
+  <main class="container">
+    <section class="hero">
+      <span class="section-label">A Convergência entre o Pensamento Sistêmico e a Estética do Futuro.</span>
+      <h3 class="hero-title">A <span class="highlight-lucidez">lucidez</span> no caos da informação</h3>
+      <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-muted); max-width: 780px; margin: 0 auto;"></p>
+    </section>
+
+    <!-- PAINEL DE PRÉ‑VISUALIZAÇÃO (será exibido ao selecionar um artigo) -->
+    <section class="article-preview-panel hidden-section" id="articlePreviewPanel">
+      <div class="preview-container">
+        <div class="preview-sidebar">
+          <h4 class="preview-label">Artigos em <span id="currentEixoName">Política & Geopolítica</span></h4>
+          <ul class="article-list" id="relatedArticlesList"></ul>
+        </div>
+        <div class="preview-main">
+          <div class="preview-image" id="previewImage">
+            <i class="fas fa-image" style="margin-right:8px;"></i> PAUTAZERO
+          </div>
+          <div>
+            <span class="preview-subtema" id="previewSubtema">Relações Internacionais</span>
+            <h2 class="preview-title" id="previewTitle">A Nova Ordem Multipolar</h2>
+            <p class="preview-excerpt" id="previewExcerpt">Análise das tensões geopolíticas, alianças estratégicas e o reposicionamento das potências médias na governança global.</p>
+            <a href="#" class="preview-link" id="previewLink">Ler artigo completo <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE NICHOS (EIXOS EXPANDIDOS) -->
+    <section class="niche-section" id="nicheSection">
+      <span class="section-label" style="margin-bottom: 60px;">Exploração por Nichos</span>
+      <div class="niche-grid" id="nicheGrid"></div>
+    </section>
+  </main>
+
+  <!-- CARROSSEL DE MACRO EIXOS (mantido intacto) -->
+  <div class="macro-carousel" id="macroCarousel">
+    <div class="carousel-track" id="carouselTrack"></div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <a href="/" class="footer-logo">PAUTA<span>ZERO</span></a>
+      <div class="footer-links">
+        <a href="manifesto.html">Manifesto</a>
+        <span class="privacy-toggle" id="privacyToggle">Política de Privacidade <i class="fas fa-chevron-down" style="font-size: 0.6rem; margin-left: 6px;"></i></span>
+        <a href="assinantes/editor-de-texto.html">Para Assinantes</a>
+      </div>
+      
+      <!-- ========== POLÍTICA DE PRIVACIDADE COMPLETA (RESTAURADA) ========== -->
+      <div id="privacyPanel" class="privacy-panel" style="display: none;">
+        <h4>MANIFESTO PAUTAZERO · POLÍTICA DE PRIVACIDADE</h4>
+        <p><strong>clique nos títulos para expandir · Ambiente & Dados</strong></p>
+        
+        <h4>Ambiente independente</h4>
+        <p>Este ambiente digital é mantido por responsável independente, atuando na produção de conteúdo informacional e analítico, comprometido com a proteção da privacidade e dos direitos fundamentais dos titulares de dados.</p>
+        
+        <h4>Dados coletados</h4>
+        <p>Dados de navegação (IP anonimizado, cookies técnicos), informações enviadas voluntariamente por e-mail ou formulários. Nunca coletamos dados sensíveis sem consentimento explícito.</p>
+        
+        <h4>Finalidade & LGPD</h4>
+        <p><strong>Finalidade:</strong> Melhorar a experiência, gerar estatísticas agregadas, responder contatos e garantir a segurança do site. Sem tratamento abusivo ou compartilhamento com terceiros não autorizados.</p>
+        <p><strong>Base legal (LGPD):</strong> Execução de legítimo interesse, cumprimento de obrigação legal e consentimento quando necessário. Respeitamos a Lei 13.709/2018 e os direitos dos titulares.</p>
+        
+        <h4>Direitos & Contato</h4>
+        <p><strong>Seus direitos:</strong> Você pode acessar, retificar, eliminar, limitar ou portar seus dados a qualquer momento. Pedidos devem ser enviados ao e-mail abaixo.</p>
+        <p>Canal de atendimento ao titular: <a href="mailto:editorial.pautazero@outlook.com" style="color: var(--aged-gold); text-decoration: none;">editorial.pautazero@outlook.com</a> – Respondemos em até 15 dias úteis.</p>
+        <p>Esta política pode ser atualizada periodicamente. Consulte sempre a versão mais recente neste rodapé.</p>
+      </div>
+      
+      <p class="copyright">&copy; 2026 PAUTAZERO. TODOS OS DIREITOS RESERVADOS. DESIGN BY PAUTA ZERO.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      "use strict";
+
+      // ---------- CONFIGURAÇÃO: EIXOS EXPANDIDOS ----------
+      const EIXOS_FIXOS = [
+        "Política & Geopolítica",
+        "Segurança Total",
+        "Sistema Prisional & Policial",
+        "Políticas Públicas",
+        "Economia & Super Ricos",
+        "Saúde Mental",
+        "Psicopatia & Comportamento Extremo",
+        "Família & Alienação Parental",
+        "Crime & Investigação",
+        "Saúde Mental em Contextos Extremos",
+        "Negócios & Estratégia",
+        "Visão Global",
+        "Impacto & Filantropia",
+        "Histórias Reais",
+        "Conteúdos Híbridos",
+        "Direito de Família e Saúde Mental",
+        "Justiça e Tecnologia",
+        "Educação e Desigualdade",
+        "Meio Ambiente e Conflitos",
+        "Direitos Humanos e Sistema de Justiça",
+        "Agronegócio, Logística e Transporte",
+        "Saúde Física e Medicina",
+        "Futurismo & Inovação",
+        "Religião, Cristianismo & Perseguições",
+        "Esportes, Futebol & Ídolos",
+        "Nutrição & Pesquisa Alimentar"
+      ];
+
+      // ---------- ELEMENTOS DOM ----------
+      const grid = document.getElementById('nicheGrid');
+      const groupsMap = new Map();
+      const previewPanel = document.getElementById('articlePreviewPanel');
+      const currentEixoName = document.getElementById('currentEixoName');
+      const relatedArticlesList = document.getElementById('relatedArticlesList');
+      const previewSubtema = document.getElementById('previewSubtema');
+      const previewTitle = document.getElementById('previewTitle');
+      const previewExcerpt = document.getElementById('previewExcerpt');
+      const previewImage = document.getElementById('previewImage');
+      const previewLink = document.getElementById('previewLink');
+      const carouselTrack = document.getElementById('carouselTrack');
+
+      // Estado global
+      let articles = [];
+      let eixosMap = new Map();
+
+      // ---------- UTILITÁRIOS ----------
+      function normalizeUrl(url) {
+        if (!url) return "";
+        url = String(url).trim();
+        if (!url.startsWith("/")) url = "/" + url;
+        return url.replace(/\.html$/, "").toLowerCase();
+      }
+
+      function getCurrentPath() {
+        return normalizeUrl(window.location.pathname);
+      }
+
+      function normalizeArticle(art) {
+        return {
+          title: art.title || art.titulo || "Sem título",
+          category: art.category || art.eixo || "Geral",
+          url: normalizeUrl(art.url || art.caminhoHTML || ""),
+          image: art.image || (art.capa && art.capa.principal) || "",
+          tema: art.tema || art.subtema || "",
+          excerpt: art.excerpt || art.resumo || ""
+        };
+      }
+
+      function findArticleByUrl(articlesArray, path) {
+        return articlesArray.find(a => normalizeUrl(a.url) === path);
+      }
+
+      function isArticlePage() {
+        return getCurrentPath().startsWith("/artigo");
+      }
+
+      // ---------- CARREGAMENTO DO JSON ----------
+      async function loadArticles() {
+        try {
+          const res = await fetch("./data.json");
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          const raw = data.artigos || data.articles || [];
+          if (!Array.isArray(raw)) throw new Error("Formato inválido");
+          const normalized = raw.map(normalizeArticle);
+          console.log(`✅ ${normalized.length} artigos carregados de data.json`);
+          return normalized;
+        } catch (e) {
+          console.warn("⚠️ data.json não encontrado ou inválido. Nenhum artigo será exibido.", e.message);
+          return [];
+        }
+      }
+
+      // ---------- AGRUPAMENTO ----------
+      function buildEixosMap(arts) {
+        const map = new Map();
+        // Inicializa com os eixos fixos (para garantir que todos apareçam)
+        EIXOS_FIXOS.forEach(eixo => map.set(eixo, []));
+        // Popula com os artigos carregados (adiciona dinamicamente novas categorias)
+        arts.forEach(art => {
+          const cat = art.category || "Geral";
+          if (!map.has(cat)) map.set(cat, []);
+          map.get(cat).push(art);
+        });
+        return map;
+      }
+
+      // ---------- RENDERIZAÇÃO DOS GRUPOS (EIXOS) ----------
+      function renderNicheGroups() {
+        grid.innerHTML = '';
+        groupsMap.clear();
+
+        // Ordena os eixos: primeiro os fixos na ordem definida, depois os novos em ordem alfabética
+        const eixosOrdenados = [...eixosMap.keys()].sort((a,b) => {
+          const idxA = EIXOS_FIXOS.indexOf(a);
+          const idxB = EIXOS_FIXOS.indexOf(b);
+          if (idxA === -1 && idxB === -1) return a.localeCompare(b);
+          if (idxA === -1) return 1;
+          if (idxB === -1) return -1;
+          return idxA - idxB;
+        });
+
+        eixosOrdenados.forEach(eixo => {
+          const group = document.createElement('div');
+          group.className = 'niche-group';
+          group.dataset.nicheTitle = eixo;
+
+          const temas = eixosMap.get(eixo) || [];
+          const itemsHtml = temas.map(art => {
+            const subtemaNome = art.tema || art.subtema || art.title.toLowerCase().replace(/\s+/g, '-');
+            return `<li class="theme-item"><span class="theme-link" data-subtema="${subtemaNome}" data-eixo="${eixo}" data-url="${art.url}" data-title="${art.title}" data-image="${art.image}" data-excerpt="${art.excerpt.replace(/"/g, '&quot;')}">${subtemaNome.replace(/-/g, ' ')}</span></li>`;
+          }).join('') || '<li class="theme-item" style="opacity:0.5; font-style:italic;">Nenhum artigo disponível</li>';
+
+          group.innerHTML = `
+            <div class="group-header">
+              <h3 class="group-title">${eixo}</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="group-content">
+              <ul class="theme-list">${itemsHtml}</ul>
+            </div>
+          `;
+
+          const header = group.querySelector('.group-header');
+          header.addEventListener('click', (e) => {
+            e.stopPropagation();
+            group.classList.toggle('expanded');
+          });
+
+          grid.appendChild(group);
+          groupsMap.set(eixo, group);
+        });
+
+        // Atribui listeners aos links de tema
+        document.querySelectorAll('.theme-link').forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const data = {
+              subtema: link.dataset.subtema,
+              eixo: link.dataset.eixo,
+              title: link.dataset.title,
+              url: link.dataset.url,
+              image: link.dataset.image,
+              excerpt: link.dataset.excerpt
+            };
+            showArticlePreview(data);
+          });
+        });
+      }
+
+      function showArticlePreview(articleData) {
+        currentEixoName.textContent = articleData.eixo;
+        previewSubtema.textContent = (articleData.subtema || '').replace(/-/g, ' ');
+        previewTitle.textContent = articleData.title || "Título";
+        previewExcerpt.textContent = articleData.excerpt || "";
+        
+        if (articleData.image) {
+          previewImage.style.backgroundImage = `url(${articleData.image})`;
+          previewImage.innerHTML = '';
+        } else {
+          previewImage.style.backgroundImage = 'none';
+          previewImage.innerHTML = '<i class="fas fa-image" style="margin-right:8px;"></i> PAUTAZERO';
+        }
+        
+        previewLink.href = articleData.url || '#';
+
+        // Artigos relacionados (mesmo eixo, exceto o atual)
+        const relacionados = (eixosMap.get(articleData.eixo) || [])
+          .filter(a => normalizeUrl(a.url) !== normalizeUrl(articleData.url))
+          .slice(0, 5);
+        
+        relatedArticlesList.innerHTML = relacionados.map(a => {
+          const temaNome = a.tema || a.subtema || a.title.toLowerCase().replace(/\s+/g, '-');
+          return `
+            <li class="article-list-item" data-subtema="${temaNome}" data-eixo="${a.category}" data-url="${a.url}" data-title="${a.title}" data-image="${a.image}" data-excerpt="${a.excerpt.replace(/"/g, '&quot;')}">
+              <div class="list-item-title">${a.title}</div>
+              <div class="list-item-meta">${temaNome.replace(/-/g, ' ')}</div>
+            </li>
+          `;
+        }).join('');
+
+        document.querySelectorAll('.article-list-item').forEach(item => {
+          item.addEventListener('click', () => {
+            showArticlePreview({
+              subtema: item.dataset.subtema,
+              eixo: item.dataset.eixo,
+              title: item.dataset.title,
+              url: item.dataset.url,
+              image: item.dataset.image,
+              excerpt: item.dataset.excerpt
+            });
+          });
+        });
+
+        previewPanel.classList.remove('hidden-section');
+        previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      function updateCarousel() {
+        const items = EIXOS_FIXOS.map(eixo => `<a class="macro-item" data-niche="${eixo}">${eixo}</a>`);
+        carouselTrack.innerHTML = items.concat(items).join('');
+        
+        document.querySelectorAll('.macro-item').forEach(item => {
+          item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const niche = item.dataset.niche;
+            const targetGroup = groupsMap.get(niche);
+            if (targetGroup) {
+              if (!targetGroup.classList.contains('expanded')) targetGroup.classList.add('expanded');
+              targetGroup.classList.add('highlight-expand');
+              setTimeout(() => targetGroup.classList.remove('highlight-expand'), 800);
+              targetGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          });
+        });
+      }
+
+      // ---------- INICIALIZAÇÃO ----------
+      async function init() {
+        console.log("🔄 Inicializando PautaZero (Eixos Expandidos + Política Completa)");
+        
+        articles = await loadArticles();
+        eixosMap = buildEixosMap(articles);
+        
+        renderNicheGroups();
+        updateCarousel();
+        
+        // Toggle da política de privacidade
+        const privacyToggle = document.getElementById('privacyToggle');
+        const privacyPanel = document.getElementById('privacyPanel');
+        const icon = privacyToggle.querySelector('i');
+        privacyToggle.addEventListener('click', () => {
+          const hidden = privacyPanel.style.display === 'none';
+          privacyPanel.style.display = hidden ? 'block' : 'none';
+          icon.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+
+        // Se for uma página de artigo, exibe o preview correspondente
+        if (isArticlePage()) {
+          const currentPath = getCurrentPath();
+          const matched = findArticleByUrl(articles, currentPath);
+          if (matched) {
+            showArticlePreview({
+              subtema: matched.tema,
+              eixo: matched.category,
+              title: matched.title,
+              url: matched.url,
+              image: matched.image,
+              excerpt: matched.excerpt
+            });
+          }
+        } else {
+          console.log("🏠 Página inicial – eixos visíveis, preview oculto.");
+        }
+
+        // Garante que as seções principais estejam visíveis
+        document.getElementById('nicheSection').classList.remove('hidden-section');
+        document.getElementById('macroCarousel').classList.remove('hidden-section');
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
