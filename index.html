@@ -92,6 +92,81 @@
     @media (max-width:900px) { .niche-grid { grid-template-columns:repeat(2,1fr); gap:30px; } .hero-title { font-size:2.5rem; white-space:normal; } .logo { font-size:2.5rem; } .preview-container { grid-template-columns:1fr; gap:20px; } .preview-sidebar { border-right:none; padding-right:0; } }
     @media (max-width:600px) { .niche-grid { grid-template-columns:1fr; gap:24px; } .container { padding:0 20px; } .hero-title { font-size:1.8rem; } .logo { font-size:2rem; letter-spacing:6px; } .macro-item { font-size:0.75rem; } .footer-links { flex-direction:column; gap:20px; align-items:center; } }
     html { scroll-behavior:smooth; }
+
+    /* ----- ESTILO ADICIONAL (SUTIL) PARA BUSCA DE COLUNISTA (preserva identidade visual) ----- */
+    .colunista-search-wrapper {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+    }
+    .colunista-search {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      border-bottom: 0.5px solid var(--gold-line);
+      padding: 4px 0;
+      max-width: 360px;
+      width: 100%;
+      transition: var(--transition);
+    }
+    .colunista-search i {
+      color: var(--aged-gold);
+      font-size: 0.9rem;
+      margin-right: 10px;
+      opacity: 0.7;
+    }
+    .colunista-search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--petrol-blue);
+      width: 100%;
+      padding: 6px 0;
+    }
+    .colunista-search input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.5;
+      font-weight: 300;
+      letter-spacing: 3px;
+    }
+    .colunista-search button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--aged-gold);
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      transition: var(--transition);
+      opacity: 0.8;
+    }
+    .colunista-search button:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    .search-clear {
+      margin-left: 5px;
+      font-size: 0.7rem;
+    }
+    /* pequeno ajuste para o preview em modo busca */
+    .search-result-header {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: var(--aged-gold);
+      margin-bottom: 15px;
+      border-bottom: 0.5px solid var(--gold-line);
+      padding-bottom: 8px;
+    }
+    .no-results-message {
+      font-family: var(--font-body);
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 20px 0;
+    }
   </style>
 </head>
 <body>
@@ -112,11 +187,13 @@
       <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-muted); max-width: 780px; margin: 0 auto;"></p>
     </section>
 
-    <!-- PAINEL DE PRÉ‑VISUALIZAÇÃO (será exibido ao selecionar um artigo) -->
+    <!-- PAINEL DE PRÉ‑VISUALIZAÇÃO (também usado para resultados de busca) -->
     <section class="article-preview-panel hidden-section" id="articlePreviewPanel">
       <div class="preview-container">
         <div class="preview-sidebar">
-          <h4 class="preview-label">Artigos em <span id="currentEixoName">Política & Geopolítica</span></h4>
+          <h4 class="preview-label" id="sidebarLabel">
+            <span id="currentEixoName">Política & Geopolítica</span>
+          </h4>
           <ul class="article-list" id="relatedArticlesList"></ul>
         </div>
         <div class="preview-main">
@@ -139,6 +216,16 @@
       <div class="niche-grid" id="nicheGrid"></div>
     </section>
   </main>
+  <!-- 🔍 BUSCA POR COLUNISTA (sutil, integrada ao design) -->
+      <div class="colunista-search-wrapper">
+        <div class="colunista-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="colunistaInput" placeholder="Buscar por colunista" aria-label="Buscar colunista">
+          <button id="colunistaSearchBtn" aria-label="Pesquisar"><i class="fas fa-arrow-right"></i></button>
+          <button id="colunistaClearBtn" class="search-clear" aria-label="Limpar busca" style="display:none;"><i class="fas fa-times"></i></button>
+        </div>
+      </div>
+    </div>
 
   <!-- CARROSSEL DE MACRO EIXOS (mantido intacto) -->
   <div class="macro-carousel" id="macroCarousel">
@@ -218,6 +305,7 @@
       const groupsMap = new Map();
       const previewPanel = document.getElementById('articlePreviewPanel');
       const currentEixoName = document.getElementById('currentEixoName');
+      const sidebarLabel = document.getElementById('sidebarLabel');
       const relatedArticlesList = document.getElementById('relatedArticlesList');
       const previewSubtema = document.getElementById('previewSubtema');
       const previewTitle = document.getElementById('previewTitle');
@@ -226,9 +314,15 @@
       const previewLink = document.getElementById('previewLink');
       const carouselTrack = document.getElementById('carouselTrack');
 
+      // Busca por colunista
+      const colunistaInput = document.getElementById('colunistaInput');
+      const searchBtn = document.getElementById('colunistaSearchBtn');
+      const clearBtn = document.getElementById('colunistaClearBtn');
+
       // Estado global
       let articles = [];
       let eixosMap = new Map();
+      let searchActive = false;
 
       // ---------- UTILITÁRIOS ----------
       function normalizeUrl(url) {
@@ -250,8 +344,7 @@
           image: art.image || (art.capa && art.capa.principal) || "",
           tema: art.tema || art.subtema || "",
           excerpt: art.excerpt || art.resumo || "",
-          // preservamos o objeto original para possível uso futuro
-          _raw: art
+          author: art.autor || art.author || art.colunista || (art.autoria && art.autoria.nome) || "Colunista desconhecido"
         };
       }
 
@@ -263,32 +356,7 @@
         return getCurrentPath().startsWith("/artigo");
       }
 
-      // ---------- VERIFICAÇÃO DE DISPONIBILIDADE (HEAD request) ----------
-      async function checkArticleAvailability(url) {
-        try {
-          // Se a URL for relativa, usa o próprio domínio
-          const response = await fetch(url, { method: 'HEAD', cache: 'no-cache' });
-          return response.ok; // status 200-299
-        } catch (e) {
-          // Erro de rede ou CORS: assumimos que não está disponível
-          console.warn(`Artigo inacessível: ${url}`, e);
-          return false;
-        }
-      }
-
-      // Filtra artigos que realmente existem (HEAD request bem-sucedido)
-      async function filterAvailableArticles(rawArticles) {
-        const normalized = rawArticles.map(normalizeArticle);
-        const availabilityChecks = normalized.map(async (art) => {
-          if (!art.url) return null;
-          const available = await checkArticleAvailability(art.url);
-          return available ? art : null;
-        });
-        const results = await Promise.all(availabilityChecks);
-        return results.filter(art => art !== null);
-      }
-
-      // ---------- CARREGAMENTO DO JSON COM VERIFICAÇÃO DE DISPONIBILIDADE ----------
+      // ---------- CARREGAMENTO DO JSON ----------
       async function loadArticles() {
         try {
           const res = await fetch("./data.json");
@@ -296,14 +364,9 @@
           const data = await res.json();
           const raw = data.artigos || data.articles || [];
           if (!Array.isArray(raw)) throw new Error("Formato inválido");
-          
-          console.log(`📄 ${raw.length} artigos encontrados no data.json. Verificando disponibilidade...`);
-          
-          // Filtra apenas artigos cujo arquivo HTML realmente existe
-          const available = await filterAvailableArticles(raw);
-          
-          console.log(`✅ ${available.length} artigos disponíveis e carregados.`);
-          return available;
+          const normalized = raw.map(normalizeArticle);
+          console.log('✅ '+normalized.length+' artigos carregados de data.json');
+          return normalized;
         } catch (e) {
           console.warn("⚠️ data.json não encontrado ou inválido. Nenhum artigo será exibido.", e.message);
           return [];
@@ -313,9 +376,7 @@
       // ---------- AGRUPAMENTO ----------
       function buildEixosMap(arts) {
         const map = new Map();
-        // Inicializa com os eixos fixos (para garantir que todos apareçam)
         EIXOS_FIXOS.forEach(eixo => map.set(eixo, []));
-        // Popula com os artigos carregados (adiciona dinamicamente novas categorias)
         arts.forEach(art => {
           const cat = art.category || "Geral";
           if (!map.has(cat)) map.set(cat, []);
@@ -329,7 +390,6 @@
         grid.innerHTML = '';
         groupsMap.clear();
 
-        // Ordena os eixos: primeiro os fixos na ordem definida, depois os novos em ordem alfabética
         const eixosOrdenados = [...eixosMap.keys()].sort((a,b) => {
           const idxA = EIXOS_FIXOS.indexOf(a);
           const idxB = EIXOS_FIXOS.indexOf(b);
@@ -347,7 +407,7 @@
           const temas = eixosMap.get(eixo) || [];
           const itemsHtml = temas.map(art => {
             const subtemaNome = art.tema || art.subtema || art.title.toLowerCase().replace(/\\s+/g, '-');
-            return '<li class="theme-item"><span class="theme-link" data-subtema="'+subtemaNome+'" data-eixo="'+eixo+'" data-url="'+art.url+'" data-title="'+art.title.replace(/"/g, '&quot;')+'" data-image="'+art.image+'" data-excerpt="'+art.excerpt.replace(/"/g, '&quot;')+'">'+subtemaNome.replace(/-/g, ' ')+'</span></li>';
+            return '<li class="theme-item"><span class="theme-link" data-subtema="'+subtemaNome+'" data-eixo="'+eixo+'" data-url="'+art.url+'" data-title="'+art.title.replace(/"/g, '&quot;')+'" data-image="'+art.image+'" data-excerpt="'+art.excerpt.replace(/"/g, '&quot;')+'" data-author="'+(art.author || '').replace(/"/g, '&quot;')+'">'+subtemaNome.replace(/-/g, ' ')+'</span></li>';
           }).join('') || '<li class="theme-item" style="opacity:0.5; font-style:italic;">Nenhum artigo disponível</li>';
 
           group.innerHTML = '<div class="group-header"><h3 class="group-title">'+eixo+'</h3><i class="fas fa-chevron-down"></i></div><div class="group-content"><ul class="theme-list">'+itemsHtml+'</ul></div>';
@@ -362,17 +422,18 @@
           groupsMap.set(eixo, group);
         });
 
-        // Atribui listeners aos links de tema
         document.querySelectorAll('.theme-link').forEach(link => {
           link.addEventListener('click', (e) => {
             e.preventDefault();
+            if (searchActive) clearSearchMode();
             const data = {
               subtema: link.dataset.subtema,
               eixo: link.dataset.eixo,
               title: link.dataset.title,
               url: link.dataset.url,
               image: link.dataset.image,
-              excerpt: link.dataset.excerpt
+              excerpt: link.dataset.excerpt,
+              author: link.dataset.author || ''
             };
             showArticlePreview(data);
           });
@@ -380,7 +441,12 @@
       }
 
       function showArticlePreview(articleData) {
+        searchActive = false;
+        clearBtn.style.display = 'none';
+        
+        sidebarLabel.innerHTML = `<span id="currentEixoName">${articleData.eixo}</span>`;
         currentEixoName.textContent = articleData.eixo;
+        
         previewSubtema.textContent = (articleData.subtema || '').replace(/-/g, ' ');
         previewTitle.textContent = articleData.title || "Título";
         previewExcerpt.textContent = articleData.excerpt || "";
@@ -395,14 +461,13 @@
         
         previewLink.href = articleData.url || '#';
 
-        // Artigos relacionados (mesmo eixo, exceto o atual)
         const relacionados = (eixosMap.get(articleData.eixo) || [])
           .filter(a => normalizeUrl(a.url) !== normalizeUrl(articleData.url))
           .slice(0, 5);
         
         relatedArticlesList.innerHTML = relacionados.map(a => {
           const temaNome = a.tema || a.subtema || a.title.toLowerCase().replace(/\\s+/g, '-');
-          return '<li class="article-list-item" data-subtema="'+temaNome+'" data-eixo="'+a.category+'" data-url="'+a.url+'" data-title="'+a.title.replace(/"/g, '&quot;')+'" data-image="'+a.image+'" data-excerpt="'+a.excerpt.replace(/"/g, '&quot;')+'"><div class="list-item-title">'+a.title+'</div><div class="list-item-meta">'+temaNome.replace(/-/g, ' ')+'</div></li>';
+          return '<li class="article-list-item" data-subtema="'+temaNome+'" data-eixo="'+a.category+'" data-url="'+a.url+'" data-title="'+a.title.replace(/"/g, '&quot;')+'" data-image="'+a.image+'" data-excerpt="'+a.excerpt.replace(/"/g, '&quot;')+'" data-author="'+(a.author || '').replace(/"/g, '&quot;')+'"><div class="list-item-title">'+a.title+'</div><div class="list-item-meta">'+temaNome.replace(/-/g, ' ')+'</div></li>';
         }).join('');
 
         document.querySelectorAll('.article-list-item').forEach(item => {
@@ -413,7 +478,8 @@
               title: item.dataset.title,
               url: item.dataset.url,
               image: item.dataset.image,
-              excerpt: item.dataset.excerpt
+              excerpt: item.dataset.excerpt,
+              author: item.dataset.author || ''
             });
           });
         });
@@ -422,6 +488,82 @@
         previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
+      // ---------- BUSCA POR COLUNISTA ----------
+      function performSearch() {
+        const query = colunistaInput.value.trim().toLowerCase();
+        if (!query) {
+          clearSearchMode();
+          return;
+        }
+
+        const results = articles.filter(art => 
+          art.author.toLowerCase().includes(query)
+        );
+
+        searchActive = true;
+        clearBtn.style.display = 'inline-block';
+        
+        sidebarLabel.innerHTML = `<span>Resultados para "<em style="font-style:italic;">${query}</em>"</span>`;
+        
+        if (results.length === 0) {
+          relatedArticlesList.innerHTML = '<li class="theme-item no-results-message">Nenhum artigo encontrado para este colunista.</li>';
+          previewSubtema.textContent = '';
+          previewTitle.textContent = 'Busca por colunista';
+          previewExcerpt.textContent = 'Nenhum resultado correspondente. Tente outro nome.';
+          previewImage.style.backgroundImage = 'none';
+          previewImage.innerHTML = '<i class="fas fa-search" style="margin-right:8px;"></i> Sem resultados';
+          previewLink.href = '#';
+        } else {
+          const first = results[0];
+          previewSubtema.textContent = first.author;
+          previewTitle.textContent = first.title;
+          previewExcerpt.textContent = first.excerpt || '';
+          if (first.image) {
+            previewImage.style.backgroundImage = 'url('+first.image+')';
+            previewImage.innerHTML = '';
+          } else {
+            previewImage.style.backgroundImage = 'none';
+            previewImage.innerHTML = '<i class="fas fa-image" style="margin-right:8px;"></i> PautaZero';
+          }
+          previewLink.href = first.url || '#';
+
+          relatedArticlesList.innerHTML = results.map(art => {
+            return `<li class="article-list-item" data-url="${art.url}" data-title="${art.title.replace(/"/g, '&quot;')}" data-image="${art.image}" data-excerpt="${art.excerpt.replace(/"/g, '&quot;')}" data-author="${art.author.replace(/"/g, '&quot;')}" data-eixo="${art.category}">
+              <div class="list-item-title">${art.title}</div>
+              <div class="list-item-meta">${art.author} · ${art.category}</div>
+            </li>`;
+          }).join('');
+
+          document.querySelectorAll('.article-list-item').forEach(item => {
+            item.addEventListener('click', () => {
+              clearSearchMode();
+              showArticlePreview({
+                subtema: item.dataset.author || '',
+                eixo: item.dataset.eixo,
+                title: item.dataset.title,
+                url: item.dataset.url,
+                image: item.dataset.image,
+                excerpt: item.dataset.excerpt,
+                author: item.dataset.author
+              });
+            });
+          });
+        }
+
+        previewPanel.classList.remove('hidden-section');
+        previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      function clearSearchMode() {
+        searchActive = false;
+        colunistaInput.value = '';
+        clearBtn.style.display = 'none';
+        if (!previewTitle.textContent || previewTitle.textContent === 'Busca por colunista') {
+          previewPanel.classList.add('hidden-section');
+        }
+      }
+
+      // ---------- CARROSSEL ----------
       function updateCarousel() {
         const items = EIXOS_FIXOS.map(eixo => '<a class="macro-item" data-niche="'+eixo+'">'+eixo+'</a>');
         carouselTrack.innerHTML = items.concat(items).join('');
@@ -443,7 +585,7 @@
 
       // ---------- INICIALIZAÇÃO ----------
       async function init() {
-        console.log("🔄 Inicializando PautaZero (Eixos Expandidos + Verificação de Disponibilidade)");
+        console.log("🔄 Inicializando PautaZero (Eixos Expandidos + Busca por Colunista)");
         
         articles = await loadArticles();
         eixosMap = buildEixosMap(articles);
@@ -451,7 +593,6 @@
         renderNicheGroups();
         updateCarousel();
         
-        // Toggle da política de privacidade
         const privacyToggle = document.getElementById('privacyToggle');
         const privacyPanel = document.getElementById('privacyPanel');
         const icon = privacyToggle.querySelector('i');
@@ -461,7 +602,33 @@
           icon.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)';
         });
 
-        // Se for uma página de artigo, exibe o preview correspondente (apenas se artigo existir)
+        searchBtn.addEventListener('click', performSearch);
+        colunistaInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            performSearch();
+          }
+        });
+        clearBtn.addEventListener('click', () => {
+          clearSearchMode();
+          if (!previewTitle.textContent || previewTitle.textContent === 'Busca por colunista') {
+            previewPanel.classList.add('hidden-section');
+          } else {
+            const lastArticle = articles.find(a => a.url === previewLink.getAttribute('href'));
+            if (lastArticle) {
+              showArticlePreview({
+                subtema: lastArticle.tema,
+                eixo: lastArticle.category,
+                title: lastArticle.title,
+                url: lastArticle.url,
+                image: lastArticle.image,
+                excerpt: lastArticle.excerpt,
+                author: lastArticle.author
+              });
+            }
+          }
+        });
+
         if (isArticlePage()) {
           const currentPath = getCurrentPath();
           const matched = findArticleByUrl(articles, currentPath);
@@ -472,14 +639,14 @@
               title: matched.title,
               url: matched.url,
               image: matched.image,
-              excerpt: matched.excerpt
+              excerpt: matched.excerpt,
+              author: matched.author
             });
           }
         } else {
           console.log("🏠 Página inicial – eixos visíveis, preview oculto.");
         }
 
-        // Garante que as seções principais estejam visíveis
         document.getElementById('nicheSection').classList.remove('hidden-section');
         document.getElementById('macroCarousel').classList.remove('hidden-section');
       }
