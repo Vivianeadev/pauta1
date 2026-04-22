@@ -249,7 +249,9 @@
           url: normalizeUrl(art.url || art.caminhoHTML || ""),
           image: art.image || (art.capa && art.capa.principal) || "",
           tema: art.tema || art.subtema || "",
-          excerpt: art.excerpt || art.resumo || ""
+          excerpt: art.excerpt || art.resumo || "",
+          // preservamos o objeto original para possível uso futuro
+          _raw: art
         };
       }
 
@@ -261,7 +263,32 @@
         return getCurrentPath().startsWith("/artigo");
       }
 
-      // ---------- CARREGAMENTO DO JSON ----------
+      // ---------- VERIFICAÇÃO DE DISPONIBILIDADE (HEAD request) ----------
+      async function checkArticleAvailability(url) {
+        try {
+          // Se a URL for relativa, usa o próprio domínio
+          const response = await fetch(url, { method: 'HEAD', cache: 'no-cache' });
+          return response.ok; // status 200-299
+        } catch (e) {
+          // Erro de rede ou CORS: assumimos que não está disponível
+          console.warn(`Artigo inacessível: ${url}`, e);
+          return false;
+        }
+      }
+
+      // Filtra artigos que realmente existem (HEAD request bem-sucedido)
+      async function filterAvailableArticles(rawArticles) {
+        const normalized = rawArticles.map(normalizeArticle);
+        const availabilityChecks = normalized.map(async (art) => {
+          if (!art.url) return null;
+          const available = await checkArticleAvailability(art.url);
+          return available ? art : null;
+        });
+        const results = await Promise.all(availabilityChecks);
+        return results.filter(art => art !== null);
+      }
+
+      // ---------- CARREGAMENTO DO JSON COM VERIFICAÇÃO DE DISPONIBILIDADE ----------
       async function loadArticles() {
         try {
           const res = await fetch("./data.json");
@@ -269,9 +296,14 @@
           const data = await res.json();
           const raw = data.artigos || data.articles || [];
           if (!Array.isArray(raw)) throw new Error("Formato inválido");
-          const normalized = raw.map(normalizeArticle);
-          console.log('✅ '+normalized.length+' artigos carregados de data.json');
-          return normalized;
+          
+          console.log(`📄 ${raw.length} artigos encontrados no data.json. Verificando disponibilidade...`);
+          
+          // Filtra apenas artigos cujo arquivo HTML realmente existe
+          const available = await filterAvailableArticles(raw);
+          
+          console.log(`✅ ${available.length} artigos disponíveis e carregados.`);
+          return available;
         } catch (e) {
           console.warn("⚠️ data.json não encontrado ou inválido. Nenhum artigo será exibido.", e.message);
           return [];
@@ -411,7 +443,7 @@
 
       // ---------- INICIALIZAÇÃO ----------
       async function init() {
-        console.log("🔄 Inicializando PautaZero (Eixos Expandidos + Política Completa)");
+        console.log("🔄 Inicializando PautaZero (Eixos Expandidos + Verificação de Disponibilidade)");
         
         articles = await loadArticles();
         eixosMap = buildEixosMap(articles);
@@ -429,7 +461,7 @@
           icon.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)';
         });
 
-        // Se for uma página de artigo, exibe o preview correspondente
+        // Se for uma página de artigo, exibe o preview correspondente (apenas se artigo existir)
         if (isArticlePage()) {
           const currentPath = getCurrentPath();
           const matched = findArticleByUrl(articles, currentPath);
