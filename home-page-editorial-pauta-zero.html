@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Estúdio Pauta Zero · A Arte da Escrita Elevada</title>
+  
+  <!-- Fontes clássicas e modernas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Cinzel:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons (leve, exatamente o mesmo usado no React) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #0a3147;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Variáveis de cores – Azul Petróleo + Ouro Envelhecido */
+    :root {
+      --petrol: #0a3147;
+      --gold: #b8860b;
+      --muted: #5a7d91;
+      --white: #ffffff;
+      --light: #fbfbfb;
+      --secondary: #f5f5f5;
+      --gold-light: rgba(184, 134, 11, 0.15);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    /* Container utilitário */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+    }
+
+    /* Tipografia especial */
+    .font-serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Botões de luxo */
+    .btn-luxury {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--petrol);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.875rem;
+      padding: 0.75rem 2rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      background-color: rgba(255,255,255,0.02);
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-luxury:hover {
+      background-color: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+
+    .btn-luxury-solid {
+      display: inline-block;
+      background: var(--gold);
+      border: 1.5px solid var(--gold);
+      color: var(--petrol);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.9rem;
+      padding: 0.9rem 2.5rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-luxury-solid:hover {
+      background: var(--petrol);
+      color: var(--white);
+      border-color: var(--petrol);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Cards com detalhe dourado */
+    .card-luxury {
+      background-color: var(--light);
+      border: 1px solid rgba(184, 134, 11, 0.2);
+      border-radius: 2px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card-luxury:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px -8px rgba(10, 49, 71, 0.12);
+      border-color: rgba(184, 134, 11, 0.35);
+    }
+
+    /* Divisor dourado refinado */
+    .divider-gold {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto;
+    }
+
+    /* Navegação fixa com blur */
+    .nav-blur {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184, 134, 11, 0.15);
+    }
+
+    /* Links de navegação */
+    .nav-link {
+      color: var(--petrol);
+      text-decoration: none;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+
+    .nav-link:hover {
+      color: var(--gold);
+    }
+
+    /* Hero parallax */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663173945807/jHKMMMtcj68D2bJMKDR8NM/abstract-luxury-aP2wqTjBt9BRmp8iTHxNFH.webp');
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+    }
+
+    /* Tipografia de destaque */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* Grid e flex responsivos */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      h1 {
+        font-size: 2.8rem !important;
+      }
+      
+      .btn-luxury, .btn-luxury-solid {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Imagens com borda suave */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2px;
+    }
+
+    /* Footer links */
+    .footer-link {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--gold);
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Utilitários de texto */
+    .text-gold {
+      color: var(--gold);
+    }
+
+    .text-petrol {
+      color: var(--petrol);
+    }
+
+    .text-muted {
+      color: var(--muted);
+    }
+
+    .uppercase {
+      text-transform: uppercase;
+    }
+
+    .tracking-widest {
+      letter-spacing: 0.12em;
+    }
+
+    /* Header ajustes */
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--petrol);
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    /* Preço card especial */
+    .pricing-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background-color: rgba(184, 134, 11, 0.08);
+      border: 1px solid var(--gold);
+      border-radius: 9999px;
+      margin-bottom: 2rem;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.8rem;
+    }
+
+    /* Check dourado */
+    .check-gold {
+      color: var(--gold);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div style="min-height: 100vh; background-color: var(--white);">
+
+  <!-- Navegação fixa -->
+  <nav class="nav-blur" style="position: fixed; top: 0; width: 100%; z-index: 50; padding: 0.5rem 0;">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; padding-bottom: 1.25rem;">
+      <div class="logo">
+        PAUTA <span>ZERO</span>
+      </div>
+      <div style="display: none; gap: 2.5rem;" class="nav-desktop">
+        <a href="#features" class="nav-link">Recursos</a>
+        <a href="#pricing" class="nav-link">Preços</a>
+        <a href="#hardware" class="nav-link">Hardware</a>
+      </div>
+      <style>
+        @media (min-width: 768px) {
+          .nav-desktop { display: flex !important; }
+        }
+      </style>
+      <button class="btn-luxury" style="padding: 0.5rem 1.5rem;">Baixar o Editor Vitalício Pauta Zero</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section com parallax -->
+  <section style="padding-top: 8rem; padding-bottom: 5rem; background-color: var(--white); position: relative; overflow: hidden;">
+    <div class="hero-bg" id="parallaxBg"></div>
+    <div class="container" style="position: relative; z-index: 10;">
+      <div style="max-width: 48rem; margin: 0 auto; text-align: center;">
+        <h1 style="font-size: 3.5rem; font-weight: 700; color: var(--petrol); margin-bottom: 1.5rem; line-height: 1.2;">
+          A Arte da Escrita Elevada
+        </h1>
+        <p style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.4rem; letter-spacing: 0.05em; color: var(--gold); margin-bottom: 2rem;">
+          Estúdio Pauta Zero
+        </p>
+        <p style="font-size: 1.125rem; color: var(--muted); margin-bottom: 3rem; line-height: 1.6; max-width: 42rem; margin-left: auto; margin-right: auto;">
+          No universo da criação de conteúdo, onde a clareza e a sofisticação são imperativas, o Estúdio Pauta Zero emerge como o santuário digital para o escritor e pensador de elite.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center;">
+          <a href="#pricing" class="btn-luxury-solid">Adquirir Licença Vitalícia</a>
+          <a href="#features" class="btn-luxury" style="display: inline-flex; gap: 0.5rem;">
+            Explorar <i data-lucide="chevron-down" style="width: 18px; height: 18px;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gold"></div>
+
+  <!-- Experience Section -->
+  <section style="padding: 5rem 0; background-color: var(--white);">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--petrol); margin-bottom: 2rem;">
+            A Experiência Inigualável
+          </h2>
+          <p style="color: var(--muted); font-size: 1.125rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            Imagine um ambiente de escrita que transcende o funcional, transformando-o em uma jornada estética e produtiva. Com uma interface meticulosamente desenhada, inspirada em tons de Azul Petróleo e detalhes em Ouro Envelhecido, o Estúdio Pauta Zero oferece um refúgio visualmente estimulante e livre de distrações.
+          </p>
+          <p style="color: var(--muted); font-size: 1.125rem; line-height: 1.7;">
+            Cada fonte tipográfica, desde a clássica Cinzel até a moderna Inter, foi selecionada para evocar uma sensação de atemporalidade e autoridade, garantindo que cada palavra ressoe com o peso e a distinção que merece.
+          </p>
+        </div>
+        <div style="position: relative;">
+          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663173945807/jHKMMMtcj68D2bJMKDR8NM/hero-estudio-pauta-AkPSNmxQoXArAHhZjSDbYZ.webp" alt="Estúdio Pauta Zero - Workspace" style="width: 100%; box-shadow: var(--shadow-md);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gold"></div>
+
+  <!-- Features Section -->
+  <section id="features" style="padding: 5rem 0; background-color: var(--secondary);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--petrol); margin-bottom: 1.5rem;">
+          Ferramentas para o Pensador Exigente
+        </h2>
+        <p style="color: var(--muted); font-size: 1.125rem; max-width: 42rem; margin: 0 auto;">
+          Nossa suíte de ferramentas é um testemunho da nossa dedicação à excelência
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <!-- Feature cards dinâmicos via JS? Podemos fazer estático -->
+        <div class="card-luxury" style="padding: 2rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 1.25rem;">✏️</div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--petrol); margin-bottom: 1rem;">Formatação Intuitiva</h3>
+          <p style="color: var(--muted); line-height: 1.6;">Esculpa o texto com precisão cirúrgica, com controle total sobre tipografia, espaçamento e estilo.</p>
+        </div>
+        <div class="card-luxury" style="padding: 2rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 1.25rem;">💾</div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--petrol); margin-bottom: 1rem;">Gestão de Rascunhos</h3>
+          <p style="color: var(--muted); line-height: 1.6;">Salvaguarde cada inspiração com salvamento automático e histórico de versões.</p>
+        </div>
+        <div class="card-luxury" style="padding: 2rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 1.25rem;">📤</div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--petrol); margin-bottom: 1rem;">Exportação Universal</h3>
+          <p style="color: var(--muted); line-height: 1.6;">Exporte em formatos universais como .doc e visualize em pré-visualização de impressão.</p>
+        </div>
+        <div class="card-luxury" style="padding: 2rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 1.25rem;">📋</div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--petrol); margin-bottom: 1rem;">Modelos Exclusivos</h3>
+          <p style="color: var(--muted); line-height: 1.6;">Acesso a biblioteca de modelos pré-formatados para memorandos, pitches e manifestos.</p>
+        </div>
+        <div class="card-luxury" style="padding: 2rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 1.25rem;">✨</div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--petrol); margin-bottom: 1rem;">Interface Minimalista</h3>
+          <p style="color: var(--muted); line-height: 1.6;">Sem distrações. Apenas você, suas palavras e a elegância do design sofisticado.</p>
+        </div>
+        <div class="card-luxury" style="padding: 2rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 1.25rem;">🎯</div>
+          <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--petrol); margin-bottom: 1rem;">Suporte Premium</h3>
+          <p style="color: var(--muted); line-height: 1.6;">Acesso a suporte dedicado para garantir sua experiência perfeita.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gold"></div>
+
+  <!-- Pricing Section -->
+  <section id="pricing" style="padding: 5rem 0; background-color: var(--white);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--petrol); margin-bottom: 1.5rem;">
+          Licença Vitalícia Ultra Luxo
+        </h2>
+        <p style="color: var(--muted); font-size: 1.125rem; max-width: 42rem; margin: 0 auto;">
+          Um investimento duradouro na arte da escrita elevada
+        </p>
+      </div>
+
+      <div style="max-width: 42rem; margin: 0 auto;">
+        <div class="card-luxury" style="padding: 3rem; text-align: center;">
+          <div class="pricing-badge">Assinante Ultra Luxo</div>
+          <h3 style="font-size: 3.2rem; font-weight: 700; color: var(--petrol); margin-bottom: 1rem;">Vitalícia</h3>
+          <p style="color: var(--muted); font-size: 1.125rem; margin-bottom: 2.5rem;">
+            Direito perpétuo de uso após uma única aquisição
+          </p>
+
+          <div style="margin-bottom: 3rem; text-align: left;">
+            <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+              <span class="check-gold">✓</span>
+              <div><p style="font-weight: 700; color: var(--petrol);">Acesso Perpétuo</p><p style="color: var(--muted); font-size: 0.9rem;">Use o Estúdio Pauta Zero indefinidamente</p></div>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+              <span class="check-gold">✓</span>
+              <div><p style="font-weight: 700; color: var(--petrol);">Atualizações Menores</p><p style="color: var(--muted); font-size: 0.9rem;">Correções de bugs e melhorias de segurança</p></div>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+              <span class="check-gold">✓</span>
+              <div><p style="font-weight: 700; color: var(--petrol);">Suporte Básico</p><p style="color: var(--muted); font-size: 0.9rem;">Acesso a comunidade e documentação</p></div>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+              <span class="check-gold">✓</span>
+              <div><p style="font-weight: 700; color: var(--petrol);">Exclusividade</p><p style="color: var(--muted); font-size: 0.9rem;">Faça parte de um seleto grupo de usuários</p></div>
+            </div>
+          </div>
+
+          <a href="#" class="btn-luxury-solid" style="width: 100%; display: block; text-align: center;">Adquirir Agora</a>
+          <p style="color: var(--muted); font-size: 0.875rem; margin-top: 1.5rem;">
+            Pagamento seguro via cartão de crédito. Sem assinaturas recorrentes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gold"></div>
+
+  <!-- Hardware Section -->
+  <section id="hardware" style="padding: 5rem 0; background-color: var(--secondary);">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663173945807/jHKMMMtcj68D2bJMKDR8NM/writing-concept-M3rVvG5TKBKyjXvd5HtQUr.webp" alt="Conceito de Hardware Portátil" style="box-shadow: var(--shadow-md);">
+        </div>
+        <div>
+          <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--petrol); margin-bottom: 2rem;">
+            O Futuro: Hardware Portátil
+          </h2>
+          <p style="color: var(--muted); font-size: 1.125rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            Para aqueles que buscam a imersão total e a liberdade absoluta de criar em qualquer lugar, vislumbramos um futuro onde o Estúdio Pauta Zero se materializa em um dispositivo dedicado.
+          </p>
+          <p style="color: var(--muted); font-size: 1.125rem; line-height: 1.7; margin-bottom: 2rem;">
+            Um hardware portátil que você pode levar consigo, oferecendo um santuário de escrita livre de distrações, onde quer que a inspiração o encontre. Uma extensão física da sua mente criativa.
+          </p>
+          <div>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+              <span style="color: var(--gold); font-size: 1.4rem;">◆</span>
+              <p style="color: var(--petrol); font-weight: 600;">Experiência Premium e Dedicada</p>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+              <span style="color: var(--gold); font-size: 1.4rem;">◆</span>
+              <p style="color: var(--petrol); font-weight: 600;">Portabilidade e Conveniência</p>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+              <span style="color: var(--gold); font-size: 1.4rem;">◆</span>
+              <p style="color: var(--petrol); font-weight: 600;">Segurança e Privacidade Máximas</p>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+              <span style="color: var(--gold); font-size: 1.4rem;">◆</span>
+              <p style="color: var(--petrol); font-weight: 600;">Inovação e Vanguarda</p>
+            </div>
+          </div>
+          <p style="color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; margin-top: 2rem;">
+            Em Desenvolvimento · Breve Disponível
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gold"></div>
+
+  <!-- CTA Section -->
+  <section style="padding: 5rem 0; background-color: var(--petrol); color: var(--white); text-align: center;">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem;">
+        Pronto para Elevar Sua Escrita?
+      </h2>
+      <p style="font-size: 1.125rem; margin-bottom: 3rem; max-width: 42rem; margin-left: auto; margin-right: auto; opacity: 0.9;">
+        Junte-se a um seleto grupo de escritores, pensadores e visionários que já transformaram sua experiência de escrita com o Estúdio Pauta Zero.
+      </p>
+      <a href="#pricing" class="btn-luxury-solid" style="background-color: var(--gold); color: var(--petrol); border-color: var(--gold);">
+        Adquirir Licença Vitalícia Agora
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background-color: var(--petrol); color: var(--white); padding: 4rem 0; border-top: 1px solid rgba(184,134,11,0.2);">
+    <div class="container">
+      <div class="grid-4" style="margin-bottom: 3rem;">
+        <div>
+          <div class="logo" style="color: white; margin-bottom: 1rem;">PAUTA <span>ZERO</span></div>
+          <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">A arte da escrita elevada</p>
+        </div>
+        <div>
+          <h4 style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold); font-size: 0.9rem; margin-bottom: 1.25rem;">Produto</h4>
+          <ul style="list-style: none;">
+            <li style="margin-bottom: 0.6rem;"><a href="#features" class="footer-link">Recursos</a></li>
+            <li style="margin-bottom: 0.6rem;"><a href="#pricing" class="footer-link">Preços</a></li>
+            <li style="margin-bottom: 0.6rem;"><a href="#hardware" class="footer-link">Hardware</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold); font-size: 0.9rem; margin-bottom: 1.25rem;">Empresa</h4>
+          <ul style="list-style: none;">
+            <li style="margin-bottom: 0.6rem;"><a href="#" class="footer-link">Sobre</a></li>
+            <li style="margin-bottom: 0.6rem;"><a href="#" class="footer-link">Contato</a></li>
+            <li style="margin-bottom: 0.6rem;"><a href="#" class="footer-link">Manifesto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold); font-size: 0.9rem; margin-bottom: 1.25rem;">Legal</h4>
+          <ul style="list-style: none;">
+            <li style="margin-bottom: 0.6rem;"><a href="#" class="footer-link">Privacidade</a></li>
+            <li style="margin-bottom: 0.6rem;"><a href="#" class="footer-link">Termos</a></li>
+            <li style="margin-bottom: 0.6rem;"><a href="#" class="footer-link">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="divider-gold" style="margin-bottom: 2rem;"></div>
+      <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 0.875rem;">
+        <p>&copy; 2026 Estúdio Pauta Zero. Licença Vitalícia. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Scripts: Lucide icons + Parallax -->
+<script>
+  (function() {
+    // Inicializa ícones Lucide
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Parallax suave no fundo do hero
+    const bg = document.getElementById('parallaxBg');
+    if (bg) {
+      window.addEventListener('scroll', function() {
+        const scrolled = window.scrollY;
+        bg.style.transform = `translateY(${scrolled * 0.4}px)`;
+      });
+    }
+
+    // Pequeno ajuste para links de âncora (já tem smooth scroll)
+  })();
+</script>
+
+<!-- Fallback para caso o Lucide não carregue a tempo (apenas ícone simples) -->
+<noscript>
+  <style>.btn-luxury i { display: inline-block; }</style>
+</noscript>
+
+</body>
+</html>
