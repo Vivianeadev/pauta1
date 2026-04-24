@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
-    /* ===== CSS EXATAMENTE COMO NO ORIGINAL (luxo preservado) ===== */
     :root{
       --bg-color: #ffffff;
       --petrol-blue: #0a3147;
@@ -37,7 +36,6 @@
     .section-label { font-family:var(--font-body); font-size:0.7rem; text-transform:uppercase; letter-spacing:5px; color:var(--aged-gold); margin-bottom:40px; display:block; }
     .hero-title { font-family:var(--font-serif); font-size:3.5rem; line-height:1.1; margin-bottom:30px; font-weight:400; max-width:1100px; margin-left:auto; margin-right:auto; }
     .highlight-lucidez { color:var(--aged-gold); font-weight:700; text-shadow:0 0 15px rgba(184,134,11,0.15); transition:var(--transition); }
-    @media (min-width:901px) { .hero-title { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:3.2rem; } }
     .article-preview-panel { margin:40px 0 60px; border:0.5px solid var(--gold-line); background:rgb(255 255 255 / 0.7); backdrop-filter:blur(8px); padding:30px 30px; transition:var(--transition); box-shadow:0 15px 30px -10px rgb(10 49 71 / 0.05); }
     .preview-container { display:grid; grid-template-columns:280px 1fr; gap:30px; }
     .preview-sidebar { border-right:0.5px solid var(--gold-line); padding-right:25px; }
@@ -88,85 +86,16 @@
     .highlight-expand { animation:highlightPulse 0.8s ease; }
     @keyframes highlightPulse { 0% { background-color:#fff0; } 50% { background-color:rgb(184 134 11 / 0.08); } 100% { background-color:#fff0; } }
     .hidden-section { display:none !important; }
-    @media (max-width:1200px) { .niche-grid { grid-template-columns:repeat(3,1fr); } .container { padding:0 40px; } .preview-container { grid-template-columns:220px 1fr; } }
-    @media (max-width:900px) { .niche-grid { grid-template-columns:repeat(2,1fr); gap:30px; } .hero-title { font-size:2.5rem; white-space:normal; } .logo { font-size:2.5rem; } .preview-container { grid-template-columns:1fr; gap:20px; } .preview-sidebar { border-right:none; padding-right:0; } }
-    @media (max-width:600px) { .niche-grid { grid-template-columns:1fr; gap:24px; } .container { padding:0 20px; } .hero-title { font-size:1.8rem; } .logo { font-size:2rem; letter-spacing:6px; } .macro-item { font-size:0.75rem; } .footer-links { flex-direction:column; gap:20px; align-items:center; } }
-    html { scroll-behavior:smooth; }
-
-    /* ----- ESTILO ADICIONAL (SUTIL) PARA BUSCA DE COLUNISTA (preserva identidade visual) ----- */
-    .colunista-search-wrapper {
-      margin-top: 18px;
-      display: flex;
-      justify-content: center;
-    }
-    .colunista-search {
-      display: inline-flex;
-      align-items: center;
-      background: transparent;
-      border-bottom: 0.5px solid var(--gold-line);
-      padding: 4px 0;
-      max-width: 360px;
-      width: 100%;
-      transition: var(--transition);
-    }
-    .colunista-search i {
-      color: var(--aged-gold);
-      font-size: 0.9rem;
-      margin-right: 10px;
-      opacity: 0.7;
-    }
-    .colunista-search input {
-      background: transparent;
-      border: none;
-      outline: none;
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--petrol-blue);
-      width: 100%;
-      padding: 6px 0;
-    }
-    .colunista-search input::placeholder {
-      color: var(--text-muted);
-      opacity: 0.5;
-      font-weight: 300;
-      letter-spacing: 3px;
-    }
-    .colunista-search button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--aged-gold);
-      font-size: 0.8rem;
-      padding: 4px 8px;
-      transition: var(--transition);
-      opacity: 0.8;
-    }
-    .colunista-search button:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-    .search-clear {
-      margin-left: 5px;
-      font-size: 0.7rem;
-    }
-    /* pequeno ajuste para o preview em modo busca */
-    .search-result-header {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      letter-spacing: 2px;
-      color: var(--aged-gold);
-      margin-bottom: 15px;
-      border-bottom: 0.5px solid var(--gold-line);
-      padding-bottom: 8px;
-    }
-    .no-results-message {
-      font-family: var(--font-body);
-      color: var(--text-muted);
-      font-style: italic;
-      padding: 20px 0;
-    }
+    .colunista-search-wrapper { margin-top: 18px; display: flex; justify-content: center; }
+    .colunista-search { display: inline-flex; align-items: center; background: transparent; border-bottom: 0.5px solid var(--gold-line); padding: 4px 0; max-width: 360px; width: 100%; transition: var(--transition); }
+    .colunista-search i { color: var(--aged-gold); font-size: 0.9rem; margin-right: 10px; opacity: 0.7; }
+    .colunista-search input { background: transparent; border: none; outline: none; font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--petrol-blue); width: 100%; padding: 6px 0; }
+    .colunista-search input::placeholder { color: var(--text-muted); opacity: 0.5; font-weight: 300; letter-spacing: 3px; }
+    .colunista-search button { background: none; border: none; cursor: pointer; color: var(--aged-gold); font-size: 0.8rem; padding: 4px 8px; transition: var(--transition); opacity: 0.8; }
+    .colunista-search button:hover { opacity: 1; transform: scale(1.05); }
+    .search-clear { margin-left: 5px; font-size: 0.7rem; }
+    .search-result-header { font-family: var(--font-serif); font-size: 1rem; letter-spacing: 2px; color: var(--aged-gold); margin-bottom: 15px; border-bottom: 0.5px solid var(--gold-line); padding-bottom: 8px; }
+    .no-results-message { font-family: var(--font-body); color: var(--text-muted); font-style: italic; padding: 20px 0; }
   </style>
 </head>
 <body>
@@ -187,19 +116,15 @@
       <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-muted); max-width: 780px; margin: 0 auto;"></p>
     </section>
 
-    <!-- PAINEL DE PRÉ‑VISUALIZAÇÃO (também usado para resultados de busca) -->
+    <!-- PAINEL DE PRÉ‑VISUALIZAÇÃO -->
     <section class="article-preview-panel hidden-section" id="articlePreviewPanel">
       <div class="preview-container">
         <div class="preview-sidebar">
-          <h4 class="preview-label" id="sidebarLabel">
-            <span id="currentEixoName">Política & Geopolítica</span>
-          </h4>
+          <h4 class="preview-label" id="sidebarLabel"><span id="currentEixoName">Política & Geopolítica</span></h4>
           <ul class="article-list" id="relatedArticlesList"></ul>
         </div>
         <div class="preview-main">
-          <div class="preview-image" id="previewImage">
-            <i class="fas fa-image" style="margin-right:8px;"></i> PautaZero
-          </div>
+          <div class="preview-image" id="previewImage"><i class="fas fa-image" style="margin-right:8px;"></i> PautaZero</div>
           <div>
             <span class="preview-subtema" id="previewSubtema">Relações Internacionais</span>
             <h2 class="preview-title" id="previewTitle">A Nova Ordem Multipolar</h2>
@@ -211,12 +136,10 @@
     </section>
 
     <!-- SEÇÃO DE NICHOS (EIXOS EXPANDIDOS) -->
-    <section class="niche-section" id="nicheSection">
+    <section class="niche-section hidden-section" id="nicheSection">
       <span class="section-label" style="margin-bottom: 60px;">Exploração por Nichos</span>
       <div class="niche-grid" id="nicheGrid"></div>
-    </section>
-  </main>
-  <!-- 🔍 BUSCA POR COLUNISTA (sutil, integrada ao design) -->
+      <!-- BUSCA POR COLUNISTA -->
       <div class="colunista-search-wrapper">
         <div class="colunista-search">
           <i class="fas fa-search"></i>
@@ -225,10 +148,11 @@
           <button id="colunistaClearBtn" class="search-clear" aria-label="Limpar busca" style="display:none;"><i class="fas fa-times"></i></button>
         </div>
       </div>
-    </div>
+    </section>
+  </main>
 
-  <!-- CARROSSEL DE MACRO EIXOS (mantido intacto) -->
-  <div class="macro-carousel" id="macroCarousel">
+  <!-- CARROSSEL DE MACRO EIXOS -->
+  <div class="macro-carousel hidden-section" id="macroCarousel">
     <div class="carousel-track" id="carouselTrack"></div>
   </div>
 
@@ -241,7 +165,6 @@
         <a href="assinantes/editor-de-texto.html">Para Assinantes</a>
       </div>
       
-      <!-- ========== POLÍTICA DE PRIVACIDADE COMPLETA (RESTAURADA) ========== -->
       <div id="privacyPanel" class="privacy-panel" style="display: none;">
         <h4>MANIFESTO PautaZero · POLÍTICA DE PRIVACIDADE</h4>
         <p><strong>clique nos títulos para expandir · Ambiente & Dados</strong></p>
@@ -270,41 +193,20 @@
     (function(){
       "use strict";
 
-      // ---------- CONFIGURAÇÃO: EIXOS EXPANDIDOS ----------
+      // Lista de referência para ordenação (pode ser qualquer ordem desejada)
       const EIXOS_FIXOS = [
-        "Política & Geopolítica",
-        "Segurança Total",
-        "Sistema Prisional & Policial",
-        "Políticas Públicas",
-        "Economia & Super Ricos",
-        "Saúde Mental",
-        "Psicopatia & Comportamento Extremo",
-        "Família & Alienação Parental",
-        "Crime & Investigação",
-        "Saúde Mental em Contextos Extremos",
-        "Negócios & Estratégia",
-        "Visão Global",
-        "Impacto & Filantropia",
-        "Histórias Reais",
-        "Conteúdos Híbridos",
-        "Direito de Família e Saúde Mental",
-        "Justiça e Tecnologia",
-        "Educação e Desigualdade",
-        "Meio Ambiente e Conflitos",
-        "Direitos Humanos e Sistema de Justiça",
-        "Agronegócio, Logística e Transporte",
-        "Saúde Física e Medicina",
-        "Futurismo & Inovação",
-        "Religião, Cristianismo & Perseguições",
-        "Esportes, Futebol & Ídolos",
-        "Nutrição & Pesquisa Alimentar"
+        "Política & Geopolítica", "Segurança Total", "Sistema Prisional & Policial", "Políticas Públicas",
+        "Economia & Super Ricos", "Saúde Mental", "Psicopatia & Comportamento Extremo", "Família & Alienação Parental",
+        "Crime & Investigação", "Saúde Mental em Contextos Extremos", "Negócios & Estratégia", "Visão Global",
+        "Impacto & Filantropia", "Histórias Reais", "Conteúdos Híbridos", "Direito de Família e Saúde Mental",
+        "Justiça e Tecnologia", "Educação e Desigualdade", "Meio Ambiente e Conflitos", "Direitos Humanos e Sistema de Justiça",
+        "Agronegócio, Logística e Transporte", "Saúde Física e Medicina", "Futurismo & Inovação", "Religião, Cristianismo & Perseguições",
+        "Esportes, Futebol & Ídolos", "Nutrição & Pesquisa Alimentar"
       ];
 
-      // ---------- ELEMENTOS DOM ----------
       const grid = document.getElementById('nicheGrid');
       const groupsMap = new Map();
       const previewPanel = document.getElementById('articlePreviewPanel');
-      const currentEixoName = document.getElementById('currentEixoName');
       const sidebarLabel = document.getElementById('sidebarLabel');
       const relatedArticlesList = document.getElementById('relatedArticlesList');
       const previewSubtema = document.getElementById('previewSubtema');
@@ -313,27 +215,19 @@
       const previewImage = document.getElementById('previewImage');
       const previewLink = document.getElementById('previewLink');
       const carouselTrack = document.getElementById('carouselTrack');
-
-      // Busca por colunista
       const colunistaInput = document.getElementById('colunistaInput');
       const searchBtn = document.getElementById('colunistaSearchBtn');
       const clearBtn = document.getElementById('colunistaClearBtn');
 
-      // Estado global
       let articles = [];
-      let eixosMap = new Map();
+      let eixosMap = new Map();       // eixo -> array de artigos
       let searchActive = false;
 
-      // ---------- UTILITÁRIOS ----------
       function normalizeUrl(url) {
         if (!url) return "";
         url = String(url).trim();
         if (!url.startsWith("/")) url = "/" + url;
         return url.replace(/\.html$/, "").toLowerCase();
-      }
-
-      function getCurrentPath() {
-        return normalizeUrl(window.location.pathname);
       }
 
       function normalizeArticle(art) {
@@ -348,126 +242,142 @@
         };
       }
 
-      function findArticleByUrl(articlesArray, path) {
-        return articlesArray.find(a => normalizeUrl(a.url) === path);
-      }
-
-      function isArticlePage() {
-        return getCurrentPath().startsWith("/artigo");
-      }
-
-      // ---------- CARREGAMENTO DO JSON ----------
       async function loadArticles() {
         try {
           const res = await fetch("./data.json");
           if (!res.ok) throw new Error('HTTP '+res.status);
           const data = await res.json();
           const raw = data.artigos || data.articles || [];
-          if (!Array.isArray(raw)) throw new Error("Formato inválido");
-          const normalized = raw.map(normalizeArticle);
-          console.log('✅ '+normalized.length+' artigos carregados de data.json');
-          return normalized;
-        } catch (e) {
-          console.warn("⚠️ data.json não encontrado ou inválido. Nenhum artigo será exibido.", e.message);
-          return [];
+          return raw.map(normalizeArticle);
+        } catch (e) { 
+          console.warn("⚠️ data.json indisponível – usando fallback vazio.", e); 
+          return []; 
         }
       }
 
-      // ---------- AGRUPAMENTO ----------
       function buildEixosMap(arts) {
         const map = new Map();
-        EIXOS_FIXOS.forEach(eixo => map.set(eixo, []));
-        arts.forEach(art => {
-          const cat = art.category || "Geral";
+        arts.forEach(a => {
+          const cat = a.category || "Geral";
           if (!map.has(cat)) map.set(cat, []);
-          map.get(cat).push(art);
+          map.get(cat).push(a);
         });
         return map;
       }
 
-      // ---------- RENDERIZAÇÃO DOS GRUPOS (EIXOS) ----------
+      // Renderiza APENAS os eixos que possuem pelo menos um artigo
       function renderNicheGroups() {
         grid.innerHTML = '';
         groupsMap.clear();
 
-        const eixosOrdenados = [...eixosMap.keys()].sort((a,b) => {
-          const idxA = EIXOS_FIXOS.indexOf(a);
-          const idxB = EIXOS_FIXOS.indexOf(b);
-          if (idxA === -1 && idxB === -1) return a.localeCompare(b);
-          if (idxA === -1) return 1;
-          if (idxB === -1) return -1;
-          return idxA - idxB;
+        // Obtém os eixos que realmente têm artigos
+        const eixosComArtigos = [...eixosMap.keys()].filter(eixo => eixosMap.get(eixo).length > 0);
+        
+        // Ordena baseado na ordem do EIXOS_FIXOS (os que não estiverem na lista vão para o final)
+        const sorted = eixosComArtigos.sort((a,b) => {
+          const ia = EIXOS_FIXOS.indexOf(a);
+          const ib = EIXOS_FIXOS.indexOf(b);
+          if (ia === -1 && ib === -1) return a.localeCompare(b);
+          if (ia === -1) return 1;
+          if (ib === -1) return -1;
+          return ia - ib;
         });
 
-        eixosOrdenados.forEach(eixo => {
+        if (sorted.length === 0) {
+          grid.innerHTML = '<p style="text-align:center; color:var(--text-muted);">Nenhum eixo disponível no momento.</p>';
+          return;
+        }
+
+        sorted.forEach(eixo => {
+          const temas = eixosMap.get(eixo);
+          if (!temas || temas.length === 0) return;
+
+          const itemsHtml = temas.map(art => {
+            const subtemaNome = art.tema || art.subtema || art.title.toLowerCase().replace(/\s+/g, '-');
+            return `<li class="theme-item"><span class="theme-link" data-subtema="${subtemaNome}" data-eixo="${eixo}" data-url="${art.url}" data-title="${art.title.replace(/"/g, '&quot;')}" data-image="${art.image}" data-excerpt="${art.excerpt.replace(/"/g, '&quot;')}" data-author="${(art.author || '').replace(/"/g, '&quot;')}">${subtemaNome.replace(/-/g, ' ')}</span></li>`;
+          }).join('');
+
+          // Cria o elemento group corretamente
           const group = document.createElement('div');
           group.className = 'niche-group';
-          group.dataset.nicheTitle = eixo;
+          group.innerHTML = `
+            <div class="group-header">
+              <h3 class="group-title">${eixo}</h3>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="group-content">
+              <ul class="theme-list">${itemsHtml}</ul>
+            </div>
+          `;
 
-          const temas = eixosMap.get(eixo) || [];
-          const itemsHtml = temas.map(art => {
-            const subtemaNome = art.tema || art.subtema || art.title.toLowerCase().replace(/\\s+/g, '-');
-            return '<li class="theme-item"><span class="theme-link" data-subtema="'+subtemaNome+'" data-eixo="'+eixo+'" data-url="'+art.url+'" data-title="'+art.title.replace(/"/g, '&quot;')+'" data-image="'+art.image+'" data-excerpt="'+art.excerpt.replace(/"/g, '&quot;')+'" data-author="'+(art.author || '').replace(/"/g, '&quot;')+'">'+subtemaNome.replace(/-/g, ' ')+'</span></li>';
-          }).join('') || '<li class="theme-item" style="opacity:0.5; font-style:italic;">Nenhum artigo disponível</li>';
-
-          group.innerHTML = '<div class="group-header"><h3 class="group-title">'+eixo+'</h3><i class="fas fa-chevron-down"></i></div><div class="group-content"><ul class="theme-list">'+itemsHtml+'</ul></div>';
-
-          const header = group.querySelector('.group-header');
-          header.addEventListener('click', (e) => {
-            e.stopPropagation();
-            group.classList.toggle('expanded');
-          });
-
+          // Evento de toggle
+          group.querySelector('.group-header').addEventListener('click', () => group.classList.toggle('expanded'));
           grid.appendChild(group);
           groupsMap.set(eixo, group);
         });
 
+        // Adiciona listeners nos links de temas
         document.querySelectorAll('.theme-link').forEach(link => {
-          link.addEventListener('click', (e) => {
+          link.addEventListener('click', e => {
             e.preventDefault();
             if (searchActive) clearSearchMode();
-            const data = {
+            showArticlePreview({
               subtema: link.dataset.subtema,
               eixo: link.dataset.eixo,
               title: link.dataset.title,
               url: link.dataset.url,
               image: link.dataset.image,
               excerpt: link.dataset.excerpt,
-              author: link.dataset.author || ''
-            };
-            showArticlePreview(data);
+              author: link.dataset.author
+            });
           });
         });
       }
 
-      function showArticlePreview(articleData) {
+      function updateCarousel() {
+        const activeEixos = [...eixosMap.keys()].filter(e => eixosMap.get(e).length > 0);
+        if (activeEixos.length === 0) {
+          carouselTrack.innerHTML = '<span style="opacity:0.5; font-style:italic; padding: 10px;">Nenhum eixo publicado ainda.</span>';
+          return;
+        }
+        const items = activeEixos.map(e => `<a class="macro-item" data-niche="${e}">${e}</a>`);
+        carouselTrack.innerHTML = items.concat(items).join('');
+        document.querySelectorAll('.macro-item').forEach(item => {
+          item.addEventListener('click', e => {
+            e.preventDefault();
+            const g = groupsMap.get(item.dataset.niche);
+            if (g) {
+              g.classList.add('expanded', 'highlight-expand');
+              setTimeout(() => g.classList.remove('highlight-expand'), 800);
+              g.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          });
+        });
+      }
+
+      function showArticlePreview(data) {
         searchActive = false;
         clearBtn.style.display = 'none';
-        
-        sidebarLabel.innerHTML = `<span id="currentEixoName">${articleData.eixo}</span>`;
-        currentEixoName.textContent = articleData.eixo;
-        
-        previewSubtema.textContent = (articleData.subtema || '').replace(/-/g, ' ');
-        previewTitle.textContent = articleData.title || "Título";
-        previewExcerpt.textContent = articleData.excerpt || "";
-        
-        if (articleData.image) {
-          previewImage.style.backgroundImage = 'url('+articleData.image+')';
+        sidebarLabel.innerHTML = `<span id="currentEixoName">${data.eixo}</span>`;
+        previewSubtema.textContent = (data.subtema || '').replace(/-/g, ' ');
+        previewTitle.textContent = data.title || "Título";
+        previewExcerpt.textContent = data.excerpt || "";
+        if (data.image && data.image !== "") {
+          previewImage.style.backgroundImage = `url(${data.image})`;
           previewImage.innerHTML = '';
         } else {
           previewImage.style.backgroundImage = 'none';
-          previewImage.innerHTML = '<i class="fas fa-image" style="margin-right:8px;"></i> PautaZero';
+          previewImage.innerHTML = '<i class="fas fa-image"></i> PautaZero';
         }
-        
-        previewLink.href = articleData.url || '#';
+        previewLink.href = encodeURI(data.url || '#');
 
-        const relacionados = (eixosMap.get(articleData.eixo) || [])
-          .filter(a => normalizeUrl(a.url) !== normalizeUrl(articleData.url))
-          .slice(0, 5);
-        
+        const relacionados = (eixosMap.get(data.eixo) || []).filter(a => normalizeUrl(a.url) !== normalizeUrl(data.url)).slice(0,5);
         relatedArticlesList.innerHTML = relacionados.map(a => {
-          const temaNome = a.tema || a.subtema || a.title.toLowerCase().replace(/\\s+/g, '-');
-          return '<li class="article-list-item" data-subtema="'+temaNome+'" data-eixo="'+a.category+'" data-url="'+a.url+'" data-title="'+a.title.replace(/"/g, '&quot;')+'" data-image="'+a.image+'" data-excerpt="'+a.excerpt.replace(/"/g, '&quot;')+'" data-author="'+(a.author || '').replace(/"/g, '&quot;')+'"><div class="list-item-title">'+a.title+'</div><div class="list-item-meta">'+temaNome.replace(/-/g, ' ')+'</div></li>';
+          const temaNome = a.tema || a.subtema || a.title.toLowerCase().replace(/\s+/g, '-');
+          return `<li class="article-list-item" data-subtema="${temaNome}" data-eixo="${a.category}" data-url="${a.url}" data-title="${a.title.replace(/"/g, '&quot;')}" data-image="${a.image}" data-excerpt="${a.excerpt.replace(/"/g, '&quot;')}">
+                    <div class="list-item-title">${a.title}</div>
+                    <div class="list-item-meta">${temaNome.replace(/-/g, ' ')}</div>
+                  </li>`;
         }).join('');
 
         document.querySelectorAll('.article-list-item').forEach(item => {
@@ -479,7 +389,7 @@
               url: item.dataset.url,
               image: item.dataset.image,
               excerpt: item.dataset.excerpt,
-              author: item.dataset.author || ''
+              author: item.dataset.author
             });
           });
         });
@@ -488,57 +398,44 @@
         previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
-      // ---------- BUSCA POR COLUNISTA ----------
       function performSearch() {
         const query = colunistaInput.value.trim().toLowerCase();
-        if (!query) {
-          clearSearchMode();
-          return;
-        }
-
-        const results = articles.filter(art => 
-          art.author.toLowerCase().includes(query)
-        );
-
+        if (!query) { clearSearchMode(); return; }
+        const results = articles.filter(art => art.author.toLowerCase().includes(query));
         searchActive = true;
         clearBtn.style.display = 'inline-block';
-        
-        sidebarLabel.innerHTML = `<span>Resultados para "<em style="font-style:italic;">${query}</em>"</span>`;
-        
+        sidebarLabel.innerHTML = `<span>Resultados para "<em>${query}</em>"</span>`;
+
         if (results.length === 0) {
-          relatedArticlesList.innerHTML = '<li class="theme-item no-results-message">Nenhum artigo encontrado para este colunista.</li>';
+          relatedArticlesList.innerHTML = '<li class="no-results-message">Nenhum artigo encontrado.</li>';
           previewSubtema.textContent = '';
           previewTitle.textContent = 'Busca por colunista';
-          previewExcerpt.textContent = 'Nenhum resultado correspondente. Tente outro nome.';
+          previewExcerpt.textContent = 'Nenhum resultado.';
           previewImage.style.backgroundImage = 'none';
-          previewImage.innerHTML = '<i class="fas fa-search" style="margin-right:8px;"></i> Sem resultados';
+          previewImage.innerHTML = '<i class="fas fa-search"></i> Sem resultados';
           previewLink.href = '#';
         } else {
           const first = results[0];
           previewSubtema.textContent = first.author;
           previewTitle.textContent = first.title;
           previewExcerpt.textContent = first.excerpt || '';
-          if (first.image) {
-            previewImage.style.backgroundImage = 'url('+first.image+')';
+          if (first.image && first.image !== "") {
+            previewImage.style.backgroundImage = `url(${first.image})`;
             previewImage.innerHTML = '';
           } else {
             previewImage.style.backgroundImage = 'none';
-            previewImage.innerHTML = '<i class="fas fa-image" style="margin-right:8px;"></i> PautaZero';
+            previewImage.innerHTML = '<i class="fas fa-image"></i> PautaZero';
           }
           previewLink.href = first.url || '#';
-
-          relatedArticlesList.innerHTML = results.map(art => {
-            return `<li class="article-list-item" data-url="${art.url}" data-title="${art.title.replace(/"/g, '&quot;')}" data-image="${art.image}" data-excerpt="${art.excerpt.replace(/"/g, '&quot;')}" data-author="${art.author.replace(/"/g, '&quot;')}" data-eixo="${art.category}">
-              <div class="list-item-title">${art.title}</div>
-              <div class="list-item-meta">${art.author} · ${art.category}</div>
-            </li>`;
-          }).join('');
-
+          relatedArticlesList.innerHTML = results.map(art => `<li class="article-list-item" data-url="${art.url}" data-title="${art.title.replace(/"/g, '&quot;')}" data-image="${art.image}" data-excerpt="${art.excerpt.replace(/"/g, '&quot;')}" data-author="${art.author.replace(/"/g, '&quot;')}" data-eixo="${art.category}">
+            <div class="list-item-title">${art.title}</div>
+            <div class="list-item-meta">${art.author} · ${art.category}</div>
+          </li>`).join('');
           document.querySelectorAll('.article-list-item').forEach(item => {
             item.addEventListener('click', () => {
               clearSearchMode();
               showArticlePreview({
-                subtema: item.dataset.author || '',
+                subtema: item.dataset.author,
                 eixo: item.dataset.eixo,
                 title: item.dataset.title,
                 url: item.dataset.url,
@@ -549,7 +446,6 @@
             });
           });
         }
-
         previewPanel.classList.remove('hidden-section');
         previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
@@ -558,41 +454,30 @@
         searchActive = false;
         colunistaInput.value = '';
         clearBtn.style.display = 'none';
-        if (!previewTitle.textContent || previewTitle.textContent === 'Busca por colunista') {
-          previewPanel.classList.add('hidden-section');
+        // Opcional: recarregar a pré-visualização padrão (primeiro artigo do primeiro eixo)
+        if (articles.length > 0 && eixosMap.size > 0) {
+          const primeiroEixo = [...eixosMap.keys()][0];
+          const primeiroArtigo = eixosMap.get(primeiroEixo)[0];
+          if (primeiroArtigo) {
+            showArticlePreview({
+              subtema: primeiroArtigo.tema || primeiroArtigo.subtema || "",
+              eixo: primeiroEixo,
+              title: primeiroArtigo.title,
+              url: primeiroArtigo.url,
+              image: primeiroArtigo.image,
+              excerpt: primeiroArtigo.excerpt,
+              author: primeiroArtigo.author
+            });
+          }
         }
       }
 
-      // ---------- CARROSSEL ----------
-      function updateCarousel() {
-        const items = EIXOS_FIXOS.map(eixo => '<a class="macro-item" data-niche="'+eixo+'">'+eixo+'</a>');
-        carouselTrack.innerHTML = items.concat(items).join('');
-        
-        document.querySelectorAll('.macro-item').forEach(item => {
-          item.addEventListener('click', (e) => {
-            e.preventDefault();
-            const niche = item.dataset.niche;
-            const targetGroup = groupsMap.get(niche);
-            if (targetGroup) {
-              if (!targetGroup.classList.contains('expanded')) targetGroup.classList.add('expanded');
-              targetGroup.classList.add('highlight-expand');
-              setTimeout(() => targetGroup.classList.remove('highlight-expand'), 800);
-              targetGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-          });
-        });
-      }
-
-      // ---------- INICIALIZAÇÃO ----------
       async function init() {
-        console.log("🔄 Inicializando PautaZero (Eixos Expandidos + Busca por Colunista)");
-        
         articles = await loadArticles();
         eixosMap = buildEixosMap(articles);
-        
         renderNicheGroups();
         updateCarousel();
-        
+
         const privacyToggle = document.getElementById('privacyToggle');
         const privacyPanel = document.getElementById('privacyPanel');
         const icon = privacyToggle.querySelector('i');
@@ -603,54 +488,35 @@
         });
 
         searchBtn.addEventListener('click', performSearch);
-        colunistaInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            performSearch();
-          }
-        });
-        clearBtn.addEventListener('click', () => {
-          clearSearchMode();
-          if (!previewTitle.textContent || previewTitle.textContent === 'Busca por colunista') {
-            previewPanel.classList.add('hidden-section');
-          } else {
-            const lastArticle = articles.find(a => a.url === previewLink.getAttribute('href'));
-            if (lastArticle) {
-              showArticlePreview({
-                subtema: lastArticle.tema,
-                eixo: lastArticle.category,
-                title: lastArticle.title,
-                url: lastArticle.url,
-                image: lastArticle.image,
-                excerpt: lastArticle.excerpt,
-                author: lastArticle.author
-              });
-            }
-          }
-        });
-
-        if (isArticlePage()) {
-          const currentPath = getCurrentPath();
-          const matched = findArticleByUrl(articles, currentPath);
-          if (matched) {
-            showArticlePreview({
-              subtema: matched.tema,
-              eixo: matched.category,
-              title: matched.title,
-              url: matched.url,
-              image: matched.image,
-              excerpt: matched.excerpt,
-              author: matched.author
-            });
-          }
-        } else {
-          console.log("🏠 Página inicial – eixos visíveis, preview oculto.");
-        }
+        colunistaInput.addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } });
+        clearBtn.addEventListener('click', clearSearchMode);
 
         document.getElementById('nicheSection').classList.remove('hidden-section');
         document.getElementById('macroCarousel').classList.remove('hidden-section');
+
+        // Se houver artigos, mostrar preview do primeiro automaticamente
+        if (articles.length > 0 && eixosMap.size > 0) {
+          const primeiroEixo = [...eixosMap.keys()][0];
+          const primeiroArtigo = eixosMap.get(primeiroEixo)[0];
+          if (primeiroArtigo) {
+            showArticlePreview({
+              subtema: primeiroArtigo.tema || primeiroArtigo.subtema || "",
+              eixo: primeiroEixo,
+              title: primeiroArtigo.title,
+              url: primeiroArtigo.url,
+              image: primeiroArtigo.image,
+              excerpt: primeiroArtigo.excerpt,
+              author: primeiroArtigo.author
+            });
+          }
+        }
       }
 
+      // Recupera estado ao voltar da página (bfcache)
+      window.addEventListener('pageshow', function(event) {
+        if (event.persisted) { init(); }
+      });
+      
       init();
     })();
   </script>
