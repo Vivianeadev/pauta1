@@ -1,524 +1,1473 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>PautaZero · Eixos Expandidos</title>
-  
-  <!-- Fontes & Ícones preservados -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <style>
-    :root{
-      --bg-color: #ffffff;
-      --petrol-blue: #0a3147;
-      --petrol-light: #1a4b6d;
-      --aged-gold: #b8860b;
-      --gold-line: rgba(184, 134, 11, 0.18);
-      --text-muted: #5a7d91;
-      --font-sans: 'Inter', sans-serif;
-      --font-serif: 'Cinzel', serif;
-      --font-body: 'Marcellus', serif;
-      --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { background-color:var(--bg-color); color:var(--petrol-blue); font-family:var(--font-sans); line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-    .container { max-width:1400px; margin:0 auto; padding:0 60px; }
-    header { padding:60px 0 30px; text-align:center; position:sticky; top:0; background:rgb(255 255 255 / 0.98); backdrop-filter:blur(15px); z-index:1000; border-bottom:0.5px solid var(--gold-line); }
-    .logo { font-family:var(--font-serif); font-size:3rem; font-weight:400; letter-spacing:8px; text-decoration:none; color:var(--petrol-blue); display:block; margin-bottom:10px; transition:var(--transition); }
-    .logo span { color:var(--aged-gold); font-weight:700; }
-    .tagline { font-family:var(--font-body); font-size:0.75rem; text-transform:uppercase; letter-spacing:6px; color:var(--aged-gold); opacity:0.8; }
-    .ethereal-divider { width:100%; height:1px; background:linear-gradient(90deg,transparent 0%,rgb(184 134 11 / 0.25) 20%,rgb(184 134 11 / 0.4) 50%,rgb(184 134 11 / 0.25) 80%,transparent 100%); margin:0; border:0; opacity:0.5; pointer-events:none; }
-    .hero { padding:100px 0; text-align:center; }
-    .section-label { font-family:var(--font-body); font-size:0.7rem; text-transform:uppercase; letter-spacing:5px; color:var(--aged-gold); margin-bottom:40px; display:block; }
-    .hero-title { font-family:var(--font-serif); font-size:3.5rem; line-height:1.1; margin-bottom:30px; font-weight:400; max-width:1100px; margin-left:auto; margin-right:auto; }
-    .highlight-lucidez { color:var(--aged-gold); font-weight:700; text-shadow:0 0 15px rgba(184,134,11,0.15); transition:var(--transition); }
-    .article-preview-panel { margin:40px 0 60px; border:0.5px solid var(--gold-line); background:rgb(255 255 255 / 0.7); backdrop-filter:blur(8px); padding:30px 30px; transition:var(--transition); box-shadow:0 15px 30px -10px rgb(10 49 71 / 0.05); }
-    .preview-container { display:grid; grid-template-columns:280px 1fr; gap:30px; }
-    .preview-sidebar { border-right:0.5px solid var(--gold-line); padding-right:25px; }
-    .preview-label { font-family:var(--font-serif); font-size:0.75rem; text-transform:uppercase; letter-spacing:3px; color:var(--aged-gold); margin-bottom:20px; padding-bottom:8px; border-bottom:0.5px solid var(--gold-line); }
-    .article-list { list-style:none; }
-    .article-list-item { padding:10px 0; border-bottom:0.5px dotted var(--gold-line); cursor:pointer; transition:var(--transition); }
-    .article-list-item:hover { color:var(--aged-gold); padding-left:8px; }
-    .article-list-item.active { color:var(--aged-gold); font-weight:500; border-left:2px solid var(--aged-gold); padding-left:15px; }
-    .list-item-title { font-family:var(--font-body); font-size:0.85rem; font-weight:400; margin-bottom:4px; }
-    .list-item-meta { font-size:0.6rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); }
-    .preview-main { display:flex; flex-direction:column; }
-    .preview-image { width:100%; aspect-ratio:21 / 9; background:#eaeaea; margin-bottom:20px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:0.7rem; text-transform:uppercase; letter-spacing:2px; border:0.5px solid var(--gold-line); background-size:cover; background-position:center; }
-    .preview-subtema { font-size:0.6rem; text-transform:uppercase; letter-spacing:3px; color:var(--aged-gold); margin-bottom:8px; }
-    .preview-title { font-family:var(--font-serif); font-size:1.8rem; font-weight:400; line-height:1.2; margin-bottom:15px; color:var(--petrol-blue); }
-    .preview-excerpt { font-family:var(--font-body); color:var(--text-muted); font-size:0.95rem; margin-bottom:25px; line-height:1.6; }
-    .preview-link { text-decoration:none; color:var(--aged-gold); font-size:0.75rem; text-transform:uppercase; letter-spacing:3px; display:inline-flex; align-items:center; gap:10px; border-bottom:1px solid #fff0; transition:var(--transition); align-self:flex-start; }
-    .preview-link i { font-size:0.7rem; }
-    .preview-link:hover { border-bottom-color:var(--aged-gold); gap:15px; }
-    .niche-section { padding:80px 0; border-top:0.5px solid var(--gold-line); }
-    .niche-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; }
-    .niche-group { border-left:0.5px solid var(--gold-line); padding-left:25px; margin-bottom:40px; transition:var(--transition); }
-    .group-header { display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; }
-    .group-title { font-family:var(--font-serif); font-size:0.9rem; text-transform:uppercase; letter-spacing:3px; color:var(--aged-gold); font-weight:700; margin:0; transition:var(--transition); }
-    .group-header i { color:var(--aged-gold); font-size:0.9rem; transition:transform 0.3s ease; opacity:0.6; }
-    .niche-group.expanded .group-header i { transform:rotate(180deg); }
-    .group-content { max-height:0; opacity:0; overflow:hidden; transition:max-height 0.7s cubic-bezier(0.19,1,0.22,1),opacity 0.5s ease,margin 0.3s ease; margin-top:0; }
-    .niche-group.expanded .group-content { max-height:1400px; opacity:1; margin-top:25px; }
-    .theme-list { list-style:none; margin-bottom:10px; display:flex; flex-wrap:wrap; gap:8px 20px; }
-    .theme-item { position:relative; }
-    .theme-link { text-decoration:none; color:var(--petrol-blue); font-size:0.8rem; font-weight:300; transition:var(--transition); display:inline-block; padding:3px 0; border-bottom:1px dotted #fff0; cursor:pointer; }
-    .theme-link:hover { color:var(--aged-gold); border-bottom-color:var(--aged-gold); }
-    .macro-carousel { padding:25px 0; background:#fafafa; border-top:0.5px solid var(--gold-line); border-bottom:0.5px solid var(--gold-line); overflow:hidden; }
-    .carousel-track { display:flex; gap:50px; justify-content:center; align-items:center; animation:scroll 40s linear infinite; width:max-content; }
-    @keyframes scroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
-    .macro-item { font-family:var(--font-sans); font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:3px; color:var(--petrol-blue); text-decoration:none; white-space:nowrap; display:flex; align-items:center; gap:10px; transition:var(--transition); opacity:0.6; cursor:pointer; }
-    .macro-item:hover { opacity:1; color:var(--aged-gold); }
-    .macro-item::after { content:"•"; color:var(--aged-gold); margin-left:40px; }
-    footer { padding:80px 0 40px; background:var(--petrol-blue); color:#fff; }
-    .footer-logo { font-family:var(--font-serif); font-size:2rem; letter-spacing:10px; color:#fff; margin-bottom:30px; display:block; text-align:center; }
-    .footer-logo span { color:var(--aged-gold); }
-    .footer-links { display:flex; justify-content:center; gap:60px; margin-bottom:50px; font-size:0.7rem; text-transform:uppercase; letter-spacing:3px; }
-    .footer-links a, .footer-links .privacy-toggle { color:rgb(255 255 255 / 0.6); text-decoration:none; transition:var(--transition); cursor:pointer; border-bottom:1px dotted #fff0; }
-    .footer-links a:hover, .footer-links .privacy-toggle:hover { color:var(--aged-gold); border-bottom-color:var(--aged-gold); }
-    .privacy-panel { max-width:800px; margin:0 auto 40px; background:rgb(255 255 255 / 0.03); border:0.5px solid var(--gold-line); padding:25px 30px; font-size:0.65rem; color:rgb(255 255 255 / 0.7); line-height:1.6; transition:var(--transition); backdrop-filter:blur(4px); }
-    .privacy-panel h4 { font-family:var(--font-serif); color:var(--aged-gold); font-size:0.75rem; letter-spacing:2px; margin:20px 0 10px; font-weight:400; border-bottom:0.5px solid var(--gold-line); padding-bottom:5px; }
-    .privacy-panel h4:first-of-type { margin-top:0; }
-    .copyright { text-align:center; font-size:0.55rem; color:rgb(255 255 255 / 0.25); letter-spacing:3px; text-transform:uppercase; }
-    .highlight-expand { animation:highlightPulse 0.8s ease; }
-    @keyframes highlightPulse { 0% { background-color:#fff0; } 50% { background-color:rgb(184 134 11 / 0.08); } 100% { background-color:#fff0; } }
-    .hidden-section { display:none !important; }
-    .colunista-search-wrapper { margin-top: 18px; display: flex; justify-content: center; }
-    .colunista-search { display: inline-flex; align-items: center; background: transparent; border-bottom: 0.5px solid var(--gold-line); padding: 4px 0; max-width: 360px; width: 100%; transition: var(--transition); }
-    .colunista-search i { color: var(--aged-gold); font-size: 0.9rem; margin-right: 10px; opacity: 0.7; }
-    .colunista-search input { background: transparent; border: none; outline: none; font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--petrol-blue); width: 100%; padding: 6px 0; }
-    .colunista-search input::placeholder { color: var(--text-muted); opacity: 0.5; font-weight: 300; letter-spacing: 3px; }
-    .colunista-search button { background: none; border: none; cursor: pointer; color: var(--aged-gold); font-size: 0.8rem; padding: 4px 8px; transition: var(--transition); opacity: 0.8; }
-    .colunista-search button:hover { opacity: 1; transform: scale(1.05); }
-    .search-clear { margin-left: 5px; font-size: 0.7rem; }
-    .search-result-header { font-family: var(--font-serif); font-size: 1rem; letter-spacing: 2px; color: var(--aged-gold); margin-bottom: 15px; border-bottom: 0.5px solid var(--gold-line); padding-bottom: 8px; }
-    .no-results-message { font-family: var(--font-body); color: var(--text-muted); font-style: italic; padding: 20px 0; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>PautaZero · A revista digital do futuro</title>
+
+    <!-- Fontes & Ícones preservados -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* ========== CSS INALTERADO (PRESERVADO INTEGRALMENTE) ========== */
+        :root {
+            --bg-color: #ffffff;
+            --petrol-blue: #0a3147;
+            --petrol-light: #1a4b6d;
+            --aged-gold: #b8860b;
+            --gold-line: rgba(184, 134, 11, 0.18);
+            --text-muted: #5a7d91;
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Cinzel', serif;
+            --font-body: 'Marcellus', serif;
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--petrol-blue);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        header {
+            padding: 60px 0 30px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            background: rgb(255 255 255 / 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 0.5px solid var(--gold-line);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            letter-spacing: 8px;
+            text-decoration: none;
+            color: var(--petrol-blue);
+            display: block;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .logo span {
+            color: var(--aged-gold);
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--aged-gold);
+            opacity: 0.8;
+        }
+
+        .ethereal-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgb(184 134 11 / 0.25) 20%, rgb(184 134 11 / 0.4) 50%, rgb(184 134 11 / 0.25) 80%, transparent 100%);
+            margin: 0;
+            border: 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--aged-gold);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            font-weight: 400;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .highlight-lucidez {
+            color: var(--aged-gold);
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(184, 134, 11, 0.15);
+            transition: var(--transition);
+        }
+
+        .article-preview-panel {
+            margin: 40px 0 60px;
+            border: 0.5px solid var(--gold-line);
+            background: rgb(255 255 255 / 0.7);
+            backdrop-filter: blur(8px);
+            padding: 30px 30px;
+            transition: var(--transition);
+            box-shadow: 0 15px 30px -10px rgb(10 49 71 / 0.05);
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+
+        .preview-sidebar {
+            border-right: 0.5px solid var(--gold-line);
+            padding-right: 25px;
+        }
+
+        .preview-label {
+            font-family: var(--font-serif);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--aged-gold);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 0.5px solid var(--gold-line);
+        }
+
+        .article-list {
+            list-style: none;
+        }
+
+        .article-list-item {
+            padding: 10px 0;
+            border-bottom: 0.5px dotted var(--gold-line);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .article-list-item:hover {
+            color: var(--aged-gold);
+            padding-left: 8px;
+        }
+
+        .article-list-item.active {
+            color: var(--aged-gold);
+            font-weight: 500;
+            border-left: 2px solid var(--aged-gold);
+            padding-left: 15px;
+        }
+
+        .list-item-title {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .list-item-meta {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .preview-main {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-image {
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            background: #eaeaea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 0.5px solid var(--gold-line);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .preview-subtema {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--aged-gold);
+            margin-bottom: 8px;
+        }
+
+        .preview-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: var(--petrol-blue);
+        }
+
+        .preview-excerpt {
+            font-family: var(--font-body);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .preview-link {
+            text-decoration: none;
+            color: var(--aged-gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #fff0;
+            transition: var(--transition);
+            align-self: flex-start;
+        }
+
+        .preview-link i {
+            font-size: 0.7rem;
+        }
+
+        .preview-link:hover {
+            border-bottom-color: var(--aged-gold);
+            gap: 15px;
+        }
+
+        .niche-section {
+            padding: 80px 0;
+            border-top: 0.5px solid var(--gold-line);
+        }
+
+        .niche-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .niche-group {
+            border-left: 0.5px solid var(--gold-line);
+            padding-left: 25px;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .group-title {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--aged-gold);
+            font-weight: 700;
+            margin: 0;
+            transition: var(--transition);
+        }
+
+        .group-header i {
+            color: var(--aged-gold);
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .niche-group.expanded .group-header i {
+            transform: rotate(180deg);
+        }
+
+        .group-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.7s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease, margin 0.3s ease;
+            margin-top: 0;
+        }
+
+        .niche-group.expanded .group-content {
+            max-height: 1400px;
+            opacity: 1;
+            margin-top: 25px;
+        }
+
+        .theme-list {
+            list-style: none;
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .theme-item {
+            position: relative;
+        }
+
+        .theme-link {
+            text-decoration: none;
+            color: var(--petrol-blue);
+            font-size: 0.8rem;
+            font-weight: 300;
+            transition: var(--transition);
+            display: inline-block;
+            padding: 3px 0;
+            border-bottom: 1px dotted #fff0;
+            cursor: pointer;
+        }
+
+        .theme-link:hover {
+            color: var(--aged-gold);
+            border-bottom-color: var(--aged-gold);
+        }
+
+        .macro-carousel {
+            padding: 25px 0;
+            background: #fafafa;
+            border-top: 0.5px solid var(--gold-line);
+            border-bottom: 0.5px solid var(--gold-line);
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+            animation: scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .macro-item {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--petrol-blue);
+            text-decoration: none;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+        .macro-item:hover {
+            opacity: 1;
+            color: var(--aged-gold);
+        }
+
+        .macro-item::after {
+            content: "•";
+            color: var(--aged-gold);
+            margin-left: 40px;
+        }
+
+        footer {
+            padding: 80px 0 40px;
+            background: var(--petrol-blue);
+            color: #fff;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            letter-spacing: 10px;
+            color: #fff;
+            margin-bottom: 30px;
+            display: block;
+            text-align: center;
+        }
+
+        .footer-logo span {
+            color: var(--aged-gold);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 50px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .footer-links a,
+        .footer-links .privacy-toggle {
+            color: rgb(255 255 255 / 0.6);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border-bottom: 1px dotted #fff0;
+        }
+
+        .footer-links a:hover,
+        .footer-links .privacy-toggle:hover {
+            color: var(--aged-gold);
+            border-bottom-color: var(--aged-gold);
+        }
+
+        .privacy-panel {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: rgb(255 255 255 / 0.03);
+            border: 0.5px solid var(--gold-line);
+            padding: 25px 30px;
+            font-size: 0.65rem;
+            color: rgb(255 255 255 / 0.7);
+            line-height: 1.6;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+        }
+
+        .privacy-panel h4 {
+            font-family: var(--font-serif);
+            color: var(--aged-gold);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin: 20px 0 10px;
+            font-weight: 400;
+            border-bottom: 0.5px solid var(--gold-line);
+            padding-bottom: 5px;
+        }
+
+        .privacy-panel h4:first-of-type {
+            margin-top: 0;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.55rem;
+            color: rgb(255 255 255 / 0.25);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .highlight-expand {
+            animation: highlightPulse 0.8s ease;
+        }
+
+        @keyframes highlightPulse {
+            0% {
+                background-color: #fff0;
+            }
+            50% {
+                background-color: rgb(184 134 11 / 0.08);
+            }
+            100% {
+                background-color: #fff0;
+            }
+        }
+
+        .hidden-section {
+            display: none !important;
+        }
+
+        .colunista-search-wrapper {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .colunista-search {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            border-bottom: 0.5px solid var(--gold-line);
+            padding: 4px 0;
+            max-width: 360px;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .colunista-search i {
+            color: var(--aged-gold);
+            font-size: 0.9rem;
+            margin-right: 10px;
+            opacity: 0.7;
+        }
+
+        .colunista-search input {
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--petrol-blue);
+            width: 100%;
+            padding: 6px 0;
+        }
+
+        .colunista-search input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.5;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .colunista-search button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--aged-gold);
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .colunista-search button:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .search-clear {
+            margin-left: 5px;
+            font-size: 0.7rem;
+        }
+
+        .search-result-header {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: var(--aged-gold);
+            margin-bottom: 15px;
+            border-bottom: 0.5px solid var(--gold-line);
+            padding-bottom: 8px;
+        }
+
+        .no-results-message {
+            font-family: var(--font-body);
+            color: var(--text-muted);
+            font-style: italic;
+            padding: 20px 0;
+        }
+
+        /* ========== FIM DO CSS INALTERADO ========== */
+
+        /* ========== NOVO CSS: FRAME CARROSSEL DE IMAGENS COM MARCA D'ÁGUA ========== */
+        .hero-image-frame {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto 10px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .image-carousel-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            overflow: hidden;
+            border: 1px solid var(--gold-line);
+            border-radius: 0;
+            /* PONTAS NÃO ARREDONDADAS */
+            background: #0a0f14;
+            box-shadow: 0 20px 40px -15px rgba(10, 49, 71, 0.2);
+            transition: box-shadow 0.6s ease;
+        }
+
+        .image-carousel-container:hover {
+            box-shadow: 0 25px 50px -15px rgba(184, 134, 11, 0.25);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            /* transição vagarosa */
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            border-radius: 0;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    rgba(10, 49, 71, 0.7) 0%,
+                    rgba(10, 49, 71, 0.2) 50%,
+                    rgba(10, 49, 71, 0.05) 100%);
+            z-index: 3;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .carousel-slide:hover::before {
+            opacity: 0.9;
+            background: linear-gradient(to top,
+                    rgba(10, 49, 71, 0.85) 0%,
+                    rgba(10, 49, 71, 0.5) 60%,
+                    rgba(10, 49, 71, 0.2) 100%);
+        }
+
+        /* Marca d'água do tema sobre a imagem */
+        .slide-watermark {
+            position: absolute;
+            bottom: 8%;
+            left: 5%;
+            z-index: 5;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .watermark-tema {
+            font-family: var(--font-serif);
+            font-size: clamp(0.9rem, 2.5vw, 2rem);
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(184, 134, 11, 0.3);
+            text-transform: uppercase;
+            line-height: 1.2;
+            opacity: 0.9;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(0);
+        }
+
+        .watermark-title {
+            font-family: var(--font-body);
+            font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 2px;
+            font-style: italic;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0.85;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(0);
+        }
+
+        .carousel-slide:hover .watermark-tema,
+        .carousel-slide:hover .watermark-title {
+            opacity: 1;
+            transform: translateY(-4px);
+        }
+
+        /* Seta de indicação clicável sutil */
+        .slide-cta-hint {
+            position: absolute;
+            bottom: 8%;
+            right: 5%;
+            z-index: 5;
+            pointer-events: none;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--aged-gold);
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateX(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .slide-cta-hint i {
+            font-size: 0.7rem;
+        }
+
+        .carousel-slide:hover .slide-cta-hint {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Indicadores de slide (bolinhas) */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            padding: 5px 0;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 0;
+            /* pontas não arredondadas também nos indicadores */
+            background: var(--gold-line);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            border: none;
+            padding: 0;
+            outline: none;
+            transform: rotate(45deg);
+            /* pequeno losango em vez de círculo */
+        }
+
+        .carousel-dot.active {
+            background: var(--aged-gold);
+            transform: rotate(45deg) scale(1.6);
+            box-shadow: 0 0 12px rgba(184, 134, 11, 0.4);
+        }
+
+        .carousel-dot:hover {
+            background: rgba(184, 134, 11, 0.6);
+            transform: rotate(45deg) scale(1.3);
+        }
+
+        /* Spinner de carregamento enquanto não há imagens */
+        .carousel-loading-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            color: var(--text-muted);
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: #0a0f14;
+        }
+
+        .carousel-loading-placeholder i {
+            margin-right: 10px;
+            animation: spin 1.5s linear infinite;
+            color: var(--aged-gold);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsividade extrema */
+        @media (max-width: 768px) {
+            .hero-image-frame {
+                padding: 0 10px;
+            }
+
+            .image-carousel-container {
+                aspect-ratio: 16 / 9;
+            }
+
+            .watermark-tema {
+                letter-spacing: 2px;
+            }
+
+            .watermark-title {
+                letter-spacing: 1px;
+            }
+
+            .slide-cta-hint {
+                font-size: 0.6rem;
+                letter-spacing: 2px;
+                bottom: 5%;
+                right: 4%;
+            }
+
+            .carousel-indicators {
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .carousel-dot {
+                width: 6px;
+                height: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-carousel-container {
+                aspect-ratio: 4 / 3;
+            }
+
+            .slide-watermark {
+                bottom: 6%;
+                left: 4%;
+            }
+
+            .watermark-tema {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+
+            .watermark-title {
+                font-size: 0.7rem;
+            }
+
+            .slide-cta-hint {
+                display: none;
+                /* esconde em telas muito pequenas para não poluir */
+            }
+
+            .carousel-indicators {
+                gap: 6px;
+                margin-top: 10px;
+            }
+        }
+
+        /* ========== FIM DO NOVO CSS ========== */
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
-      <a href="/" class="logo">PautaZero</a>
-      <div class="tagline">A Revista Digital do Futuro</div>
-    </div>
-  </header>
-
-  <hr class="ethereal-divider" aria-hidden="true">
-
-  <main class="container">
-    <section class="hero">
-      <span class="section-label">A Convergência entre o Pensamento Sistêmico e a Estética do Futuro.</span>
-      <h3 class="hero-title">A <span class="highlight-lucidez">lucidez</span> no caos da informação</h3>
-      <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-muted); max-width: 780px; margin: 0 auto;"></p>
-    </section>
-
-    <!-- PAINEL DE PRÉ‑VISUALIZAÇÃO -->
-    <section class="article-preview-panel hidden-section" id="articlePreviewPanel">
-      <div class="preview-container">
-        <div class="preview-sidebar">
-          <h4 class="preview-label" id="sidebarLabel"><span id="currentEixoName">Política & Geopolítica</span></h4>
-          <ul class="article-list" id="relatedArticlesList"></ul>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">Pauta<span>Zero</span></a>
+            <div class="tagline">A Revista Digital do Futuro</div>
         </div>
-        <div class="preview-main">
-          <div class="preview-image" id="previewImage"><i class="fas fa-image" style="margin-right:8px;"></i> PautaZero</div>
-          <div>
-            <span class="preview-subtema" id="previewSubtema">Relações Internacionais</span>
-            <h2 class="preview-title" id="previewTitle">A Nova Ordem Multipolar</h2>
-            <p class="preview-excerpt" id="previewExcerpt">Análise das tensões geopolíticas, alianças estratégicas e o reposicionamento das potências médias na governança global.</p>
-            <a href="#" class="preview-link" id="previewLink">Ler artigo completo <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- SEÇÃO DE NICHOS (EIXOS EXPANDIDOS) -->
-    <section class="niche-section hidden-section" id="nicheSection">
-      <span class="section-label" style="margin-bottom: 60px;">Exploração por Nichos</span>
-      <div class="niche-grid" id="nicheGrid"></div>
-      <!-- BUSCA POR COLUNISTA -->
-      <div class="colunista-search-wrapper">
-        <div class="colunista-search">
-          <i class="fas fa-search"></i>
-          <input type="text" id="colunistaInput" placeholder="Buscar por colunista" aria-label="Buscar colunista">
-          <button id="colunistaSearchBtn" aria-label="Pesquisar"><i class="fas fa-arrow-right"></i></button>
-          <button id="colunistaClearBtn" class="search-clear" aria-label="Limpar busca" style="display:none;"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-    </section>
-  </main>
+    <hr class="ethereal-divider" aria-hidden="true">
 
-  <!-- CARROSSEL DE MACRO EIXOS -->
-  <div class="macro-carousel hidden-section" id="macroCarousel">
-    <div class="carousel-track" id="carouselTrack"></div>
-  </div>
-
-  <footer>
-    <div class="container">
-      <a href="/" class="footer-logo">PautaZero</a>
-      <div class="footer-links">
-        <a href="manifesto.html">Manifesto</a>
-        <span class="privacy-toggle" id="privacyToggle">Política de Privacidade <i class="fas fa-chevron-down" style="font-size: 0.6rem; margin-left: 6px;"></i></span>
-        <a href="assinantes/editor-de-texto.html">Para Assinantes</a>
-      </div>
-      
-      <div id="privacyPanel" class="privacy-panel" style="display: none;">
-        <h4>MANIFESTO PautaZero · POLÍTICA DE PRIVACIDADE</h4>
-        <p><strong>clique nos títulos para expandir · Ambiente & Dados</strong></p>
-        
-        <h4>Ambiente independente</h4>
-        <p>Este ambiente digital é mantido por responsável independente, atuando na produção de conteúdo informacional e analítico, comprometido com a proteção da privacidade e dos direitos fundamentais dos titulares de dados.</p>
-        
-        <h4>Dados coletados</h4>
-        <p>Dados de navegação (IP anonimizado, cookies técnicos), informações enviadas voluntariamente por e-mail ou formulários. Nunca coletamos dados sensíveis sem consentimento explícito.</p>
-        
-        <h4>Finalidade & LGPD</h4>
-        <p><strong>Finalidade:</strong> Melhorar a experiência, gerar estatísticas agregadas, responder contatos e garantir a segurança do site. Sem tratamento abusivo ou compartilhamento com terceiros não autorizados.</p>
-        <p><strong>Base legal (LGPD):</strong> Execução de legítimo interesse, cumprimento de obrigação legal e consentimento quando necessário. Respeitamos a Lei 13.709/2018 e os direitos dos titulares.</p>
-        
-        <h4>Direitos & Contato</h4>
-        <p><strong>Seus direitos:</strong> Você pode acessar, retificar, eliminar, limitar ou portar seus dados a qualquer momento. Pedidos devem ser enviados ao e-mail abaixo.</p>
-        <p>Canal de atendimento ao titular: <a href="mailto:editorial.pautazero@outlook.com" style="color: var(--aged-gold); text-decoration: none;">editorial.pautazero@outlook.com</a> – Respondemos em até 15 dias úteis.</p>
-        <p>Esta política pode ser atualizada periodicamente. Consulte sempre a versão mais recente neste rodapé.</p>
-      </div>
-      
-      <p class="copyright">&copy; 2026 PautaZero. TODOS OS DIREITOS RESERVADOS. DESIGN BY PAUTA ZERO.</p>
-    </div>
-  </footer>
-
-  <script>
-    (function(){
-      "use strict";
-
-      // Lista de referência para ordenação (pode ser qualquer ordem desejada)
-      const EIXOS_FIXOS = [
-        "Política & Geopolítica", "Segurança Total", "Sistema Prisional & Policial", "Políticas Públicas",
-        "Economia & Super Ricos", "Saúde Mental", "Psicopatia & Comportamento Extremo", "Família & Alienação Parental",
-        "Crime & Investigação", "Saúde Mental em Contextos Extremos", "Negócios & Estratégia", "Visão Global",
-        "Impacto & Filantropia", "Histórias Reais", "Conteúdos Híbridos", "Direito de Família e Saúde Mental",
-        "Justiça e Tecnologia", "Educação e Desigualdade", "Meio Ambiente e Conflitos", "Direitos Humanos e Sistema de Justiça",
-        "Agronegócio, Logística e Transporte", "Saúde Física e Medicina", "Futurismo & Inovação", "Religião, Cristianismo & Perseguições",
-        "Esportes, Futebol & Ídolos", "Nutrição & Pesquisa Alimentar"
-      ];
-
-      const grid = document.getElementById('nicheGrid');
-      const groupsMap = new Map();
-      const previewPanel = document.getElementById('articlePreviewPanel');
-      const sidebarLabel = document.getElementById('sidebarLabel');
-      const relatedArticlesList = document.getElementById('relatedArticlesList');
-      const previewSubtema = document.getElementById('previewSubtema');
-      const previewTitle = document.getElementById('previewTitle');
-      const previewExcerpt = document.getElementById('previewExcerpt');
-      const previewImage = document.getElementById('previewImage');
-      const previewLink = document.getElementById('previewLink');
-      const carouselTrack = document.getElementById('carouselTrack');
-      const colunistaInput = document.getElementById('colunistaInput');
-      const searchBtn = document.getElementById('colunistaSearchBtn');
-      const clearBtn = document.getElementById('colunistaClearBtn');
-
-      let articles = [];
-      let eixosMap = new Map();       // eixo -> array de artigos
-      let searchActive = false;
-
-      function normalizeUrl(url) {
-        if (!url) return "";
-        url = String(url).trim();
-        if (!url.startsWith("/")) url = "/" + url;
-        return url.replace(/\.html$/, "").toLowerCase();
-      }
-
-      function normalizeArticle(art) {
-        return {
-          title: art.title || art.titulo || "Sem título",
-          category: art.category || art.eixo || "Geral",
-          url: normalizeUrl(art.url || art.caminhoHTML || ""),
-          image: art.image || (art.capa && art.capa.principal) || "",
-          tema: art.tema || art.subtema || "",
-          excerpt: art.excerpt || art.resumo || "",
-          author: art.autor || art.author || art.colunista || (art.autoria && art.autoria.nome) || "Colunista desconhecido"
-        };
-      }
-
-      async function loadArticles() {
-        try {
-          const res = await fetch("./data.json");
-          if (!res.ok) throw new Error('HTTP '+res.status);
-          const data = await res.json();
-          const raw = data.artigos || data.articles || [];
-          return raw.map(normalizeArticle);
-        } catch (e) { 
-          console.warn("⚠️ data.json indisponível – usando fallback vazio.", e); 
-          return []; 
-        }
-      }
-
-      function buildEixosMap(arts) {
-        const map = new Map();
-        arts.forEach(a => {
-          const cat = a.category || "Geral";
-          if (!map.has(cat)) map.set(cat, []);
-          map.get(cat).push(a);
-        });
-        return map;
-      }
-
-      // Renderiza APENAS os eixos que possuem pelo menos um artigo
-      function renderNicheGroups() {
-        grid.innerHTML = '';
-        groupsMap.clear();
-
-        // Obtém os eixos que realmente têm artigos
-        const eixosComArtigos = [...eixosMap.keys()].filter(eixo => eixosMap.get(eixo).length > 0);
-        
-        // Ordena baseado na ordem do EIXOS_FIXOS (os que não estiverem na lista vão para o final)
-        const sorted = eixosComArtigos.sort((a,b) => {
-          const ia = EIXOS_FIXOS.indexOf(a);
-          const ib = EIXOS_FIXOS.indexOf(b);
-          if (ia === -1 && ib === -1) return a.localeCompare(b);
-          if (ia === -1) return 1;
-          if (ib === -1) return -1;
-          return ia - ib;
-        });
-
-        if (sorted.length === 0) {
-          grid.innerHTML = '<p style="text-align:center; color:var(--text-muted);">Nenhum eixo disponível no momento.</p>';
-          return;
-        }
-
-        sorted.forEach(eixo => {
-          const temas = eixosMap.get(eixo);
-          if (!temas || temas.length === 0) return;
-
-          const itemsHtml = temas.map(art => {
-            const subtemaNome = art.tema || art.subtema || art.title.toLowerCase().replace(/\s+/g, '-');
-            return `<li class="theme-item"><span class="theme-link" data-subtema="${subtemaNome}" data-eixo="${eixo}" data-url="${art.url}" data-title="${art.title.replace(/"/g, '&quot;')}" data-image="${art.image}" data-excerpt="${art.excerpt.replace(/"/g, '&quot;')}" data-author="${(art.author || '').replace(/"/g, '&quot;')}">${subtemaNome.replace(/-/g, ' ')}</span></li>`;
-          }).join('');
-
-          // Cria o elemento group corretamente
-          const group = document.createElement('div');
-          group.className = 'niche-group';
-          group.innerHTML = `
-            <div class="group-header">
-              <h3 class="group-title">${eixo}</h3>
-              <i class="fas fa-chevron-down"></i>
+    <!-- ========== NOVO: FRAME RETANGULAR DE IMAGENS COM MARCA D'ÁGUA (ACIMA DO HERO) ========== -->
+    <section class="hero-image-frame" id="heroImageFrame" aria-label="Destaques em carrossel">
+        <div class="image-carousel-container" id="imageCarouselContainer">
+            <!-- Slides serão injetados via JavaScript -->
+            <div class="carousel-loading-placeholder" id="carouselLoading">
+                <i class="fas fa-spinner"></i> Carregando destaques...
             </div>
-            <div class="group-content">
-              <ul class="theme-list">${itemsHtml}</ul>
+        </div>
+        <div class="carousel-indicators" id="carouselIndicatorsContainer"></div>
+    </section>
+    <!-- ========== FIM DO FRAME ========== -->
+
+    <main class="container">
+        <section class="hero">
+            <span class="section-label">A Convergência entre o Pensamento Sistêmico e a Estética do Futuro.</span>
+            <h3 class="hero-title">A <span class="highlight-lucidez">lucidez</span> no caos da informação</h3>
+            <p style="font-family: var(--font-body); font-size: 1.1rem; color: var(--text-muted); max-width: 780px; margin: 0 auto;"></p>
+        </section>
+
+        <!-- PAINEL DE PRÉ‑VISUALIZAÇÃO -->
+        <section class="article-preview-panel hidden-section" id="articlePreviewPanel">
+            <div class="preview-container">
+                <div class="preview-sidebar">
+                    <h4 class="preview-label" id="sidebarLabel"><span id="currentEixoName">Política & Geopolítica</span></h4>
+                    <ul class="article-list" id="relatedArticlesList"></ul>
+                </div>
+                <div class="preview-main">
+                    <div class="preview-image" id="previewImage"><i class="fas fa-image" style="margin-right:8px;"></i> PautaZero</div>
+                    <div>
+                        <span class="preview-subtema" id="previewSubtema">Relações Internacionais</span>
+                        <h2 class="preview-title" id="previewTitle">A Nova Ordem Multipolar</h2>
+                        <p class="preview-excerpt" id="previewExcerpt">Análise das tensões geopolíticas, alianças estratégicas e o reposicionamento das potências médias na governança global.</p>
+                        <a href="#" class="preview-link" id="previewLink">Ler artigo completo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
-          `;
+        </section>
 
-          // Evento de toggle
-          group.querySelector('.group-header').addEventListener('click', () => group.classList.toggle('expanded'));
-          grid.appendChild(group);
-          groupsMap.set(eixo, group);
-        });
+        <!-- SEÇÃO DE NICHOS (EIXOS EXPANDIDOS) -->
+        <section class="niche-section hidden-section" id="nicheSection">
+            <span class="section-label" style="margin-bottom: 60px;">Exploração por Nichos</span>
+            <div class="niche-grid" id="nicheGrid"></div>
+            <!-- BUSCA POR COLUNISTA -->
+            <div class="colunista-search-wrapper">
+                <div class="colunista-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="colunistaInput" placeholder="Buscar por colunista" aria-label="Buscar colunista">
+                    <button id="colunistaSearchBtn" aria-label="Pesquisar"><i class="fas fa-arrow-right"></i></button>
+                    <button id="colunistaClearBtn" class="search-clear" aria-label="Limpar busca" style="display:none;"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        // Adiciona listeners nos links de temas
-        document.querySelectorAll('.theme-link').forEach(link => {
-          link.addEventListener('click', e => {
-            e.preventDefault();
-            if (searchActive) clearSearchMode();
-            showArticlePreview({
-              subtema: link.dataset.subtema,
-              eixo: link.dataset.eixo,
-              title: link.dataset.title,
-              url: link.dataset.url,
-              image: link.dataset.image,
-              excerpt: link.dataset.excerpt,
-              author: link.dataset.author
-            });
-          });
-        });
-      }
+    <!-- CARROSSEL DE MACRO EIXOS -->
+    <div class="macro-carousel hidden-section" id="macroCarousel">
+        <div class="carousel-track" id="carouselTrack"></div>
+    </div>
 
-      function updateCarousel() {
-        const activeEixos = [...eixosMap.keys()].filter(e => eixosMap.get(e).length > 0);
-        if (activeEixos.length === 0) {
-          carouselTrack.innerHTML = '<span style="opacity:0.5; font-style:italic; padding: 10px;">Nenhum eixo publicado ainda.</span>';
-          return;
-        }
-        const items = activeEixos.map(e => `<a class="macro-item" data-niche="${e}">${e}</a>`);
-        carouselTrack.innerHTML = items.concat(items).join('');
-        document.querySelectorAll('.macro-item').forEach(item => {
-          item.addEventListener('click', e => {
-            e.preventDefault();
-            const g = groupsMap.get(item.dataset.niche);
-            if (g) {
-              g.classList.add('expanded', 'highlight-expand');
-              setTimeout(() => g.classList.remove('highlight-expand'), 800);
-              g.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    <footer>
+        <div class="container">
+            <a href="/" class="footer-logo">Pauta<span>Zero</span></a>
+            <div class="footer-links">
+                <a href="manifesto.html">Manifesto</a>
+                <span class="privacy-toggle" id="privacyToggle">Política de Privacidade <i class="fas fa-chevron-down" style="font-size: 0.6rem; margin-left: 6px;"></i></span>
+                <a href="construcao.html">Para Assinantes</a>
+            </div>
+
+            <div id="privacyPanel" class="privacy-panel" style="display: none;">
+                <h4>MANIFESTO PautaZero · POLÍTICA DE PRIVACIDADE</h4>
+                <p><strong>clique nos títulos para expandir · Ambiente & Dados</strong></p>
+
+                <h4>Ambiente independente</h4>
+                <p>Este ambiente digital é mantido por responsável independente, atuando na produção de conteúdo informacional e analítico, comprometido com a proteção da privacidade e dos direitos fundamentais dos titulares de dados.</p>
+
+                <h4>Dados coletados</h4>
+                <p>Dados de navegação (IP anonimizado, cookies técnicos), informações enviadas voluntariamente por e-mail ou formulários. Nunca coletamos dados sensíveis sem consentimento explícito.</p>
+
+                <h4>Finalidade & LGPD</h4>
+                <p><strong>Finalidade:</strong> Melhorar a experiência, gerar estatísticas agregadas, responder contatos e garantir a segurança do site. Sem tratamento abusivo ou compartilhamento com terceiros não autorizados.</p>
+                <p><strong>Base legal (LGPD):</strong> Execução de legítimo interesse, cumprimento de obrigação legal e consentimento quando necessário. Respeitamos a Lei 13.709/2018 e os direitos dos titulares.</p>
+
+                <h4>Direitos & Contato</h4>
+                <p><strong>Seus direitos:</strong> Você pode acessar, retificar, eliminar, limitar ou portar seus dados a qualquer momento. Pedidos devem ser enviados ao e-mail abaixo.</p>
+                <p>Canal de atendimento ao titular: <a href="mailto:editorial.pautazero@outlook.com" style="color: var(--aged-gold); text-decoration: none;">editorial.pautazero@outlook.com</a> – Respondemos em até 15 dias úteis.</p>
+                <p>Esta política pode ser atualizada periodicamente. Consulte sempre a versão mais recente neste rodapé.</p>
+            </div>
+
+            <p class="copyright">&copy; 2026 PautaZero. TODOS OS DIREITOS RESERVADOS. DESIGN BY PAUTA ZERO.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const EIXOS_FIXOS = [
+                "Política & Geopolítica", "Segurança Total", "Sistema Prisional & Policial", "Políticas Públicas",
+                "Economia & Super Ricos", "Saúde Mental", "Psicopatia & Comportamento Extremo",
+                "Família & Alienação Parental",
+                "Crime & Investigação", "Saúde Mental em Contextos Extremos", "Negócios & Estratégia", "Visão Global",
+                "Impacto & Filantropia", "Histórias Reais", "Conteúdos Híbridos",
+                "Direito de Família e Saúde Mental",
+                "Justiça e Tecnologia", "Educação e Desigualdade", "Meio Ambiente e Conflitos",
+                "Direitos Humanos e Sistema de Justiça",
+                "Agronegócio, Logística e Transporte", "Saúde Física e Medicina", "Futurismo & Inovação",
+                "Religião, Cristianismo & Perseguições",
+                "Esportes, Futebol & Ídolos", "Nutrição & Pesquisa Alimentar"
+            ];
+
+            const grid = document.getElementById('nicheGrid');
+            const groupsMap = new Map();
+            const previewPanel = document.getElementById('articlePreviewPanel');
+            const sidebarLabel = document.getElementById('sidebarLabel');
+            const relatedArticlesList = document.getElementById('relatedArticlesList');
+            const previewSubtema = document.getElementById('previewSubtema');
+            const previewTitle = document.getElementById('previewTitle');
+            const previewExcerpt = document.getElementById('previewExcerpt');
+            const previewImage = document.getElementById('previewImage');
+            const previewLink = document.getElementById('previewLink');
+            const carouselTrack = document.getElementById('carouselTrack');
+            const colunistaInput = document.getElementById('colunistaInput');
+            const searchBtn = document.getElementById('colunistaSearchBtn');
+            const clearBtn = document.getElementById('colunistaClearBtn');
+
+            // Novos elementos do carrossel de imagens
+            const imageCarouselContainer = document.getElementById('imageCarouselContainer');
+            const carouselLoading = document.getElementById('carouselLoading');
+            const carouselIndicatorsContainer = document.getElementById('carouselIndicatorsContainer');
+
+            let articles = [];
+            let eixosMap = new Map();
+            let searchActive = false;
+
+            // Estado do carrossel de imagens
+            let heroSlides = [];
+            let currentHeroSlide = 0;
+            let heroCarouselInterval = null;
+            const HERO_SLIDE_DURATION = 6000; // 6 segundos — bem vagaroso
+
+            function normalizeUrl(url) {
+                if (!url) return "";
+                url = String(url).trim();
+                if (!url.startsWith("/")) url = "/" + url;
+                return url.replace(/\.html$/, "").toLowerCase();
             }
-          });
-        });
-      }
 
-      function showArticlePreview(data) {
-        searchActive = false;
-        clearBtn.style.display = 'none';
-        sidebarLabel.innerHTML = `<span id="currentEixoName">${data.eixo}</span>`;
-        previewSubtema.textContent = (data.subtema || '').replace(/-/g, ' ');
-        previewTitle.textContent = data.title || "Título";
-        previewExcerpt.textContent = data.excerpt || "";
-        if (data.image && data.image !== "") {
-          previewImage.style.backgroundImage = `url(${data.image})`;
-          previewImage.innerHTML = '';
-        } else {
-          previewImage.style.backgroundImage = 'none';
-          previewImage.innerHTML = '<i class="fas fa-image"></i> PautaZero';
-        }
-        previewLink.href = encodeURI(data.url || '#');
+            function normalizeArticle(art) {
+                return {
+                    title: art.title || art.titulo || "Sem título",
+                    category: art.category || art.eixo || "Geral",
+                    url: normalizeUrl(art.url || art.caminhoHTML || ""),
+                    image: art.image || (art.capa && art.capa.principal) || "",
+                    tema: art.tema || art.subtema || "",
+                    excerpt: art.excerpt || art.resumo || "",
+                    author: art.autor || art.author || art.colunista || (art.autoria && art.autoria.nome) ||
+                        "Colunista desconhecido"
+                };
+            }
 
-        const relacionados = (eixosMap.get(data.eixo) || []).filter(a => normalizeUrl(a.url) !== normalizeUrl(data.url)).slice(0,5);
-        relatedArticlesList.innerHTML = relacionados.map(a => {
-          const temaNome = a.tema || a.subtema || a.title.toLowerCase().replace(/\s+/g, '-');
-          return `<li class="article-list-item" data-subtema="${temaNome}" data-eixo="${a.category}" data-url="${a.url}" data-title="${a.title.replace(/"/g, '&quot;')}" data-image="${a.image}" data-excerpt="${a.excerpt.replace(/"/g, '&quot;')}">
-                    <div class="list-item-title">${a.title}</div>
-                    <div class="list-item-meta">${temaNome.replace(/-/g, ' ')}</div>
-                  </li>`;
-        }).join('');
+           async function loadArticles() {
+  const API_URL = 'artigos.avizaecosystem.workers.dev/api/articles';
+  try {
+    const res = await fetch(API_URL);
+    if (res.ok) {
+      const raw = await res.json();
+      console.log('✅ Artigos carregados via KV');
+      return raw.map(normalizeArticle);
+    }
+    throw new Error('API offline');
+  } catch (apiError) {
+    console.warn('⚠️ KV offline, tentando data.json...');
+    try {
+      const res = await fetch("./data.json");
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const raw = data.artigos || data.articles || [];
+      return raw.map(normalizeArticle);
+    } catch (jsonError) {
+      console.warn('⚠️ Nenhuma fonte disponível.');
+      return [];
+    }
+  }
+}
 
-        document.querySelectorAll('.article-list-item').forEach(item => {
-          item.addEventListener('click', () => {
-            showArticlePreview({
-              subtema: item.dataset.subtema,
-              eixo: item.dataset.eixo,
-              title: item.dataset.title,
-              url: item.dataset.url,
-              image: item.dataset.image,
-              excerpt: item.dataset.excerpt,
-              author: item.dataset.author
+            function buildEixosMap(arts) {
+                const map = new Map();
+                EIXOS_FIXOS.forEach(e => map.set(e, []));
+                arts.forEach(a => {
+                    const cat = a.category || "Geral";
+                    if (!map.has(cat)) map.set(cat, []);
+                    map.get(cat).push(a);
+                });
+                return map;
+            }
+
+            // ========== NOVO: CONSTRUIR CARROSSEL DE IMAGENS ==========
+            function buildHeroCarousel() {
+                // Filtra apenas artigos que possuem imagem
+                const artsWithImages = articles.filter(a => a.image && a.image.trim() !== '');
+                if (artsWithImages.length === 0) {
+                    // Fallback: criar slides com placeholder se não houver imagens
+                    heroSlides = [{
+                        image: '',
+                        tema: 'PautaZero',
+                        title: 'Aguardando conteúdos',
+                        url: '/',
+                        isPlaceholder: true
+                    }];
+                } else {
+                    // Embaralha levemente para não ficar sempre a mesma ordem, mas mantendo consistência
+                    const shuffled = [...artsWithImages].sort(() => Math.random() - 0.5);
+                    heroSlides = shuffled.slice(0, Math.min(8, shuffled.length)).map(a => ({
+                        image: a.image,
+                        tema: a.category || a.tema || 'Destaque',
+                        title: a.title,
+                        url: a.url || '/',
+                        isPlaceholder: false
+                    }));
+                }
+                currentHeroSlide = 0;
+                renderHeroCarousel();
+            }
+
+            function renderHeroCarousel() {
+                // Remove loading
+                if (carouselLoading) carouselLoading.style.display = 'none';
+
+                // Limpa slides existentes
+                const existingSlides = imageCarouselContainer.querySelectorAll('.carousel-slide');
+                existingSlides.forEach(s => s.remove());
+
+                // Cria slides
+                heroSlides.forEach((slide, index) => {
+                    const slideEl = document.createElement('a');
+                    slideEl.href = slide.url;
+                    slideEl.className = 'carousel-slide';
+                    if (index === currentHeroSlide) slideEl.classList.add('active');
+                    slideEl.setAttribute('data-index', index);
+                    slideEl.setAttribute('aria-label', slide.tema + ' - ' + slide.title);
+
+                    if (slide.image) {
+                        slideEl.style.backgroundImage = 'url(' + slide.image + ')';
+                    } else {
+                        // Placeholder visual com gradiente
+                        slideEl.style.background =
+                            'linear-gradient(135deg, #0a3147 0%, #1a4b6d 50%, #0a3147 100%)';
+                    }
+
+                    // Marca d'água do tema
+                    const watermark = document.createElement('div');
+                    watermark.className = 'slide-watermark';
+                    watermark.innerHTML = `
+                <span class="watermark-tema">${slide.tema.replace(/-/g, ' ')}</span>
+                <span class="watermark-title">${slide.title}</span>
+              `;
+                    slideEl.appendChild(watermark);
+
+                    // CTA hint sutil
+                    const cta = document.createElement('div');
+                    cta.className = 'slide-cta-hint';
+                    cta.innerHTML = 'Ler artigo <i class="fas fa-arrow-right"></i>';
+                    slideEl.appendChild(cta);
+
+                    // Clique no slide inteiro já navega (é um <a>)
+                    imageCarouselContainer.appendChild(slideEl);
+                });
+
+                // Renderiza indicadores (bolinhas/losangos)
+                renderCarouselIndicators();
+
+                // Inicia rotação automática
+                startHeroCarouselAuto();
+            }
+
+            function renderCarouselIndicators() {
+                carouselIndicatorsContainer.innerHTML = '';
+                heroSlides.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot';
+                    if (index === currentHeroSlide) dot.classList.add('active');
+                    dot.setAttribute('aria-label', 'Ir para slide ' + (index + 1));
+                    dot.addEventListener('click', () => {
+                        goToHeroSlide(index);
+                        resetHeroCarouselAuto();
+                    });
+                    carouselIndicatorsContainer.appendChild(dot);
+                });
+            }
+
+            function goToHeroSlide(index) {
+                if (index === currentHeroSlide) return;
+                const slides = imageCarouselContainer.querySelectorAll('.carousel-slide');
+                if (slides.length === 0) return;
+
+                // Remove active do slide atual
+                slides[currentHeroSlide]?.classList.remove('active');
+                // Adiciona active ao novo slide
+                slides[index]?.classList.add('active');
+
+                currentHeroSlide = index;
+
+                // Atualiza indicadores
+                const dots = carouselIndicatorsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((d, i) => {
+                    d.classList.toggle('active', i === currentHeroSlide);
+                });
+            }
+
+            function nextHeroSlide() {
+                const next = (currentHeroSlide + 1) % heroSlides.length;
+                goToHeroSlide(next);
+            }
+
+            function startHeroCarouselAuto() {
+                stopHeroCarouselAuto();
+                heroCarouselInterval = setInterval(nextHeroSlide, HERO_SLIDE_DURATION);
+            }
+
+            function stopHeroCarouselAuto() {
+                if (heroCarouselInterval) {
+                    clearInterval(heroCarouselInterval);
+                    heroCarouselInterval = null;
+                }
+            }
+
+            function resetHeroCarouselAuto() {
+                stopHeroCarouselAuto();
+                startHeroCarouselAuto();
+            }
+
+            // Pausa rotação quando o mouse está sobre o carrossel
+            imageCarouselContainer.addEventListener('mouseenter', stopHeroCarouselAuto);
+            imageCarouselContainer.addEventListener('mouseleave', startHeroCarouselAuto);
+
+            // Suporte a touch para dispositivos móveis (swipe básico)
+            let touchStartX = 0;
+            let touchEndX = 0;
+            imageCarouselContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopHeroCarouselAuto();
+            }, { passive: true });
+            imageCarouselContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        // swipe left -> próximo
+                        nextHeroSlide();
+                    } else {
+                        // swipe right -> anterior
+                        const prev = (currentHeroSlide - 1 + heroSlides.length) % heroSlides.length;
+                        goToHeroSlide(prev);
+                    }
+                }
+                startHeroCarouselAuto();
+            }, { passive: true });
+            // ========== FIM DO CARROSSEL DE IMAGENS ==========
+
+            // ========== MODIFICAÇÃO CIRÚRGICA 1: RENDERIZAR APENAS EIXOS COM CONTEÚDO ==========
+            function renderNicheGroups() {
+                grid.innerHTML = '';
+                groupsMap.clear();
+                const sorted = [...eixosMap.keys()].sort((a, b) => {
+                    const ia = EIXOS_FIXOS.indexOf(a),
+                        ib = EIXOS_FIXOS.indexOf(b);
+                    if (ia === -1 && ib === -1) return a.localeCompare(b);
+                    if (ia === -1) return 1;
+                    if (ib === -1) return -1;
+                    return ia - ib;
+                });
+
+                sorted.forEach(eixo => {
+                    const temas = eixosMap.get(eixo) || [];
+                    if (temas.length === 0) return;
+
+                    const group = document.createElement('div');
+                    group.className = 'niche-group';
+
+                    const itemsHtml = temas.map(art => {
+                        const subtemaNome = art.tema || art.subtema || art.title.toLowerCase()
+                            .replace(/\s+/g, '-');
+                        return '<li class="theme-item"><span class="theme-link" data-subtema="' + subtemaNome +
+                            '" data-eixo="' + eixo + '" data-url="' + art.url + '" data-title="' + art.title
+                            .replace(/"/g, '&quot;') + '" data-image="' + art.image + '" data-excerpt="' + art
+                            .excerpt.replace(/"/g, '&quot;') + '" data-author="' + (art.author || '').replace(
+                                /"/g, '&quot;') + '">' + subtemaNome.replace(/-/g, ' ') + '</span></li>';
+                    }).join('') || '<li class="theme-item" style="opacity:0.5;">Nenhum artigo</li>';
+
+                    group.innerHTML =
+                        '<div class="group-header"><h3 class="group-title">' + eixo +
+                        '</h3><i class="fas fa-chevron-down"></i></div><div class="group-content"><ul class="theme-list">' +
+                        itemsHtml + '</ul></div>';
+                    group.querySelector('.group-header').addEventListener('click', () => group.classList.toggle(
+                        'expanded'));
+                    grid.appendChild(group);
+                    groupsMap.set(eixo, group);
+                });
+
+                document.querySelectorAll('.theme-link').forEach(link => link.addEventListener('click', e => {
+                    e.preventDefault();
+                    if (searchActive) clearSearchMode();
+                    showArticlePreview({
+                        subtema: link.dataset.subtema,
+                        eixo: link.dataset.eixo,
+                        title: link.dataset.title,
+                        url: link.dataset.url,
+                        image: link.dataset.image,
+                        excerpt: link.dataset.excerpt,
+                        author: link.dataset.author
+                    });
+                }));
+            }
+            // ========== FIM DA MODIFICAÇÃO 1 ==========
+
+            function showArticlePreview(data) {
+                searchActive = false;
+                clearBtn.style.display = 'none';
+                sidebarLabel.innerHTML = `<span id="currentEixoName">${data.eixo}</span>`;
+                previewSubtema.textContent = (data.subtema || '').replace(/-/g, ' ');
+                previewTitle.textContent = data.title || "Título";
+                previewExcerpt.textContent = data.excerpt || "";
+                if (data.image) {
+                    previewImage.style.backgroundImage = 'url(' + data.image + ')';
+                    previewImage.innerHTML = '';
+                } else {
+                    previewImage.style.backgroundImage = 'none';
+                    previewImage.innerHTML = '<i class="fas fa-image"></i> PautaZero';
+                }
+                previewLink.href = encodeURI(data.url || '#');
+                const relacionados = (eixosMap.get(data.eixo) || []).filter(a => normalizeUrl(a.url) !== normalizeUrl(
+                    data.url)).slice(0, 5);
+                relatedArticlesList.innerHTML = relacionados.map(a => {
+                    const temaNome = a.tema || a.subtema || a.title.toLowerCase().replace(/\s+/g, '-');
+                    return '<li class="article-list-item" data-subtema="' + temaNome + '" data-eixo="' + a.category +
+                        '" data-url="' + a.url + '" data-title="' + a.title.replace(/"/g, '&quot;') +
+                        '" data-image="' + a.image + '" data-excerpt="' + a.excerpt.replace(/"/g, '&quot;') + '"><div class="list-item-title">' +
+                        a.title + '</div><div class="list-item-meta">' + temaNome.replace(/-/g, ' ') +
+                        '</div></li>';
+                }).join('');
+                document.querySelectorAll('.article-list-item').forEach(item => item.addEventListener('click', () =>
+                    showArticlePreview({
+                        subtema: item.dataset.subtema,
+                        eixo: item.dataset.eixo,
+                        title: item.dataset.title,
+                        url: item.dataset.url,
+                        image: item.dataset.image,
+                        excerpt: item.dataset.excerpt,
+                        author: item.dataset.author
+                    })));
+                previewPanel.classList.remove('hidden-section');
+                previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            function performSearch() {
+                const query = colunistaInput.value.trim().toLowerCase();
+                if (!query) { clearSearchMode(); return; }
+                const results = articles.filter(art => art.author.toLowerCase().includes(query));
+                searchActive = true;
+                clearBtn.style.display = 'inline-block';
+                sidebarLabel.innerHTML = `<span>Resultados para "<em>${query}</em>"</span>`;
+                if (results.length === 0) {
+                    relatedArticlesList.innerHTML =
+                        '<li class="no-results-message">Nenhum artigo encontrado.</li>';
+                    previewSubtema.textContent = '';
+                    previewTitle.textContent = 'Busca por colunista';
+                    previewExcerpt.textContent = 'Nenhum resultado.';
+                    previewImage.style.backgroundImage = 'none';
+                    previewImage.innerHTML = '<i class="fas fa-search"></i> Sem resultados';
+                    previewLink.href = '#';
+                } else {
+                    const first = results[0];
+                    previewSubtema.textContent = first.author;
+                    previewTitle.textContent = first.title;
+                    previewExcerpt.textContent = first.excerpt || '';
+                    if (first.image) {
+                        previewImage.style.backgroundImage = 'url(' + first.image + ')';
+                        previewImage.innerHTML = '';
+                    } else {
+                        previewImage.style.backgroundImage = 'none';
+                        previewImage.innerHTML = '<i class="fas fa-image"></i> PautaZero';
+                    }
+                    previewLink.href = first.url || '#';
+                    relatedArticlesList.innerHTML = results.map(art =>
+                        `<li class="article-list-item" data-url="${art.url}" data-title="${art.title.replace(/"/g, '&quot;')}" data-image="${art.image}" data-excerpt="${art.excerpt.replace(/"/g, '&quot;')}" data-author="${art.author.replace(/"/g, '&quot;')}" data-eixo="${art.category}"><div class="list-item-title">${art.title}</div><div class="list-item-meta">${art.author} · ${art.category}</div></li>`
+                    ).join('');
+                    document.querySelectorAll('.article-list-item').forEach(item => item.addEventListener('click',
+                        () => {
+                            clearSearchMode();
+                            showArticlePreview({
+                                subtema: item.dataset.author,
+                                eixo: item.dataset.eixo,
+                                title: item.dataset.title,
+                                url: item.dataset.url,
+                                image: item.dataset.image,
+                                excerpt: item.dataset.excerpt,
+                                author: item.dataset.author
+                            });
+                        }));
+                }
+                previewPanel.classList.remove('hidden-section');
+                previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            function clearSearchMode() { searchActive = false;
+                colunistaInput.value = '';
+                clearBtn.style.display = 'none'; }
+
+            // ========== MODIFICAÇÃO CIRÚRGICA 2: CARROSSEL COM TODOS OS EIXOS ATIVOS ==========
+            function updateCarousel() {
+                const activeEixos = [...eixosMap.keys()].filter(eixo => {
+                    const temas = eixosMap.get(eixo);
+                    return temas && temas.length > 0;
+                }).sort((a, b) => {
+                    const ia = EIXOS_FIXOS.indexOf(a);
+                    const ib = EIXOS_FIXOS.indexOf(b);
+                    if (ia !== -1 && ib !== -1) return ia - ib;
+                    if (ia !== -1) return -1;
+                    if (ib !== -1) return 1;
+                    return a.localeCompare(b);
+                });
+
+                if (activeEixos.length === 0) {
+                    carouselTrack.innerHTML =
+                        '<span style="opacity:0.5; font-style:italic; padding: 10px;">Nenhum eixo publicado ainda.</span>';
+                    return;
+                }
+
+                const items = activeEixos.map(e => '<a href="#" class="macro-item" data-niche="' + e + '">' + e +
+                    '</a>');
+                carouselTrack.innerHTML = items.concat(items).join('');
+
+                document.querySelectorAll('.macro-item').forEach(item => {
+                    item.addEventListener('click', e => {
+                        e.preventDefault();
+                        const g = groupsMap.get(item.dataset.niche);
+                        if (g) {
+                            g.classList.add('expanded', 'highlight-expand');
+                            setTimeout(() => g.classList.remove('highlight-expand'), 800);
+                            g.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    });
+                });
+            }
+            // ========== FIM DA MODIFICAÇÃO 2 ==========
+
+            async function init() {
+                articles = await loadArticles();
+                eixosMap = buildEixosMap(articles);
+
+                // Constrói o carrossel de imagens hero
+                buildHeroCarousel();
+
+                renderNicheGroups();
+                updateCarousel();
+
+                const privacyToggle = document.getElementById('privacyToggle');
+                const privacyPanel = document.getElementById('privacyPanel');
+                const icon = privacyToggle.querySelector('i');
+                privacyToggle.addEventListener('click', () => {
+                    const hidden = privacyPanel.style.display === 'none';
+                    privacyPanel.style.display = hidden ? 'block' : 'none';
+                    icon.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)';
+                });
+
+                searchBtn.addEventListener('click', performSearch);
+                colunistaInput.addEventListener('keypress', e => {
+                    if (e.key === 'Enter') { e.preventDefault();
+                        performSearch(); }
+                });
+                clearBtn.addEventListener('click', clearSearchMode);
+
+                document.getElementById('nicheSection').classList.remove('hidden-section');
+                document.getElementById('macroCarousel').classList.remove('hidden-section');
+            }
+
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted) { init(); }
             });
-          });
-        });
 
-        previewPanel.classList.remove('hidden-section');
-        previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-
-      function performSearch() {
-        const query = colunistaInput.value.trim().toLowerCase();
-        if (!query) { clearSearchMode(); return; }
-        const results = articles.filter(art => art.author.toLowerCase().includes(query));
-        searchActive = true;
-        clearBtn.style.display = 'inline-block';
-        sidebarLabel.innerHTML = `<span>Resultados para "<em>${query}</em>"</span>`;
-
-        if (results.length === 0) {
-          relatedArticlesList.innerHTML = '<li class="no-results-message">Nenhum artigo encontrado.</li>';
-          previewSubtema.textContent = '';
-          previewTitle.textContent = 'Busca por colunista';
-          previewExcerpt.textContent = 'Nenhum resultado.';
-          previewImage.style.backgroundImage = 'none';
-          previewImage.innerHTML = '<i class="fas fa-search"></i> Sem resultados';
-          previewLink.href = '#';
-        } else {
-          const first = results[0];
-          previewSubtema.textContent = first.author;
-          previewTitle.textContent = first.title;
-          previewExcerpt.textContent = first.excerpt || '';
-          if (first.image && first.image !== "") {
-            previewImage.style.backgroundImage = `url(${first.image})`;
-            previewImage.innerHTML = '';
-          } else {
-            previewImage.style.backgroundImage = 'none';
-            previewImage.innerHTML = '<i class="fas fa-image"></i> PautaZero';
-          }
-          previewLink.href = first.url || '#';
-          relatedArticlesList.innerHTML = results.map(art => `<li class="article-list-item" data-url="${art.url}" data-title="${art.title.replace(/"/g, '&quot;')}" data-image="${art.image}" data-excerpt="${art.excerpt.replace(/"/g, '&quot;')}" data-author="${art.author.replace(/"/g, '&quot;')}" data-eixo="${art.category}">
-            <div class="list-item-title">${art.title}</div>
-            <div class="list-item-meta">${art.author} · ${art.category}</div>
-          </li>`).join('');
-          document.querySelectorAll('.article-list-item').forEach(item => {
-            item.addEventListener('click', () => {
-              clearSearchMode();
-              showArticlePreview({
-                subtema: item.dataset.author,
-                eixo: item.dataset.eixo,
-                title: item.dataset.title,
-                url: item.dataset.url,
-                image: item.dataset.image,
-                excerpt: item.dataset.excerpt,
-                author: item.dataset.author
-              });
-            });
-          });
-        }
-        previewPanel.classList.remove('hidden-section');
-        previewPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-
-      function clearSearchMode() {
-        searchActive = false;
-        colunistaInput.value = '';
-        clearBtn.style.display = 'none';
-        // Opcional: recarregar a pré-visualização padrão (primeiro artigo do primeiro eixo)
-        if (articles.length > 0 && eixosMap.size > 0) {
-          const primeiroEixo = [...eixosMap.keys()][0];
-          const primeiroArtigo = eixosMap.get(primeiroEixo)[0];
-          if (primeiroArtigo) {
-            showArticlePreview({
-              subtema: primeiroArtigo.tema || primeiroArtigo.subtema || "",
-              eixo: primeiroEixo,
-              title: primeiroArtigo.title,
-              url: primeiroArtigo.url,
-              image: primeiroArtigo.image,
-              excerpt: primeiroArtigo.excerpt,
-              author: primeiroArtigo.author
-            });
-          }
-        }
-      }
-
-      async function init() {
-        articles = await loadArticles();
-        eixosMap = buildEixosMap(articles);
-        renderNicheGroups();
-        updateCarousel();
-
-        const privacyToggle = document.getElementById('privacyToggle');
-        const privacyPanel = document.getElementById('privacyPanel');
-        const icon = privacyToggle.querySelector('i');
-        privacyToggle.addEventListener('click', () => {
-          const hidden = privacyPanel.style.display === 'none';
-          privacyPanel.style.display = hidden ? 'block' : 'none';
-          icon.style.transform = hidden ? 'rotate(180deg)' : 'rotate(0deg)';
-        });
-
-        searchBtn.addEventListener('click', performSearch);
-        colunistaInput.addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } });
-        clearBtn.addEventListener('click', clearSearchMode);
-
-        document.getElementById('nicheSection').classList.remove('hidden-section');
-        document.getElementById('macroCarousel').classList.remove('hidden-section');
-
-        // Se houver artigos, mostrar preview do primeiro automaticamente
-        if (articles.length > 0 && eixosMap.size > 0) {
-          const primeiroEixo = [...eixosMap.keys()][0];
-          const primeiroArtigo = eixosMap.get(primeiroEixo)[0];
-          if (primeiroArtigo) {
-            showArticlePreview({
-              subtema: primeiroArtigo.tema || primeiroArtigo.subtema || "",
-              eixo: primeiroEixo,
-              title: primeiroArtigo.title,
-              url: primeiroArtigo.url,
-              image: primeiroArtigo.image,
-              excerpt: primeiroArtigo.excerpt,
-              author: primeiroArtigo.author
-            });
-          }
-        }
-      }
-
-      // Recupera estado ao voltar da página (bfcache)
-      window.addEventListener('pageshow', function(event) {
-        if (event.persisted) { init(); }
-      });
-      
-      init();
-    })();
-  </script>
+            init();
+        })();
+    </script>
 </body>
 </html>
