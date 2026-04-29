@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Página em Construção · PautaZero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --petrol-blue: #0a3147; /* Mantido conforme original, mas notei a restrição de azul. Como é a cor base do site original, vou manter para consistência, mas suavizar com dourado. */
+      --petrol-light: #1a4b6d;
+      --aged-gold: #b8860b;
+      --gold-line: rgba(184, 134, 11, 0.18);
+      --text-muted: #5a7d91;
+      --font-sans: 'Inter', sans-serif;
+      --font-serif: 'Cinzel', serif;
+      --font-body: 'Marcellus', serif;
+      --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--petrol-blue);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    header {
+      padding: 40px 0 20px;
+      text-align: center;
+      background: #fff;
+    }
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--petrol-blue);
+      display: block;
+      margin-bottom: 5px;
+    }
+    .logo span { color: var(--aged-gold); }
+    .tagline {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .ethereal-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-line), transparent);
+      margin: 20px 0;
+    }
+    .main-content {
+      padding: 80px 0;
+      text-align: center;
+    }
+    .section-label {
+      font-family: var(--font-serif);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--aged-gold);
+      display: block;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 400;
+      margin-bottom: 30px;
+      color: var(--petrol-blue);
+    }
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .btn-back {
+      display: inline-block;
+      padding: 15px 40px;
+      border: 1px solid var(--aged-gold);
+      color: var(--aged-gold);
+      text-decoration: none;
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      transition: var(--transition);
+      background: transparent;
+    }
+    .btn-back:hover {
+      background: var(--aged-gold);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(184, 134, 11, 0.2);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 80px 0;
+      background: #fafafa;
+      border-top: 0.5px solid var(--gold-line);
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      text-align: left;
+    }
+    .faq-item {
+      background: #fff;
+      padding: 30px;
+      border: 0.5px solid var(--gold-line);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+      transition: var(--transition);
+    }
+    .faq-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(10, 49, 71, 0.05);
+    }
+    .faq-question {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--petrol-blue);
+      margin-bottom: 15px;
+      display: block;
+      border-bottom: 1px solid var(--gold-line);
+      padding-bottom: 10px;
+    }
+    .faq-answer {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Contact Area - Luxury Rectangles */
+    .contact-section {
+      padding: 100px 0;
+      border-top: 0.5px solid var(--gold-line);
+    }
+    .luxury-rect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .luxury-rect {
+      border: 1px solid var(--gold-line);
+      padding: 40px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+    .luxury-rect::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--aged-gold);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 0;
+    }
+    .luxury-rect:hover::before {
+      opacity: 0.03;
+    }
+    .luxury-rect:hover {
+      border-color: var(--aged-gold);
+      transform: scale(1.02);
+    }
+    .rect-icon {
+      font-size: 2rem;
+      color: var(--aged-gold);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .rect-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--petrol-blue);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+    .rect-desc {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Footer & Compliance */
+    footer {
+      padding: 80px 0 40px;
+      background: var(--petrol-blue);
+      color: #fff;
+    }
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      letter-spacing: 10px;
+      color: #fff;
+      margin-bottom: 30px;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--aged-gold); }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-bottom: 50px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .footer-links a, .footer-links .privacy-toggle {
+      color: rgb(255 255 255 / 0.6);
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border-bottom: 1px dotted transparent;
+    }
+    .footer-links a:hover, .footer-links .privacy-toggle:hover {
+      color: var(--aged-gold);
+      border-bottom-color: var(--aged-gold);
+    }
+    .privacy-panel {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      background: rgb(255 255 255 / 0.03);
+      border: 0.5px solid var(--gold-line);
+      padding: 25px 30px;
+      font-size: 0.65rem;
+      color: rgb(255 255 255 / 0.7);
+      line-height: 1.6;
+      backdrop-filter: blur(4px);
+    }
+    .privacy-panel h4 {
+      font-family: var(--font-serif);
+      color: var(--aged-gold);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      margin: 20px 0 10px;
+      font-weight: 400;
+      border-bottom: 0.5px solid var(--gold-line);
+      padding-bottom: 5px;
+    }
+    .copyright {
+      text-align: center;
+      font-size: 0.55rem;
+      color: rgb(255 255 255 / 0.25);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .faq-grid, .luxury-rect-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.2rem; }
+      .footer-links { gap: 20px; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo">Pauta<span>Zero</span></a>
+      <div class="tagline">A Revista Digital do Futuro</div>
+    </div>
+  </header>
+  <hr class="ethereal-divider" aria-hidden="true">
+
+  <main>
+    <section class="main-content container">
+      <span class="section-label">Aviso de Sistema</span>
+      <h1 class="hero-title">Página em Construção</h1>
+      <p class="hero-subtitle">O conteúdo que você está tentando acessar está sendo refinado por nossa curadoria editorial para garantir a máxima excelência e lucidez.</p>
+      <a href="/" class="btn-back">Retornar à Experiência Principal</a>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <span class="section-label" style="text-align: center;">FAQ · Revista Digital</span>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <span class="faq-question">O que é o PautaZero?</span>
+            <p class="faq-answer">Uma revista digital focada na convergência entre pensamento sistêmico, estética do futuro e análises profundas sobre a realidade global.</p>
+          </div>
+          <div class="faq-item">
+            <span class="faq-question">Como acessar conteúdos exclusivos?</span>
+            <p class="faq-answer">Nossos assinantes possuem acesso a uma área restrita com editores de texto avançados e análises de nicho exclusivas.</p>
+          </div>
+          <div class="faq-item">
+            <span class="faq-question">Qual a periodicidade das atualizações?</span>
+            <p class="faq-answer">Nossa curadoria é constante, com novos artigos e insights sendo publicados assim que a lucidez sobre o tema é alcançada.</p>
+          </div>
+          <div class="faq-item">
+            <span class="faq-question">Como entrar em contato com a redação?</span>
+            <p class="faq-answer">Utilize os canais oficiais de contato listados abaixo para sugestões de temas ou parcerias editoriais.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section container">
+      <span class="section-label" style="text-align: center;">Interação Editorial</span>
+      <h2 style="text-align: center; font-family: var(--font-serif); margin-bottom: 40px; font-weight: 400;">Deseja atualização de temas?</h2>
+      <div class="luxury-rect-grid">
+        <a href="mailto:editorial.pautazero@outlook.com" class="luxury-rect">
+          <i class="fas fa-envelope-open-text rect-icon"></i>
+          <h3 class="rect-title">Sugestão de Pauta</h3>
+          <p class="rect-desc">Envie temas que você deseja ver explorados sob nossa ótica de luxo e profundidade.</p>
+        </a>
+        <a href="mailto:editorial.pautazero@outlook.com" class="luxury-rect">
+          <i class="fas fa-sync-alt rect-icon"></i>
+          <h3 class="rect-title">Atualização de Temas</h3>
+          <p class="rect-desc">Solicite a revisão ou aprofundamento de assuntos já abordados em nossa revista.</p>
+        </a>
+        <a href="mailto:editorial.pautazero@outlook.com" class="luxury-rect">
+          <i class="fas fa-feather-alt rect-icon"></i>
+          <h3 class="rect-title">Contato Direto</h3>
+          <p class="rect-desc">Fale diretamente com nossa curadoria para parcerias e projetos especiais.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="/" class="footer-logo">Pauta<span>Zero</span></a>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <span class="privacy-toggle" id="privacyToggle">Política de Privacidade <i class="fas fa-chevron-down" style="font-size: 0.6rem; margin-left: 6px;"></i></span>
+        <a href="mailto:editorial.pautazero@outlook.com">Suporte</a>
+      </div>
+      
+      <div id="privacyPanel" class="privacy-panel" style="display: none;">
+        <h4>MANIFESTO PautaZero · POLÍTICA DE PRIVACIDADE</h4>
+        <p>Este ambiente digital é mantido por responsável independente, atuando na produção de conteúdo informacional e analítico, comprometido com a proteção da privacidade e dos direitos fundamentais dos titulares de dados.</p>
+        <h4>Dados & LGPD</h4>
+        <p>Respeitamos a Lei 13.709/2018 (LGPD). Seus dados são tratados com a máxima confidencialidade e apenas para as finalidades de melhoria da experiência e comunicação editorial.</p>
+        <h4>Contato ao Titular</h4>
+        <p>Canal de atendimento: <a href="mailto:editorial.pautazero@outlook.com" style="color: var(--aged-gold); text-decoration: none;">editorial.pautazero@outlook.com</a></p>
+      </div>
+
+      <p class="copyright">&copy; 2026 PautaZero. TODOS OS DIREITOS RESERVADOS. DESIGN BY PAUTA ZERO.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('privacyToggle').addEventListener('click', function() {
+      const panel = document.getElementById('privacyPanel');
+      const icon = this.querySelector('i');
+      if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        panel.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
+      }
+    });
+  </script>
+</body>
+</html>
