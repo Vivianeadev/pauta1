@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato · PautaZero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --petrol-blue: #0a3147;
+      --petrol-light: #1a4b6d;
+      --aged-gold: #b8860b;
+      --gold-line: rgba(184, 134, 11, 0.18);
+      --text-muted: #5a7d91;
+      --font-sans: 'Inter', sans-serif;
+      --font-serif: 'Cinzel', serif;
+      --font-body: 'Marcellus', serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at center, #0a3147 0%, #061f2f 100%);
+      font-family: var(--font-sans);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Decoração de fundo (ondulações) */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, rgba(184,134,11,0.02) 0px, rgba(184,134,11,0.02) 1px, transparent 1px, transparent 10px);
+      pointer-events: none;
+    }
+
+    .contact-wrapper {
+      position: relative;
+      z-index: 2;
+      background: #ffffff;
+      border: 1px solid var(--gold-line);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(184, 134, 11, 0.15);
+      max-width: 560px;
+      width: 100%;
+      padding: 3rem 2.5rem 2.5rem;
+      border-radius: 2px;
+      animation: slideUp 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 2.5rem;
+      transition: color 0.3s;
+    }
+    .back-home:hover {
+      color: var(--aged-gold);
+    }
+    .back-home i {
+      font-size: 0.8rem;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 8px;
+      color: var(--petrol-blue);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .logo span {
+      color: var(--aged-gold);
+      font-weight: 700;
+    }
+
+    .contact-header h2 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.8rem;
+      letter-spacing: 4px;
+      color: var(--petrol-blue);
+      margin-bottom: 0.25rem;
+    }
+    .contact-header h2 span {
+      color: var(--aged-gold);
+      font-weight: 700;
+    }
+    .contact-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: var(--aged-gold);
+      opacity: 0.7;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .field {
+      position: relative;
+    }
+    .field label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--gold-line);
+      transition: border-color 0.3s;
+    }
+    .input-wrapper:focus-within {
+      border-bottom-color: var(--aged-gold);
+    }
+    .input-wrapper i {
+      color: var(--aged-gold);
+      opacity: 0.5;
+      margin-right: 0.9rem;
+      font-size: 1rem;
+      transition: opacity 0.3s;
+    }
+    .input-wrapper:focus-within i {
+      opacity: 1;
+    }
+    .input-wrapper input,
+    .input-wrapper textarea {
+      border: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--petrol-blue);
+      padding: 0.6rem 0;
+      width: 100%;
+      outline: none;
+      letter-spacing: 0.5px;
+    }
+    .input-wrapper textarea {
+      resize: none;
+      line-height: 1.7;
+    }
+    .input-wrapper input::placeholder,
+    .input-wrapper textarea::placeholder {
+      color: #aab7c0;
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      border: 1px solid var(--aged-gold);
+      background: transparent;
+      color: var(--aged-gold);
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      padding: 15px 22px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      margin-top: 0.8rem;
+    }
+    .submit-btn:hover {
+      background: var(--aged-gold);
+      color: #ffffff;
+      gap: 20px;
+    }
+    .submit-btn i {
+      transition: transform 0.3s;
+    }
+    .submit-btn:hover i {
+      transform: translateX(4px);
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: var(--aged-gold);
+      font-size: 0.85rem;
+      margin-top: 1.2rem;
+      animation: fadeIn 0.6s ease;
+      line-height: 1.6;
+    }
+    .success-message i {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .contact-footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-top: 1px dotted var(--gold-line);
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-wrapper">
+    <a href="/" class="back-home"><i class="fas fa-arrow-left"></i> Voltar para a home</a>
+
+    <div class="contact-header">
+      <a href="/" class="logo">Pauta<span>Zero</span></a>
+      <h2>Fale <span>Conosco</span></h2>
+      <div class="contact-subtitle">Sua voz merece ser ouvida com elegância</div>
+    </div>
+
+    <form id="contactForm" class="contact-form">
+      <div class="field">
+        <label for="email">E‑mail</label>
+        <div class="input-wrapper">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder="seu@email.com" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="message">Mensagem</label>
+        <div class="input-wrapper">
+          <i class="fas fa-pen-fancy"></i>
+          <textarea id="message" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">
+        Enviar mensagem
+        <i class="fas fa-paper-plane"></i>
+      </button>
+      <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        Mensagem enviada com sucesso!<br>
+        Responderemos em até 15 dias úteis.
+      </div>
+    </form>
+
+    <div class="contact-footer">
+      editorial.pautazero@outlook.com
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const form = document.getElementById('contactForm');
+      const successMsg = document.getElementById('successMessage');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Simulação de envio (substituir por fetch para uma API real)
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+
+        // Opcional: reexibir o formulário após alguns segundos
+        setTimeout(() => {
+          successMsg.style.display = 'none';
+          form.style.display = 'flex';
+          form.reset();
+        }, 4500);
+      });
+    })();
+  </script>
+</body>
+</html>
