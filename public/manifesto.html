@@ -14,345 +14,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* ========== ESTILOS COMPLETOS (PRESERVADOS) ========== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --color-primary: #0a3147; --color-primary-light: #1a4b6d; --gold-primary: #D4AF37;
-      --gold-secondary: #F4E4B8; --gold-dark: #B8860B; --color-dark: #1A1A1A;
-      --color-text: #1e2a3a; --color-text-light: #2c3e4e; --color-bg: #fefaf5;
-      --color-bg-card: #ffffff; --border-light: 1px solid rgba(212, 175, 55, 0.25);
-      --shadow-luxury: 0 20px 35px -12px rgba(10, 49, 71, 0.12);
-      --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);
-      --gradient-gold-subtle: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(244, 228, 184, 0.05) 100%);
-      --font-serif: 'Cinzel', serif; --font-sans: 'Inter', sans-serif; --font-body: 'Marcellus', serif;
-    }
-    body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 0.95rem; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 36px; }
-    h1, h2, h3, h4, .logo, .section-title { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
-    h2 { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 500; color: var(--color-primary); border-bottom: 2px solid rgba(212, 175, 55, 0.35); display: inline-block; padding-bottom: 8px; }
-    .site-header { position: sticky; top: 0; background: rgba(255, 253, 250, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); z-index: 100; padding: 1rem 0; }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 0 36px; gap: 1rem; }
-    .logo-area { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-    .logo { font-size: 2rem; font-weight: 700; color: var(--color-primary); text-decoration: none; letter-spacing: 1px; }
-    .logo span { color: var(--gold-dark); font-weight: 500; }
-    .slogan { font-size: 0.7rem; font-family: var(--font-body); color: var(--gold-dark); text-transform: uppercase; letter-spacing: 2.5px; border-left: 1px solid rgba(212, 175, 55, 0.5); padding-left: 14px; }
-    .nav-hamburger { display: flex; align-items: center; gap: 1rem; }
-    .archive-btn, .return-home-btn { background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-primary); cursor: pointer; transition: 0.2s; text-decoration: none; }
-    .archive-btn:hover, .return-home-btn:hover { background: rgba(212, 175, 55, 0.25); border-color: var(--gold-primary); }
-    .return-home-btn { font-size: 0.85rem; width: auto; padding: 0 1rem; font-family: var(--font-serif); gap: 6px; text-decoration: none; }
-    .current-tab-name { font-family: var(--font-serif); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-dark); background: rgba(212, 175, 55, 0.08); padding: 0.4rem 1rem; border: 1px solid rgba(212, 175, 55, 0.3); white-space: nowrap; }
-    .archive-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 49, 71, 0.8); backdrop-filter: blur(6px); z-index: 1000; display: flex; align-items: center; justify-content: flex-end; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-    .archive-overlay.active { opacity: 1; visibility: visible; }
-    .archive-panel { background: var(--color-bg-card); width: 100%; max-width: 500px; height: 100%; right: 0; position: absolute; box-shadow: -5px 0 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.3s ease; border-left: 1px solid var(--gold-primary); }
-    .archive-overlay.active .archive-panel { transform: translateX(0); }
-    .archive-header { padding: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.2); display: flex; justify-content: space-between; align-items: center; background: white; }
-    .archive-header h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-primary); }
-    .archive-close { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--gold-dark); }
-    .archive-search { padding: 1rem 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.1); }
-    .archive-search input { width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(212,175,55,0.3); font-family: var(--font-sans); font-size: 0.9rem; background: white; outline: none; }
-    .archive-search input:focus { border-color: var(--gold-primary); }
-    .archive-list { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
-    .archive-item { background: var(--color-bg-card); border: 1px solid rgba(212,175,55,0.15); padding: 0.8rem 1rem; margin-bottom: 0.8rem; cursor: pointer; transition: all 0.2s; }
-    .archive-item:hover { border-color: var(--gold-primary); background: rgba(212,175,55,0.02); transform: translateX(3px); }
-    .archive-item-title { font-family: var(--font-serif); font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.2rem; }
-    .archive-item-meta { font-size: 0.65rem; color: var(--gold-dark); display: flex; gap: 1rem; margin-top: 0.2rem; }
-    .no-results { text-align: center; padding: 2rem; color: var(--color-text-light); font-style: italic; }
-    @media (max-width: 700px) {
-      .slogan { display: none; }
-      .current-tab-name { font-size: 0.75rem; padding: 0.3rem 0.8rem; }
-      .return-home-btn span { display: none; }
-      .return-home-btn { width: 44px; padding: 0; justify-content: center; }
-      .header-inner { padding: 0 20px; }
-      .archive-panel { max-width: 100%; }
-    }
-    main { padding: 3rem 0 5rem; }
-    .site-footer { border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem 0; color: var(--color-text-light); background: var(--color-bg); font-size: 0.75rem; }
-    .footer-legal { max-width: 1280px; margin: 1rem auto 0; padding: 1rem 36px 0; border-top: 1px solid rgba(212, 175, 55, 0.15); font-size: 0.65rem; line-height: 1.4; color: rgba(44, 62, 78, 0.6); text-align: center; letter-spacing: 0.3px; }
-    @media (max-width: 700px) { .footer-legal { padding: 0.8rem 20px 0; font-size: 0.6rem; } }
-
-    /* ========== LAYOUT DO MANIFESTO (CENTRALIZADO, SEM IMAGEM LATERAL) ========== */
-    .manifesto-container {
-      max-width: 880px;
-      margin: 0 auto;
-    }
-    .breadcrumb {
-      font-family: var(--font-sans);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--gold-dark);
-      margin-bottom: 2rem;
-    }
-    .breadcrumb a {
-      color: var(--color-text-light);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .breadcrumb a:hover {
-      color: var(--gold-primary);
-    }
-    .breadcrumb span {
-      color: var(--gold-dark);
-    }
-    .manifesto-title {
-      font-family: var(--font-serif);
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--color-primary);
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-    .title-gold-line {
-      width: 100px;
-      height: 3px;
-      background: var(--gradient-gold);
-      margin-bottom: 1.8rem;
-    }
-    .manifesto-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.8rem;
-      margin-bottom: 2rem;
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      color: var(--color-text-light);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-      padding-bottom: 1rem;
-    }
-    .manifesto-meta i {
-      color: var(--gold-dark);
-      margin-right: 6px;
-      width: 16px;
-    }
-    .manifesto-body {
-      font-family: var(--font-body);
-      font-size: 1.08rem;
-      line-height: 1.7;
-      color: var(--color-text);
-    }
-    .manifesto-body p {
-      margin-bottom: 1.5rem;
-    }
-    .manifesto-body h2 {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      color: var(--color-primary);
-      margin: 2.5rem 0 1rem;
-      border-bottom: none;
-      display: block;
-      padding-bottom: 0;
-      border-left: 3px solid var(--gold-primary);
-      padding-left: 1rem;
-    }
-    .manifesto-body h3 {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      color: var(--color-primary-light);
-      margin: 1.8rem 0 0.8rem;
-      font-weight: 500;
-    }
-    .manifesto-body blockquote {
-      margin: 2rem 0;
-      padding: 1.2rem 2rem;
-      background: var(--gradient-gold-subtle);
-      border-left: 4px solid var(--gold-primary);
-      font-style: italic;
-      font-family: var(--font-body);
-      color: var(--color-primary);
-      font-size: 1rem;
-    }
-    .manifesto-body .highlight {
-      background: rgba(212, 175, 55, 0.08);
-      padding: 0.2rem 0.4rem;
-      border-radius: 3px;
-      font-weight: 500;
-    }
-    .manifesto-body a {
-      color: var(--gold-dark);
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
-    }
-    .principles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    .principle-card {
-      background: var(--color-bg-card);
-      border: var(--border-light);
-      padding: 1.2rem;
-      transition: all 0.2s;
-    }
-    .principle-card i {
-      font-size: 1.8rem;
-      color: var(--gold-dark);
-      margin-bottom: 0.8rem;
-      display: inline-block;
-    }
-    .principle-card h4 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: var(--color-primary);
-    }
-    .principle-card p {
-      font-size: 0.85rem;
-      line-height: 1.5;
-      margin-bottom: 0;
-    }
-
-    /* ========== SEÇÃO DA DESENVOLVEDORA ========== */
-    .dev-section-divider {
-      margin: 4rem auto 2.5rem;
-      max-width: 880px;
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-    }
-    .dev-section-divider .line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
-    }
-    .dev-section-divider .ornament {
-      font-size: 0.7rem;
-      color: var(--gold-dark);
-      letter-spacing: 4px;
-      white-space: nowrap;
-      font-family: var(--font-serif);
-    }
-    .dev-signature-block {
-      max-width: 880px;
-      margin: 0 auto 3rem;
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      background: var(--color-bg-card);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      padding: 2rem 2.2rem;
-      box-shadow: 0 8px 28px -10px rgba(10, 49, 71, 0.08);
-    }
-    .dev-message {
-      flex: 1;
-    }
-    .dev-message .dev-label {
-      font-family: var(--font-sans);
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--gold-dark);
-      margin-bottom: 0.8rem;
-    }
-    .dev-message h3 {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      color: var(--color-primary);
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-      line-height: 1.25;
-    }
-    .dev-message p {
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      line-height: 1.6;
-      color: var(--color-text);
-      margin-bottom: 0.8rem;
-    }
-    .dev-message .dev-signature-name {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      color: var(--gold-dark);
-      margin-top: 1rem;
-      letter-spacing: 1px;
-    }
-    .dev-message .dev-signature-role {
-      font-family: var(--font-sans);
-      font-size: 0.7rem;
-      color: var(--color-text-light);
-      margin-top: 0.2rem;
-      letter-spacing: 1px;
-    }
-    .dev-photo-frame {
-      flex-shrink: 0;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 2px solid var(--gold-primary);
-      padding: 4px;
-      background: var(--gradient-gold-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.06);
-    }
-    .dev-photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      display: block;
-    }
-    .dev-photo-placeholder {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-dark);
-      font-size: 2.5rem;
-      transition: all 0.3s;
-    }
-    .dev-photo-frame:hover .dev-photo-placeholder {
-      background: rgba(212, 175, 55, 0.16);
-    }
-
-    @media (max-width: 700px) {
-      .dev-signature-block {
-        flex-direction: column-reverse;
-        text-align: center;
-        gap: 1.5rem;
-        padding: 1.5rem;
-      }
-      .dev-photo-frame {
-        width: 110px;
-        height: 110px;
-      }
-      .dev-message h3 {
-        font-size: 1.25rem;
-      }
-      .dev-section-divider .ornament {
-        font-size: 0.6rem;
-        letter-spacing: 2px;
-      }
-    }
+    *{margin:0;padding:0;box-sizing:border-box}:root{--color-primary:#0a3147;--color-primary-light:#1a4b6d;--gold-primary:#D4AF37;--gold-secondary:#F4E4B8;--gold-dark:#B8860B;--color-dark:#1A1A1A;--color-text:#1e2a3a;--color-text-light:#2c3e4e;--color-bg:#fefaf5;--color-bg-card:#ffffff;--border-light:1px solid rgba(212, 175, 55, 0.25);--shadow-luxury:0 20px 35px -12px rgba(10, 49, 71, 0.12);--gradient-gold:linear-gradient(135deg, #D4AF37 0%, #F4E4B8 50%, #B8860B 100%);--gradient-gold-subtle:linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(244, 228, 184, 0.05) 100%);--font-serif:'Cinzel', serif;--font-sans:'Inter', sans-serif;--font-body:'Marcellus', serif}body{background:var(--color-bg);color:var(--color-text);font-family:var(--font-sans);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:.95rem}.container{max-width:1280px;margin:0 auto;padding:0 36px}h1,h2,h3,h4,.logo,.section-title{font-family:var(--font-serif);font-weight:500;letter-spacing:-.01em}h2{font-size:2rem;margin-bottom:1.5rem;font-weight:500;color:var(--color-primary);border-bottom:2px solid rgb(212 175 55 / .35);display:inline-block;padding-bottom:8px}.site-header{position:sticky;top:0;background:rgb(255 253 250 / .96);backdrop-filter:blur(12px);border-bottom:1px solid rgb(212 175 55 / .2);z-index:100;padding:1rem 0}.header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:0 36px;gap:1rem}.logo-area{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}.logo{font-size:2rem;font-weight:700;color:var(--color-primary);text-decoration:none;letter-spacing:1px}.logo span{color:var(--gold-dark);font-weight:500}.slogan{font-size:.7rem;font-family:var(--font-body);color:var(--gold-dark);text-transform:uppercase;letter-spacing:2.5px;border-left:1px solid rgb(212 175 55 / .5);padding-left:14px}.nav-hamburger{display:flex;align-items:center;gap:1rem}.archive-btn,.return-home-btn{background:rgb(212 175 55 / .12);border:1px solid rgb(212 175 55 / .3);width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--color-primary);cursor:pointer;transition:0.2s;text-decoration:none}.archive-btn:hover,.return-home-btn:hover{background:rgb(212 175 55 / .25);border-color:var(--gold-primary)}.return-home-btn{font-size:.85rem;width:auto;padding:0 1rem;font-family:var(--font-serif);gap:6px;text-decoration:none}.current-tab-name{font-family:var(--font-serif);font-size:.9rem;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold-dark);background:rgb(212 175 55 / .08);padding:.4rem 1rem;border:1px solid rgb(212 175 55 / .3);white-space:nowrap}.archive-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgb(10 49 71 / .8);backdrop-filter:blur(6px);z-index:1000;display:flex;align-items:center;justify-content:flex-end;opacity:0;visibility:hidden;transition:all 0.3s ease}.archive-overlay.active{opacity:1;visibility:visible}.archive-panel{background:var(--color-bg-card);width:100%;max-width:500px;height:100%;right:0;position:absolute;box-shadow:-5px 0 30px rgb(0 0 0 / .2);display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.3s ease;border-left:1px solid var(--gold-primary)}.archive-overlay.active .archive-panel{transform:translateX(0)}.archive-header{padding:1.5rem;border-bottom:1px solid rgb(212 175 55 / .2);display:flex;justify-content:space-between;align-items:center;background:#fff}.archive-header h3{font-family:var(--font-serif);font-size:1.3rem;color:var(--color-primary)}.archive-close{background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--gold-dark)}.archive-search{padding:1rem 1.5rem;border-bottom:1px solid rgb(212 175 55 / .1)}.archive-search input{width:100%;padding:.8rem 1rem;border:1px solid rgb(212 175 55 / .3);font-family:var(--font-sans);font-size:.9rem;background:#fff;outline:none}.archive-search input:focus{border-color:var(--gold-primary)}.archive-list{flex:1;overflow-y:auto;padding:1rem 1.5rem}.archive-item{background:var(--color-bg-card);border:1px solid rgb(212 175 55 / .15);padding:.8rem 1rem;margin-bottom:.8rem;cursor:pointer;transition:all 0.2s}.archive-item:hover{border-color:var(--gold-primary);background:rgb(212 175 55 / .02);transform:translateX(3px)}.archive-item-title{font-family:var(--font-serif);font-size:.85rem;font-weight:600;color:var(--color-primary);margin-bottom:.2rem}.archive-item-meta{font-size:.65rem;color:var(--gold-dark);display:flex;gap:1rem;margin-top:.2rem}.no-results{text-align:center;padding:2rem;color:var(--color-text-light);font-style:italic}@media (max-width:700px){.slogan{display:none}.current-tab-name{font-size:.75rem;padding:.3rem .8rem}.return-home-btn span{display:none}.return-home-btn{width:44px;padding:0;justify-content:center}.header-inner{padding:0 20px}.archive-panel{max-width:100%}}main{padding:3rem 0 5rem}.site-footer{border-top:1px solid rgb(212 175 55 / .2);padding:2rem 0;color:var(--color-text-light);background:var(--color-bg);font-size:.75rem}.footer-legal{max-width:1280px;margin:1rem auto 0;padding:1rem 36px 0;border-top:1px solid rgb(212 175 55 / .15);font-size:.65rem;line-height:1.4;color:rgb(44 62 78 / .6);text-align:center;letter-spacing:.3px}@media (max-width:700px){.footer-legal{padding:.8rem 20px 0;font-size:.6rem}}.manifesto-container{max-width:880px;margin:0 auto}.breadcrumb{font-family:var(--font-sans);font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold-dark);margin-bottom:2rem}.breadcrumb a{color:var(--color-text-light);text-decoration:none;transition:color 0.2s}.breadcrumb a:hover{color:var(--gold-primary)}.breadcrumb span{color:var(--gold-dark)}.manifesto-title{font-family:var(--font-serif);font-size:3rem;font-weight:700;color:var(--color-primary);line-height:1.2;margin-bottom:1rem}.title-gold-line{width:100px;height:3px;background:var(--gradient-gold);margin-bottom:1.8rem}.manifesto-meta{display:flex;flex-wrap:wrap;gap:1.8rem;margin-bottom:2rem;font-family:var(--font-sans);font-size:.75rem;color:var(--color-text-light);border-bottom:1px solid rgb(212 175 55 / .2);padding-bottom:1rem}.manifesto-meta i{color:var(--gold-dark);margin-right:6px;width:16px}.manifesto-body{font-family:var(--font-body);font-size:1.08rem;line-height:1.7;color:var(--color-text)}.manifesto-body p{margin-bottom:1.5rem}.manifesto-body h2{font-family:var(--font-serif);font-size:1.8rem;color:var(--color-primary);margin:2.5rem 0 1rem;border-bottom:none;display:block;padding-bottom:0;border-left:3px solid var(--gold-primary);padding-left:1rem}.manifesto-body h3{font-family:var(--font-serif);font-size:1.4rem;color:var(--color-primary-light);margin:1.8rem 0 .8rem;font-weight:500}.manifesto-body blockquote{margin:2rem 0;padding:1.2rem 2rem;background:var(--gradient-gold-subtle);border-left:4px solid var(--gold-primary);font-style:italic;font-family:var(--font-body);color:var(--color-primary);font-size:1rem}.manifesto-body .highlight{background:rgb(212 175 55 / .08);padding:.2rem .4rem;border-radius:3px;font-weight:500}.manifesto-body a{color:var(--gold-dark);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}.principles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;margin:2rem 0}.principle-card{background:var(--color-bg-card);border:var(--border-light);padding:1.2rem;transition:all 0.2s}.principle-card i{font-size:1.8rem;color:var(--gold-dark);margin-bottom:.8rem;display:inline-block}.principle-card h4{font-family:var(--font-serif);font-size:1.1rem;margin-bottom:.5rem;color:var(--color-primary)}.principle-card p{font-size:.85rem;line-height:1.5;margin-bottom:0}.dev-section-divider{margin:4rem auto 2.5rem;max-width:880px;display:flex;align-items:center;gap:1.2rem}.dev-section-divider .line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-primary),transparent)}.dev-section-divider .ornament{font-size:.7rem;color:var(--gold-dark);letter-spacing:4px;white-space:nowrap;font-family:var(--font-serif)}.dev-signature-block{max-width:880px;margin:0 auto 3rem;display:flex;align-items:center;gap:2.5rem;background:var(--color-bg-card);border:1px solid rgb(212 175 55 / .2);padding:2rem 2.2rem;box-shadow:0 8px 28px -10px rgb(10 49 71 / .08)}.dev-message{flex:1}.dev-message .dev-label{font-family:var(--font-sans);font-size:.6rem;text-transform:uppercase;letter-spacing:3px;color:var(--gold-dark);margin-bottom:.8rem}.dev-message h3{font-family:var(--font-serif);font-size:1.5rem;color:var(--color-primary);margin-bottom:.8rem;font-weight:600;line-height:1.25}.dev-message p{font-family:var(--font-body);font-size:.92rem;line-height:1.6;color:var(--color-text);margin-bottom:.8rem}.dev-message .dev-signature-name{font-family:var(--font-serif);font-size:1rem;color:var(--gold-dark);margin-top:1rem;letter-spacing:1px}.dev-message .dev-signature-role{font-family:var(--font-sans);font-size:.7rem;color:var(--color-text-light);margin-top:.2rem;letter-spacing:1px}.dev-photo-frame{flex-shrink:0;width:140px;height:140px;border-radius:50%;border:2px solid var(--gold-primary);padding:4px;background:var(--gradient-gold-subtle);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;box-shadow:0 0 0 6px rgb(212 175 55 / .06)}.dev-photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.dev-photo-placeholder{width:100%;height:100%;border-radius:50%;background:rgb(212 175 55 / .08);display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-size:2.5rem;transition:all 0.3s}.dev-photo-frame:hover .dev-photo-placeholder{background:rgb(212 175 55 / .16)}@media (max-width:700px){.dev-signature-block{flex-direction:column-reverse;text-align:center;gap:1.5rem;padding:1.5rem}.dev-photo-frame{width:110px;height:110px}.dev-message h3{font-size:1.25rem}.dev-section-divider .ornament{font-size:.6rem;letter-spacing:2px}}
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <div class="logo-area"><a href="index.html" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
+      <div class="logo-area"><a href="https://pautazero.com" class="logo">Pauta<span>Zero</span></a><span class="slogan">análise · tecnologia · sistemas contemporâneos</span></div>
       <div class="nav-hamburger">
         <div class="archive-btn" id="archiveBtn"><i class="fas fa-search"></i></div>
         <span class="current-tab-name" id="currentTabLabel">Manifesto</span>
-        <a href="index.html" class="return-home-btn"><i class="fas fa-home"></i> <span>Retornar ao início</span></a>
+        <a href="https://pautazero.com" class="return-home-btn"><i class="fas fa-home"></i> <span>Retornar ao início</span></a>
       </div>
     </div>
   </header>
-
   <main>
     <div class="container manifesto-container">
       <!-- Breadcrumb -->
       <div class="breadcrumb">
-        <a href="index.html">PAUTAZERO</a> <span>/</span> 
-        <a href="manifesto.html">EDITORIAL</a> <span>/</span> 
+        <a href="https://pautazero.com">PAUTAZERO</a> <span>/</span>
+        <a href="manifesto.html">EDITORIAL</a> <span>/</span>
         <span>MANIFESTO</span>
       </div>
-
       <h1 class="manifesto-title">Manifesto PautaZero</h1>
       <div class="title-gold-line"></div>
       <div class="manifesto-meta">
@@ -361,62 +44,46 @@
         <span><i class="fas fa-code-branch"></i> Revisão institucional v.2.0</span>
         <span><i class="fas fa-gavel"></i> Compromisso público com a lei</span>
       </div>
-
       <div class="manifesto-body">
         <p>A <span class="highlight">PautaZero</span> é uma revista informacional que se ergue sobre o alicerce da legislação brasileira e dos princípios constitucionais que regem a comunicação social. Não somos um espaço de opinião descompromissada, nem um veículo de impressões ligeiras. Somos uma publicação que investiga, contextualiza e entrega à sociedade análise rigorosa, sempre sob o pálio da lei.</p>
-
         <p>Nosso nome evoca o ponto de partida — a pauta original — e o zero como símbolo da escuta atenta, da clareza anterior ao ruído e da responsabilidade de informar sem ultrapassar os limites que protegem a honra, a intimidade e a dignidade de cada cidadão.</p>
-
         <blockquote>
           <p>“Informar é um direito e um dever. Informar dentro da lei é a expressão mais alta do respeito ao Estado Democrático de Direito.”</p>
         </blockquote>
-
         <h2>1. Fundamento constitucional</h2>
         <p>A PautaZero exerce sua atividade jornalística com absoluta reverência à Constituição da República Federativa do Brasil de 1988. Garantimos a livre manifestação do pensamento (art. 5º, IV), sem anonimato, e assegurar o direito de resposta proporcional ao agravo (art. 5º, V). Resguardamos a inviolabilidade da intimidade, da vida privada, da honra e da imagem das pessoas (art. 5º, X), e observamos a função social da comunicação (art. 220).</p>
-
         <p>Não praticamos nem toleramos qualquer forma de calúnia, difamação ou injúria. Cada apuração é documentada, e toda declaração que envolva terceiros é submetida ao crivo da verificação, do contraditório e da boa-fé objetiva, conforme orientam o Código Civil e a jurisprudência consolidada dos Tribunais Superiores.</p>
-
         <h2>2. Compromisso com a legalidade material</h2>
         <p>Mais do que respeitar a letra fria da lei, a PautaZero incorpora o espírito normativo que protege a sociedade brasileira. Isso significa:</p>
-
         <div class="principles-grid">
           <div class="principle-card"><i class="fas fa-balance-scale"></i><h4>Devido processo informativo</h4><p>Toda informação potencialmente lesiva é precedida de tentativa de contato com os envolvidos, salvo impossibilidade justificada.</p></div>
           <div class="principle-card"><i class="fas fa-file-contract"></i><h4>Direito de resposta imediato</h4><p>Publicamos correções, erratas ou respostas com o mesmo destaque, sem custos, obedecendo aos prazos legais.</p></div>
           <div class="principle-card"><i class="fas fa-user-shield"></i><h4>Proteção de dados e fontes</h4><p>Tratamos dados pessoais com base na Lei Geral de Proteção de Dados (LGPD), garantindo anonimato responsável apenas quando amparado pelo interesse público e pela lei.</p></div>
           <div class="principle-card"><i class="fas fa-child"></i><h4>Salvaguarda de vulneráveis</h4><p>Crianças, adolescentes e vítimas de violência têm sua identidade preservada integralmente, conforme o Estatuto da Criança e do Adolescente.</p></div>
         </div>
-
         <h2>3. Independência que serve ao cidadão</h2>
         <p>A PautaZero não possui vínculo com partidos políticos, governos, grupos econômicos ou patrocinadores que possam ditar nossa linha editorial. Nossa independência é a garantia de que a lei — e somente ela — orienta nossas escolhas editoriais. Não fazemos campanha, não fazemos militância: fazemos informação verificável, que auxilia o leitor a formar sua própria convicção dentro do espaço democrático.</p>
-
         <h3>Diretrizes que blindam nossa atuação</h3>
         <p>— <span class="highlight">Transparência metodológica:</span> explicitamos fontes, métodos de apuração e eventuais limitações.<br>
         — <span class="highlight">Revisão jurídica preventiva:</span> conteúdos de maior sensibilidade passam por análise de conformidade legal antes da publicação.<br>
         — <span class="highlight">Canal de integridade:</span> mantemos um fluxo interno para receber e responder a contestações fundamentadas, sempre com base nos dispositivos legais cabíveis.</p>
-
         <h2>4. Rigor ético e responsabilidade social</h2>
         <p>A ética jornalística que praticamos não é um conjunto de recomendações abstratas: é a tradução cotidiana dos deveres impostos pela legislação e pelos códigos deontológicos da profissão. A PautaZero rejeita o sensacionalismo, a descontextualização maliciosa e a exploração da dor alheia. Informamos com sobriedade, porque acreditamos que a grandeza de uma nação se mede pela qualidade do debate público que ela sustenta.</p>
-
         <blockquote>
           <p>“A lei não é obstáculo à informação: é a moldura que a torna legítima, duradoura e útil à democracia.”</p>
         </blockquote>
-
         <h2>5. Tecnologia a serviço da conformidade</h2>
         <p>Utilizamos ferramentas modernas — incluindo inteligência artificial supervisionada — para monitorar grandes volumes de dados públicos, identificar padrões e acelerar a verificação. Contudo, nenhum conteúdo é publicado sem revisão humana e sem a validação jurídica pertinente. A tecnologia é nossa aliada, nunca substituta do discernimento crítico e do dever de cuidado.</p>
-
         <h2>6. Um convite à cidadania informada</h2>
         <p>A PautaZero existe para fortalecer o tecido democrático brasileiro por meio da informação de excelência. Convidamos o leitor a nos acompanhar, a exigir correção quando necessário e a compartilhar conosco a vigilância sobre o cumprimento da lei. Não somos fiscais, somos observadores participantes que honram o pacto civilizatório firmado na Constituição.</p>
-
         <p><em>São Paulo, 08 de Maio de 2026. — Equipe PautaZero</em></p>
       </div>
-
       <!-- ========== LINHA DIVISÓRIA LUXO + SEÇÃO DA DESENVOLVEDORA ========== -->
       <div class="dev-section-divider">
         <span class="line"></span>
         <span class="ornament">&#9670; &#9670; &#9670;</span>
         <span class="line"></span>
       </div>
-
       <!-- BLOCO DE ASSINATURA: mensagem + foto lado a lado -->
       <div class="dev-signature-block">
         <div class="dev-message">
@@ -428,26 +95,19 @@
           <div class="dev-signature-name">V.B</div>
           <div class="dev-signature-role">Arquiteta de Sistemas e Curadora do PautaZero<br>Especialista em Infra e sistemas críticos</div>
         </div>
-        <div class="dev-photo-frame" id="devPhotoFrame">
-          <!-- PLACEHOLDER ATÉ VOCÊ ENVIAR A FOTO -->
-          <div class="dev-photo-placeholder" id="devPhotoPlaceholder">
-            <i class="fas fa-camera"></i>
-          </div>
-          <!-- Quando enviar a foto em base64, substitua o placeholder por: -->
-          <!-- <img src="data:image/jpeg;base64,SUA_BASE64_AQUI" alt="V.B - Arquiteta de Sistemas" id="devPhotoImg" style="display:block;"> -->
+        <div class="dev-photo-frame">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAIYAAAAAAIQAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAAB" alt="V.B - Arquiteta de Sistemas" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
         </div>
       </div>
     </div>
     <!-- Fim manifesto-container -->
   </main>
-
   <footer class="site-footer">
     <div class="container" style="text-align: center;">
       <div>© 2026 PautaZero · Revista informacional de análise, sistemas contemporâneos e compromisso legal.</div>
     </div>
     <div class="footer-legal">Conteúdo editorial independente. As análises apresentadas refletem observações estruturais e não constituem aconselhamento jurídico, financeiro ou clínico. A PautaZero atua com base em critérios de responsabilidade informacional, respeitando integralmente o ordenamento jurídico brasileiro.</div>
   </footer>
-
   <!-- ARCHIVE OVERLAY (LUPA) – estrutura preservada, sem eixos populados -->
   <div class="archive-overlay" id="archiveOverlay">
     <div class="archive-panel">
@@ -456,11 +116,9 @@
       <div class="archive-list" id="archiveList"></div>
     </div>
   </div>
-
   <script>
     (function() {
       const themesForArchive = [];
-
       function escapeHtml(str) {
         return str.replace(/[&<>]/g, function(m){
           if(m === '&') return '&amp;';
@@ -469,15 +127,14 @@
           return m;
         });
       }
-
       function renderArchiveList(searchTerm = "") {
         const container = document.getElementById("archiveList");
         if (!container) return;
         const term = searchTerm.toLowerCase().trim();
         let filtered = themesForArchive;
         if (term !== "") {
-          filtered = themesForArchive.filter(item => 
-            item.title.toLowerCase().includes(term) || 
+          filtered = themesForArchive.filter(item =>
+            item.title.toLowerCase().includes(term) ||
             item.category.toLowerCase().includes(term)
           );
         }
@@ -495,7 +152,6 @@
           el.addEventListener('click', () => { window.location.href = el.getAttribute('data-url'); });
         });
       }
-
       // Controles da lupa
       const archiveBtn = document.getElementById('archiveBtn');
       const archiveOverlay = document.getElementById('archiveOverlay');
@@ -508,33 +164,6 @@
       if (archiveOverlay) archiveOverlay.addEventListener('click', (e) => { if(e.target === archiveOverlay) closeArchive(); });
       if (searchInput) searchInput.addEventListener('input', (e) => renderArchiveList(e.target.value));
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeArchive(); });
-    })();
-  </script>
-
-  <!-- SCRIPTS PARA SUBSTITUIÇÃO A BASE64 -->
-  <script>
-    (function() {
-      // Aguarde o envio da foto. Quando tiver a string base64, basta chamar:
-      // window.setDevPhoto('data:image/jpeg;base64,SUA_STRING_AQUI');
-      window.setDevPhoto = function(base64String) {
-        const frame = document.getElementById('devPhotoFrame');
-        const placeholder = document.getElementById('devPhotoPlaceholder');
-        if (!frame || !placeholder) return;
-        // Remove o placeholder
-        placeholder.remove();
-        // Cria a imagem
-        const img = document.createElement('img');
-        img.src = base64String;
-        img.alt = 'V.B - Arquiteta de Sistemas';
-        img.id = 'devPhotoImg';
-        img.style.display = 'block';
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'cover';
-        img.style.borderRadius = '50%';
-        frame.appendChild(img);
-      };
-      console.log('📸 Pronto para receber a foto. Use window.setDevPhoto("data:image/...;base64,...")');
     })();
   </script>
 </body>
